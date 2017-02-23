@@ -1,8 +1,16 @@
-Open Performance Platform (O.P.P.) is performance trending and analysis platform.  OPP consists of two parts. OPP Load and OPP UX.
+Open Performance Platform (O.P.P.) is a performance trending and analysis platform.  OPP consists of two parts. OPP Load for analyzing load test data and OPP UX for client-side performance data.
 
 ![Open Performance Platform Reporting](https://raw.githubusercontent.com/constantcontact/open-performance-platform/master/_wiki/images/opp-load-test-reporting.png)
 
+
+---
+
+
 # [View Wiki](https://github.com/constantcontact/open-performance-platform/wiki)
+
+
+---
+
 
 ## [OPP Load](OPP-Load) 
 Used for performance trending of load tests.  
