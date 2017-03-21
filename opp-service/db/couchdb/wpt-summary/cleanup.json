@@ -1,0 +1,9 @@
+{
+   "_id":"_design/cleanup",
+   "language":"javascript",
+   "views":{
+      "bad-tests":{
+         "map":"function(doc) {\n\tvar fv = doc.median.firstView;\n\tif(fv.SpeedIndex == 0 && fv.visualComplete == 0){\n\t\temit(doc.id, { \"label\":doc.label, \"key\":doc._key, \"dt\":new Date(doc.completed*1000)});\n\t}\n}\n\n"
+      }
+   }
+}

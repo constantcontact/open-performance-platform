@@ -1,0 +1,9 @@
+{
+   "_id":"_design/slas",
+   "language":"javascript",
+   "views":{
+      "list-data":{
+         "map":"function(doc) {\n   if(doc.label && doc.slas) {\n     if(doc.slas.total_slas > 0){\n        var labelArr = doc.label.split(\".\");\n        var app = labelArr[1];\n        var page = labelArr[2];\n        emit([app, doc.completed], {\"slas\":doc.slas, \"completed\":doc.completed, \"app\":app, \"page\":page});\n        \n     }\n   }\n}"
+      }
+   }
+}

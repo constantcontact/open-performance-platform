@@ -1,0 +1,10 @@
+CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+sencha app build -c production
+echo "--- Copying compiled files to root ---"
+echo "copying recources at ${CURDIR}/build/production/CCPerf/resources"
+cp -R "${CURDIR}/build/production/CCPerf/resources" "${CURDIR}/../"
+echo "copying app.js, app.json, and index.html at ${CURDIR}/build/production/CCPerf/app.js"
+cp "${CURDIR}/build/production/CCPerf/app.js" "${CURDIR}/../"
+cp "${CURDIR}/build/production/CCPerf/app.json" "${CURDIR}/../"
+cp "${CURDIR}/build/production/CCPerf/index.html" "${CURDIR}/../"
+echo "DONE"

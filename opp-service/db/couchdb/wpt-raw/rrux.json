@@ -1,0 +1,9 @@
+{
+   "_id":"_design/rrux",
+   "language":"javascript",
+   "views":{
+      "list-wptid":{
+         "map":"function(doc) {\n   if(doc.data.id) {\n     emit(doc.data.id, {\"label\":doc.data.label, \"key\":doc._key});\n   }\n}"
+      }
+   }
+}

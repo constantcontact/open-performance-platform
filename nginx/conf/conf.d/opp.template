@@ -1,0 +1,91 @@
+upstream opp-service-app {
+      least_conn;
+      server opp-service:8080 weight=10 max_fails=3 fail_timeout=30s;
+}
+# ============ OPP UI ===========
+server {
+	listen 80;
+	listen [::]:80;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+	server_name ${NGINX_HOST_UI};
+  root /var/www/opp/load;
+
+  ssl_certificate /etc/nginx/certs/opp-ui-crt.pem;
+  ssl_certificate_key /etc/nginx/certs/opp-ui-key.pem;
+  ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache  builtin:1000  shared:SSL:10m;
+  ssl_session_timeout 180m;
+
+  #add_header Strict-Transport-Security "max-age=31536000" always;
+
+  # hide nginx version
+  server_tokens off;
+
+  # add nosniff header (https://www.owasp.org/index.php/List_of_useful_HTTP_headers)
+  add_header X-Content-Type-Options nosniff;
+
+
+  location / {
+    index index.html;
+    try_files $uri $uri/ /index.html;
+  }
+
+  location /ux {
+    alias /var/www/opp/ux;
+    index index.html;
+  }
+
+  access_log            /var/log/nginx/${NGINX_HOST_UI}.access.log;
+  error_log             /var/log/nginx/${NGINX_HOST_UI}.error.log;
+
+  # all the java endpoints needed for the performance java app
+ location ~ ^/(uxsvc|loadsvc) {
+   proxy_set_header        Host $host;
+   proxy_set_header        X-Real-IP $remote_addr;
+   proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+   proxy_set_header        X-Forwarded-Proto $scheme;
+   proxy_pass              http://opp-service-app;
+ }
+}
+
+
+#========= OPP Service ===============
+server {
+	listen 80;
+	listen [::]:80;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+	server_name ${NGINX_HOST_SVC};
+	#return 301 https://$host$request_uri;
+  
+  # hide nginx version
+  server_tokens off;
+
+  # add nosniff header (https://www.owasp.org/index.php/List_of_useful_HTTP_headers)
+  add_header X-Content-Type-Options nosniff;
+
+  ssl_certificate /etc/nginx/certs/opp-svc-crt.pem;
+  ssl_certificate_key /etc/nginx/certs/opp-svc-key.pem;
+  ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache  builtin:1000  shared:SSL:10m;
+  ssl_session_timeout 180m;
+
+  #add_header Strict-Transport-Security "max-age=31536000" always;
+
+  access_log            /var/log/nginx/${NGINX_HOST_SVC}.access.log;
+  error_log             /var/log/nginx/${NGINX_HOST_SVC}.error.log;
+
+  location / {
+    proxy_set_header        Host $host;
+    proxy_set_header        X-Real-IP $remote_addr;
+    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header        X-Forwarded-Proto $scheme;
+    proxy_pass              http://opp-service-app;
+  }
+}
+

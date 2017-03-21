@@ -1,0 +1,9 @@
+{
+  "_id":"_design/jenkins",
+  "language":"javascript",
+  "views":{
+     "getWptTests":{
+        "map":"function(doc) {\n  emit(doc.test, doc.params);\n}"
+     }
+  }
+}

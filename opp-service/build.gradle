@@ -1,0 +1,122 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+
+  	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'docker'
+apply plugin: 'idea'
+
+jar {
+	baseName = 'opp-service'
+	version = '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile('org.springframework.boot:spring-boot-starter-ws')
+	compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version:"${springBootVersion}"
+
+    compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.3'
+
+    // add swagger
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
+
+	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.1'
+	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.1'
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.8.1'
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.8.1'
+
+	compile("net.sf.ehcache:ehcache-core:2.6.11")
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+
+	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
+
+	// rest client for testing
+	compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+
+	// used for easy reflection
+	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
+
+	// used to flatten wpt object for SLAs
+	compile group: 'com.github.wnameless', name: 'json-flattener', version: '0.2.2'
+
+	// getting files and directories for wpt stuff
+//	compile group: 'commons-io', name: 'commons-io', version: '2.5'
+
+
+	// junit
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	/*
+    // Use Jetty instead of tomcat
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-controller") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    //compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    */
+
+}
+
+
+eclipse {
+    classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+	push = false
+	applicationName = jar.baseName
+	dockerfile = file('src/main/docker/Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
+}
+
+// allows you to do set the system profile among other things
+// e.g.  gradle -Dspring.profiles.active=development bootRun
+//bootRun {
+//	systemProperty 'spring.profiles.active', System.properties['spring.profiles.active']
+//}
+
+
+
+// allows you to pass the system properties to junit from the command line
+// e.g. ./gradlew clean test -Dtest-groups=integration-tests
+test {
+	systemProperties = System.properties
+}

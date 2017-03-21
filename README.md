@@ -1,39 +1,43 @@
-Open Performance Platform (O.P.P.) is a performance trending and analysis platform.  OPP consists of two parts. OPP Load for analyzing load test data and OPP UX for client-side performance data.
+# OPP (Open Performance Platform)
+Open Performance Platform - Trending and performance analysis for both server-side and client-side testing
 
-![Open Performance Platform Reporting](https://raw.githubusercontent.com/constantcontact/open-performance-platform/master/_wiki/images/opp-load-test-reporting.png)
+# Deploying
+Deploying the platform with docker is very easy.
 
+`docker-compose up -d`
 
----
+# Developing
+Developing with the platform is easy as well.
 
+## APIs
+The APIs are written in Java (Spring boot) and uses gradle as the build tool.  
 
-# [View Wiki](https://github.com/constantcontact/open-performance-platform/wiki)
+To build the application:
+`./gradlew clean build`
 
+To run the application:
+`./gradlew clean bootRun`
 
----
+To create a new docker image:
+`./gradlew build buildDocker`
 
+You will need to create the new docker image before you can see your changes when you run docker-compose.
 
-## [OPP Load](OPP-Load) 
-Used for performance trending of load tests.  
+## UI
 
-### Key Features
-* Load Testing Tool Agnostic
-* Automated Trending and Analysis
-* 100% API Driven
-* CD Pipeline Ready
-* Built-in Data Aggregation for Percentile Calculations
-* Interactive Charts
-* SLAs
-* Integration with Soasta CloudTest
-* Integration with Jmeter
-* Easy wiki data export
- 
-## OPP UX
-Used for trending UX performance. 
+### Load Testing UI
+The load testing UI is in EXTJS.  This has is benefits as its all code an no actual UI design (yay!).  It was a good fit for building this reporting system without much UI effort.
 
-### Key Features
-* Utilizes WebPageTest for page measures
-* Automated Trending and Analysis
-* 100% API Driven
-* CD Pipeline Ready
-* Interactive Charts
-* SLAs
+Getting starting with EXTJS.
+
+You will need to install their Sencha CMD which can be found on their website.  
+
+https://www.sencha.com/products/extjs/cmd-download/
+
+This tested as working on version 5.1.3.x
+
+Next you will need to run the file `opp-ui/init.sh`.  This will extract EXTJS for you.
+
+From there, you can go to this folder `opp-ui/load/dev` to see the app code.
+
+To build the app run the build.sh file in that directory.  If for some reason its not working (very likely with EXTJS as it can be a pain) try the `opp-ui/script/fixExtProject.sh` script I created.  It will essentially rebuild a new project from scratch and copy the important files over.  

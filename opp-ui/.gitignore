@@ -1,0 +1,13 @@
+commit.sh
+.DS_Store
+.git
+.idea
+load/dev-bak
+load/dev-old
+load/dev/bootstrap.json
+load/dev/bootstrap.js
+load/dev/bootstrap.css
+load/dev/build
+load/dev/ext/*
+load/dev/build5.sh
+!load/dev/ext/extjs.zip

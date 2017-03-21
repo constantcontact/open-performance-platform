@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html manifest="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Open Performance Platform - Load Tests</title>
+    <script>
+      /**** Configs ****/
+      var CLOUD_TEST_BASE_URL = "http://cloudtest.roving.com";
+    </script>
+    <!-- The line below must be kept intact for Sencha Cmd to build your application -->
+    <script id="microloader" type="text/javascript" src="bootstrap.js"></script>
+
+</head>
+<body>
+
+  <!-- this css needs to be here since there will be a race condition in the header with the microloader which loads css.  In prod, the CSS is in the head so this is just for dev -->
+  <link href="/css/opp.css" rel="stylesheet" type="text/css" />
+  <link href="/css/custom.css" rel="stylesheet" type="text/css" />
+
+</body>
+</html>

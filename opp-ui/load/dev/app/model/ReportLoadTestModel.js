@@ -1,0 +1,46 @@
+Ext.define('CCPerf.model.ReportLoadTestModel', {
+    extend: 'Ext.data.Model',
+    fields: [
+      // load test data
+      {name: 'loadTestId', mapping:'loadTest.loadTestId'},
+      {name: 'appUnderTest', mapping:'loadTest.appUnderTest'},
+      {name: 'appUnderTestVersion', mapping:'loadTest.appUnderTestVersion'},
+      {name: 'comments', mapping:'loadTest.comments'},
+      {name: 'description', mapping:'loadTest.description'},
+      {name: 'environment', mapping:'loadTest.environment'},
+      {name: 'startTime', mapping:'loadTest.startTime', type: 'date', dateFormat: 'timestamp'},
+      {name: 'endTime', mapping:'loadTest.endTime', type: 'date', dateFormat: 'timestamp'},
+      {name: 'testName', mapping:'loadTest.testName'},
+      {name: 'testSubName', mapping:'loadTest.testSubName'},
+      {name: 'testTool', mapping:'loadTest.testTool'},
+      {name: 'testToolVersion', mapping:'loadTest.testToolVersion'},
+      {name: 'vuserCount', mapping:'loadTest.vuserCount'},
+      // agg data
+      {name: 'transactionName', mapping:'aggregateData.transactionName'},
+      {name: 'callCount', mapping:'aggregateData.callCount'},
+      {name: 'respAvg', mapping:'aggregateData.respAvg'},
+      {name: 'respMedian', mapping:'aggregateData.respMedian'},
+      {name: 'respMin', mapping:'aggregateData.respMin'},
+      {name: 'respMax', mapping:'aggregateData.respMax'},
+      {name: 'respPct75', mapping:'aggregateData.respPct75'},
+      {name: 'respPct90', mapping:'aggregateData.respPct90'},
+      {name: 'tpsMedian', mapping:'aggregateData.tpsMedian'},
+      {name: 'tpsMax', mapping:'aggregateData.tpsMax'},
+      {name: 'totalBytesReceived', mapping:'aggregateData.totalBytesReceived'},
+      {name: 'totalBytesSent', mapping:'aggregateData.totalBytesSent'},
+      {name: 'respStddev', mapping:'aggregateData.respStddev'},
+      {name: 'errorCount', mapping:'aggregateData.errorCount'},
+      // slas
+      {name: 'slaCustomName', mapping:'aggregateData.slaCustomName'},
+      {name: 'slaCustomValue', mapping:'aggregateData.slaCustomValue'},
+      {name: 'loadSlaGroupId', mapping:'aggregateData.loadSlaGroupId'},
+      {name: 'slaMarginOfError', mapping:'aggregateData.slaMarginOfError'},
+      {name: 'slaMax', mapping:'aggregateData.slaMax'},
+      {name: 'slaMedian', mapping:'aggregateData.slaMedian'},
+      {name: 'slaMin', mapping:'aggregateData.slaMin'},
+      {name: 'slaName', mapping:'aggregateData.slaName'},
+      {name: 'slaPct75', mapping:'aggregateData.slaPct75'},
+      {name: 'slaPct90', mapping:'aggregateData.slaPct90'},
+      {name: 'slaAvg', mapping:'aggregateData.slaAvg'}
+     ]
+});

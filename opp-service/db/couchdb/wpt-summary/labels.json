@@ -1,0 +1,21 @@
+{
+   "_id":"_design/labels",
+   "language":"javascript",
+   "views":{
+      "list":{
+         "map":"function(doc) {\n   if(doc.label) {\n     emit(doc.label, null);\n   }\n}",
+         "reduce":"function (key, values) {\n  return true;\n}"
+      },
+      "list-data":{
+         "map":"function(doc) {\n   if(doc.label) {\n     emit(doc.label, doc);\n   }\n}"
+      },
+      "list-count":{
+         "map":"function(doc) {\n   if(doc.label) {\n     emit(doc.label, null);\n   }\n}",
+         "reduce":"_count"
+      },
+      "list-application-count":{
+         "map":"function(doc) {\n   if(doc.label) {\n     emit(doc.label.split(\".\")[1], null);\n   }\n}",
+         "reduce":"_count"
+      }
+   }
+}
