@@ -1,0 +1,90 @@
+opp:
+  appMap:
+    # Validates a test name already exists with external application mappings.  Ensures data integrity and uniqueness
+    # but will require you to pre-define your allowed applications.
+    validateTestNameMapping: false
+    # Instructs the ApplicationMapService to call the ApplicationMapExternalService.
+    useExternal: false
+    # The base URL for the external application map service.
+    externalURL: ""
+    # API Version to use.
+    apiVersion: "v1"
+  db:
+    # The batch size for SQL imports for load test data
+    importBatchSize: 500
+  summaryTrends:
+    # Searchable columns when showing trends.  Must be from load_test table
+    searchableColumns:
+      - test_name
+      - test_sub_name
+      - app_under_test
+      - environment
+    # columns the application will trend on.  Must be from load_test table
+    trendOnColumns:
+      - test_name
+      - test_sub_name
+      - vuser_count
+  # if you want to store data in graphite (currently UX only)
+  graphite:
+    host: my-graphite-server.com
+    port: 2003
+  # OPP UX properties
+  ux:
+    # Couch DB info
+    couchdb:
+      url: http://couchdb:5984/
+    # you can also set your private wpt server here
+    wptUrl: https://www.webpagetest.org  
+    graphiteMetricRootPath: ux
+    # where WPT result files will be stored
+    dataStorePath: /ux_data_store/
+    ui:
+     # max number of tests to show on ui trending page
+     maxTestsToShow: 60
+     # when the data gets trimmed, always show the last X number of tests
+     alwaysShowLastXNumTests: 20
+
+logging:
+  path: log
+spring:
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+  datasource:
+    url: jdbc:mysql://mysql:3306/opp?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false&requireSSL=false&only_full_group_by=false
+    username: oppuser
+    password: opppass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    test-on-borrow: true
+    test-while-idle: true
+    validation-query: SELECT 1
+server:
+  port: 8080
+runIntegrationTests: true
+
+---
+# set optional profiles --- currently not used
+# set production profile
+spring:
+  profiles: production
+  datasource:
+    url: jdbc:mysql://dev-environment:3306/opp?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: myuser
+    password: $mypass123!
+server:
+  port: 8899
+
+---
+# this is needed for unit tests
+spring:
+  profiles: development
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/opp?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false&requireSSL=false&only_full_group_by=false
+    username: oppuser
+    password: opppass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    test-on-borrow: true
+    test-while-idle: true
+    validation-query: SELECT 1
+server:
+  port: 8899
