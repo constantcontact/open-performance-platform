@@ -1,15 +1,16 @@
 package com.opp.service;
 
-import com.opp.dto.ux.couchdb.CouchDbActionResp;
-import com.opp.dto.ux.couchdb.CouchDbViewResp;
-import com.opp.exception.BadRequestException;
-import com.opp.exception.ResourceNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.opp.dto.ux.couchdb.CouchDbActionResp;
+import com.opp.dto.ux.couchdb.CouchDbViewResp;
+import com.opp.exception.BadRequestException;
+import com.opp.exception.ResourceNotFoundException;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,7 +65,7 @@ public class CouchDbService {
 
 
 
-    public CouchDbActionResp deleteDocNoRev(String db, String id) throws UnirestException {
+    public CouchDbActionResp deleteDocNoRev(String db, String id) throws UnirestException, JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("_deleted", true);
         HttpResponse<CouchDbActionResp> resp = Unirest.put(couchdbUrl + db + "/" + id).body(jsonObject).asObject(CouchDbActionResp.class);

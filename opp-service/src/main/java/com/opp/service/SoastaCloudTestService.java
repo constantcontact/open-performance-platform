@@ -1,11 +1,6 @@
 package com.opp.service;
 
-import com.opp.domain.ApplicationMap;
-import com.opp.domain.LoadSlaTestGroup;
-import com.opp.domain.LoadTest;
-import com.opp.domain.LoadTestApplicationCoverage;
-import com.opp.domain.LoadTestData;
-import com.opp.domain.SoastaCloudTest;
+import com.opp.domain.*;
 import com.opp.dto.LoadTestApplicationCoverageFilter;
 import com.opp.dto.SoastaCloudTestResponse;
 import com.opp.dto.aggregate.LoadTestAggregateDataResp;

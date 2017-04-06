@@ -9,6 +9,14 @@ opp:
     externalURL: ""
     # API Version to use.
     apiVersion: "v1"
+    # Elastic search configs
+    elasticsearch:
+      apiUrl: http://localhost:9200
+      clusterNodes: localhost:9300
+      clusterName: docker-cluster
+      wptData:
+        index: wpt-summary
+        type: result
   db:
     # The batch size for SQL imports for load test data
     importBatchSize: 500

@@ -1,32 +1,35 @@
 package com.opp.controller.ux;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.domain.ApplicationMap;
-import com.opp.domain.ux.WptNavCategory;
+import com.opp.domain.ux.WptResult;
+import com.opp.domain.ux.WptTest;
+import com.opp.domain.ux.WptTestImport;
+import com.opp.domain.ux.WptTestLabel;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.graphite.GraphiteSimpleMetric;
 import com.opp.dto.graphite.GraphiteSimpleResp;
 import com.opp.dto.ux.WptTrendDataResp;
-import com.opp.dto.ux.couchdb.DeleteWptDocResp;
-import com.opp.exception.BadRequestException;
+import com.opp.exception.ResourceNotFoundException;
 import com.opp.service.GraphiteService;
 import com.opp.service.WptService;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
-import static com.eclipsesource.json.Json.array;
-import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -39,8 +42,95 @@ public class WptController {
     @Autowired
     private WptService service;
 
+
     @Autowired
     private GraphiteService graphiteService;
+
+
+    // ======== CRUD ===============
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation( value = "Creates a new WPT Test")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Successfully created new WPT Test", response = WptTest.class),
+            @ApiResponse(code = 400, message = "Invalid WPT Test object provided", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public IndexResponse create(@RequestBody WptTestImport wptTestImport) throws Exception {
+        return service.importTest(wptTestImport); //.orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
+    }
+
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests/{wpt_test_id}", method = RequestMethod.PUT)
+    @ApiOperation(
+            value = "Update an WPT Test",
+            notes = "Updates an existing WPT Test"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successfully updated WPT Test", response = WptTest.class),
+            @ApiResponse(code = 400, message = "Invalid WPT Test object provided", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public UpdateResponse update(@PathVariable("wpt_test_id") String wptTestId, @Valid @RequestBody WptResult update) throws ExecutionException, InterruptedException {
+        return service.update(wptTestId, update); //.orElseThrow(()->new InternalServiceException("Error occurred while updating WPT Test"));
+    }
+
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests/{wpt_test_id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ApiOperation(
+            value = "Delete a WPT Test",
+            notes = "Deletes an existing WPT Test"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 202, message = "Successfully deleted WPT Test", response = Void.class),
+            @ApiResponse(code = 400, message = "Failed to delete WPT Test", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public void delete(@PathVariable("wpt_test_id") String wptTestId, HttpServletResponse response) {
+        if(!service.delete(wptTestId)){
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests/{wpt_test_id}", method = RequestMethod.GET)
+    @ApiOperation(
+            value = "Get a WPT Test",
+            notes = "Gets a WPT Test by ID"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successfully retrieved WPT Test", response = WptTest.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public WptResult getById(@PathVariable("wpt_test_id") String wptTestId) {
+        return service.getById(wptTestId).orElseThrow(()->new ResourceNotFoundException("WPT Test does not exist with that ID."));
+    }
+
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests", method = RequestMethod.GET)
+    @ApiOperation(
+            value = "Get all WPT Tests",
+            notes = "Get all WPT Tests"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successfully retrieved WPT Tests", response = WptTest.class, responseContainer = "List"),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public List<WptTest> getAll() {
+        return service.getAll();
+    }
+
+
+    // ============= END CRUD ===========
+
+
+
 
     @RequestMapping(value = "/uxsvc/v1/wpt/categories", method = RequestMethod.GET)
     @ApiOperation( value = "Get parametric navigation choices" )
@@ -50,8 +140,8 @@ public class WptController {
             @ApiResponse(code = 404, message = "application map not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public Map<String, List<WptNavCategory>> getCategories() {
-        return service.getCategories();
+    public List<WptTestLabel> getCategories() {
+        return service.getNavigation();
     }
 
     /**
@@ -109,33 +199,6 @@ public class WptController {
         return resp;
     }
 
-    @RequestMapping(value = "/uxsvc/v1/tests", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @ApiOperation( value = "Delete tests by name or by ID", notes = "The couchid is the wpt-summary id")
-    @ApiResponses({
-            @ApiResponse(code = 202, message = "Successfully deleted tests", response = Void.class),
-            @ApiResponse(code = 400, message = "Failed to delete tests", response = ErrorResponse.class),
-            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
-            @ApiResponse(code = 404, message = "Tests not found", response = ErrorResponse.class),
-            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
-    })
-    public List<DeleteWptDocResp> deleteAllByTestName(
-            @RequestParam(name = "name", required = false) String testName,
-            @RequestParam(name = "wptid", required = false) String wptId,
-            @RequestParam(name = "couchid", required = false) String couchSummaryId
-    ){
-        try {
-            if(testName != null){
-                return service.deleteByName(testName);
-            } else {
-                return Arrays.asList(service.deleteById(wptId, couchSummaryId));
-            }
-
-        } catch (UnirestException e) {
-            e.printStackTrace();
-            throw new BadRequestException("Failed deleting tests from couchdb");
-        }
-    }
 
 
 

@@ -1,8 +1,8 @@
 package com.opp.dao;
 
+import com.opp.dao.util.UpdateBuilder;
 import com.opp.domain.LoadSla;
 import com.opp.dto.LoadTestSla;
-import com.opp.dao.util.UpdateBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
