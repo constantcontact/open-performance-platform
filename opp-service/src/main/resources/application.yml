@@ -11,8 +11,8 @@ opp:
     apiVersion: "v1"
   # Elastic search configs
   elasticsearch:
-    apiUrl: http://localhost:9200
-    clusterNodes: localhost:9300
+    apiUrl: http://elasticsearch:9200
+    clusterNodes: elasticsearch:9300
     clusterName: docker-cluster
     wptData:
       index: wpt-summary
