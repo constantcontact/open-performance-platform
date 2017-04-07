@@ -2,10 +2,7 @@ package com.opp.controller.ux;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.domain.ApplicationMap;
-import com.opp.domain.ux.WptResult;
-import com.opp.domain.ux.WptTest;
-import com.opp.domain.ux.WptTestImport;
-import com.opp.domain.ux.WptTestLabel;
+import com.opp.domain.ux.*;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.graphite.GraphiteSimpleMetric;
 import com.opp.dto.graphite.GraphiteSimpleResp;
@@ -132,15 +129,15 @@ public class WptController {
 
 
 
-    @RequestMapping(value = "/uxsvc/v1/wpt/categories", method = RequestMethod.GET)
+    @RequestMapping(value = "/uxsvc/v1/wpt/navigation", method = RequestMethod.GET)
     @ApiOperation( value = "Get parametric navigation choices" )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved category list", response = Map.class),
+            @ApiResponse(code = 200, message = "Successfully retrieved category list", response = WptUINavigation.class, responseContainer = "List"),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "application map not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public List<WptTestLabel> getCategories() {
+    public List<WptUINavigation> getNavigation() {
         return service.getNavigation();
     }
 
