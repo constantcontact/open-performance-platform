@@ -1,12 +1,5 @@
 package com.opp.service;
 
-import com.opp.domain.WebPageTestResult;
-import com.opp.domain.ux.WptNavCategory;
-import com.opp.dto.ux.*;
-import com.opp.dto.ux.couchdb.CouchDbActionResp;
-import com.opp.dto.ux.couchdb.CouchDbViewResp;
-import com.opp.dto.ux.couchdb.DeleteWptDocResp;
-import com.opp.util.FileUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +7,21 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.wnameless.json.flattener.JsonFlattener;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.opp.dao.WptTestDao;
+import com.opp.domain.ux.WptResult;
+import com.opp.domain.ux.WptTest;
+import com.opp.domain.ux.WptTestImport;
+import com.opp.domain.ux.WptTestLabel;
+import com.opp.dto.ux.TestRunData;
+import com.opp.dto.ux.WptSlaResults;
+import com.opp.dto.ux.WptTrendDataResp;
+import com.opp.dto.ux.couchdb.CouchDbActionResp;
+import com.opp.dto.ux.couchdb.CouchDbViewResp;
+import com.opp.dto.ux.couchdb.DeleteWptDocResp;
+import com.opp.util.FileUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +29,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Created by ctobe on 9/15/16.
@@ -37,55 +45,114 @@ import static java.util.stream.Collectors.*;
 @Service
 public class WptService {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    private WptTestDao dao;
     @Autowired
     private ObjectMapper objectMapper;
-
     @Autowired
     private CouchDbService couchDbService;
-
     @Autowired
     private GraphiteService graphiteService;
 
+
     @Value("${opp.ux.dataStorePath}")
     private String uxDataStorePath;
-
     @Value("${opp.ux.wptUrl}")
     private String wptUrl;
-
     @Value("${opp.ux.ui.maxTestsToShow}")
     private int uiMaxTestsToShow;
-
     @Value("${opp.ux.ui.alwaysShowLastXNumTests}")
     private int uiAlwaysShowLastXNumTests;
 
 
-
-     /**
-     * Will store either a string or a json object
-     * @param rawData
-     */
-    public CouchDbActionResp storeRawResults(JsonNode rawData){
-        CouchDbActionResp delResp = null;
-        try {
-            delResp = couchDbService.addDoc("wpt-raw", rawData);
-            if(!delResp.isOk()){
-                log.error("Error adding document to coucnDBService.  Message: " + delResp.getError());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return delResp;
-        }
+    // ========= CRUD Operations ==========
+    public IndexResponse importTest(WptTestImport wptTestImport) throws Exception {
+        return importTest(wptTestImport, false);
     }
+    /**
+     * Import test from WPT
+     * @param wptTestImport
+     * @param sendToGraphite
+     * @return
+     * @throws Exception
+     */
+    public IndexResponse importTest(WptTestImport wptTestImport, boolean sendToGraphite) throws Exception {
+
+        // set urls
+        String jsonUrl = String.format("%s/jsonResult.php?test=%s", wptUrl, wptTestImport.getWptId());
+        String harUrl = String.format("%s/export.php?test=%s", wptUrl, wptTestImport.getWptId());
+        String resultFileName = String.format("%sresults/%s", uxDataStorePath, wptTestImport.getWptId());
+
+        // get json results from wpt
+        String jsonContents = Unirest.get(jsonUrl).asString().getBody();
+
+        // push json elasticsearch
+        JsonNode jsonNodeWptResults = objectMapper.readTree(jsonContents);
+        IndexResponse summaryResults = storeSummaryResults(jsonNodeWptResults, wptTestImport.getWptTestLabel());
+
+//        // send to graphite
+//        if(sendToGraphite) {
+//            sendDataToGraphite(jsonNodeWptResults);
+//        }
+
+        return summaryResults;
+    }
+
+    public IndexResponse add(WptResult wptResult) {
+        return dao.insert(wptResult);
+    }
+
+    public UpdateResponse update(String wptId, WptResult wptResult) throws ExecutionException, InterruptedException {
+        // todo: maybe see if it exists first, but ES should just bomb
+        return dao.update(wptResult);
+    }
+
+    public boolean delete(String wptTestId) {
+        return (dao.delete(wptTestId) == 1);
+    }
+
+    public Optional<WptResult> getById(String wptTestId) {
+        return dao.findById(wptTestId);
+    }
+
+    public List<WptResult> getByLabel(String labelName) {
+        return dao.findByLabel(labelName);
+    }
+
+    public List<WptTest> getAll() {
+        return dao.findAll();
+    }
+
+    public int deleteByLabel(String testName) {
+        List<WptResult> wptResults = getByLabel(testName);
+        AtomicInteger counter = new AtomicInteger(0);
+        wptResults.forEach(t -> {
+            if (delete(t.getId())) {
+                counter.getAndIncrement();
+            }
+        });
+        return counter.get();
+    }
+
+    // ========== END CRUD =============
+
+
+
+
+
+    public List<WptTestLabel> getNavigation() {
+        return dao.getNavigation();
+    }
+
 
     /**
      * Takes a wpt json object and trims the fat and stores a lightweight results object
      * @param wptRawObject
      * @return mixed
      */
-    public CouchDbActionResp storeSummaryResults(JsonNode wptRawObject) throws Exception {
+    public IndexResponse storeSummaryResults(JsonNode wptRawObject, WptTestLabel wptTestLabel) throws Exception {
 
         ObjectNode dataNode = (ObjectNode) wptRawObject.get("data");
 
@@ -130,28 +197,20 @@ public class WptService {
         dataNode.set("average", cleanUpWptRun(dataNode.get("average")));
         dataNode.set("median", cleanUpWptRun(dataNode.get("median")));
         dataNode.remove("runs"); // huge savings
+        dataNode.remove("label");  // need to delete cause its replaced with a better label
 
-        // save the full data reference ID in case I ever need more info
-        dataNode.set("rawDataId", wptRawObject.get("_id"));
+        WptResult wptResult = objectMapper.convertValue(dataNode, WptResult.class);
 
         // add status code and status text
-        dataNode.set("statusCode", wptRawObject.get("statusCode"));
-        dataNode.set("statusText", wptRawObject.get("statusText"));
+        wptResult.setStatusCode(wptRawObject.get("statusCode").asText());
+        wptResult.setStatusText(wptRawObject.get("statusText").asText());
+        wptResult.setLabel(wptTestLabel);
 
-        CouchDbActionResp resp = null;
 
-        try {
-            resp = couchDbService.addDoc("wpt-summary", dataNode);
-            if(!resp.isOk()){
-                log.error("Error adding document to couchDBService.  Message: " + resp.getError());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return resp;
-        }
+        return add(wptResult);
 
     }
+
 
 
     private void sendDataToGraphite(JsonNode jsonObj) {
@@ -196,35 +255,42 @@ public class WptService {
         // convert to object so I can delete stuff
         ObjectNode runNodeObj = (ObjectNode) runNode;
 
-        // clean up min and max
+        // clean delete unneeded stuff to maybe make serialization faster
         ObjectNode firstView = (ObjectNode)runNodeObj.get("firstView");
-        firstView.remove("requests");
-        firstView.remove("videoFrames");
-        runNodeObj.set("firstView", firstView);
+        if(firstView.has("requests")) firstView.remove("requests");
+        if(firstView.has("videoFrames"))firstView.remove("videoFrames");
+        if(firstView.has("domains")) firstView.remove("domains");
+        if(firstView.has("consoleLog")) firstView.remove("consoleLog");
+        // set user timings
+        runNodeObj.set("firstView", setUserTimings(firstView));
 
         if(runNodeObj.has("repeatView")) {
             ObjectNode repeatView = (ObjectNode) runNodeObj.get("repeatView");
-            repeatView.remove("requests");
-            repeatView.remove("videoFrames");
-            runNodeObj.set("repeatView", repeatView);
+            if(repeatView.has("requests")) repeatView.remove("requests");
+            if(repeatView.has("videoFrames"))repeatView.remove("videoFrames");
+            if(repeatView.has("domains")) repeatView.remove("domains");
+            if(repeatView.has("consoleLog")) repeatView.remove("consoleLog");
+            // set user timings
+            runNodeObj.set("repeatView", setUserTimings(repeatView));
         }
 
         return runNodeObj;
     }
 
-    public List<DeleteWptDocResp> deleteByName(String name) throws UnirestException {
-        CouchDbViewResp documentsByViewQuery = couchDbService.getDocumentsByViewQuery("wpt-summary/_design/labels/_view/list-data?key=\"" + name + "\"");
-        return documentsByViewQuery.getRows().stream().map( r -> {
-            String wptId = r.getValue().get("id").asText();
-            String docId = r.getValue().get("_id").asText();
-            try {
-                return deleteById(wptId, docId);
-            } catch (UnirestException e) {
-                e.printStackTrace();
-                // todo: handle this better
-                return new DeleteWptDocResp();
+    private ObjectNode setUserTimings(ObjectNode runViewNodeObject){
+        if(!runViewNodeObject.has("userTimes")){
+            Map<String, Long> userTimes = new HashMap<>();
+            Iterator<String> fieldIterator = runViewNodeObject.fieldNames();
+            while(fieldIterator.hasNext()){
+                String fieldName = fieldIterator.next();
+                if(fieldName.startsWith("userTime.")){
+                    String userTimingName = fieldName.replace("userTime.", "");
+                    userTimes.put(userTimingName, runViewNodeObject.get(fieldName).asLong());
+                }
             }
-        }).collect(toList());
+            runViewNodeObject.set("userTimes", objectMapper.valueToTree(userTimes));
+        }
+        return runViewNodeObject;
     }
 
 
@@ -542,61 +608,63 @@ public class WptService {
      * @return
      * @throws Exception
      */
-    public WptImportResult importTest(String id, boolean sendToGraphite) throws Exception {
-        log.info("======= New Test ID: " + id);
+//    public WptImportResult importTestCouch(String id, boolean sendToGraphite) throws Exception {
+//        log.info("======= New Test ID: " + id);
+//
+//        // write queue file
+//        Path queueFilePath = Paths.get(uxDataStorePath + "queue/" + id);
+//        Files.write(queueFilePath, Collections.emptyList());
+//        log.info("File moved to queue");
+//
+//        // set urls
+//        String jsonUrl = String.format("%s/jsonResult.php?test=%s", wptUrl, id);
+//        String harUrl = String.format("%s/export.php?test=%s", wptUrl, id);
+//        String resultFileName = String.format("%sresults/%s", uxDataStorePath, id);
+//
+//        // get json results from wpt
+//        String jsonContents = Unirest.get(jsonUrl).asString().getBody();
+//        // save to local file
+//        FileUtil.writeToFile(resultFileName + ".json", jsonContents);
+//        // gzip file
+//        FileUtil.gzipFile(resultFileName + ".json", resultFileName + ".json.gz");
+//        Files.deleteIfExists(Paths.get(resultFileName + ".json")); // delete original
+//        log.info("Got json results");
+//
+//        // grab har file contents
+//        String harContents = Unirest.get(harUrl).asString().getBody();
+//        // save to local file
+//        FileUtil.writeToFile(resultFileName + ".har", harContents);
+//        // gzip file
+//        FileUtil.gzipFile(resultFileName + ".har", resultFileName + ".har.gz");
+//        Files.deleteIfExists(Paths.get(resultFileName + ".har")); // delete original
+//        log.info("Got har file");
+//
+//        // push json to couch db
+//        JsonNode jsonNodeWptResults = objectMapper.readTree(jsonContents);
+//        CouchDbActionResp summaryResults = storeSummaryResultsCouch(jsonNodeWptResults);
+//        CouchDbActionResp rawResults = storeRawResults(jsonNodeWptResults);
+//        log.info("UX Summary Results: " + summaryResults.isOk());
+//        log.info("UX Raw Results: " + rawResults.isOk());
+//        log.info("Pushed to couchdb");
+//
+//        // send to graphite
+//        if(sendToGraphite) {
+//            sendDataToGraphite(jsonNodeWptResults);
+//        }
+//
+//        // mark this processed and move to different directory
+//        Path processedFilePath = Paths.get(uxDataStorePath + "processed/" + id);
+//        try {
+//            Files.move(queueFilePath, processedFilePath, StandardCopyOption.REPLACE_EXISTING);
+//        } catch (Exception ex){
+//            log.error("Error moving file - " + queueFilePath + "\n Error: " + ex.getMessage());
+//        }
+//        log.info("Marked as processed");
+//
+//        return new WptImportResult(summaryResults, rawResults);
+//    }
 
-        // write queue file
-        Path queueFilePath = Paths.get(uxDataStorePath + "queue/" + id);
-        Files.write(queueFilePath, Collections.emptyList());
-        log.info("File moved to queue");
 
-        // set urls
-        String jsonUrl = String.format("%s/jsonResult.php?test=%s", wptUrl, id);
-        String harUrl = String.format("%s/export.php?test=%s", wptUrl, id);
-        String resultFileName = String.format("%sresults/%s", uxDataStorePath, id);
-
-        // get json results from wpt
-        String jsonContents = Unirest.get(jsonUrl).asString().getBody();
-        // save to local file
-        FileUtil.writeToFile(resultFileName + ".json", jsonContents);
-        // gzip file
-        FileUtil.gzipFile(resultFileName + ".json", resultFileName + ".json.gz");
-        Files.deleteIfExists(Paths.get(resultFileName + ".json")); // delete original
-        log.info("Got json results");
-
-        // grab har file contents
-        String harContents = Unirest.get(harUrl).asString().getBody();
-        // save to local file
-        FileUtil.writeToFile(resultFileName + ".har", harContents);
-        // gzip file
-        FileUtil.gzipFile(resultFileName + ".har", resultFileName + ".har.gz");
-        Files.deleteIfExists(Paths.get(resultFileName + ".har")); // delete original
-        log.info("Got har file");
-
-        // push json to couch db
-        JsonNode jsonNodeWptResults = objectMapper.readTree(jsonContents);
-        CouchDbActionResp summaryResults = storeSummaryResults(jsonNodeWptResults);
-        CouchDbActionResp rawResults = storeRawResults(jsonNodeWptResults);
-        log.info("UX Summary Results: " + summaryResults.isOk());
-        log.info("UX Raw Results: " + rawResults.isOk());
-        log.info("Pushed to couchdb");
-
-        // send to graphite
-        if(sendToGraphite) {
-            sendDataToGraphite(jsonNodeWptResults);
-        }
-
-        // mark this processed and move to different directory
-        Path processedFilePath = Paths.get(uxDataStorePath + "processed/" + id);
-        try {
-            Files.move(queueFilePath, processedFilePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception ex){
-            log.error("Error moving file - " + queueFilePath + "\n Error: " + ex.getMessage());
-        }
-        log.info("Marked as processed");
-
-        return new WptImportResult(summaryResults, rawResults);
-    }
 
     /**
      * Validate SLAs
@@ -659,119 +727,6 @@ public class WptService {
         wptSlaResults.setTotalPassPct(((double)Math.round(((double)totalPassed/slaFlatMap.size()) * 100 * 100))/100);
         wptSlaResults.setSlaDetails(wptSlaResultDetailsList);
         return wptSlaResults;
-    }
-
-
-    /**
-     * Get WPT navigation options
-     * @return
-     */
-    @Cacheable("wptNavCategories")
-    public Map<String, List<WptNavCategory>> getCategories() {
-
-        Map<String, List<WptNavCategory>> navCategories = new HashMap<>();
-        CouchDbViewResp documentsByViewQuery;
-        try {
-            documentsByViewQuery = couchDbService.getDocumentsByViewQuery("wpt-summary/_design/categories/_view/list?group=true");
-
-            navCategories = documentsByViewQuery.getRows().stream().
-                    map(r -> objectMapper.convertValue(r.getKey(), WptNavCategory[].class)[0]).collect( // map out the key object which is WptNavCategory
-                    groupingBy(WptNavCategory::getApp, TreeMap::new, // group by app
-                            collectingAndThen(toList(), (List<WptNavCategory> l) -> { l.sort(comparing(WptNavCategory::getPage)); return l; }))); // toList and sort the list of apps in each list
-
-        } catch (UnirestException ex){
-            ex.printStackTrace();
-            log.error("Failed to get categories from couchdb");
-        }
-
-        return navCategories;
-    }
-
-    /**
-     * Get WPT navigation options
-     * @return
-     */
-    @Cacheable("wptNavCategoriesV2")
-    public List<WptNavApp> getCategoriesV2() {
-
-        List<WptNavApp> wptNavApps = new ArrayList<>();
-        CouchDbViewResp documentsByViewQuery;
-        try {
-            documentsByViewQuery = couchDbService.getDocumentsByViewQuery("wpt-summary/_design/categories/_view/list?group=true");
-
-            TreeMap<String, List<WptNavCategory>> navCats = documentsByViewQuery.getRows().stream().
-                    map(r -> objectMapper.convertValue(r.getKey(), WptNavCategory[].class)[0]).collect( // map out the key object which is WptNavCategory
-                    groupingBy(WptNavCategory::getApp, TreeMap::new, // group by app
-                            collectingAndThen(toList(), (List<WptNavCategory> l) -> {
-                                l.sort(comparing(WptNavCategory::getPage)); // toList and sort the list of apps in each list
-                                return l;
-                            })));
-
-            wptNavApps = navCats.entrySet().stream().map(r -> new WptNavApp(r.getKey(), r.getValue())).collect(toList());
-
-        } catch (UnirestException ex){
-            ex.printStackTrace();
-            log.error("Failed to get categories from couchdb");
-        }
-
-        return wptNavApps;
-    }
-
-    /**
-     * Gets data from all the wptJsonFiles stored in the system.  Alternative to using CouchDB.  Don't think this is still used.
-     * @param dir
-     * @return
-     */
-    public Map<String, Map<Long, WebPageTestResult>> getWptJsonFiles(String dir){
-
-        List<String> files = FileUtil.getFilesFromDirectoryRecusively(dir, "glob:json.gz");
-
-        Map<String, Map<Long, WebPageTestResult>> pages = new HashMap<>();
-        //Map<String, String> wptFiles = new HashMap<>();
-
-        files.forEach(filePath -> {
-            try {
-                String fileContents = FileUtil.readGzipFile(Paths.get(filePath)).collect(Collectors.joining());
-                //String fileContents = new String(Files.readAllBytes(Paths.get(filePath)));
-                JsonNode jsonNode = objectMapper.valueToTree(fileContents);
-
-                if(jsonNode.has("data") && jsonNode.get("data").has("label")) {
-                    JsonNode dataNode = jsonNode.get("data");
-                    JsonNode firstView = dataNode.get("runs").get("1").get("firstView");
-
-                    WebPageTestResult wptRes = new WebPageTestResult();
-                    wptRes.setUrl(firstView.get("URL").asText());
-                    wptRes.setLabel(dataNode.get("label").asText());
-                    wptRes.setCompleted(dataNode.get("completed").asLong());
-                    wptRes.setId(dataNode.get("id").asText());
-                    wptRes.setWpt_summary(dataNode.get("summary").asText());
-                    wptRes.setStatusCode(dataNode.get("statusCode").asInt());
-                    wptRes.setLocation(dataNode.get("location").asText());
-                    wptRes.setConnectivity(dataNode.get("connectivity").asText());
-                    wptRes.setLoadTime(firstView.get("loadTime").asInt());
-                    wptRes.setTtfb(firstView.get("ttfb").asInt());
-                    wptRes.setFullyLoaded(firstView.get("fullyLoaded").asInt());
-                    wptRes.setLastVisualChange(firstView.get("lastVisualChange").asInt());
-                    wptRes.setSpeedIndex(firstView.get("SpeedIndex").asInt());
-                    wptRes.setVisualComplete(firstView.get("visualComplete").asInt());
-                    wptRes.setThumbs(objectMapper.convertValue(firstView.get("thumbnails"), WebPageTestResult.Images.class));
-                    wptRes.setImages(objectMapper.convertValue(firstView.get("images"), WebPageTestResult.Images.class));
-                    wptRes.setWpt_pages(objectMapper.convertValue(firstView.get("pages"), WebPageTestResult.WptPages.class));
-
-                    // replaces
-                    // $pages[$indexOn][$completed]['wpt_data'];   // indexOn is the label
-                    Map<Long, WebPageTestResult> dataMap = new HashMap<>();
-                    dataMap.put(wptRes.getCompleted(), wptRes);
-                    pages.put(wptRes.getLabel(), dataMap);
-
-
-                }
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
-        });
-
-        return pages;
     }
 
 

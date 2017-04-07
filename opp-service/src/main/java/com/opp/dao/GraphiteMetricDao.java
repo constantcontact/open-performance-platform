@@ -1,7 +1,7 @@
 package com.opp.dao;
 
-import com.opp.domain.GraphiteMetric;
 import com.opp.dao.util.UpdateBuilder;
+import com.opp.domain.GraphiteMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,7 +17,6 @@ import static com.opp.dao.util.InsertBuilder.insertInto;
 import static com.opp.dao.util.SelectUtils.getOptional;
 import static com.opp.dao.util.SelectUtils.getOrReturnEmpty;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Created by ctobe on 9/13/16.

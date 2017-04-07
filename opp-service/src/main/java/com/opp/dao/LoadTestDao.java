@@ -1,8 +1,8 @@
 package com.opp.dao;
 
+import com.google.common.base.CaseFormat;
 import com.opp.domain.LoadTest;
 import com.opp.util.ReflectionUtil;
-import com.google.common.base.CaseFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,15 +11,16 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.sql.Statement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static com.opp.dao.util.InsertBuilder.insertInto;
 import static com.opp.dao.util.SelectUtils.getOptional;
 import static com.opp.dao.util.SelectUtils.getOrReturnEmpty;
 import static com.opp.dao.util.UpdateBuilder.updateInto;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by ctobe on 6/27/16.

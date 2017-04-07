@@ -1,5 +1,7 @@
 package com.opp.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.opp.config.settings.SummaryTrendsConfiguration;
 import com.opp.dao.LoadTestSummaryTrendDao;
 import com.opp.domain.LoadTestSummaryTrend;
@@ -7,8 +9,6 @@ import com.opp.dto.LoadTestSummaryTrendGet;
 import com.opp.dto.SummaryTrendByGroup;
 import com.opp.exception.ResourceNotFoundException;
 import com.opp.util.ReflectionUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,9 @@
 package com.opp.dao;
 
+import com.google.common.base.CaseFormat;
 import com.opp.config.settings.SummaryTrendsConfiguration;
 import com.opp.domain.LoadTestSummaryTrend;
 import com.opp.util.ReflectionUtil;
-import com.google.common.base.CaseFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
