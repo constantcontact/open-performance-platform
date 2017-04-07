@@ -6,7 +6,9 @@ import com.mashape.unirest.http.Unirest;
 import com.opp.BaseIntegrationTest;
 import com.opp.domain.ux.WptTestImport;
 import com.opp.domain.ux.WptTestLabel;
+import com.opp.domain.ux.WptUINavigation;
 import com.opp.service.DataGenService;
+import com.opp.service.WptService;
 import com.opp.util.MathUtil;
 import com.opp.util.RestUtil;
 import org.json.JSONArray;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.Instant;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -32,12 +35,16 @@ public class WptResultControllerTest extends BaseIntegrationTest {
     @Autowired
     DataGenService dataGenService;
 
+    @Autowired
+    WptService wptService;
+
     @Test
     @Ignore
     public void testCrud() throws Exception {
         String wptTestId = "170327_11_8D";
         String apiUrl = String.format("%s/uxsvc/v1/wpt/tests", getBaseUrl());
-//
+
+
 //        // Create - POST
         HttpResponse<JsonNode> httpResponse = Unirest.post(apiUrl).body(new WptTestImport("170322_XT_17K4", new WptTestLabel("l1.em-ui.editor.cc-us-east.chrome.cable"))).asJson();
         assertTrue("POST - Verifying Response Code", httpResponse.getStatus() == 201);
@@ -66,6 +73,7 @@ public class WptResultControllerTest extends BaseIntegrationTest {
 //        assertTrue("DELETE - Content no longer exists", response.getBody().getArray().length() == 0);
 
     }
+
 
     @After
     public void tearDown() throws Exception {

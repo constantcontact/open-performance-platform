@@ -8,10 +8,7 @@ import com.github.wnameless.json.flattener.JsonFlattener;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.dao.WptTestDao;
-import com.opp.domain.ux.WptResult;
-import com.opp.domain.ux.WptTest;
-import com.opp.domain.ux.WptTestImport;
-import com.opp.domain.ux.WptTestLabel;
+import com.opp.domain.ux.*;
 import com.opp.dto.ux.TestRunData;
 import com.opp.dto.ux.WptSlaResults;
 import com.opp.dto.ux.WptTrendDataResp;
@@ -142,7 +139,7 @@ public class WptService {
 
 
 
-    public List<WptTestLabel> getNavigation() {
+    public List<WptUINavigation> getNavigation() {
         return dao.getNavigation();
     }
 

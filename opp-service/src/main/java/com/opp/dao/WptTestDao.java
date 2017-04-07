@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTest;
 import com.opp.domain.ux.WptTestLabel;
+import com.opp.domain.ux.WptUINavigation;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -13,6 +14,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.metrics.max.Max;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -116,13 +118,16 @@ public class WptTestDao {
         return 0;
     }
 
-    public List<WptTestLabel> getNavigation() {
+
+    public List<WptUINavigation> getNavigation() {
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
-               .addAggregation(AggregationBuilders.terms("agg").field("label.full.keyword").size(2000).order(Terms.Order.term(true)))
-                .execute().actionGet();
+                .addAggregation(AggregationBuilders.terms("agg").field("label.full.keyword").size(2000).order(Terms.Order.term(true))
+                        .subAggregation(AggregationBuilders.max("max").field("completed"))).execute().actionGet();
         Terms terms = resp.getAggregations().get("agg");
-        return terms.getBuckets().stream().map(b -> new WptTestLabel(b.getKeyAsString())
-        ).collect(toList());
+        return terms.getBuckets().stream().map(b -> {
+            Max max = b.getAggregations().get("max");
+            return new WptUINavigation(b.getKeyAsString(), Double.doubleToLongBits(max.getValue()));
+        }).collect(toList());
 
     }
 }
