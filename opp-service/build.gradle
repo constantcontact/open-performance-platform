@@ -129,6 +129,12 @@ task buildDocker(type: Docker, dependsOn: build) {
 //}
 
 
+// allows you to pass the system properties from the command line
+bootRun {
+    systemProperties = System.properties
+}
+
+
 
 // allows you to pass the system properties to junit from the command line
 // e.g. ./gradlew clean test -Dtest-groups=integration-tests

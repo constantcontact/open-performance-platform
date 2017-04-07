@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class WptTestImport {
 
     private String wptId;
-    private WptTestLabel wptTestLabel;
+    private String wptTestLabel;
 
     public WptTestImport() {
     }
 
-    public WptTestImport(String wptId, WptTestLabel wptTestLabel) {
+    public WptTestImport(String wptId, String wptTestLabel) {
         this.wptId = wptId;
         this.wptTestLabel = wptTestLabel;
     }
@@ -27,16 +27,11 @@ public class WptTestImport {
         this.wptId = wptId;
     }
 
-    public WptTestLabel getWptTestLabel() {
+    public String getWptTestLabel() {
         return wptTestLabel;
     }
 
-    public void setWptTestLabel(WptTestLabel wptTestLabel) {
+    public void setWptTestLabel(String wptTestLabel) {
         this.wptTestLabel = wptTestLabel;
-    }
-
-    public void setWptTestLabel(String fullLabel) {
-        this.wptTestLabel = new WptTestLabel(fullLabel);
-
     }
 }

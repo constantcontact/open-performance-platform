@@ -8,7 +8,10 @@ import com.github.wnameless.json.flattener.JsonFlattener;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.dao.WptTestDao;
-import com.opp.domain.ux.*;
+import com.opp.domain.ux.WptResult;
+import com.opp.domain.ux.WptTestImport;
+import com.opp.domain.ux.WptTestLabel;
+import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ux.TestRunData;
 import com.opp.dto.ux.WptSlaResults;
 import com.opp.dto.ux.WptTrendDataResp;
@@ -17,8 +20,6 @@ import com.opp.dto.ux.couchdb.CouchDbViewResp;
 import com.opp.dto.ux.couchdb.DeleteWptDocResp;
 import com.opp.util.FileUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.update.UpdateResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class WptService {
 
 
     // ========= CRUD Operations ==========
-    public IndexResponse importTest(WptTestImport wptTestImport) throws Exception {
+    public Optional<WptResult> importTest(WptTestImport wptTestImport) throws Exception {
         return importTest(wptTestImport, false);
     }
     /**
@@ -75,7 +76,7 @@ public class WptService {
      * @return
      * @throws Exception
      */
-    public IndexResponse importTest(WptTestImport wptTestImport, boolean sendToGraphite) throws Exception {
+    public Optional<WptResult> importTest(WptTestImport wptTestImport, boolean sendToGraphite) throws Exception {
 
         // set urls
         String jsonUrl = String.format("%s/jsonResult.php?test=%s", wptUrl, wptTestImport.getWptId());
@@ -87,7 +88,7 @@ public class WptService {
 
         // push json elasticsearch
         JsonNode jsonNodeWptResults = objectMapper.readTree(jsonContents);
-        IndexResponse summaryResults = storeSummaryResults(jsonNodeWptResults, wptTestImport.getWptTestLabel());
+        Optional<WptResult> summaryResults = storeSummaryResults(jsonNodeWptResults, new WptTestLabel(wptTestImport.getWptTestLabel()));
 
 //        // send to graphite
 //        if(sendToGraphite) {
@@ -97,13 +98,14 @@ public class WptService {
         return summaryResults;
     }
 
-    public IndexResponse add(WptResult wptResult) {
-        return dao.insert(wptResult);
+    public Optional<WptResult> add(WptResult wptResult) {
+        dao.insert(wptResult);
+        return dao.findById(wptResult.getId());
     }
 
-    public UpdateResponse update(String wptId, WptResult wptResult) throws ExecutionException, InterruptedException {
-        // todo: maybe see if it exists first, but ES should just bomb
-        return dao.update(wptResult);
+    public Optional<WptResult> update(String wptId, WptResult wptResult) throws ExecutionException, InterruptedException {
+        dao.update(wptResult);
+        return dao.findById(wptResult.getId());
     }
 
     public boolean delete(String wptTestId) {
@@ -118,7 +120,7 @@ public class WptService {
         return dao.findByLabel(labelName);
     }
 
-    public List<WptTest> getAll() {
+    public List<WptResult> getAll() {
         return dao.findAll();
     }
 
@@ -149,7 +151,7 @@ public class WptService {
      * @param wptRawObject
      * @return mixed
      */
-    public IndexResponse storeSummaryResults(JsonNode wptRawObject, WptTestLabel wptTestLabel) throws Exception {
+    public Optional<WptResult> storeSummaryResults(JsonNode wptRawObject, WptTestLabel wptTestLabel) throws Exception {
 
         ObjectNode dataNode = (ObjectNode) wptRawObject.get("data");
 

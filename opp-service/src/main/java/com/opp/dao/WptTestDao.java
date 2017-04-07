@@ -1,9 +1,8 @@
 package com.opp.dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opp.domain.ux.WptResult;
-import com.opp.domain.ux.WptTest;
-import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -12,6 +11,7 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.max.Max;
@@ -19,12 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
+import static com.opp.dao.util.SelectUtils.getOptional;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -40,6 +40,8 @@ public class WptTestDao {
     @Value("${opp.elasticsearch.wptData.type}")
     private String wptEsType;
 
+    @Value("${opp.elasticsearch.wptData.fetchLimit}")
+    private Integer wptEsFetchLimit;
 
     @Autowired
     private TransportClient esClient;
@@ -53,23 +55,38 @@ public class WptTestDao {
      * @param wptResult
      * @return
      */
-    public IndexResponse insert(WptResult wptResult) {
-        return esClient.prepareIndex(wptEsIndex, wptEsType, wptResult.getId())
-                .setSource(wptResult)
-                .get();
+    public Optional<IndexResponse> insert(WptResult wptResult) {
+        return getOptional(() -> {
+            try {
+                return esClient.prepareIndex(wptEsIndex, wptEsType, wptResult.getId())
+                        .setSource(objectMapper.writeValueAsString(wptResult))
+                        .get();
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
     }
 
     /**
      * Update WPT Test
      * @param wptResult
      */
-    public UpdateResponse update(WptResult wptResult) throws ExecutionException, InterruptedException {
+    public Optional<UpdateResponse> update(WptResult wptResult) {
         UpdateRequest updateRequest = new UpdateRequest();
-        updateRequest.index("index");
-        updateRequest.type("type");
-        updateRequest.id("1");
+        updateRequest.index(wptEsIndex);
+        updateRequest.type(wptEsType);
+        updateRequest.id(wptResult.getId());
         updateRequest.doc(wptResult);
-        return esClient.update(updateRequest).get();
+        return getOptional(() -> {
+            try {
+                return esClient.update(updateRequest).get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
     }
 
     /**
@@ -91,8 +108,9 @@ public class WptTestDao {
      * Find all WPT Tests
      * @return
      */
-    public List<WptTest> findAll() {
-        return new ArrayList<>();
+    public List<WptResult> findAll() {
+        SearchHit[] hits = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType).setSize(wptEsFetchLimit).get().getHits().getHits();
+        return Arrays.stream(hits).map(WptResult.class::cast).collect(toList());
     }
 
 

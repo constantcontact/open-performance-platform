@@ -17,6 +17,7 @@ opp:
     wptData:
       index: wpt-summary
       type: result
+      fetchLimit: 1000
   db:
     # The batch size for SQL imports for load test data
     importBatchSize: 500
@@ -96,3 +97,9 @@ spring:
     validation-query: SELECT 1
 server:
   port: 8899
+opp:
+  # Elastic search configs
+  elasticsearch:
+    apiUrl: http://localhost:9200
+    clusterNodes: localhost:9300
+    clusterName: docker-cluster

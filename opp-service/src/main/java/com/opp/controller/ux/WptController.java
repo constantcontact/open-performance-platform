@@ -2,11 +2,14 @@ package com.opp.controller.ux;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.domain.ApplicationMap;
-import com.opp.domain.ux.*;
+import com.opp.domain.ux.WptResult;
+import com.opp.domain.ux.WptTestImport;
+import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.graphite.GraphiteSimpleMetric;
 import com.opp.dto.graphite.GraphiteSimpleResp;
 import com.opp.dto.ux.WptTrendDataResp;
+import com.opp.exception.InternalServiceException;
 import com.opp.exception.ResourceNotFoundException;
 import com.opp.service.GraphiteService;
 import com.opp.service.WptService;
@@ -15,7 +18,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.update.UpdateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.ServerHttpResponse;
@@ -24,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static java.util.stream.Collectors.toList;
@@ -32,7 +33,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by ctobe on 10/18/16.
  */
-@Api(value = "WebPageTest", description = "WPT API", basePath = "/uxsvc")
+@Api(value = "WebPageTest", description = "WPT API")
 @RestController
 public class WptController {
 
@@ -49,13 +50,13 @@ public class WptController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation( value = "Creates a new WPT Test")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Successfully created new WPT Test", response = WptTest.class),
+            @ApiResponse(code = 201, message = "Successfully created new WPT Test", response = IndexResponse.class),
             @ApiResponse(code = 400, message = "Invalid WPT Test object provided", response = ErrorResponse.class),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public IndexResponse create(@RequestBody WptTestImport wptTestImport) throws Exception {
-        return service.importTest(wptTestImport); //.orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
+    public WptResult create(@Valid @RequestBody WptTestImport wptTestImport) throws Exception {
+        return service.importTest(wptTestImport).orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
     }
 
     @RequestMapping(value = "/uxsvc/v1/wpt/tests/{wpt_test_id}", method = RequestMethod.PUT)
@@ -64,14 +65,14 @@ public class WptController {
             notes = "Updates an existing WPT Test"
     )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully updated WPT Test", response = WptTest.class),
+            @ApiResponse(code = 200, message = "Successfully updated WPT Test", response = WptResult.class),
             @ApiResponse(code = 400, message = "Invalid WPT Test object provided", response = ErrorResponse.class),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public UpdateResponse update(@PathVariable("wpt_test_id") String wptTestId, @Valid @RequestBody WptResult update) throws ExecutionException, InterruptedException {
-        return service.update(wptTestId, update); //.orElseThrow(()->new InternalServiceException("Error occurred while updating WPT Test"));
+    public WptResult update(@PathVariable("wpt_test_id") String wptTestId, @Valid @RequestBody WptResult update) throws ExecutionException, InterruptedException {
+        return service.update(wptTestId, update).orElseThrow(()->new InternalServiceException("Error occurred while updating WPT Test"));
     }
 
     @RequestMapping(value = "/uxsvc/v1/wpt/tests/{wpt_test_id}", method = RequestMethod.DELETE)
@@ -99,7 +100,7 @@ public class WptController {
             notes = "Gets a WPT Test by ID"
     )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved WPT Test", response = WptTest.class),
+            @ApiResponse(code = 200, message = "Successfully retrieved WPT Test", response = WptResult.class),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
@@ -114,12 +115,12 @@ public class WptController {
             notes = "Get all WPT Tests"
     )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved WPT Tests", response = WptTest.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "Successfully retrieved WPT Tests", response = WptResult.class, responseContainer = "List"),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public List<WptTest> getAll() {
+    public List<WptResult> getAll() {
         return service.getAll();
     }
 
