@@ -144,7 +144,7 @@ public class WptTestDao {
         Terms terms = resp.getAggregations().get("agg");
         return terms.getBuckets().stream().map(b -> {
             Max max = b.getAggregations().get("max");
-            return new WptUINavigation(b.getKeyAsString(), Double.doubleToLongBits(max.getValue()));
+            return new WptUINavigation(b.getKeyAsString(), (new Double(max.getValue()).longValue()));
         }).collect(toList());
 
     }
