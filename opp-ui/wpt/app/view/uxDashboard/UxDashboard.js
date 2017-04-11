@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.ux-dashboard.UxDashboard',{
+Ext.define('OppUI.view.uxDashboard.UxDashboard',{
     extend: 'Ext.panel.Panel',
     xtype: 'ux',
     itemId: 'ux',

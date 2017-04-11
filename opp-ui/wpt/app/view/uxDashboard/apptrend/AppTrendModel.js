@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.apptrend.AppTrendModel', {
+Ext.define('OppUI.view.uxDashboard.apptrend.AppTrendModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.apptrend',
     itemId: 'appTrendViewModel',
@@ -8,7 +8,7 @@ Ext.define('OppUI.view.apptrend.AppTrendModel', {
     },
     stores: {
         remoteAppTrend: {
-            model: 'OppUI.model.AppTrend',
+            model: 'OppUI.model.uxDashboard.AppTrend',
             autoLoad: false,
 
             proxy: {

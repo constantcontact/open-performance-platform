@@ -1,8 +1,8 @@
-Ext.define('OppUI.store.WptTrendData', {
+Ext.define('OppUI.store.uxDashboard.WptTrendData', {
     extend: 'Ext.data.Store',
     alias: 'store.wpttrenddata',
 
-    model: 'OppUI.model.AppTrend',
+    model: 'OppUI.model.uxDashboard.AppTrend',
     autoLoad: false,
 
     proxy: {

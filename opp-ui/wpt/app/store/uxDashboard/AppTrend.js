@@ -1,7 +1,7 @@
-Ext.define('OppUI.store.AppTrend', {
+Ext.define('OppUI.store.uxDashboard.AppTrend', {
     extend: 'Ext.data.Store',
     alias: 'store.apptrend',
-    model: 'OppUI.model.AppTrend',
+    model: 'OppUI.model.uxDashboard.AppTrend',
     autoLoad: false,
 
     pageSize: 15,

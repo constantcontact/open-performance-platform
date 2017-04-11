@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.ux-dashboard.UxDashboardModel', {
+Ext.define('OppUI.view.uxDashboard.UxDashboardModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.uxdashboard',
     data: {

@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.uxapplications.UxApplicationsModel', {
+Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.uxapplications',
     data: {
@@ -10,7 +10,7 @@ Ext.define('OppUI.view.uxapplications.UxApplicationsModel', {
     },
     stores: {
         remoteUxApplications: {
-            model: 'OppUI.model.UxApplications',
+            model: 'OppUI.model.uxDashboard.UxApplications',
             autoLoad: true,
 
             proxy: {

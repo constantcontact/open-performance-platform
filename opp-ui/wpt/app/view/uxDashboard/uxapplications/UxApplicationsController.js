@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.uxapplications.UxApplicationsController', {
+Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.uxapplications',
 

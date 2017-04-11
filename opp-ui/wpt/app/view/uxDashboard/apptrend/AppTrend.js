@@ -1,11 +1,11 @@
-Ext.define('OppUI.view.apptrend.AppTrend',{
+Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
     extend: 'Ext.panel.Panel',
     xtype: 'apptrend',
     itemId: 'apptrend',
 
     requires: [
-        'OppUI.store.AppTrend',
-        'OppUI.store.WptTrendData',
+        'OppUI.store.uxDashboard.AppTrend',
+        'OppUI.store.uxDashboard.WptTrendData',
         'Ext.chart.axis.Numeric',
         'Ext.chart.axis.Category',
         'Ext.chart.series.Area',

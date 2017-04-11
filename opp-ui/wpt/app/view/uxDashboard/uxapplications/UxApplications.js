@@ -1,5 +1,5 @@
 
-Ext.define('OppUI.view.uxapplications.UxApplications',{
+Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
     //extend: 'Ext.grid.Panel',
     extend: 'Ext.panel.Panel',
     xtype: 'uxapplications',
@@ -8,9 +8,8 @@ Ext.define('OppUI.view.uxapplications.UxApplications',{
     cls: 'kpi-main',
 
     requires: [
-        'OppUI.store.UxApplications',
+        'OppUI.store.uxDashboard.UxApplications',
         'Ext.grid.filters.Filters',
-        'OppUI.store.UxApplications',
         'Ext.toolbar.Paging'
     ],
 

@@ -1,4 +1,4 @@
-Ext.define('OppUI.model.UxApplications', {
+Ext.define('OppUI.model.uxDashboard.UxApplications', {
     extend: 'Ext.data.Model',
     
     // fields: [

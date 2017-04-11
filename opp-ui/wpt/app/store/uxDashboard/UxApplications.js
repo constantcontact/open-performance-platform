@@ -1,8 +1,8 @@
-Ext.define('OppUI.store.UxApplications', {
+Ext.define('OppUI.store.uxDashboard.UxApplications', {
     extend: 'Ext.data.Store',
 
     alias: 'store.uxapplications',
-    model: 'OppUI.model.UxApplications',
+    model: 'OppUI.model.uxDashboard.UxApplications',
     autoLoad: false,
 
     pageSize: 15,

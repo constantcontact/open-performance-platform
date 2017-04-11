@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.apptrend.AppTrendController', {
+Ext.define('OppUI.view.uxDashboard.apptrend.AppTrendController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.apptrend',
 

@@ -1,4 +1,4 @@
-Ext.define('OppUI.model.AppTrend', {
+Ext.define('OppUI.model.uxDashboard.AppTrend', {
     extend: 'OppUI.model.Base',
 
     fields: ['timestamp', 'page', 'id', 'connectivity', 'pages',
