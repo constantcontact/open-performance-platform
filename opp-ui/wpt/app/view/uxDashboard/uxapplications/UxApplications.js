@@ -130,63 +130,13 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
             xtype: 'rownumberer',
             width: 50,
             sortable: false
-        },
-        
-        // {
-        //     tdCls: 'x-grid-cell-topic',
-        //     text: "Application",
-        //     dataIndex: 'app',
-        //     flex: 1,
-        //     width: 150,
-        //     sortable: false
-        // },{
-        //     text: "Env",
-        //     dataIndex: 'env',
-        //     flex: 1,
-        //     width: 70,
-        //     sortable: false
-        // },{
-        //     text: "Page",
-        //     dataIndex: 'page',
-        //     flex: 1,
-        //     width: 150,
-        //     sortable: false
-        // },{
-        //     text: "Location",
-        //     dataIndex: 'location',
-        //     flex: 1,
-        //     width: 150,
-        //     sortable: false
-        // },{
-        //     text: "Browser",
-        //     dataIndex: 'browser',
-        //     flex: 1,
-        //     width: 150,
-        //     sortable: false
-        // },{
-        //     text: "Connection",
-        //     dataIndex: 'connection',
-        //     flex: 1,
-        //     width: 150,
-        //     sortable: false
-        // },{
-        //     text: "Custom",
-        //     dataIndex: 'other',
-        //     sortable: false,
-        //     flex: 1
-        // }
-
-        {
+        },{
             text: "Test Date",
             dataIndex: 'testDate',
             flex: 1,
             width: 150,
-            sortable: false,
-            renderer: function(val) {
-                return val / 1000;
-            }
-        },
-         {
+            sortable: false
+        },{
             tdCls: 'x-grid-cell-topic',
             text: "Application",
             dataIndex: 'application',
@@ -228,9 +178,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
             dataIndex: 'misc',
             sortable: false,
             flex: 1
-        }
-        
-        ],
+        }],
 
         bbar: {
             xtype: 'pagingtoolbar',
@@ -263,8 +211,8 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
 
         listeners: {
             itemdblclick: function(grid, record, item, index) {
-                console.log("itemDoubleClick: " + record.getData().name);
-                this.up('ux').wptName(record.getData().name);
+                console.log("itemDoubleClick: " + record.getData().full);
+                this.up('ux').wptName(record.getData().full);
             }
         }
     }],

@@ -41,7 +41,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
         // find all the unique applications
         applications = {};
         remoteUxApplications.each(function(application){
-            var app = application.data.app;
+            var app = application.data.application;
             applications[app] = undefined;
             
         });
@@ -91,7 +91,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
             this.filters.applications.push(menuItem.value);
             
             view.store.filterBy(function(record) {
-                var app = record.get('app');
+                var app = record.get('application');
                 for(var i = 0; i < me.filters.applications.length; i++) {
                     if(me.filters.applications[i] === app) {
                         return true;
@@ -144,7 +144,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
         references.envsButton.menu.removeAll();
 
         view.store.each(function(record, id) {
-            envs[record.data.env] = undefined;
+            envs[record.data.environment] = undefined;
         });
 
         for(var env in envs) {
@@ -185,7 +185,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
             view.store.clearFilter();
             if(this.filters.applications.length > 0) {
                 view.store.filterBy(function(record) {
-                    var app = record.get('app');
+                    var app = record.get('application');
                     for(var i = 0; i < me.filters.applications.length; i++) {
                         if(me.filters.applications[i] === app) {
                             return true;
@@ -212,7 +212,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
             view.store.clearFilter();
             if(this.filters.applications.length > 0) {
                 view.store.filterBy(function(record) {
-                    var app = record.get('app');
+                    var app = record.get('application');
                     for(var i = 0; i < me.filters.applications.length; i++) {
                         if(me.filters.applications[i] === app) {
                             return true;
@@ -239,7 +239,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
         references.envsButton.menu.removeAll();
 
         view.store.each(function(record, id) {
-            envs[record.data.env] = undefined;
+            envs[record.data.environment] = undefined;
         });
 
         for(var env in envs) {
@@ -265,7 +265,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
         if(envItem.checked) {
             this.filters.envs.push(envItem.value);
             view.store.filterBy(function(record) {
-                var env = record.get('env');
+                var env = record.get('environment');
 
                 for(var i = 0; i < me.filters.envs.length; i++) {
                     if(me.filters.envs[i] === env) {
@@ -289,7 +289,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
         view.store.clearFilter();
         if(this.filters.applications.length > 0) {
             view.store.filterBy(function(record) {
-                var app = record.get('app');
+                var app = record.get('application');
                 for(var i = 0; i < me.filters.applications.length; i++) {
                     if(me.filters.applications[i] === app) {
                         return true;
@@ -313,7 +313,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
 
         if (this.filters.envs.length > 0) {
             view.store.filterBy(function(record) {
-                var env = record.get('env');
+                var env = record.get('environment');
                 for(var i = 0; i < me.filters.envs.length; i++) {
                     if(me.filters.envs[i] === env) {
                         return true;
@@ -340,8 +340,8 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
                 store.filterBy(function(record) {
                     var app, env, page, location, browser, connection; 
 
-                    app = record.get('app');
-                    env = record.get('env');
+                    app = record.get('application');
+                    env = record.get('environment');
                     page = record.get('page');
                     location = record.get('location');
                     browser = record.get('browser');
