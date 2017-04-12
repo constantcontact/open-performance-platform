@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class WptTrendDataResp {
 
     private Chart chart = new Chart();
-    private List<TestRunData> dataTable = new ArrayList<>();
+    private List<WptTestRunData> dataTable = new ArrayList<>();
 
     public Chart getChart() {
         return chart;
@@ -24,11 +24,11 @@ public class WptTrendDataResp {
         this.chart = chart;
     }
 
-    public List<TestRunData> getDataTable() {
+    public List<WptTestRunData> getDataTable() {
         return dataTable;
     }
 
-    public void setDataTable(List<TestRunData> dataTable) {
+    public void setDataTable(List<WptTestRunData> dataTable) {
         this.dataTable = dataTable;
     }
 

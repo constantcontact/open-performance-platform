@@ -12,8 +12,9 @@ import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
-import com.opp.dto.ux.TestRunData;
+import com.opp.dto.ux.WptTestRunData;
 import com.opp.dto.ux.WptSlaResults;
+import com.opp.dto.ux.WptTrendChart;
 import com.opp.dto.ux.WptTrendDataResp;
 import com.opp.dto.ux.couchdb.CouchDbActionResp;
 import com.opp.dto.ux.couchdb.CouchDbViewResp;
@@ -29,7 +30,6 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -351,6 +351,17 @@ public class WptService {
         return count;
     }
 
+    public List<WptTestRunData> getTrendTableData(String testName, String view, String runDuration){
+
+        List<WptTestRunData> runData = dao.getTrendTableData(testName, view, runDuration);
+        return runData;
+
+    }
+
+    public WptTrendChart getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
+        WptTrendChart chart = dao.getTrendChartData(testName, view, isUserTimingBaseLine, interval);
+        return chart;
+    }
 
     @Cacheable(value="wptTrendData", key="{#testName, #view, #runDuration, #isUserTimingBaseLine}")
     public WptTrendDataResp getTrendDataForTest(String testName, String view, String runDuration, boolean isUserTimingBaseLine) throws UnirestException {
@@ -508,17 +519,17 @@ public class WptService {
      * @param timestamp
      * @return
      */
-    private TestRunData getTestRunData(JsonNode dataByDate, JsonNode testData, String pageName, long timestamp) {
+    private WptTestRunData getTestRunData(JsonNode dataByDate, JsonNode testData, String pageName, long timestamp) {
         // data for the data table
-        TestRunData testRunData = new TestRunData();
-        testRunData.set_id(dataByDate.get("_id").asText());
-        testRunData.setPage(pageName);
-        testRunData.setRev(dataByDate.get("_rev").asText());
-        testRunData.setTimestamp(new SimpleDateFormat("yyyy-MM-dd H:m").format(new Date(timestamp)));
-        testRunData.setWptId(dataByDate.get("id").asText());
-        testRunData.setConnectivity(dataByDate.get("connectivity").asText());
-        testRunData.setViewData(testData);
-        return testRunData;
+        WptTestRunData wptTestRunData = null;
+//        testRunData.set_id(dataByDate.get("_id").asText());
+//        testRunData.setPage(pageName);
+//        testRunData.setRev(dataByDate.get("_rev").asText());
+//        testRunData.setTimestamp(new SimpleDateFormat("yyyy-MM-dd H:m").format(new Date(timestamp)));
+//        testRunData.setWptId(dataByDate.get("id").asText());
+//        testRunData.setConnectivity(dataByDate.get("connectivity").asText());
+//        testRunData.setViewData(testData);
+        return wptTestRunData;
     }
 
     /**

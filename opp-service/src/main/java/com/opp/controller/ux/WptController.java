@@ -1,14 +1,13 @@
 package com.opp.controller.ux;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.opp.domain.ApplicationMap;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
 import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.graphite.GraphiteSimpleMetric;
 import com.opp.dto.graphite.GraphiteSimpleResp;
-import com.opp.dto.ux.WptTrendDataResp;
+import com.opp.dto.ux.WptTestRunData;
+import com.opp.dto.ux.WptTrendChart;
 import com.opp.exception.InternalServiceException;
 import com.opp.exception.ResourceNotFoundException;
 import com.opp.service.GraphiteService;
@@ -142,37 +141,55 @@ public class WptController {
         return service.getNavigation();
     }
 
+
     /**
      *
+     * @param testName
+     * @param view
+     * @param run
+     * @return
+     */
+    @RequestMapping(value = "/uxsvc/v1/wpt/trend/table", method = RequestMethod.GET)
+    @ApiOperation( value = "Get UX test high level results by label" )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successfully retrieved test run data list", response = WptTestRunData.class, responseContainer = "List"),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "Test with specified name not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public List<WptTestRunData> getTrendTable(
+            @RequestParam(value="name") String testName,
+            @RequestParam(value="view", defaultValue="firstView", required = false) String view,
+            @RequestParam(value="run", defaultValue="median", required = false) String run) {
+        return service.getTrendTableData(testName, view, run);
+    }
+
+
+    /**
+     *
+     * @param testName
+     * @param view
      * @param isUserTimingsBaseLine - whether or not to baseline user timings by starting them at the first user timing.
      * for example.  I have 3 user timings.  "start_editor", "load_editor_panel", "load_editor_doc"
      * Assuming "start_editor" comes first, its time would be subtracted from all the other times so you can have a consistent starting point to compare all other measures
-     * @param testName
-     * @param cached
-     * @param runDuration
+     * @param interval
      * @return
      */
-    @RequestMapping(value = "/uxsvc/v1/wpt/trend", method = RequestMethod.GET)
-    @ApiOperation( value = "Get UX test trends" )
+    @RequestMapping(value = "/uxsvc/v1/wpt/trend/histogram", method = RequestMethod.GET)
+    @ApiOperation( value = "Get UX test trends by label as histogram aggregated by day" )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved category list", response = ApplicationMap.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "Successfully retrieved histogram", response = WptTrendChart.class),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
-            @ApiResponse(code = 404, message = "application map not found", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "Test with specified name not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public WptTrendDataResp getTrend(
-            @RequestParam(value="name", required = true) String testName,
-            @RequestParam(value="cached", defaultValue="true", required = false) boolean cached,
-            @RequestParam(value="run", defaultValue="median", required = false) String runDuration,
-            @RequestParam(value="utBaseline", defaultValue="false", required = false) boolean isUserTimingsBaseLine) {
-
-        String view = (cached) ? "repeatView" : "firstView"; // default to first view
-        try {
-            return service.getTrendDataForTest(testName, view, runDuration, isUserTimingsBaseLine);
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public WptTrendChart getTrendHistogram(
+            @RequestParam(value="name") String testName,
+            @RequestParam(value="view", defaultValue="firstView", required = false) String view,
+            @RequestParam(value="utBaseline", defaultValue="false", required = false) boolean isUserTimingsBaseLine,
+            @RequestParam(value="interval", defaultValue="1d", required = false) String interval
+    ) {
+        return service.getTrendChartData(testName, view, isUserTimingsBaseLine, interval);
     }
 
 
