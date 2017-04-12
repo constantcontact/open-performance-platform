@@ -25,26 +25,8 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
     items: [{
         xtype: 'component',
         itemId: 'stats',
-        cls: 'kpi-tiles',
+        cls: 'kpi-main kpi-tiles',
         height: 100,
-
-        // bind: {
-        //     data: {
-        //         total: '{total}',
-        //         totalApps: '{totalApps}',
-        //         activeTestsPerPage: '{activeTestsPerPage}',
-        //         failures: '{failures}',
-        //         passing: '{passing}'
-        //     }
-        // },
-
-        // tpl: [
-        //     '<div class="kpi-meta">',
-        //         '<span>',
-        //             '<div>{total}</div> Total WPTs',
-        //         '</span>',
-        //     '</div>'
-        // ],
 
         tpl: [
             '<div class="kpi-meta">',
@@ -85,7 +67,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
         store: {
             type: 'uxapplications'
         },
-        //bind: '{remoteUxApplications}',
         loadMask: true,
 
         tbar: [{
@@ -135,7 +116,8 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
             dataIndex: 'testDate',
             flex: 1,
             width: 150,
-            sortable: false
+            sortable: false,
+            renderer: Ext.util.Format.dateRenderer('n/j/Y g:i A')
         },{
             tdCls: 'x-grid-cell-topic',
             text: "Application",
@@ -187,22 +169,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
             emptyMsg: "No topics to display",
             pageSize: 15,
             store: this.store
-
-            // items: ['-', {
-            //     bind: '{expanded ? "Hide Preview" : "Show Preview"}',
-            //     pressed: '{expanded}',
-            //     enableToggle: true,
-            //     toggleHandler: 'onToggleExpanded'
-            // }]
         },
-
-        // dockedItems: [{
-        //     xtype: 'pagingtoolbar',
-        //     // bind: '{localUxApplicationsBinding}',
-        //     //store: this.store,
-        //     dock: 'bottom',
-        //     displayInfo: true
-        // }],
 
         menuItemDefaults: {
             checked: false,

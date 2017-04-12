@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.loadtest-dashboard.LoadTestDashboardController', {
+Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.loadtest',
 

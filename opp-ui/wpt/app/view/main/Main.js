@@ -113,25 +113,7 @@ Ext.define('OppUI.view.main.Main', {
         xtype: 'loadtest',
         title: 'Load Test',
         iconCls: 'exec-quarterly-icon'
-    }
-    // {
-    //     xtype: 'kpi',
-    //     title: 'KPI Overview',
-    //     iconCls: 'exec-kpi-icon'
-    // },{
-    //     xtype: 'quarterly',
-    //     title: 'Performance',
-    //     iconCls: 'exec-quarterly-icon'
-    // },{
-    //     xtype: 'profitloss',
-    //     title: 'Profit & Loss',
-    //     iconCls: 'exec-pl-icon'
-    // },{
-    //     xtype: 'news',
-    //     title: 'Company News',
-    //     iconCls: 'exec-news-icon'
-    // }
-    ],
+    }],
 
     // This object is a config for the popup menu we present on very small form factors.
     // It is used by our controller (MainController).

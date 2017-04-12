@@ -12,11 +12,11 @@ Ext.define('OppUI.model.uxDashboard.UxApplications', {
         { name: 'misc', type: 'auto' },
         { 
             name: 'testDate', 
-            //type: 'auto',
             type: 'date', 
             convert: function(value, record){
                 return new Date(value);
-            }
+            },
+            dateFormat: 'timestamp'
         }
     ]
 });
