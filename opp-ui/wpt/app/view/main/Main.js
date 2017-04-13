@@ -113,6 +113,10 @@ Ext.define('OppUI.view.main.Main', {
         xtype: 'loadtest',
         title: 'Load Test',
         iconCls: 'exec-quarterly-icon'
+    },{
+        xtype: 'applicationmapping',
+        title: 'Application Mapping',
+        iconCls: 'exec-news-icon'
     }],
 
     // This object is a config for the popup menu we present on very small form factors.

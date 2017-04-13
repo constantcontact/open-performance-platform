@@ -96,6 +96,16 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
         ]
     },
 
+    listeners: {
+        // itemdblclick: function(grid, record, item, index) {
+        //     console.log("itemDoubleClick: " + record.getData());
+        // }
+
+        itemdblclick: function(grid, record, item, index) {
+            this.up('loadtest').createTab(grid, record, item, index);
+        }
+    },
+
     showTrend: function(v, rec, trendName, conversion, trendType){
         // getting pipe delimited trending value (val and percentage)
         var trendValArr = rec.data[trendName].split("|");
@@ -172,6 +182,4 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
         }
         return "";
     }
-
-
 });

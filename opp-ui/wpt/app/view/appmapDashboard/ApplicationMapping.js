@@ -1,12 +1,13 @@
 
-Ext.define('OppUI.view.loadtestDashboard.appmap.ApplicationMapping',{
+Ext.define('OppUI.view.appmapDashboard.ApplicationMapping',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.application-mapping-grid',
+    alias: 'widget.applicationmapping',
     xtype: 'applicationmapping',
+    itemId: 'applicationmapping',
 
     requires: [
-        'OppUI.view.loadtestDashboard.appmap.ApplicationMappingController',
-        'OppUI.view.loadtestDashboard.appmap.ApplicationMappingModel'
+        'OppUI.view.appmapDashboard.ApplicationMappingController',
+        'OppUI.view.appmapDashboard.ApplicationMappingModel'
     ],
 
     controller: 'applicationmapping',
@@ -61,5 +62,18 @@ Ext.define('OppUI.view.loadtestDashboard.appmap.ApplicationMapping',{
                 }]
             }
         ]
+    },
+
+    config: {
+        activeState: null,
+        defaultActiveState: 'dashboard'
+    },
+
+    validStates: {
+        dashboard: 1
+    },
+
+    isValidState: function(state) {
+        return state in this.validStates;
     }
 });

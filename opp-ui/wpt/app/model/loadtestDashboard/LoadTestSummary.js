@@ -3,7 +3,7 @@ Ext.define('OppUI.model.loadtestDashboard.LoadTestSummary', {
     fields: [
         {name: "loadTestId", mapping: 'load_test_id' },
         {name: "appUnderTest", mapping: 'app_under_test'  },
-        {name: "appUnderTestVersion" },
+        {name: "appUnderTestVersion", mapping: 'app_under_test_version' },
         {name: "comments"},
         {name: "description"},
         {name: "environment"},
@@ -33,6 +33,7 @@ Ext.define('OppUI.model.loadtestDashboard.LoadTestSummary', {
         {name: 'tpsMedianTrend', mapping: 'tps_median_trend'},
         {name: 'tpsMaxTrend', mapping: 'tps_max_trend'},
         {name: 'totalBytesTrend', mapping: 'total_bytes_trend'},
-        {name: 'errorCount', mapping: 'error_count'}
+        {name: 'errorCount', mapping: 'error_count'},
+        {name: 'errorCountTrend', mapping: 'error_count_trend'}
      ]
 });

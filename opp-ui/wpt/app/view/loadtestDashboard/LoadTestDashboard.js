@@ -3,40 +3,41 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     xtype: 'loadtest',
     itemId: 'loadtest',
 
-    // width: 600,
-    // height: 400,
+    requires: [
+        'Ext.ux.TabReorderer'
+    ],
 
     controller: 'loadtest',
     viewModel: {
         type: 'loadtest'
     },
 
+    plugins: 'tabreorderer',
+
     defaults: {
         bodyPadding: 10,
         scrollable: true
     },
 
-    items: [{
-        title: 'Application Mapping',
-        //html: "My content was added during construction."
-        xtype: 'applicationmapping'
-    },
+    items: [
     {
         title: 'Load Tests',
         xtype: 'loadtestsummary'
-    }
-    // , 
-    // {
-    //     title: 'Ajax Tab 2',
-    //     loader: {
-    //         url: 'data/tab/ajax2.htm',
-    //         contentType: 'html',
-    //         loadMask: true,
-    //         loadOnRender: true
-    //     }
-    // }
+    }],
+
+    createTab: function(grid, record, item, index) {
+        console.log("creating tab: " + grid + " " + record.getData() + " " + item + " " + index);
+
+        //var tabPanel = this.getView(),
+        var html = "Hello World!",
+            tab = this.add({
+                title: 'Test Run #' + record.getData().loadTestId,
+                html: html
+            });
+
+        this.setActiveTab(tab);
+    },
     
-    ],
 
     config: {
         activeState: null,

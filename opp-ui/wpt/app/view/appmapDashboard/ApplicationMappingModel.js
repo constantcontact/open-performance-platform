@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.loadtestDashboard.appmap.ApplicationMappingModel', {
+Ext.define('OppUI.view.appmapDashboard.ApplicationMappingModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.applicationmapping',
 
