@@ -6,8 +6,11 @@ import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.graphite.GraphiteSimpleMetric;
 import com.opp.dto.graphite.GraphiteSimpleResp;
+import com.opp.dto.ux.WptDeleteRequest;
+import com.opp.dto.ux.WptDeleteResp;
 import com.opp.dto.ux.WptTestRunData;
 import com.opp.dto.ux.WptTrendChart;
+import com.opp.exception.BadRequestException;
 import com.opp.exception.InternalServiceException;
 import com.opp.exception.ResourceNotFoundException;
 import com.opp.service.GraphiteService;
@@ -81,15 +84,52 @@ public class WptController {
             notes = "Deletes an existing WPT Test"
     )
     @ApiResponses({
-            @ApiResponse(code = 202, message = "Successfully deleted WPT Test", response = Void.class),
+            @ApiResponse(code = 202, message = "Successfully deleted WPT Test", response = WptDeleteResp.class),
             @ApiResponse(code = 400, message = "Failed to delete WPT Test", response = ErrorResponse.class),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public void delete(@PathVariable("wpt_test_id") String wptTestId, HttpServletResponse response) {
-        if(!service.delete(wptTestId)){
+    public WptDeleteResp delete(@PathVariable("wpt_test_id") String wptTestId, HttpServletResponse response) {
+        WptDeleteResp wptDeleteResp = service.deleteById(wptTestId);
+        if(wptDeleteResp.getDeleteCount() == 0){
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        } else {
+            return wptDeleteResp;
+        }
+        return wptDeleteResp;
+    }
+
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ApiOperation( value = "Delete a WPT Test by ID or Label")
+    @ApiResponses({
+            @ApiResponse(code = 202, message = "Successfully deleted WPT Test(s)", response = WptDeleteResp.class),
+            @ApiResponse(code = 400, message = "Failed to delete WPT Test", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public WptDeleteResp delete(@Valid @RequestBody WptDeleteRequest request) {
+        WptDeleteResp wptDeleteResp = null;
+        if(request.getId() != null && !request.getId().isEmpty()){
+            // delete by id
+            wptDeleteResp = service.deleteById(request.getId());
+            if(wptDeleteResp.getDeleteCount() == 0){
+                throw new ResourceNotFoundException("No test found with ID " + request.getId());
+            }
+        } else {
+            // delete by label
+            if(request.getLabel() != null && !request.getLabel().isEmpty()){
+                wptDeleteResp = service.deleteByLabel(request.getLabel());
+                // don't think i need to throw a 404 if nothing was deleted here since you aren't asking for a specific ID
+            }
+        }
+        if(wptDeleteResp == null){
+            // throw invalid request
+            throw new BadRequestException("Invalid request.  Must have either a label or id specified");
+        } else {
+            return wptDeleteResp;
         }
     }
 
@@ -119,8 +159,8 @@ public class WptController {
             @ApiResponse(code = 404, message = "WPT Test not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public List<WptResult> getAll() {
-        return service.getAll();
+    public List<WptResult> getAll(@RequestParam(value="esquery", defaultValue="*", required = false) String esQuery) {
+        return service.getAll(esQuery);
     }
 
 

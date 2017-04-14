@@ -40,12 +40,13 @@ public class WptResultControllerTest extends BaseIntegrationTest {
 
     @Test
     public void testCrud() throws Exception {
-        String wptTestId = "170327_11_8D";
+        String wptTestId = "170322_XT_17K4";
+        String label = "l1.em-ui.editor5555.cc-us-east.chrome.cable";
         String apiUrl = String.format("%s/uxsvc/v1/wpt/tests", getBaseUrl());
 
 
 //        // Create - POST
-        HttpResponse<JsonNode> httpResponse = Unirest.post(apiUrl).body(new WptTestImport("170322_XT_17K4", "l1.em-ui.editor.cc-us-east.chrome.cable")).asJson();
+        HttpResponse<JsonNode> httpResponse = Unirest.post(apiUrl).body(new WptTestImport(wptTestId, label)).asJson();
         assertTrue("POST - Verifying Response Code", httpResponse.getStatus() == 201);
 
 //

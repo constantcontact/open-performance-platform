@@ -119,8 +119,10 @@ public class WptTestDao {
      * Find all WPT Tests
      * @return
      */
-    public List<WptResult> findAll() {
-        SearchHit[] hits = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType).setSize(wptEsFetchLimit).get().getHits().getHits();
+    public List<WptResult> findAll(String esSearchQuery) {
+        SearchHit[] hits = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
+                .setQuery(QueryBuilders.queryStringQuery(esSearchQuery).analyzeWildcard(true))
+                .setSize(wptEsFetchLimit).get().getHits().getHits();
         return Arrays.stream(hits).map(WptResult.class::cast).collect(toList());
     }
 
@@ -144,7 +146,7 @@ public class WptTestDao {
      * Returns 1 if deleted and 0 if not
      * @param id
      */
-    public int delete(String id) {
+    public int deleteById(String id) {
         DeleteResponse response = esClient.prepareDelete(wptEsIndex, wptEsType, id).get();
         return (response.getResult().toString().equals("deleted")) ? 1 : 0;
     }

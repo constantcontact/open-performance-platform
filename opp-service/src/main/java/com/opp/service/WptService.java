@@ -6,19 +6,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.wnameless.json.flattener.JsonFlattener;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.dao.WptTestDao;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
-import com.opp.dto.ux.WptTestRunData;
+import com.opp.dto.ux.WptDeleteResp;
 import com.opp.dto.ux.WptSlaResults;
+import com.opp.dto.ux.WptTestRunData;
 import com.opp.dto.ux.WptTrendChart;
-import com.opp.dto.ux.WptTrendDataResp;
-import com.opp.dto.ux.couchdb.CouchDbActionResp;
-import com.opp.dto.ux.couchdb.CouchDbViewResp;
-import com.opp.dto.ux.couchdb.DeleteWptDocResp;
 import com.opp.util.FileUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -34,7 +30,6 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -108,8 +103,8 @@ public class WptService {
         return dao.findById(wptResult.getId());
     }
 
-    public boolean delete(String wptTestId) {
-        return (dao.delete(wptTestId) == 1);
+    public WptDeleteResp deleteById(String wptTestId) {
+        return new WptDeleteResp(dao.deleteById(wptTestId));
     }
 
     public Optional<WptResult> getById(String wptTestId) {
@@ -120,19 +115,19 @@ public class WptService {
         return dao.findByLabel(labelName);
     }
 
-    public List<WptResult> getAll() {
-        return dao.findAll();
+    public List<WptResult> getAll(String esSearchQuery) {
+        return dao.findAll(esSearchQuery);
     }
 
-    public int deleteByLabel(String testName) {
+    public WptDeleteResp deleteByLabel(String testName) {
         List<WptResult> wptResults = getByLabel(testName);
         AtomicInteger counter = new AtomicInteger(0);
         wptResults.forEach(t -> {
-            if (delete(t.getId())) {
+            if (deleteById(t.getId()).getDeleteCount() >= 1) {
                 counter.getAndIncrement();
             }
         });
-        return counter.get();
+        return new WptDeleteResp(counter.get());
     }
 
     // ========== END CRUD =============
@@ -293,34 +288,6 @@ public class WptService {
     }
 
 
-    public DeleteWptDocResp deleteById(String wptId, String summaryDocId) throws UnirestException {
-        JsonNode docSummary = couchDbService.getDocumentById("wpt-summary", summaryDocId);
-        JsonNode docRaw = couchDbService.getDocumentById("wpt-raw", docSummary.asText("rawDataId"));
-        CouchDbActionResp resSummary = couchDbService.deleteDoc("wpt-summary", docSummary.asText("_id"), docSummary.asText("_rev"));
-        CouchDbActionResp resRaw = couchDbService.deleteDoc("wpt-raw", docRaw.asText("_id"), docRaw.asText("_rev"));
-
-        DeleteWptDocResp deleteWptDocResp = new DeleteWptDocResp();
-
-        // todo: figure out what this is
-       if(resSummary.isOk()){
-           deleteWptDocResp.setSummaryData(true);
-           deleteWptDocResp.setSummaryResp(resSummary);
-       }
-
-        if(resSummary.isOk()){
-            deleteWptDocResp.setRawData(true);
-            deleteWptDocResp.setRawDataResp(resRaw);
-        }
-
-        if(deleteFiles(wptId)){
-            deleteWptDocResp.setFiles(true);
-        }
-
-        return deleteWptDocResp;
-
-    }
-
-
     public boolean deleteFiles(String wptId)
     {
         try {
@@ -339,18 +306,11 @@ public class WptService {
         }
     }
 
-    public int deleteBadRuns() throws UnirestException {
-        CouchDbViewResp docs = couchDbService.getDocumentsByViewQuery("wpt-summary/_design/cleanup/_view/bad-tests");
-        int count = 0;
-        for(CouchDbViewResp.Row doc : docs.getRows()) {
-            DeleteWptDocResp deleteWptDocResp = deleteById(doc.getKey().toString(), doc.getId());
-            if(deleteWptDocResp.isSummaryData()){
-                count++;
-            }
-        }
-        return count;
+    public long deleteBadRuns() {
+        return dao.deleteBadRuns();
     }
 
+    @Cacheable(value="wptTrendTableData", key="{#testName, #view, #runDuration}")
     public List<WptTestRunData> getTrendTableData(String testName, String view, String runDuration){
 
         List<WptTestRunData> runData = dao.getTrendTableData(testName, view, runDuration);
@@ -358,93 +318,12 @@ public class WptService {
 
     }
 
+    @Cacheable(value="wptTrendChartData", key="{#testName, #view, #isUserTimingBaseLine, #interval}")
     public WptTrendChart getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
         WptTrendChart chart = dao.getTrendChartData(testName, view, isUserTimingBaseLine, interval);
         return chart;
     }
 
-    @Cacheable(value="wptTrendData", key="{#testName, #view, #runDuration, #isUserTimingBaseLine}")
-    public WptTrendDataResp getTrendDataForTest(String testName, String view, String runDuration, boolean isUserTimingBaseLine) throws UnirestException {
-        // view is either repeatView or firstView
-
-        CouchDbViewResp resp = couchDbService.getDocumentsByViewQuery("/wpt-summary/_design/labels/_view/list-data?key=%22" + testName + "%22");
-
-        // create a map of Map<key, TreeMap<runDate, wptData>
-        Map<String, Map<Long, JsonNode>> wptPages = resp.getRows().stream()
-                .collect(
-                        groupingBy(r -> r.getKey().toString(), TreeMap::new,
-                                toMap(r -> r.getValue().get("completed").asLong(), CouchDbViewResp.Row::getValue, (v1,v2)->v1, TreeMap::new)));
-
-
-        String defaultRunDuration = "median";
-        List<String> validRunDurations = Arrays.asList("median", "min", "max", "average");
-
-        // set or override run duration if its invalid
-        if (!validRunDurations.contains(runDuration))
-            runDuration = defaultRunDuration;  // if the value doesn't exist, set to default
-
-
-        List<Map<String, List<Long>>> userTimingsTempList = new ArrayList<>();
-        List<Map<String, List<Long>>> userTimingsRangeTempList = new ArrayList<>();
-
-        WptTrendDataResp wptTrendDataResp = new WptTrendDataResp();
-
-        for (Map.Entry<String, Map<Long, JsonNode>> page : wptPages.entrySet()) {
-            String pageName = page.getKey();
-            if (pageName.contains(testName)) {
-
-                // get page data
-                Map<Long, JsonNode> pageData = page.getValue();
-
-                // reduce records for easy UI display
-                pageData = reduceRecords(pageData, uiMaxTestsToShow, uiAlwaysShowLastXNumTests);
-
-
-                for(JsonNode dataByDate : pageData.values()){
-                    // there may not always be a min and max if only one iteration was run.  Default to median since that will be the 1st run.
-                    String minKey = "min";
-                    String maxKey = "max";
-                    if(!dataByDate.has("max")) {
-                        runDuration = defaultRunDuration;
-                        minKey = defaultRunDuration;
-                        maxKey = defaultRunDuration;
-                    }
-
-                    if(!dataByDate.has(runDuration) || !dataByDate.get(runDuration).has(view)) {
-                        continue; // skip this as this is null and we don't have data
-                    }
-
-                    // get testData based on the runDuration (i.e. median) and view (i.e. firstView)
-                    JsonNode testData = dataByDate.at(String.format("/%s/%s", runDuration, view));
-
-                    long timestamp = dataByDate.get("completed").asLong() * 1000; // convert to milli for JS
-
-                    // set test run: data for datatable list of test info in the UI
-                    wptTrendDataResp.getDataTable().add(getTestRunData(dataByDate, testData, pageName, timestamp)); // add data to response object
-
-
-                    // --- set main chart data ---
-                    wptTrendDataResp = setChartData(wptTrendDataResp, dataByDate, testData, timestamp, minKey, maxKey, view);
-
-
-                    // --- set custom user timing chart data ---
-                    Map<String, Map<String, List<Long>>> customUserTimingData = getCustomUserTimingData(dataByDate, testData, isUserTimingBaseLine, minKey, maxKey, view, timestamp);
-                    // add user timing maps list
-                    userTimingsTempList.add(customUserTimingData.get("timings"));
-                    userTimingsRangeTempList.add(customUserTimingData.get("rangeTimings"));
-
-                }
-
-            }
-        }
-
-        // merge user timings and add to response object --- not this will probably only work right for one test
-        wptTrendDataResp.getChart().setUserTimings(mergeUserTimings(userTimingsTempList));
-        wptTrendDataResp.getChart().setUserTimingsRange(mergeUserTimings(userTimingsRangeTempList));
-
-        System.out.println(wptTrendDataResp);
-        return wptTrendDataResp;
-    }
 
     /**
      * Get the custom user timings.
@@ -486,30 +365,6 @@ public class WptService {
         return userTimingMap;
     }
 
-    /**
-     * Set chart data in WptTrendDataResp object and return
-     * @param wptTrendDataResp
-     * @param dataByDate
-     * @param testData
-     * @param timestamp
-     * @param minKey
-     * @param maxKey
-     * @param view
-     * @return
-     */
-    private WptTrendDataResp setChartData(WptTrendDataResp wptTrendDataResp, JsonNode dataByDate, JsonNode testData, long timestamp, String minKey, String maxKey, String view) {
-        // Time to First Byte line chart plus min and max range for the chart background
-        wptTrendDataResp.getChart().getTtfbRange().add(Arrays.asList(timestamp, dataByDate.at(String.format("/%s/%s/TTFB", minKey, view)).asLong(), dataByDate.at(String.format("/%s/%s/TTFB", maxKey, view)).asLong()));
-        wptTrendDataResp.getChart().getTtfbLine().add(Arrays.asList(timestamp, testData.get("TTFB").asLong()));
-        // Visually Complete line chart plus min and max range for the chart background
-        wptTrendDataResp.getChart().getVcRange().add(Arrays.asList(timestamp, dataByDate.at(String.format("/%s/%s/visualComplete", minKey, view)).asLong(), dataByDate.at(String.format("/%s/%s/visualComplete", maxKey, view)).asLong()));
-        wptTrendDataResp.getChart().getVcLine().add(Arrays.asList(timestamp, testData.get("visualComplete").asLong()));
-        // Speed Index line chart plus min and max range for the chart background
-        wptTrendDataResp.getChart().getSiRange().add(Arrays.asList(timestamp, dataByDate.at(String.format("/%s/%s/SpeedIndex", minKey, view)).asLong(), dataByDate.at(String.format("/%s/%s/SpeedIndex", maxKey, view)).asLong()));
-        wptTrendDataResp.getChart().getSiLine().add(Arrays.asList(timestamp, testData.get("SpeedIndex").asLong()));
-
-        return wptTrendDataResp;
-    }
 
     /**
      * Build and return TestRunData object for a UX test.  This is the data displayed in the grid on a test trend page.

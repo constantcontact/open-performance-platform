@@ -10,7 +10,11 @@
            overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
            timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU">
     </cache>
-    <cache name="wptTrendData" maxEntriesLocalHeap="10000" eternal="false"
+    <cache name="wptTrendTableData" maxEntriesLocalHeap="10000" eternal="false"
+           overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
+           timeToLiveSeconds="120" memoryStoreEvictionPolicy="LRU">
+    </cache>
+    <cache name="wptTrendChartData" maxEntriesLocalHeap="10000" eternal="false"
            overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
            timeToLiveSeconds="120" memoryStoreEvictionPolicy="LRU">
     </cache>
