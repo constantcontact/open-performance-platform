@@ -1,5 +1,5 @@
 Ext.define('OppUI.model.loadtestDashboard.ApplicationMapping',  {
-    extend: 'Ext.data.Model',
+    extend: 'OppUI.model.Base',
     fields: [{ name:'id', type: 'int', useNull: true }, 
         'appKey', 
         'newrelic', 

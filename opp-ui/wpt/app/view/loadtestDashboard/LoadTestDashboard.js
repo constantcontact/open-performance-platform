@@ -16,25 +16,32 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
 
     defaults: {
         bodyPadding: 10,
-        scrollable: true
+        scrollable: true,
+        closable: true
     },
 
-    items: [
-    {
+    items: [{
         title: 'Load Tests',
-        xtype: 'loadtestsummary'
+        xtype: 'loadtestsummary',
+        reorderable: false,
+        closable: false
     }],
 
     createTab: function(grid, record, item, index) {
         console.log("creating tab: " + grid + " " + record.getData() + " " + item + " " + index);
+        var tab;
 
-        //var tabPanel = this.getView(),
-        var html = "Hello World!",
-            tab = this.add({
-                title: 'Test Run #' + record.getData().loadTestId,
-                html: html
-            });
-
+        tab = this.add(
+            {
+                closable: true,
+                xtype: Ext.create('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', 
+                    { 
+                        title: 'Test Run #' + record.getData().loadTestId,
+                        loadTestId: record.getData().loadTestId
+                    })
+            }
+        );
+        
         this.setActiveTab(tab);
     },
     

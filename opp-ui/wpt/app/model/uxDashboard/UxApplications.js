@@ -1,5 +1,5 @@
 Ext.define('OppUI.model.uxDashboard.UxApplications', {
-    extend: 'Ext.data.Model',
+    extend: 'OppUI.model.Base',
 
     fields: [
         { name: 'full', type: 'auto' },

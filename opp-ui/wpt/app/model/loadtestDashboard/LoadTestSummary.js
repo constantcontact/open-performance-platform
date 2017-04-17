@@ -1,5 +1,5 @@
 Ext.define('OppUI.model.loadtestDashboard.LoadTestSummary', {
-    extend: 'Ext.data.Model',
+    extend: 'OppUI.model.Base',
     fields: [
         {name: "loadTestId", mapping: 'load_test_id' },
         {name: "appUnderTest", mapping: 'app_under_test'  },
