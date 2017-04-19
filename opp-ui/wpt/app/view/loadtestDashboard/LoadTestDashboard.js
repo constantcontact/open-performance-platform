@@ -31,8 +31,7 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
         console.log("creating tab: " + grid + " " + record.getData() + " " + item + " " + index);
         var tab;
 
-        tab = this.add(
-            {
+        tab = this.add({
                 closable: true,
                 xtype: 'loadtestreport',
                 loadTestId: record.getData().loadTestId,

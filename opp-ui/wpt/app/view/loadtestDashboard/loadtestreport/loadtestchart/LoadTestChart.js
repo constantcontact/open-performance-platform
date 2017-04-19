@@ -9,24 +9,32 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
     ],
 
     config: {
-        loadTestId: 6528
+        yAxis: undefined
     },
 
-    initComponent: function() { 
-        this.callParent(arguments);
+    // config: {
+    //     loadTestId: 6528
+    // },
 
-        this.getViewModel()
-            .getStore('remoteChart')
-            .getProxy()
-            .setUrl('http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/'+ this.getLoadTestId());
+    // initComponent: function() { 
+    //     this.callParent(arguments);
 
-        console.log("LoadTestChart LoadTestId: " + this.getLoadTestId());
-    },
+    //     this.getViewModel()
+    //         .getStore('remoteChart')
+    //         .getProxy()
+    //         .setUrl('http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/'+ this.getLoadTestId());
+
+    //     console.log("LoadTestChart LoadTestId: " + this.getLoadTestId());
+    // },
 
     controller: 'loadtestchart',
     viewModel: {
         type: 'loadtestchart'
     },
+
+    // bind: { 
+    //     store: '{resp_pct90}'
+    // },
 
     axes: [
         {

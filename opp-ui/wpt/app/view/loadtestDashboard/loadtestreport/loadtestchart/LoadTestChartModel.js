@@ -5,21 +5,21 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         name: 'OppUI'
     },
 
-    stores: {
-        remoteChart: {
-            model: 'OppUI.model.loadtestDashboard.LoadTestChart',
-            autoLoad: true,
-            proxy: {
-                type: 'ajax',
-                url: '',
-                reader: {
-                    type: 'json',
-                    rootProperty: 'chart'
-                }
-            },
-            listeners: {
-                load: 'onRemoteChartLoaded'
-            }
-        }
-    }
+    // stores: {
+    //     remoteChart: {
+    //         model: 'OppUI.model.loadtestDashboard.LoadTestChart',
+    //         autoLoad: true,
+    //         proxy: {
+    //             type: 'ajax',
+    //             url: '',
+    //             reader: {
+    //                 type: 'json',
+    //                 rootProperty: 'chart'
+    //             }
+    //         },
+    //         listeners: {
+    //             load: 'onRemoteChartLoaded'
+    //         }
+    //     }
+    // }
 });

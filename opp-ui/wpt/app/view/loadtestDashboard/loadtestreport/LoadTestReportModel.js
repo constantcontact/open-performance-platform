@@ -18,6 +18,22 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportModel', {
                 }
             }
         }
+        //,
+        // remoteChart: {
+        //     model: 'OppUI.model.loadtestDashboard.LoadTestChart',
+        //     autoLoad: true,
+        //     proxy: {
+        //         type: 'ajax',
+        //         url: '',
+        //         reader: {
+        //             type: 'json',
+        //             rootProperty: 'chart'
+        //         }
+        //     },
+        //     listeners: {
+        //         load: 'onRemoteChartLoaded'
+        //     }
+        // }
     }
     // ,
     // stores: {

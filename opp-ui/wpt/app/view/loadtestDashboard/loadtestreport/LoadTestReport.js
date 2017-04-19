@@ -5,20 +5,73 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport',{
 
     config: {
         title: 'Default title',
-        loadTestId: undefined
+        loadTestId: undefined,
+        chartTimeSeriesYAxes: [
+            'resp_pct90'
+            ,
+            'call_count',
+        ],
+        chartAggregateYAxes: [
+            'resp_pct90',
+            'resp_pct75',
+            'resp_avg',
+            'resp_median',
+            'tps_median',
+            'tps_max'
+        ]
     },
     
-    initComponent: function() { 
-        this.callParent(arguments);
+    initComponent: function() {
+        var respPct90Chart, me;
+        me = this;
+        me.callParent(arguments);
 
-        this.getViewModel()
+        me.getViewModel()
             .getStore('remoteAggData')
             .getProxy()
             .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ this.getLoadTestId() + '/aggdata');
 
-        console.log("LoadTestReport LoadTestId: " + this.getLoadTestId());
+        // this.getViewModel()
+        //     .getStore('remoteChart')
+        //     .getProxy()
+        //     .setUrl('http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/'+ this.getLoadTestId());
 
-        Ext.apply(this.items[2], {loadTestId: this.getLoadTestId()});
+
+        for(var i = 0; i < me.getChartTimeSeriesYAxes().length; i++) {
+            Ext.Ajax.request({
+                url: 'http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/' + me.getLoadTestId() + "?yaxis=" + this.getChartTimeSeriesYAxes()[i],
+                async: true,
+                scope: me,
+                success: 'chartData'
+            });
+        }
+
+        
+        console.log("LoadTestReport LoadTestId: " + me.getLoadTestId());
+    },
+
+    chartData: function(response, options) {
+        var view, items, references, respPct90, loadTestReportView, yaxis, aggregateYAxes, chart;
+        console.log("Ajax Chart Data Returned!!");
+        
+        var json = Ext.decode(response.responseText, false);
+
+        console.log(json);
+        console.log(response);
+
+        yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
+
+        chart = this.down('#' + yaxis);
+        console.log(chart);
+        chart.setTitle('90th Percentile Response Time During Test');
+
+        chart.setSeries(json.chart.series);
+
+        chart.setStore(Ext.create('Ext.data.JsonStore', {
+            fields: json.chart.modelFields,
+            data: json.chart.data
+        }));
+        
     },
 
     closable: true,
@@ -61,11 +114,11 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport',{
             html: '<p>Secondary content like navigation links could go here</p>'
         },
         {
+            xtype: 'loadtestreportmain',
             collapsible: false,
             scrollable: true,
             region: 'center',
-            margin: '5 0 0 0',
-            xtype: 'loadtestreportmain'
+            margin: '5 0 0 0'
         }
     ]
 });
