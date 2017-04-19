@@ -34,11 +34,9 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
         tab = this.add(
             {
                 closable: true,
-                xtype: Ext.create('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', 
-                    { 
-                        title: 'Test Run #' + record.getData().loadTestId,
-                        loadTestId: record.getData().loadTestId
-                    })
+                xtype: 'loadtestreport',
+                loadTestId: record.getData().loadTestId,
+                title: 'Test Run #' + record.getData().loadTestId
             }
         );
         

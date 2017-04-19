@@ -1,17 +1,26 @@
 Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport',{
     extend: 'Ext.panel.Panel',
-    //extend: 'Ext.tab.Panel',
     xtype: 'loadtestreport',
     alias: 'widget.loadtestreport',
 
     config: {
         title: 'Default title',
-        loadTestId: 0
+        loadTestId: undefined
     },
+    
     initComponent: function() { 
         this.callParent(arguments);
-         console.log("Load Test Id " + this.getLoadTestId());
+
+        this.getViewModel()
+            .getStore('remoteAggData')
+            .getProxy()
+            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ this.getLoadTestId() + '/aggdata');
+
+        console.log("LoadTestReport LoadTestId: " + this.getLoadTestId());
+
+        Ext.apply(this.items[2], {loadTestId: this.getLoadTestId()});
     },
+
     closable: true,
     requires: [
         'OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController',
@@ -53,9 +62,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport',{
         },
         {
             collapsible: false,
+            scrollable: true,
             region: 'center',
             margin: '5 0 0 0',
-            html: '<h2>Main Page</h2><p>This is where the main content would go</p>'
+            xtype: 'loadtestreportmain'
         }
     ]
 });

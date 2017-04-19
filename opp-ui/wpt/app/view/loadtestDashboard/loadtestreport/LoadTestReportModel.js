@@ -2,7 +2,22 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.loadtestreport',
     data: {
-        name: 'OppUI'
+        name: 'OppUI',
+        testName: 'THIS IS A TEST NAME!!'
+    },
+
+    stores: {
+        remoteAggData: {
+            model: 'OppUI.model.loadTestDashboard.LoadTestReportSummary',
+            autoLoad: true,
+            url: '',
+            proxy: {
+                type: 'ajax',
+                reader: {
+                    type: 'json'
+                }
+            }
+        }
     }
     // ,
     // stores: {
