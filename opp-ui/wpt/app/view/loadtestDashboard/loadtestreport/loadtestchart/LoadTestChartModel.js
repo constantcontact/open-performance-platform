@@ -3,23 +3,5 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
     alias: 'viewmodel.loadtestchart',
     data: {
         name: 'OppUI'
-    },
-
-    // stores: {
-    //     remoteChart: {
-    //         model: 'OppUI.model.loadtestDashboard.LoadTestChart',
-    //         autoLoad: true,
-    //         proxy: {
-    //             type: 'ajax',
-    //             url: '',
-    //             reader: {
-    //                 type: 'json',
-    //                 rootProperty: 'chart'
-    //             }
-    //         },
-    //         listeners: {
-    //             load: 'onRemoteChartLoaded'
-    //         }
-    //     }
-    // }
+    }
 });

@@ -34,6 +34,7 @@ Ext.define('OppUI.model.loadtestDashboard.LoadTestSummary', {
         {name: 'tpsMaxTrend', mapping: 'tps_max_trend'},
         {name: 'totalBytesTrend', mapping: 'total_bytes_trend'},
         {name: 'errorCount', mapping: 'error_count'},
-        {name: 'errorCountTrend', mapping: 'error_count_trend'}
+        {name: 'errorCountTrend', mapping: 'error_count_trend'},
+        {name: 'externalTestId', mapping: 'external_tset_id'}
      ]
 });

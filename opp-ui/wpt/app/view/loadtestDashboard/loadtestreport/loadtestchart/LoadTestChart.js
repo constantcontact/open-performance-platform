@@ -8,33 +8,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         'OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestChartModel'
     ],
 
-    config: {
-        yAxis: undefined
-    },
-
-    // config: {
-    //     loadTestId: 6528
-    // },
-
-    // initComponent: function() { 
-    //     this.callParent(arguments);
-
-    //     this.getViewModel()
-    //         .getStore('remoteChart')
-    //         .getProxy()
-    //         .setUrl('http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/'+ this.getLoadTestId());
-
-    //     console.log("LoadTestChart LoadTestId: " + this.getLoadTestId());
-    // },
-
     controller: 'loadtestchart',
     viewModel: {
         type: 'loadtestchart'
     },
-
-    // bind: { 
-    //     store: '{resp_pct90}'
-    // },
 
     axes: [
         {

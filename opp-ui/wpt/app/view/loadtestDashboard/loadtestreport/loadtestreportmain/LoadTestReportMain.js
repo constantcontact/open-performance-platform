@@ -9,20 +9,36 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
     ],
 
     initComponent: function() {
-        var timeSeriesYAxes, aggregateYAxes, view;
+        var timeSeriesYAxes, aggregateYAxes, view, i;
 
         timeSeriesYAxes = this.up('loadtestreport').getChartTimeSeriesYAxes();
+        aggregateYAxes = this.up('loadtestreport').getChartAggregateYAxes();
 
-        for(var i = 0; i < timeSeriesYAxes.length; i++) {
+        /**
+         * Build all the charts.
+         */
+        for(i = 0; i < timeSeriesYAxes.length; i++) {
             this.items.push({
                 xtype: 'loadtestchart',
-                itemId: timeSeriesYAxes[i],
-                height: 400,
-                margin: '0px 0px 20px 0px'
+                itemId: timeSeriesYAxes[i].yaxis,
+                title: timeSeriesYAxes[i].title,
+                colspan: 2,
+                height: 300,
+                margin: '0 0 20 0'
+            });
+        }
+
+        for(i = 0; i < aggregateYAxes.length; i++) {
+            this.items.push({
+                xtype: 'loadtestchart',
+                itemId: aggregateYAxes[i].yaxis,
+                title: aggregateYAxes[i].title,
+                colspan: 1,
+                height: 300,
+                margin: '0 0 20 0'
             });
         }
         
-
         this.callParent(arguments);
     },
 
@@ -31,39 +47,74 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
         type: 'loadtestreportmain'
     },
 
+    layout: {
+        type: 'table',
+        columns: 2,
+        tableAttrs: {
+            style: {
+                width: '100%'
+            }
+        }
+    },
+    style: {
+        overflow: 'auto'
+    },
+    defaults: {
+        padding: 7,
+        height: 300
+    },
+    margins: '5 0 0 0',
+
     items:[
         {
             xtype: 'panel',
-            height: 100,
-            margin: '0px 0px 20px 0px',
+            colspan: 2,
+            height: 110,
+            margin: '0 0 20 0',
             tpl: [
                 '<table class=\'tbl-load-test-details\'>',
                     '<tr>',
                         '<th>Test Name:</th>',
                         '<td>{testName}</td>',
+                        '<th class=\'col2\'>Date:</th>',
+                        '<td class=\'col2\'>{curTime}</td>',
+                        '<th class=\'col2\'>Duration:</th>',
+                        '<td class=\'col2\'>{duration}</td>',
+                    '</tr>',
+                    '<tr>',
+                        '<th>Vusers:</th>',
+                        '<td>{vuserCount}</td>',
+                        '<th class=\'col2\'>Env.:</th>',
+                        '<td class=\'col2\' colspan=\'2\'>{environment}</td>',
+                    '</tr>',
+                    '<tr>',
+                        '<th>Description:</td>',
+                        '<td colspan=\'4\'>{description}</td>',
+                    '</tr>',
+                    '<tr>',
+                        '<th>CloudTest Result:</td>',
+                        '<td colspan=\'3\'><a href=\'{cloudTestLink}\' target=\'_blank\'>{cloudTestLink}</a></td>',
                     '</tr>',
                 '</table>'
             ],
 
-            //,viewModel: Ext.ComponentQuery.query('loadtestreport')[0].getViewModel()
-            data:{
-                testName: "TEST NAME!!!"
+            bind: {
+                data: {
+                    testName: '{testName}',
+                    curTime: '{curTime}',
+                    duration: '{duration}',
+                    vuserCount: '{vuserCount}',
+                    environment: '{environment}',
+                    description: '{description}',
+                    cloudTestLink: '{cloudTestLink}'
+                }   
             }
         },
         { 
             xtype: 'loadtestreportsummary',
-            height: 500,
-            margin: '0px 0px 20px 0px'
+            height: 300,
+            margin: '0px 0px 20px 0px',
+            colspan: 2
         }
-        //,
-        // {
-        //     xtype: 'loadtestchart',
-        //     itemId: 'resp_pct90',
-        //     alias: 'resp_pct90',
-        //     reference: 'resp_pct90',
-        //     height: 400,
-        //     margin: '0px 0px 20px 0px'
-
-        // }
     ]
 });

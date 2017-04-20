@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport',{
+Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     extend: 'Ext.panel.Panel',
     xtype: 'loadtestreport',
     alias: 'widget.loadtestreport',
@@ -7,66 +7,59 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport',{
         title: 'Default title',
         loadTestId: undefined,
         chartTimeSeriesYAxes: [
-            'resp_pct90'
-            ,
-            'call_count',
+            { yaxis: 'resp_pct90', title: '90th Percentile Response Time During Test' },
+            { yaxis: 'call_count', title: 'Transactions per Minute During Test' }
         ],
         chartAggregateYAxes: [
-            'resp_pct90',
-            'resp_pct75',
-            'resp_avg',
-            'resp_median',
-            'tps_median',
-            'tps_max'
+            { yaxis: 'resp_pct90', title: 'Trend: 90th Percentile Response Time' },
+            { yaxis: 'resp_pct75', title: 'Trend: 75th Percentile Response Time' },
+            { yaxis: 'resp_avg', title: 'Trend: Average Response Time' },
+            { yaxis: 'resp_median', title: 'Trend: Median Response Time' },
+            { yaxis: 'tps_median', title: 'Trend: TPS Median' },
+            { yaxis: 'tps_max', title: 'Trend: TPS Max' }
         ]
     },
     
     initComponent: function() {
-        var respPct90Chart, me;
+        var i, me;
+
         me = this;
         me.callParent(arguments);
 
         me.getViewModel()
             .getStore('remoteAggData')
             .getProxy()
-            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ this.getLoadTestId() + '/aggdata');
+            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/aggdata');
 
-        // this.getViewModel()
-        //     .getStore('remoteChart')
-        //     .getProxy()
-        //     .setUrl('http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/'+ this.getLoadTestId());
-
-
-        for(var i = 0; i < me.getChartTimeSeriesYAxes().length; i++) {
+        for(i = 0; i < me.getChartTimeSeriesYAxes().length; i++) {
             Ext.Ajax.request({
-                url: 'http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/' + me.getLoadTestId() + "?yaxis=" + this.getChartTimeSeriesYAxes()[i],
+                url: 'http://roadrunner.roving.com/loadsvc/v1/charts/timeseries/loadtests/' + me.getLoadTestId() + "?yaxis=" + me.getChartTimeSeriesYAxes()[i].yaxis,
                 async: true,
                 scope: me,
                 success: 'chartData'
             });
         }
 
-        
-        console.log("LoadTestReport LoadTestId: " + me.getLoadTestId());
+        for(i = 0; i < me.getChartAggregateYAxes().length; i++) {
+            Ext.Ajax.request({
+                url: 'http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/' + me.getLoadTestId() + "?yaxis=" + me.getChartAggregateYAxes()[i].yaxis,
+                async: true,
+                scope: me,
+                success: 'chartData'
+            });
+        }
     },
 
     chartData: function(response, options) {
-        var view, items, references, respPct90, loadTestReportView, yaxis, aggregateYAxes, chart;
-        console.log("Ajax Chart Data Returned!!");
+        var json, yaxis, chart, title, itemPrepend, item;
         
-        var json = Ext.decode(response.responseText, false);
-
-        console.log(json);
-        console.log(response);
-
+        json = Ext.decode(response.responseText, false);
         yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
 
+        itemPrepend = options.url.indexOf("aggregate") >= 0 ? 'agg_' : 'trend_';
+        
         chart = this.down('#' + yaxis);
-        console.log(chart);
-        chart.setTitle('90th Percentile Response Time During Test');
-
         chart.setSeries(json.chart.series);
-
         chart.setStore(Ext.create('Ext.data.JsonStore', {
             fields: json.chart.modelFields,
             data: json.chart.data
