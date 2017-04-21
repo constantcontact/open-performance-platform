@@ -3,9 +3,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
     alias: 'controller.loadtestreport',
 
     remoteAggDataLoaded: function(aggData) {
-        var view, curTime, startTime, endTime, duration, cloudTestLink, externalTestId;
         console.log("AGG DATA LOADED ");
+        var viewModel, urTime, startTime, endTime, duration, cloudTestLink, externalTestId;
         viewModel = this.getViewModel();
+
 
         startTime = aggData.getData().items[0].getData().start_time;
         endTime = aggData.getData().items[0].getData().end_time;
@@ -20,7 +21,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
             cloudTestLink = "N/A";
         }
         
-        // Set all the bindings for the load test report header.
+        // Set all the bindings for the load test report.
         viewModel.set('testName',  aggData.getData().items[0].getData().test_name);
         viewModel.set('curTime',  curTime ? curTime : "");
         viewModel.set('duration',  duration);
@@ -28,6 +29,15 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
         viewModel.set('environment',  aggData.getData().items[0].getData().environment);
         viewModel.set('description',  aggData.getData().items[0].getData().description);
         viewModel.set('cloudTestLink',  cloudTestLink);
+        viewModel.set('loadTestId', aggData.getData().items[0].getData().load_test_id);
+        viewModel.set('testSubName', aggData.getData().items[0].getData().test_sub_name);
+        viewModel.set('appUnderTest', aggData.getData().items[0].getData().app_under_test);
+        viewModel.set('appUnderTestVersion', aggData.getData().items[0].getData().app_under_test_version);
+        viewModel.set('startTime', Ext.Date.format(new Date(aggData.getData().items[0].getData().start_time *1000),'m/d/Y h:i a'));
+        viewModel.set('endTime', Ext.Date.format(new Date(aggData.getData().items[0].getData().end_time *1000),'m/d/Y h:i a'));
+        viewModel.set('testTool', aggData.getData().items[0].getData().test_tool);
+        viewModel.set('testToolVersion', aggData.getData().items[0].getData().test_tool_version);
+        viewModel.set('comments', aggData.getData().items[0].getData().comments);
     },
 
     calculateDuration: function(start, end){
