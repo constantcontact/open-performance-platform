@@ -173,18 +173,41 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     ],
 
     chartData: function(response, options) {
-        var json, yaxis, chart, title, itemPrepend, item;
-        
+        var json, yaxis, chart, title, itemPrepend, item, series;
+
+        var seriesStyle = {lineWidth: 4};
+        var seriesMarker = {radius: 4};
+        var seriesHighlight = {fillStyle: '#000', radius: 5, lineWidth: 2, strokeStyle: '#fff'};
+        var seriesTooltip = {
+            trackMouse: true, style: 'background: #fff', showDelay: 0, dismissDelay: 0, hideDelay: 0,
+            renderer: function (tooltip, record, item) {
+                var title;
+                if(record && item.series) {
+                    title = item.series.config.chart.getTitle();
+                    tooltip.setHtml('<b>' + title + ':</b>' + record.get(item.series.config.yField) + '(ms)');
+                }
+            }
+        };
+
         json = Ext.decode(response.responseText, false);
+        series = json.chart.series;
         yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
 
-        itemPrepend = options.url.indexOf("aggregate") >= 0 ? 'agg_' : 'trend_';
-        
+        for(var i=0; i<series.length; i++){
+            series[i].style=seriesStyle;
+            series[i].highlight=seriesHighlight;
+            series[i].marker=seriesMarker;
+            series[i].tooltip=seriesTooltip;
+        }
+
+        //console.log(json.chart.modelFields.slice(1));
         chart = this.down('#' + yaxis);
-        chart.setSeries(json.chart.series);
+        chart.axes[0].fields = json.chart.modelFields.slice(1);
+        chart.setSeries(series);
         chart.setStore(Ext.create('Ext.data.JsonStore', {
             fields: json.chart.modelFields,
             data: json.chart.data
-        }));   
+        }));
+        chart.redraw();
     }
 });
