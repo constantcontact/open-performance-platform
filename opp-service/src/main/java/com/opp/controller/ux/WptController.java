@@ -2,6 +2,7 @@ package com.opp.controller.ux;
 
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
+import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.graphite.GraphiteSimpleMetric;
@@ -57,7 +58,11 @@ public class WptController {
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
     public WptResult importTest(@Valid @RequestBody WptTestImport wptTestImport) throws Exception {
-        return service.importTestFromWpt(wptTestImport, false).orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
+        if(wptTestImport.getData() == null) {
+            return service.importTestFromWpt(wptTestImport, false).orElseThrow(() -> new InternalServiceException("Error occurred while creating WPT Test"));
+        } else {
+            return service.importTestFromJson(wptTestImport.getData(), new WptTestLabel(wptTestImport.getWptTestLabel()), false).orElseThrow(() -> new InternalServiceException("Error occurred while creating WPT Test"));
+        }
     }
 
 

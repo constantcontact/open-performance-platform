@@ -10,6 +10,7 @@ public class WptTestImport {
 
     private String wptId;
     private String wptTestLabel;
+    private String data;
 
     public WptTestImport() {
     }
@@ -17,6 +18,20 @@ public class WptTestImport {
     public WptTestImport(String wptId, String wptTestLabel) {
         this.wptId = wptId;
         this.wptTestLabel = wptTestLabel;
+    }
+
+    public WptTestImport(String wptId, String wptTestLabel, String data) {
+        this.wptId = wptId;
+        this.wptTestLabel = wptTestLabel;
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getWptId() {

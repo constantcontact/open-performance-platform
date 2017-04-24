@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
@@ -43,17 +44,28 @@ public class WptResultControllerTest extends BaseIntegrationTest {
 
     @Test
     public void testCrud() throws Exception {
-        String wptTestId = "170322_XT_17K4";
+        String rawWptResultTestFile = "wptresult.test.json";
+        String wptTestId = "170322_XT_17K4"; // this ID should match whats in the above file
         String label = "l1.em-ui.editor5555.cc-us-east.chrome.cable";
         String apiUrl = String.format("%s/uxsvc/v1/wpt/tests", getBaseUrl());
+        String importUrl = apiUrl.replace("tests", "import");
 
-        // Import from WPT - POST
+
+
+        // Import from WPT - POST --- commented out because it relies on 3rd party WPT to be up and running but a good test if needed
         // /uxsvc/v1/wpt/import
-        HttpResponse<JsonNode> importResponse = Unirest.post(apiUrl.replace("tests", "import")).body(new WptTestImport(wptTestId, label)).asJson();
-        assertTrue("POST - Verifying Response Code", importResponse.getStatus() == 201);
+        // HttpResponse<JsonNode> importResponse1 = Unirest.post(importUrl).body(new WptTestImport(wptTestId, label)).asJson();
+        // assertTrue("POST - Verifying Response Code", importResponse1.getStatus() == 201);
+
+        // Import from Raw WPT JSON - POST
+        String wptRawTestResult = getRawWptResultFromFile(rawWptResultTestFile);
+        HttpResponse<JsonNode> importResponse2 = Unirest.post(importUrl).body(new WptTestImport(wptTestId, label, wptRawTestResult)).asJson();
+        assertTrue("POST - Verifying Response Code", importResponse2.getStatus() == 201);
 
         // Create - POST
-        WptResult wptTest = getWptTest(wptTestId, label);
+        // get a WptResult object from a sample wpt raw data file
+        WptResult wptTest = getWptTest(rawWptResultTestFile, label);
+
         HttpResponse<JsonNode> createResponse = Unirest.post(apiUrl).body(wptTest).asJson();
         assertTrue("POST - Verifying Response Code", createResponse.getStatus() == 201);
 
@@ -75,12 +87,19 @@ public class WptResultControllerTest extends BaseIntegrationTest {
 
     }
 
-    private WptResult getWptTest(String id, String label){
-        URL url = Resources.getResource("wptresult.test.json");
+    private String getRawWptResultFromFile(String fileName){
+        URL url = Resources.getResource(fileName);
         try {
-            String wptJson = Resources.toString(url, Charsets.UTF_8);
-            WptResult wptResult = wptService.importTestFromJson(wptJson, new WptTestLabel(label), false).get();
-            return wptResult;
+            return Resources.toString(url, Charsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private WptResult getWptTest(String fileName, String label){
+        try {
+            return wptService.importTestFromJson(getRawWptResultFromFile(fileName), new WptTestLabel(label), false).get();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
