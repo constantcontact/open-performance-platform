@@ -30,6 +30,7 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -61,9 +62,21 @@ public class WptService {
 
 
     // ========= CRUD Operations ==========
-    public Optional<WptResult> importTest(WptTestImport wptTestImport) throws Exception {
-        return importTest(wptTestImport, false);
+
+
+    /**
+     * Import test from JSON
+     * @param json
+     * @param wptLabel
+     * @param sendToGraphite
+     * @return
+     * @throws Exception
+     */
+    public Optional<WptResult> importTestFromJson(String json, WptTestLabel wptLabel, boolean sendToGraphite) throws Exception {
+        return importTest(objectMapper.readTree(json), wptLabel, sendToGraphite);
     }
+
+
     /**
      * Import test from WPT
      * @param wptTestImport
@@ -71,7 +84,7 @@ public class WptService {
      * @return
      * @throws Exception
      */
-    public Optional<WptResult> importTest(WptTestImport wptTestImport, boolean sendToGraphite) throws Exception {
+    public Optional<WptResult> importTestFromWpt(WptTestImport wptTestImport, boolean sendToGraphite) throws Exception {
 
         // set urls
         String jsonUrl = String.format("%s/jsonResult.php?test=%s", wptUrl, wptTestImport.getWptId());
@@ -83,14 +96,31 @@ public class WptService {
 
         // push json elasticsearch
         JsonNode jsonNodeWptResults = objectMapper.readTree(jsonContents);
-        Optional<WptResult> summaryResults = storeSummaryResults(jsonNodeWptResults, new WptTestLabel(wptTestImport.getWptTestLabel()));
+        return importTest(jsonNodeWptResults, new WptTestLabel(wptTestImport.getWptTestLabel()));
+    }
+
+
+    /**
+     * Base import test method
+     * @param jsonNodeWptResults
+     * @param wptTestLabel
+     * @param sendToGraphite
+     * @return
+     * @throws Exception
+     */
+    public Optional<WptResult> importTest(JsonNode jsonNodeWptResults, WptTestLabel wptTestLabel, boolean sendToGraphite) throws Exception {
+
+        Optional<WptResult> wptResult = storeRawWptResults(jsonNodeWptResults, wptTestLabel);
 
 //        // send to graphite
 //        if(sendToGraphite) {
 //            sendDataToGraphite(jsonNodeWptResults);
 //        }
 
-        return summaryResults;
+        return wptResult;
+    }
+    public Optional<WptResult> importTest(JsonNode jsonNodeWptResults, WptTestLabel wptTestLabel) throws Exception {
+        return importTest(jsonNodeWptResults, wptTestLabel, false);
     }
 
     public Optional<WptResult> add(WptResult wptResult) {
@@ -146,7 +176,7 @@ public class WptService {
      * @param wptRawObject
      * @return mixed
      */
-    public Optional<WptResult> storeSummaryResults(JsonNode wptRawObject, WptTestLabel wptTestLabel) throws Exception {
+    public Optional<WptResult> storeRawWptResults(JsonNode wptRawObject, WptTestLabel wptTestLabel) throws Exception {
 
         ObjectNode dataNode = (ObjectNode) wptRawObject.get("data");
 
@@ -228,7 +258,7 @@ public class WptService {
         }
 
 
-        // values are created in storeSummaryResults method
+        // values are created in storeRawWptResults method
         int runCount = dataNode.get("runCount").asInt();
         int requestCount = dataNode.get("requestCount").asInt();
 
@@ -593,6 +623,5 @@ public class WptService {
         wptSlaResults.setSlaDetails(wptSlaResultDetailsList);
         return wptSlaResults;
     }
-
 
 }

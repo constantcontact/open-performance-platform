@@ -47,18 +47,32 @@ public class WptController {
     private GraphiteService graphiteService;
 
 
-    // ======== CRUD ===============
-    @RequestMapping(value = "/uxsvc/v1/wpt/tests", method = RequestMethod.POST)
+    @RequestMapping(value = "/uxsvc/v1/wpt/import", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation( value = "Creates a new WPT Test")
     @ApiResponses({
-            @ApiResponse(code = 201, message = "Successfully created new WPT Test", response = IndexResponse.class),
+            @ApiResponse(code = 201, message = "Successfully imported new WPT Test", response = WptResult.class),
             @ApiResponse(code = 400, message = "Invalid WPT Test object provided", response = ErrorResponse.class),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public WptResult create(@Valid @RequestBody WptTestImport wptTestImport) throws Exception {
-        return service.importTest(wptTestImport).orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
+    public WptResult importTest(@Valid @RequestBody WptTestImport wptTestImport) throws Exception {
+        return service.importTestFromWpt(wptTestImport, false).orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
+    }
+
+
+    // ======== CRUD ==============
+    @RequestMapping(value = "/uxsvc/v1/wpt/tests", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation( value = "Creates a new WPT Test")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Successfully created new WPT Test", response = WptResult.class),
+            @ApiResponse(code = 400, message = "Invalid WPT Test object provided", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public WptResult create(@Valid @RequestBody WptResult wptResult) throws Exception {
+        return service.add(wptResult).orElseThrow(()->new InternalServiceException("Error occurred while creating WPT Test"));
     }
 
     @RequestMapping(value = "/uxsvc/v1/wpt/tests/{wpt_test_id}", method = RequestMethod.PUT)

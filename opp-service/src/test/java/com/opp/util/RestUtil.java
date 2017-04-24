@@ -9,7 +9,10 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
@@ -74,15 +77,38 @@ public class RestUtil {
     }
 
     public static void verifyPut(String url, JSONObject putData) throws UnirestException {
+        verifyPut(url, putData, Arrays.asList());
+    }
+
+    public static void verifyPut(String url, JSONObject putData, List<String> fieldsToVerify) throws UnirestException {
         HttpResponse<JsonNode> httpResponse = Unirest.put(url).body(putData).asJson();
         assertTrue("PUT - Verifying Response Code", httpResponse.getStatus() == 200);
-        verifyAllFields("PUT Fields", putData, httpResponse);
+        if(fieldsToVerify.isEmpty()) {
+            verifyAllFields("PUT Fields", putData, httpResponse);
+        } else {
+            verifyFields("PUT Fields", putData, httpResponse, fieldsToVerify);
+        }
+    }
+
+    public static <T> void verifyGetSerialized(String url, T expectedData, Class<T> toValueType) throws UnirestException {
+        com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        HttpResponse<JsonNode> httpResponse = Unirest.get(url).asJson();
+        assertTrue("GET - Verifying Response Code", httpResponse.getStatus() == 200);
+        assertTrue("GET - Verifying Fields", mapper.convertValue(expectedData, toValueType).equals(expectedData));
     }
 
     public static void verifyGet(String url, JSONObject expectedData) throws UnirestException {
+        verifyGet(url, expectedData, Arrays.asList());
+    }
+
+    public static void verifyGet(String url, JSONObject expectedData, List<String> fieldsToVerify) throws UnirestException {
         HttpResponse<JsonNode> httpResponse = Unirest.get(url).asJson();
         assertTrue("GET - Verifying Response Code", httpResponse.getStatus() == 200);
-        verifyAllFields("GET Fields", expectedData, httpResponse);
+        if(fieldsToVerify.isEmpty()) {
+            verifyAllFields("GET Fields", expectedData, httpResponse);
+        } else {
+            verifyFields("GET Fields", expectedData, httpResponse, fieldsToVerify);
+        }
     }
 
     public static HttpResponse<JsonNode> verifyGetAll(String url) throws UnirestException {
@@ -104,6 +130,21 @@ public class RestUtil {
                 assertTrue(name + " - Verifying: " + key, response.getBody().getObject().get(key).equals(originalObj.get(key)));
             }
         }
+    }
+
+    private static void verifyFields(String name, JSONObject originalObj, HttpResponse<JsonNode> response, List<String> fieldsToVerify){
+        fieldsToVerify.forEach( field -> {
+            assertTrue(name + " - Field Exists: " + field, originalObj.has(field));
+            if(originalObj.has(field)){
+                assertTrue(name + " - Field Exists: " + field, true);
+                if (originalObj.get(field) instanceof Long) {
+                    // sometimes it will convert ints to what should be longs and vice versa.  Check for long here.
+                    assertEquals(name + " - Verifying: " + field, response.getBody().getObject().getLong(field), originalObj.getLong(field));
+                } else {
+                    assertTrue(name + " - Verifying: " + field, response.getBody().getObject().get(field).equals(originalObj.get(field)));
+                }
+            }
+        });
     }
 
     public static void verifyDelete(String url) throws UnirestException {

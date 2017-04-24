@@ -30,6 +30,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
@@ -88,7 +90,12 @@ public class WptTestDao {
         updateRequest.index(wptEsIndex);
         updateRequest.type(wptEsType);
         updateRequest.id(wptResult.getId());
-        updateRequest.doc(wptResult);
+        try {
+            updateRequest.doc(objectMapper.writeValueAsString(wptResult));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
         return getOptional(() -> {
             try {
                 return esClient.update(updateRequest).get();
@@ -120,10 +127,19 @@ public class WptTestDao {
      * @return
      */
     public List<WptResult> findAll(String esSearchQuery) {
+        // need to add start and end dates to avoid nulls in the data or bad records
+        long startTime = ZonedDateTime.now(ZoneOffset.UTC).minusYears(5).toEpochSecond(); // default to 5 years
+        long endTime = ZonedDateTime.now(ZoneOffset.UTC).toEpochSecond();
+
         SearchHit[] hits = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
-                .setQuery(QueryBuilders.queryStringQuery(esSearchQuery).analyzeWildcard(true))
+                .setQuery(QueryBuilders.boolQuery()
+                                .must(QueryBuilders.rangeQuery("completed").gte(startTime).lte(endTime).format("epoch_second"))
+                                .must(QueryBuilders.queryStringQuery(esSearchQuery).analyzeWildcard(true))
+                )
                 .setSize(wptEsFetchLimit).get().getHits().getHits();
-        return Arrays.stream(hits).map(WptResult.class::cast).collect(toList());
+        return Arrays.stream(hits)
+                .map(h -> objectMapper.convertValue(h.getSource(), WptResult.class))
+                .collect(toList());
     }
 
 
