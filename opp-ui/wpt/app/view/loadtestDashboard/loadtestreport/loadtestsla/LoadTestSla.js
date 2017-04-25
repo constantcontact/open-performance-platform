@@ -120,10 +120,5 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSla'
         { header: 'Margin of Error (%)', dataIndex: 'margin_of_error', flex: 1, editor: 'numberfield' }
     ],
     
-    importMissingTransactions: 'importMissingTransactions',
-
-    onRemoveClick: function(grid, rowIndex){
-        this.getStore().removeAt(rowIndex);
-    }
-
+    importMissingTransactions: 'importMissingTransactions'
 });

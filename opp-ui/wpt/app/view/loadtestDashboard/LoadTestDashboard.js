@@ -23,6 +23,7 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     items: [{
         title: 'Load Tests',
         xtype: 'loadtestsummary',
+        iconCls: 'x-fa fa-table',
         reorderable: false,
         closable: false
     }],
@@ -34,8 +35,10 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
         tab = this.add({
                 closable: true,
                 xtype: 'loadtestreport',
+                iconCls: 'x-fa fa-line-chart',
                 loadTestId: record.getData().loadTestId,
                 title: 'Test Run #' + record.getData().loadTestId
+                
             }
         );
         

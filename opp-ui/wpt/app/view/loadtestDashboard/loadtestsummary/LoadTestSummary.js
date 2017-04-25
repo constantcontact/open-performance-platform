@@ -22,14 +22,14 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
          {
              itemId:'btnViewReport',
              xtype:'button',
-             iconCls: 'icon-advanced-report',
+             iconCls: 'x-fa fa-list-alt',
              text: 'View Report',
              tooltip:'Provides custom trending and comparison of selected test runs.'
          },
         {
             itemId:'btnCreateGroupedReport',
             xtype:'button',
-            iconCls: 'icon-advanced-report',
+            iconCls: 'x-fa fa-list-alt',
             text: 'Build Grouped Report',
             tooltip:'Enables you to build a report for several different test runs.',
             listeners:{

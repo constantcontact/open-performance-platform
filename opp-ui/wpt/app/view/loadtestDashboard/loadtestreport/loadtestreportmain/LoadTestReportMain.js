@@ -24,7 +24,26 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
                 title: timeSeriesYAxes[i].title,
                 colspan: 2,
                 height: 300,
-                margin: '0 0 20 0'
+                margin: '0 0 20 0',
+                tbar: [
+                    '->',
+                    {
+                        xtype: 'timeseriescombobox'
+                    },
+                    '-',
+                    {
+                        text: 'Undo Zoom',
+                        handler: function() {
+                            var chart = this.up('panel').down('cartesian'),
+                                interaction = chart && Ext.ComponentQuery.query('interaction', chart)[0],
+                                undoButton = interaction && interaction.getUndoButton(),
+                                handler = undoButton && undoButton.handler;
+                            if (handler) {
+                                handler();
+                            }
+                        }
+                    }
+                ]
             });
         }
 
