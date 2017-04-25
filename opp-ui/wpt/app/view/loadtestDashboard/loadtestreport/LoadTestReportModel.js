@@ -19,17 +19,22 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportModel', {
             listeners: {
                 load: 'remoteAggDataLoaded'
             }
+        },
+        remoteSlas: {
+            model: 'OppUI.model.loadtestDashboard.LoadTestSla',
+            autoLoad: true,
+            url: '',
+            sortOnLoad: true,
+            sorters: { property: 'name', direction : 'ASC' },
+            proxy: {
+                type: 'ajax',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: 'remoteSlasLoaded'
+            }
         }
-        // remoteSla: {
-        //     //model: 'OppUI.model.loadTestDashboard.LoadTestReportSummary',
-        //     autoLoad: true,
-        //     url: '',
-        //     proxy: {
-        //         type: 'ajax',
-        //         reader: {
-        //             type: 'json'
-        //         }
-        //     }
-        // }
     }
 });

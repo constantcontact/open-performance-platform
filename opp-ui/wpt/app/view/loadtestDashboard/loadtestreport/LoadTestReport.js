@@ -38,6 +38,11 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             .getProxy()
             .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/aggdata');
 
+        me.getViewModel()
+            .getStore('remoteSlas')
+            .getProxy()
+            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/slas');
+
         for(i = 0; i < me.getChartTimeSeriesYAxes().length; i++) {
             Ext.Ajax.request({
                 url: 'http://roadrunner.roving.com/loadsvc/v1/charts/timeseries/loadtests/' + me.getLoadTestId() + "?yaxis=" + me.getChartTimeSeriesYAxes()[i].yaxis,
@@ -75,11 +80,12 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     items: [
         {
             title: 'SLAs',
+            xtype: 'loadtestsla',
             region: 'north',
             height: 100,
-            minHeight: 75,
-            maxHeight: 150,
-            html: '<p>Header content</p>'
+            minHeight: 300,
+            maxHeight: 500,
+            collapsed: true
         },
         {
             title: 'Load Test Details',
@@ -87,8 +93,9 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             floatable: false,
             margin: '5 0 0 0',
             width: 125,
-            minWidth: 100,
+            minWidth: 300,
             maxWidth: 400,
+            collapsed: true,
             tpl:[
                 '<table class=\'tbl-load-test-details\'>',
                     '<tr>',
@@ -200,7 +207,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             series[i].tooltip=seriesTooltip;
         }
 
-        //console.log(json.chart.modelFields.slice(1));
         chart = this.down('#' + yaxis);
         chart.axes[0].fields = json.chart.modelFields.slice(1);
         chart.setSeries(series);

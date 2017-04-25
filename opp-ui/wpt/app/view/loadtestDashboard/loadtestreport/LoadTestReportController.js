@@ -40,6 +40,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
         viewModel.set('comments', aggData.getData().items[0].getData().comments);
     },
 
+    remoteSlasLoaded: function() {
+        console.log("Remote Slas Loaded!!");
+    },
+
     calculateDuration: function(start, end){
         var duration = "";
         if(end !== null) {
