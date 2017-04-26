@@ -39,9 +39,6 @@ opp:
     port: 2003
   # OPP UX properties
   ux:
-    # Couch DB info
-    couchdb:
-      url: http://couchdb:5984/
     # you can also set your private wpt server here
     wptUrl: https://www.webpagetest.org  
     graphiteMetricRootPath: ux
@@ -77,7 +74,7 @@ runIntegrationTests: true
 spring:
   profiles: production
   datasource:
-    url: jdbc:mysql://dev-environment:3306/opp?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://prod-environment:3306/opp?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: myuser
     password: $mypass123!
 server:

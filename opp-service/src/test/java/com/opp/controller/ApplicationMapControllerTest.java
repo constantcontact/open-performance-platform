@@ -6,6 +6,7 @@ import com.opp.util.RestUtil;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * Created by ctobe on 6/22/16.
  */
 public class ApplicationMapControllerTest extends BaseIntegrationTest {
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     @Value("${opp.appMap.useExternal}")
     private boolean useExternal;
@@ -30,11 +28,6 @@ public class ApplicationMapControllerTest extends BaseIntegrationTest {
     @Before
     public void setUp() throws Exception {
         jdbcTemplate.update("REPLACE into application_team (team_name) VALUES(?)", APP_KEY);
-        if (useExternal) {
-            cleanupTestApps();
-        } else {
-            jdbcTemplate.update("DELETE from application where app_key = ?", APP_KEY);
-        }
     }
 
     @After

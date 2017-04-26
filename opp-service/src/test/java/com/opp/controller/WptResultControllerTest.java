@@ -10,14 +10,12 @@ import com.opp.BaseIntegrationTest;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
 import com.opp.domain.ux.WptTestLabel;
-import com.opp.service.DataGenService;
 import com.opp.service.WptService;
 import com.opp.util.RestUtil;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,12 +27,6 @@ import static org.junit.Assert.assertTrue;
  * Created by ctobe on 6/22/16.
  */
 public class WptResultControllerTest extends BaseIntegrationTest {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    private DataGenService dataGenService;
 
     @Autowired
     private WptService wptService;
@@ -59,14 +51,16 @@ public class WptResultControllerTest extends BaseIntegrationTest {
 
         // Import from Raw WPT JSON - POST
         String wptRawTestResult = getRawWptResultFromFile(rawWptResultTestFile);
-        HttpResponse<JsonNode> importResponse2 = Unirest.post(importUrl).body(new WptTestImport(wptTestId, label, wptRawTestResult)).asJson();
+
+        String postData = objectMapper.writeValueAsString(new WptTestImport(wptTestId, label, wptRawTestResult));
+        HttpResponse<JsonNode> importResponse2 = Unirest.post(importUrl).body(postData).asJson();
         assertTrue("POST - Verifying Response Code", importResponse2.getStatus() == 201);
 
         // Create - POST
         // get a WptResult object from a sample wpt raw data file
         WptResult wptTest = getWptTest(rawWptResultTestFile, label);
 
-        HttpResponse<JsonNode> createResponse = Unirest.post(apiUrl).body(wptTest).asJson();
+        HttpResponse<JsonNode> createResponse = Unirest.post(apiUrl).body(objectMapper.writeValueAsString(wptTest)).asJson();
         assertTrue("POST - Verifying Response Code", createResponse.getStatus() == 201);
 
         // Get all - GET

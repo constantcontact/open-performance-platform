@@ -1,0 +1,189 @@
+package com.opp.domain;
+
+import java.util.List;
+
+/**
+ * Created by ctobe on 4/26/17.
+ */
+public class CiLoadTestJob {
+    private String test;
+    private String testType;
+    private String testName;
+    private String testSubName;
+    private Long runDuration;
+    private String appUnderTest;
+    private String appUnderTestVersion;
+    private List<String> environment;
+    private Integer vuserCount;
+    private String description;
+    private String comments;
+    private String testDataType;
+    private String testTool;
+    private String testToolVersion;
+    private Integer slaGroupId;
+    private Integer rampVuserStartDelay;
+    private Integer rampVuserEndDelay;
+    private String cronSchedule;
+    private String hostName;
+    private String ctAdditionalOptions;
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public String getTestType() {
+        return testType;
+    }
+
+    public void setTestType(String testType) {
+        this.testType = testType;
+    }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    public String getTestSubName() {
+        return testSubName;
+    }
+
+    public void setTestSubName(String testSubName) {
+        this.testSubName = testSubName;
+    }
+
+    public Long getRunDuration() {
+        return runDuration;
+    }
+
+    public void setRunDuration(Long runDuration) {
+        this.runDuration = runDuration;
+    }
+
+    public String getAppUnderTest() {
+        return appUnderTest;
+    }
+
+    public void setAppUnderTest(String appUnderTest) {
+        this.appUnderTest = appUnderTest;
+    }
+
+    public String getAppUnderTestVersion() {
+        return appUnderTestVersion;
+    }
+
+    public void setAppUnderTestVersion(String appUnderTestVersion) {
+        this.appUnderTestVersion = appUnderTestVersion;
+    }
+
+    public List<String> getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(List<String> environment) {
+        this.environment = environment;
+    }
+
+    public Integer getVuserCount() {
+        return vuserCount;
+    }
+
+    public void setVuserCount(Integer vuserCount) {
+        this.vuserCount = vuserCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getTestDataType() {
+        return testDataType;
+    }
+
+    public void setTestDataType(String testDataType) {
+        this.testDataType = testDataType;
+    }
+
+    public String getTestTool() {
+        return testTool;
+    }
+
+    public void setTestTool(String testTool) {
+        this.testTool = testTool;
+    }
+
+    public String getTestToolVersion() {
+        return testToolVersion;
+    }
+
+    public void setTestToolVersion(String testToolVersion) {
+        this.testToolVersion = testToolVersion;
+    }
+
+    public Integer getSlaGroupId() {
+        return slaGroupId;
+    }
+
+    public void setSlaGroupId(Integer slaGroupId) {
+        this.slaGroupId = slaGroupId;
+    }
+
+    public Integer getRampVuserStartDelay() {
+        return rampVuserStartDelay;
+    }
+
+    public void setRampVuserStartDelay(Integer rampVuserStartDelay) {
+        this.rampVuserStartDelay = rampVuserStartDelay;
+    }
+
+    public Integer getRampVuserEndDelay() {
+        return rampVuserEndDelay;
+    }
+
+    public void setRampVuserEndDelay(Integer rampVuserEndDelay) {
+        this.rampVuserEndDelay = rampVuserEndDelay;
+    }
+
+    public String getCronSchedule() {
+        return cronSchedule;
+    }
+
+    public void setCronSchedule(String cronSchedule) {
+        this.cronSchedule = cronSchedule;
+    }
+
+    public String getHostName() {
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public String getCtAdditionalOptions() {
+        return ctAdditionalOptions;
+    }
+
+    public void setCtAdditionalOptions(String ctAdditionalOptions) {
+        this.ctAdditionalOptions = ctAdditionalOptions;
+    }
+}

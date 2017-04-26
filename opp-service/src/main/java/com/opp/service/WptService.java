@@ -46,8 +46,6 @@ public class WptService {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private CouchDbService couchDbService;
-    @Autowired
     private GraphiteService graphiteService;
 
 

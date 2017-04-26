@@ -4,16 +4,23 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.opp.BaseIntegrationTest;
+import com.opp.OppApplication;
 import com.opp.domain.LoadTest;
 import com.opp.domain.LoadTestAggregateView;
 import com.opp.domain.LoadTestTimeChartData;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,32 +36,30 @@ import static org.mockito.Mockito.when;
 /**
  * Created by jhermida on 9/8/16.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ChartControllerTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {OppApplication.class})
+public class ChartControllerTest extends BaseIntegrationTest {
 
     @MockBean
-    private JdbcTemplate jdbcTemplate;
+    public JdbcTemplate jdbcTemplateMock;
 
-    @Value("${server.port}")
-    private String port;
-    private String domain = "http://localhost";
+    @Autowired
+    Environment environment;
+
     private String aggregateResource = "/loadsvc/v1/charts/aggregate/loadtests";
     private String timeseriesResource = "/loadsvc/v1/charts/timeseries/loadtests";
-    private String baseUrl;
 
-    @Before
-    public void setup() throws NoSuchFieldException, IllegalAccessException {
-        baseUrl = domain + ":" + port;
+    public String getBaseUrl() {
+        return getDomain() + ":" + environment.getProperty("local.server.port");
     }
+
 
     @Test
     public void aggregateChartDataByLoadTestId_happyPath() throws UnirestException, IOException {
 
-        String url = baseUrl + aggregateResource + "/4888?yaxis=resp_pct90";
+        String url = getBaseUrl() + aggregateResource + "/4888?yaxis=resp_pct90";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildAggregateView())));
 
 
@@ -65,7 +70,7 @@ public class ChartControllerTest {
     @Test
     public void aggregateChartDataByLoadTestId_invalidId() throws UnirestException, IOException {
 
-        String url = baseUrl + aggregateResource + "/?yaxis=resp_pct90";
+        String url = getBaseUrl() + aggregateResource + "/?yaxis=resp_pct90";
 
         List<Object> loadTestAggregateViews = new ArrayList<>();
         loadTestAggregateViews.add(buildAggregateView());
@@ -73,8 +78,8 @@ public class ChartControllerTest {
         LoadTestAggregateView loadTestAggregateView = buildAggregateView();
         loadTestAggregateView.setTransactionName("Test Transaction");
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
                 .thenReturn(loadTestAggregateViews);
 
         HttpResponse<JsonNode> httpResponse = Unirest.get(url).asJson();
@@ -84,7 +89,7 @@ public class ChartControllerTest {
     @Test
     public void aggregateChartDataByLoadTestId_invalidTrendOn() throws UnirestException, IOException {
 
-        String url = baseUrl + aggregateResource + "/4888?yaxis=resp_pct90&trendOn=trendOn";
+        String url = getBaseUrl() + aggregateResource + "/4888?yaxis=resp_pct90&trendOn=trendOn";
 
         List<Object> loadTestAggregateViews = new ArrayList<>();
         loadTestAggregateViews.add(buildAggregateView());
@@ -92,8 +97,8 @@ public class ChartControllerTest {
         LoadTestAggregateView loadTestAggregateView = buildAggregateView();
         loadTestAggregateView.setTransactionName("Test Transaction");
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
                 .thenReturn(loadTestAggregateViews);
 
         HttpResponse<JsonNode> httpResponse = Unirest.get(url).asJson();
@@ -103,10 +108,10 @@ public class ChartControllerTest {
     @Test
     public void aggregateChartDataByLoadTestId_invalidYAxis() throws UnirestException, IOException {
 
-        String url = baseUrl + aggregateResource + "/4888?yaxis=yaxis";
+        String url = getBaseUrl() + aggregateResource + "/4888?yaxis=yaxis";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildAggregateView())));
 
 
@@ -118,10 +123,10 @@ public class ChartControllerTest {
     @Test
     public void aggregateChartDataByLoadTestId_invalidXAxis() throws UnirestException, IOException {
 
-        String url = baseUrl + aggregateResource + "/4888?yaxis=resp_pct90&xaxis=xaxis";
+        String url = getBaseUrl() + aggregateResource + "/4888?yaxis=resp_pct90&xaxis=xaxis";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildAggregateView())));
 
 
@@ -132,10 +137,10 @@ public class ChartControllerTest {
     @Test
     public void aggregateChartDataByLoadTestId_invalidPlot() throws UnirestException, IOException {
 
-        String url = baseUrl + aggregateResource + "/4888?yaxis=resp_pct90&plot=plot";
+        String url = getBaseUrl() + aggregateResource + "/4888?yaxis=resp_pct90&plot=plot";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyVararg()))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildAggregateView())));
 
 
@@ -147,10 +152,10 @@ public class ChartControllerTest {
     @Test
     public void timeSeriesChartDataByLoadTestId_happyPath() throws UnirestException, IOException {
 
-        String url = baseUrl + timeseriesResource + "/4888?yaxis=resp_pct90";
+        String url = getBaseUrl() + timeseriesResource + "/4888?yaxis=resp_pct90";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildLoadTestTimeChartData())));
 
 
@@ -161,10 +166,10 @@ public class ChartControllerTest {
     @Test
     public void timeSeriesChartDataByLoadTestId_invalidId() throws UnirestException, IOException {
 
-        String url = baseUrl + timeseriesResource + "/?yaxis=resp_pct90";
+        String url = getBaseUrl() + timeseriesResource + "/?yaxis=resp_pct90";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildLoadTestTimeChartData())));
 
 
@@ -175,10 +180,10 @@ public class ChartControllerTest {
     @Test
     public void timeSeriesChartDataByLoadTestId_invalidYAxis() throws UnirestException, IOException {
 
-        String url = baseUrl + timeseriesResource + "/4888?yaxis=yaxis";
+        String url = getBaseUrl() + timeseriesResource + "/4888?yaxis=yaxis";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildLoadTestTimeChartData())));
 
 
@@ -189,10 +194,10 @@ public class ChartControllerTest {
     @Test
     public void timeSeriesChartDataByLoadTestId_invalidXAxis() throws UnirestException, IOException {
 
-        String url = baseUrl + timeseriesResource + "/4888?yaxis=resp_pct90&xaxis=xaxis";
+        String url = getBaseUrl() + timeseriesResource + "/4888?yaxis=resp_pct90&xaxis=xaxis";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildLoadTestTimeChartData())));
 
 
@@ -203,10 +208,10 @@ public class ChartControllerTest {
     @Test
     public void timeSeriesChartDataByLoadTestId_invalidPlot() throws UnirestException, IOException {
 
-        String url = baseUrl + timeseriesResource + "/4888?yaxis=resp_pct90&plot=plot";
+        String url = getBaseUrl() + timeseriesResource + "/4888?yaxis=resp_pct90&plot=plot";
 
-        when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
-        when(jdbcTemplate.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
+        when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class), Mockito.anyInt())).thenReturn(buildLoadTest());
+        when(jdbcTemplateMock.query(Mockito.anyString(), Mockito.any(BeanPropertyRowMapper.class)))
                 .thenReturn(new ArrayList<>(Arrays.asList(buildLoadTestTimeChartData())));
 
 

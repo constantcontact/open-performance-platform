@@ -21,8 +21,6 @@ import java.util.Optional;
  */
 public class GraphiteMetricControllerTest extends BaseIntegrationTest {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     @Autowired
     ApplicationMapService applicationMapService;

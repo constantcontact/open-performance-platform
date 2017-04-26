@@ -28,8 +28,7 @@ public class LoadTestApplicationCoverageControllerTest extends BaseIntegrationTe
     DataGenService dataGenService;
     @Autowired
     ApplicationMapService applicationMapService;
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+
 
     private static final String APP_KEY = "junit-test-app-coverage";
 
