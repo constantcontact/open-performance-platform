@@ -3,6 +3,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
     alias: 'controller.loadtestreportsummary',
 
     onRemoteAggDataLoad: function() {
-        console.log('Remote Agg Data Loaded')
+        
     }
 });

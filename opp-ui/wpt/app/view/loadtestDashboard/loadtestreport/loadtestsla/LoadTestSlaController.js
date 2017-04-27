@@ -3,7 +3,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSlaC
     alias: 'controller.loadtestsla',
 
     importMissingTransactions: function() {
-        console.log('Import Missing Transactions Clicked!');
         var view, aggregateData, i, transName, slaStore, slaCounter, msg;
 
         /**

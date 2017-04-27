@@ -4,7 +4,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
 
     onRemoteChartLoaded: function(remoteData) {
         var view, items;
-        console.log(remoteData.getData().items[0].getData().series);
 
         view = this.getView();
         view.setTitle('90th Percentile Response Time During Test');

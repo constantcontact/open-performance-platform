@@ -68,9 +68,8 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
             text: 'Back',
             iconCls: 'x-fa fa-arrow-left',
             handler: function() {
-                console.log('Back Button Clicked!');
-
-                var wptGridStore = Ext.ComponentQuery.query("#wptsByPageGrid")[0].getStore();
+                var wptGridStore;
+                wptGridStore = Ext.ComponentQuery.query("#wptsByPageGrid")[0].getStore();
                 wptGridStore.proxy.data = [];
                 wptGridStore.load();
 
@@ -325,7 +324,6 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
         },
         listeners: {
             itemdblclick: function(grid, record, item, index) {
-                console.log("itemDoubleClick: " + record.getData().id);
                 var win = window.open('http://wpt.roving.com/result/' + record.getData().id, '_blank');
                 win.focus();
             }

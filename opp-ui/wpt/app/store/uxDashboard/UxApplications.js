@@ -16,7 +16,7 @@ Ext.define('OppUI.store.uxDashboard.UxApplications', {
 
     listeners: {
         load: function() {
-            //console.log("UxApplications Loaded from Store");
+
         }
     }
 });

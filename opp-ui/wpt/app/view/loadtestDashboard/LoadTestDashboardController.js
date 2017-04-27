@@ -10,8 +10,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
         var refs = this.getReferences();
         var viewModel = this.getViewModel();
 
-        console.log("refs: " + refs + " activeState: " + activeState + " viewModel: " + viewModel);
-
         // refs[activeState].setPressed(true);
         // viewModel.set('loadTestData', activeState);
 

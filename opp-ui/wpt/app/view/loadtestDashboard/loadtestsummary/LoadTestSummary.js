@@ -97,10 +97,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
     },
 
     listeners: {
-        // itemdblclick: function(grid, record, item, index) {
-        //     console.log("itemDoubleClick: " + record.getData());
-        // }
-
         itemdblclick: function(grid, record, item, index) {
             this.up('loadtest').createTab(grid, record, item, index);
         }

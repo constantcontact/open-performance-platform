@@ -26,8 +26,6 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
         this.getLayout().setActiveItem(0);
     },
     wptName: function(wptName) {
-        console.log('Rendering App Data for Test = ' + wptName);
-
         Ext.ComponentQuery.query("#wptsByPageGrid")[0].loadViewModelStore(wptName);
         this.getLayout().setActiveItem(1);
         

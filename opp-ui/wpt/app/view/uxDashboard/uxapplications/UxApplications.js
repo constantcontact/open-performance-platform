@@ -178,15 +178,10 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
 
         listeners: {
             itemdblclick: function(grid, record, item, index) {
-                console.log("itemDoubleClick: " + record.getData().full);
                 this.up('ux').wptName(record.getData().full);
             }
         }
     }],
-
-    mytest: function() {
-        console.log("My test!!!");
-    },
 
     menuItemDefaults: {
         checked: false,
@@ -196,7 +191,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
 
     listeners: {
         itemdblclick: function(grid, record, item, index) {
-            console.log("itemDoubleClick: " + record.getData().name);
             this.up('ux').test();
         }
     }

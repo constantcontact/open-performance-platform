@@ -29,7 +29,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     }],
 
     createTab: function(grid, record, item, index) {
-        console.log("creating tab: " + grid + " " + record.getData() + " " + item + " " + index);
         var tab;
 
         tab = this.add({

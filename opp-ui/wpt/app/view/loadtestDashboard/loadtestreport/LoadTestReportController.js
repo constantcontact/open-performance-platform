@@ -3,7 +3,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
     alias: 'controller.loadtestreport',
 
     remoteAggDataLoaded: function(aggData) {
-        console.log("AGG DATA LOADED ");
         var viewModel, urTime, startTime, endTime, duration, cloudTestLink, externalTestId;
         viewModel = this.getViewModel();
 
@@ -41,7 +40,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
     },
 
     remoteSlasLoaded: function() {
-        console.log("Remote Slas Loaded!!");
+
     },
 
     calculateDuration: function(start, end){

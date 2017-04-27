@@ -182,33 +182,24 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     chartData: function(response, options) {
         var json, yaxis, chart, title, itemPrepend, item, series;
 
-        var seriesStyle = {lineWidth: 4};
-        var seriesMarker = {radius: 4};
-        var seriesHighlight = {fillStyle: '#000', radius: 5, lineWidth: 2, strokeStyle: '#fff'};
-        var seriesTooltip = {
-            trackMouse: true, style: 'background: #fff', showDelay: 0, dismissDelay: 0, hideDelay: 0,
-            renderer: function (tooltip, record, item) {
-                var title;
-                if(record && item.series) {
-                    title = item.series.config.chart.getTitle();
-                    tooltip.setHtml('<b>' + title + ':</b>' + record.get(item.series.config.yField) + '(ms)');
-                }
-            }
-        };
-
         json = Ext.decode(response.responseText, false);
         series = json.chart.series;
         yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
 
-        for(var i=0; i<series.length; i++){
-            series[i].style=seriesStyle;
-            series[i].highlight=seriesHighlight;
-            series[i].marker=seriesMarker;
-            series[i].tooltip=seriesTooltip;
-        }
 
         chart = this.down('#' + yaxis);
+        if(!chart) {
+            console.log('Chart does not exist for yaxis' + yaxis);
+        }
+        for(var i=0; i<series.length; i++){
+            series[i].style=chart.getSeriesStyle();
+            series[i].highlight=chart.getSeriesHighlight();
+            series[i].marker=chart.getSeriesMarker();
+            series[i].tooltip=chart.getSeriesTooltip();
+        }
+
         chart.axes[0].fields = json.chart.modelFields.slice(1);
+        chart.setTitle(json.chart.title);
         chart.setSeries(series);
         chart.setStore(Ext.create('Ext.data.JsonStore', {
             fields: json.chart.modelFields,

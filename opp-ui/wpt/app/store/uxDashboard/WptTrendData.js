@@ -15,7 +15,7 @@ Ext.define('OppUI.store.uxDashboard.WptTrendData', {
 
     listeners: {
         load: function() {
-            console.log("Charting App Trend Loaded from Store");
+            
         }
     }
 });

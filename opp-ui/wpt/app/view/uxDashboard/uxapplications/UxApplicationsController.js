@@ -64,7 +64,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
 
     onApplicationItemCheck: function (menuItem) {
         var view, me, reference, pages, envs, secondaryMenus;
-        console.log(menuItem);
 
         me = this;
         view = me.getView();
@@ -101,7 +100,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
             });
         } else {
             var index = this.filters.applications.indexOf(menuItem.value);
-            console.log(index);
             this.filters.applications.splice(index, 1);
 
             if(this.filters.applications.length > 0) {
@@ -117,9 +115,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
             }           
         }
         
-
-        console.log(this.filters.applications);
-
         this.filters.clearPages();
         this.filters.clearEnvs();
 

@@ -3,7 +3,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
     alias: 'controller.loadtestsummary-loadtestsummary',
 
     onRemoteSummaryTrend: function() {
-        console.log("Remote Summary Trend Store loaded");
+        
     }
     
 });

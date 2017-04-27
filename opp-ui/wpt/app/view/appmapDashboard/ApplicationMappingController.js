@@ -10,8 +10,6 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMappingController', {
         var refs = this.getReferences();
         var viewModel = this.getViewModel();
 
-        console.log("refs: " + refs + " activeState: " + activeState + " viewModel: " + viewModel);
-
         // refs[activeState].setPressed(true);
         // viewModel.set('loadTestData', activeState);
 
@@ -19,7 +17,7 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMappingController', {
     },
 
     onRemoteAppMapping: function() {
-        console.log("On Remote AppMapping Loaded!");
+
     }
     
 });
