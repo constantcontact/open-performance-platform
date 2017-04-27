@@ -1,6 +1,6 @@
 opp:
   appMap:
-    # Validates a test name already exists with external application mappings.  Ensures data integrity and uniqueness
+    # Validates a testPath name already exists with external application mappings.  Ensures data integrity and uniqueness
     # but will require you to pre-define your allowed applications.
     validateTestNameMapping: false
     # Instructs the ApplicationMapService to call the ApplicationMapExternalService.
@@ -19,7 +19,7 @@ opp:
       type: result
       fetchLimit: 1000
   db:
-    # The batch size for SQL imports for load test data
+    # The batch size for SQL imports for load testPath data
     importBatchSize: 500
   summaryTrends:
     # Searchable columns when showing trends.  Must be from load_test table
@@ -61,8 +61,8 @@ spring:
     username: oppuser
     password: opppass
     driver-class-name: com.mysql.cj.jdbc.Driver
-    test-on-borrow: true
-    test-while-idle: true
+    testPath-on-borrow: true
+    testPath-while-idle: true
     validation-query: SELECT 1
 server:
   port: 8080
@@ -89,8 +89,8 @@ spring:
     username: oppuser
     password: opppass
     driver-class-name: com.mysql.cj.jdbc.Driver
-    test-on-borrow: true
-    test-while-idle: true
+    testPath-on-borrow: true
+    testPath-while-idle: true
     validation-query: SELECT 1
 server:
   port: 8899

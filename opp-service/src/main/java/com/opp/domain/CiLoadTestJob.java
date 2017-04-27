@@ -1,19 +1,24 @@
 package com.opp.domain;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by ctobe on 4/26/17.
  */
 public class CiLoadTestJob {
-    private String test;
+    private int id;
+    @NotNull
+    private String testPath;
     private String testType;
+    @NotNull
     private String testName;
     private String testSubName;
+    @NotNull
     private Long runDuration;
     private String appUnderTest;
     private String appUnderTestVersion;
-    private List<String> environment;
+    private String environment; // can be comma delimited
+    @NotNull
     private Integer vuserCount;
     private String description;
     private String comments;
@@ -27,12 +32,21 @@ public class CiLoadTestJob {
     private String hostName;
     private String ctAdditionalOptions;
 
-    public String getTest() {
-        return test;
+
+    public int getId() {
+        return id;
     }
 
-    public void setTest(String test) {
-        this.test = test;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTestPath() {
+        return testPath;
+    }
+
+    public void setTestPath(String testPath) {
+        this.testPath = testPath;
     }
 
     public String getTestType() {
@@ -83,11 +97,11 @@ public class CiLoadTestJob {
         this.appUnderTestVersion = appUnderTestVersion;
     }
 
-    public List<String> getEnvironment() {
+    public String getEnvironment() {
         return environment;
     }
 
-    public void setEnvironment(List<String> environment) {
+    public void setEnvironment(String environment) {
         this.environment = environment;
     }
 

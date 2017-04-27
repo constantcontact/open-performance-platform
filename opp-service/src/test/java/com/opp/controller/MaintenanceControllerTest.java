@@ -1,6 +1,5 @@
 package com.opp.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
@@ -14,6 +13,7 @@ import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.dto.datagen.DataGenRequest;
 import com.opp.dto.datagen.DataGenResponse;
+import com.opp.service.CiLoadTestJobService;
 import com.opp.service.DataGenService;
 import com.opp.service.LoadTestAggregateService;
 import com.opp.service.LoadTestDataService;
@@ -26,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -58,6 +57,9 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
 
     @Autowired
     private Gson gson;
+
+    @Autowired
+    private CiLoadTestJobService ciLoadTestJobService;
 
 
     @After
@@ -185,7 +187,7 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
                 if(paramsObj.has("description"))
                     ciLoadTestJob.setDescription(paramsObj.getString("description"));
                 if(paramsObj.has("environment"))
-                    ciLoadTestJob.setEnvironment(Arrays.asList(paramsObj.getJSONArray("environment").getString(0)));
+                    ciLoadTestJob.setEnvironment(paramsObj.getJSONArray("environment").getString(0));
                 if(paramsObj.has("host_name"))
                     ciLoadTestJob.setHostName(paramsObj.getString("host_name"));
                 if(paramsObj.has("ramp_vuser_end_delay"))
@@ -197,7 +199,7 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
                 if(paramsObj.has("sla_group_id"))
                     ciLoadTestJob.setSlaGroupId(getInt(paramsObj.getString("sla_group_id")));
                 if(paramsObj.has("test"))
-                    ciLoadTestJob.setTest(paramsObj.getString("test"));
+                    ciLoadTestJob.setTestPath(paramsObj.getString("test"));
                 if(paramsObj.has("test_type"))
                     ciLoadTestJob.setTestType(paramsObj.getString("test_type"));
                 if(paramsObj.has("test_name"))
@@ -213,9 +215,10 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
                 if(paramsObj.has("vuser_count"))
                     ciLoadTestJob.setVuserCount(getInt(paramsObj.getString("vuser_count")));
 
-
-
-                System.out.println(ciLoadTestJob);
+                if(ciLoadTestJob.getRunDuration() == null){
+                    ciLoadTestJob.setRunDuration(0L);
+                }
+                ciLoadTestJobService.add(ciLoadTestJob);
             }
         } catch (IOException e) {
             e.printStackTrace();

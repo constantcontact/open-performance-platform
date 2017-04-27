@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by ctobe on 4/26/17.
@@ -79,27 +79,21 @@ public class CiLoadTestJobController {
         return service.getById(applicationId).orElseThrow(()->new ResourceNotFoundException("ID does not exist."));
     }
 
-    @RequestMapping(value = "/loadsvc/v1/ci/loadtestjobs", method = RequestMethod.GET)
-    @ApiOperation(value = "Get a CI Load Test Job by ID")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved CI load test job", response = CiLoadTestJob.class),
-            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
-            @ApiResponse(code = 404, message = "CI load test job not found", response = ErrorResponse.class),
-            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
-    })
-    public CiLoadTestJob getById(@RequestParam("name") String testName) {
-        return service.getByTestName(testName).orElseThrow(()->new ResourceNotFoundException("Job with that name does not exist."));
-    }
 
     @RequestMapping(value = "/loadsvc/v1/ci/loadtestjobs", method = RequestMethod.GET)
-    @ApiOperation(value = "Get all CI Load Test Jobs")
+    @ApiOperation(value = "Get CI Load Test Jobs")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved CI load test job", response = CiLoadTestJob.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "Successfully retrieved CI load test job(s)", response = CiLoadTestJob.class, responseContainer = "List"),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
-            @ApiResponse(code = 404, message = "CI load test job not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public List<CiLoadTestJob> getAll() {
-        return service.getAll();
+    public List<CiLoadTestJob> searchForTest(
+            @RequestParam(value = "testName", defaultValue = "") String testName,
+            @RequestParam(value = "testType", defaultValue = "") String testType )
+    {
+        CiLoadTestJob job = new CiLoadTestJob();
+        job.setTestName(testName);
+        job.setTestType(testType);
+        return service.search(job);
     }
 }

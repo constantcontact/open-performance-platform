@@ -45,4 +45,8 @@ public class CiLoadTestJobService {
     public int delete(int id) {
         return dao.delete(id);
     }
+
+    public List<CiLoadTestJob> search(CiLoadTestJob ciLoadTestJob) {
+        return dao.search(ciLoadTestJob);
+    }
 }

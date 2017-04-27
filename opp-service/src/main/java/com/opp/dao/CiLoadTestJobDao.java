@@ -2,11 +2,12 @@ package com.opp.dao;
 
 import com.opp.dao.util.UpdateBuilder;
 import com.opp.domain.CiLoadTestJob;
-import com.opp.domain.CiLoadTestJob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,8 @@ public class CiLoadTestJobDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private static final String TABLE_NAME = "ci_load_test_job";
     private static final String SELECT_BY_ID = "select * from " +TABLE_NAME+ " where id = ?";
@@ -54,7 +57,7 @@ public class CiLoadTestJobDao {
                         .value("ramp_vuser_start_delay", ciLoadTestJob.getRampVuserStartDelay())
                         .value("run_duration", ciLoadTestJob.getRunDuration())
                         .value("sla_group_id", ciLoadTestJob.getSlaGroupId())
-                        .value("test_path", ciLoadTestJob.getTest())
+                        .value("test_path", ciLoadTestJob.getTestPath())
                         .value("test_type", ciLoadTestJob.getTestType())
                         .value("test_name", ciLoadTestJob.getTestName())
                         .value("test_sub_name", ciLoadTestJob.getTestSubName())
@@ -88,7 +91,7 @@ public class CiLoadTestJobDao {
                         .value("ramp_vuser_start_delay", ciLoadTestJob.getRampVuserStartDelay())
                         .value("run_duration", ciLoadTestJob.getRunDuration())
                         .value("sla_group_id", ciLoadTestJob.getSlaGroupId())
-                        .value("test_path", ciLoadTestJob.getTest())
+                        .value("test_path", ciLoadTestJob.getTestPath())
                         .value("test_type", ciLoadTestJob.getTestType())
                         .value("test_name", ciLoadTestJob.getTestName())
                         .value("test_sub_name", ciLoadTestJob.getTestSubName())
@@ -143,5 +146,26 @@ public class CiLoadTestJobDao {
      */
     public int delete(int id) {
         return jdbcTemplate.update("DELETE FROM "+ TABLE_NAME+" WHERE id = ?", id);
+    }
+
+    public List<CiLoadTestJob> search(CiLoadTestJob ciLoadTestJob) {
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE";
+        if(!ciLoadTestJob.getTestName().isEmpty()){
+            query += " test_name = :testName " ;
+            params.addValue("testName", ciLoadTestJob.getTestName() );
+        }
+        if(!ciLoadTestJob.getTestName().isEmpty()){
+            if((params.getValues().size() > 0)) query += " and";
+            query += " test_type = :testType " ;
+            params.addValue("testType", ciLoadTestJob.getTestType() );
+        }
+
+        // remove where from query if there are no params
+        String finalQuery = (params.getValues().size() == 0) ? query.replace(" WHERE", "") : query;
+
+        return getOrReturnEmpty(() ->
+                namedParameterJdbcTemplate.query(finalQuery, params, new BeanPropertyRowMapper<>(CiLoadTestJob.class)).stream().collect(toList()));
     }
 }
