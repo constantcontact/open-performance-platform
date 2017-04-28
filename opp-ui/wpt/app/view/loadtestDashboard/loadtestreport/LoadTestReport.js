@@ -180,14 +180,15 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     ],
 
     chartData: function(response, options) {
-        var json, yaxis, chart, title, itemPrepend, item, series;
+        var json, yaxis, chart, title, itemPrepend, item, series, type;
 
         json = Ext.decode(response.responseText, false);
         series = json.chart.series;
         yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
+        type = options.url.indexOf('timeseries') >= 0 ? 'timeseries-' : 'agg-';
 
 
-        chart = this.down('#' + yaxis);
+        chart = this.down('#' + type + yaxis);
         if(!chart) {
             console.log('Chart does not exist for yaxis' + yaxis);
         }

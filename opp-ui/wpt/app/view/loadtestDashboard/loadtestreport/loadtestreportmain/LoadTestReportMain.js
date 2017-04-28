@@ -20,7 +20,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
         for(i = 0; i < timeSeriesYAxes.length; i++) {
             this.items.push({
                 xtype: 'loadtestchart',
-                itemId: timeSeriesYAxes[i].yaxis,
+                itemId: 'timeseries-' + timeSeriesYAxes[i].yaxis,
                 title: timeSeriesYAxes[i].title,
                 colspan: 2,
                 height: 300,
@@ -50,7 +50,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
         for(i = 0; i < aggregateYAxes.length; i++) {
             this.items.push({
                 xtype: 'loadtestchart',
-                itemId: aggregateYAxes[i].yaxis,
+                itemId: 'agg-' + aggregateYAxes[i].yaxis,
                 title: aggregateYAxes[i].title,
                 colspan: 1,
                 height: 300,
