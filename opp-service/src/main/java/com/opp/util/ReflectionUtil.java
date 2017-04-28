@@ -1,7 +1,7 @@
 package com.opp.util;
 
-import com.opp.exception.BadRequestException;
 import com.google.common.base.CaseFormat;
+import com.opp.exception.BadRequestException;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 

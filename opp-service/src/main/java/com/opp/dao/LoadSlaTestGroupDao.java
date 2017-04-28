@@ -1,8 +1,8 @@
 package com.opp.dao;
 
 
-import com.opp.domain.LoadSlaTestGroup;
 import com.opp.dao.util.InsertBuilder;
+import com.opp.domain.LoadSlaTestGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

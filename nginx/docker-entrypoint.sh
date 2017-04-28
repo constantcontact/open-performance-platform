@@ -28,6 +28,7 @@ CERTS=(ui svc)
 for app in ${CERTS[@]}; do
 	if [ ! -e "/etc/nginx/certs/opp-${app}-crt.pem" ] || [ ! -e "/etc/nginx/certs/opp-${app}-key.pem" ]
 	then
+		mkdir -p /etc/nginx/certs
 		# look for cached certs
 		if [ -e "/var/certs/opp-${app}-crt.pem" ] || [ -e "/var/certs/opp-${app}-key.pem" ]
 		then

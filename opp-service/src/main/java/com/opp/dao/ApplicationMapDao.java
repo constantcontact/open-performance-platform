@@ -1,7 +1,7 @@
 package com.opp.dao;
 
-import com.opp.domain.ApplicationMap;
 import com.opp.dao.util.UpdateBuilder;
+import com.opp.domain.ApplicationMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
