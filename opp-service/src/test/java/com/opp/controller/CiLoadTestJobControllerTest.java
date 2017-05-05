@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
- * Created by ctobe on 6/22/16.
+ * Created by ctobe on 4/28/17.
  */
 public class CiLoadTestJobControllerTest extends BaseIntegrationTest {
 
@@ -43,7 +43,6 @@ public class CiLoadTestJobControllerTest extends BaseIntegrationTest {
         createObj.put("appUnderTestVersion", "v 1.000");
         createObj.put("comments", "I don't have any comments");
         createObj.put("cronSchedule", "");
-        createObj.put("ctAdditionalOptions", "Thre alla all teh opions");
         createObj.put("description", "The description");
         createObj.put("environment", "Dee Environment");
         createObj.put("hostName", "");
@@ -56,8 +55,6 @@ public class CiLoadTestJobControllerTest extends BaseIntegrationTest {
         createObj.put("testName", TEST_NAME);
         createObj.put("testSubName", "test.sub.name");
         createObj.put("testDataType", "soasta");
-        createObj.put("testTool", "cloudtest");
-        createObj.put("testToolVersion", "1.2.292");
         createObj.put("vuserCount", 200);
         return createObj;
     }
@@ -68,7 +65,6 @@ public class CiLoadTestJobControllerTest extends BaseIntegrationTest {
         updateObj.put("appUnderTestVersion", "v 1.0002");
         updateObj.put("comments", "I don't have any comment2s");
         updateObj.put("cronSchedule", "2 2 2 2 *");
-        updateObj.put("ctAdditionalOptions", "Thre alla all the opsions");
         updateObj.put("description", "The description2");
         updateObj.put("environment", "Dee Environmen2t");
         updateObj.put("hostName", "myhost.com");
@@ -81,8 +77,6 @@ public class CiLoadTestJobControllerTest extends BaseIntegrationTest {
         updateObj.put("testName", TEST_NAME);
         updateObj.put("testSubName", "test.sub.name2");
         updateObj.put("testDataType", "soasta2");
-        updateObj.put("testTool", "cloudtest2");
-        updateObj.put("testToolVersion", "1.2.2922");
         updateObj.put("vuserCount", 100);
         return updateObj;
     }

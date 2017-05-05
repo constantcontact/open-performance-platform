@@ -182,8 +182,6 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
                     ciLoadTestJob.setComments(paramsObj.getString("comments"));
                 if(paramsObj.has("cron_schedule"))
                     ciLoadTestJob.setCronSchedule(paramsObj.getString("cron_schedule"));
-                if(paramsObj.has("ct_additional_options"))
-                    ciLoadTestJob.setCtAdditionalOptions(paramsObj.getString("ct_additional_options"));
                 if(paramsObj.has("description"))
                     ciLoadTestJob.setDescription(paramsObj.getString("description"));
                 if(paramsObj.has("environment"))
@@ -208,10 +206,6 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
                     ciLoadTestJob.setTestSubName(paramsObj.getString("test_sub_name"));
                 if(paramsObj.has("test_data_type"))
                     ciLoadTestJob.setTestDataType(paramsObj.getString("test_data_type"));
-                if(paramsObj.has("test_tool"))
-                    ciLoadTestJob.setTestTool(paramsObj.getString("test_tool"));
-                if(paramsObj.has("test_tool_version"))
-                    ciLoadTestJob.setTestToolVersion(paramsObj.getString("test_tool_version"));
                 if(paramsObj.has("vuser_count"))
                     ciLoadTestJob.setVuserCount(getInt(paramsObj.getString("vuser_count")));
 

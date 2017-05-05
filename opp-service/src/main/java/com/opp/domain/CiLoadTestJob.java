@@ -23,14 +23,11 @@ public class CiLoadTestJob {
     private String description;
     private String comments;
     private String testDataType;
-    private String testTool;
-    private String testToolVersion;
     private Integer slaGroupId;
     private Integer rampVuserStartDelay;
     private Integer rampVuserEndDelay;
     private String cronSchedule;
     private String hostName;
-    private String ctAdditionalOptions;
 
 
     public int getId() {
@@ -137,22 +134,6 @@ public class CiLoadTestJob {
         this.testDataType = testDataType;
     }
 
-    public String getTestTool() {
-        return testTool;
-    }
-
-    public void setTestTool(String testTool) {
-        this.testTool = testTool;
-    }
-
-    public String getTestToolVersion() {
-        return testToolVersion;
-    }
-
-    public void setTestToolVersion(String testToolVersion) {
-        this.testToolVersion = testToolVersion;
-    }
-
     public Integer getSlaGroupId() {
         return slaGroupId;
     }
@@ -193,11 +174,4 @@ public class CiLoadTestJob {
         this.hostName = hostName;
     }
 
-    public String getCtAdditionalOptions() {
-        return ctAdditionalOptions;
-    }
-
-    public void setCtAdditionalOptions(String ctAdditionalOptions) {
-        this.ctAdditionalOptions = ctAdditionalOptions;
-    }
 }

@@ -2,6 +2,7 @@ package com.opp.dao;
 
 import com.opp.dao.util.UpdateBuilder;
 import com.opp.domain.CiLoadTestJob;
+import com.opp.domain.CiLoadTestJobGetWithType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -32,9 +33,10 @@ public class CiLoadTestJobDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private static final String TABLE_NAME = "ci_load_test_job";
-    private static final String SELECT_BY_ID = "select * from " +TABLE_NAME+ " where id = ?";
-    private static final String SELECT_BY_TEST_NAME = "select * from "+TABLE_NAME+" where test_name = ?";
-
+    private static final String JOIN_JOB_TYPE_SQL = " left join ci_load_test_job_type jobtype on job.job_type = jobtype.job_type";
+    private static final String SELECT_BY_ID = "select * from " +TABLE_NAME+ "job where job.id = ? " + JOIN_JOB_TYPE_SQL;
+    private static final String SELECT_BY_TEST_NAME = "select * from "+TABLE_NAME+"job where job.test_name = ? " + JOIN_JOB_TYPE_SQL;
+    private static final String SELECT_ALL = "select * from " + TABLE_NAME + JOIN_JOB_TYPE_SQL;
 
     /**
      * Add newl oad test job map
@@ -49,7 +51,6 @@ public class CiLoadTestJobDao {
                         .value("app_under_test_version", ciLoadTestJob.getAppUnderTestVersion())
                         .value("comments", ciLoadTestJob.getComments())
                         .value("cron_schedule", ciLoadTestJob.getCronSchedule())
-                        .value("ct_additional_options", ciLoadTestJob.getCtAdditionalOptions())
                         .value("description", ciLoadTestJob.getDescription())
                         .value("environment", ciLoadTestJob.getEnvironment())
                         .value("host_name", ciLoadTestJob.getHostName())
@@ -62,8 +63,6 @@ public class CiLoadTestJobDao {
                         .value("test_name", ciLoadTestJob.getTestName())
                         .value("test_sub_name", ciLoadTestJob.getTestSubName())
                         .value("test_data_type", ciLoadTestJob.getTestDataType())
-                        .value("test_tool", ciLoadTestJob.getTestTool())
-                        .value("test_tool_version", ciLoadTestJob.getTestToolVersion())
                         .value("vuser_count", ciLoadTestJob.getVuserCount())
                         .build(conn, Statement.RETURN_GENERATED_KEYS),
                 keyHolder
@@ -83,7 +82,6 @@ public class CiLoadTestJobDao {
                         .value("app_under_test_version", ciLoadTestJob.getAppUnderTestVersion())
                         .value("comments", ciLoadTestJob.getComments())
                         .value("cron_schedule", ciLoadTestJob.getCronSchedule())
-                        .value("ct_additional_options", ciLoadTestJob.getCtAdditionalOptions())
                         .value("description", ciLoadTestJob.getDescription())
                         .value("environment", ciLoadTestJob.getEnvironment())
                         .value("host_name", ciLoadTestJob.getHostName())
@@ -96,8 +94,6 @@ public class CiLoadTestJobDao {
                         .value("test_name", ciLoadTestJob.getTestName())
                         .value("test_sub_name", ciLoadTestJob.getTestSubName())
                         .value("test_data_type", ciLoadTestJob.getTestDataType())
-                        .value("test_tool", ciLoadTestJob.getTestTool())
-                        .value("test_tool_version", ciLoadTestJob.getTestToolVersion())
                         .value("vuser_count", ciLoadTestJob.getVuserCount())
                         .whereColumnEqualsValue("id", id)
                         .build(conn)
@@ -109,9 +105,9 @@ public class CiLoadTestJobDao {
      * @paramload test jobMapId
      * @return
      */
-    public Optional<CiLoadTestJob> findById(int id){
+    public Optional<CiLoadTestJobGetWithType> findById(int id){
         try {
-            return Optional.of(jdbcTemplate.queryForObject(SELECT_BY_ID, new BeanPropertyRowMapper<>(CiLoadTestJob.class),id));
+            return Optional.of(jdbcTemplate.queryForObject(SELECT_BY_ID, new BeanPropertyRowMapper<>(CiLoadTestJobGetWithType.class),id));
         } catch(DataAccessException ex){
             return Optional.empty();
         }
@@ -122,9 +118,9 @@ public class CiLoadTestJobDao {
      * @param testName
      * @return
      */
-    public Optional<CiLoadTestJob> findByTestName(String testName) {
+    public Optional<CiLoadTestJobGetWithType> findByTestName(String testName) {
         try {
-            return Optional.of(jdbcTemplate.queryForObject(SELECT_BY_TEST_NAME, new BeanPropertyRowMapper<>(CiLoadTestJob.class),testName));
+            return Optional.of(jdbcTemplate.queryForObject(SELECT_BY_TEST_NAME, new BeanPropertyRowMapper<>(CiLoadTestJobGetWithType.class),testName));
         } catch(DataAccessException ex){
             return Optional.empty();
         }
@@ -134,10 +130,9 @@ public class CiLoadTestJobDao {
      * Find all load test jobs
      * @return
      */
-    public List<CiLoadTestJob> findAll() {
-        return getOrReturnEmpty(() -> jdbcTemplate.query(
-                "SELECT * FROM " + TABLE_NAME,
-                new BeanPropertyRowMapper<>(CiLoadTestJob.class)).stream().collect(toList()));
+    public List<CiLoadTestJobGetWithType> findAll() {
+        return getOrReturnEmpty(() -> jdbcTemplate.query(SELECT_ALL,
+                new BeanPropertyRowMapper<>(CiLoadTestJobGetWithType.class)).stream().collect(toList()));
     }
 
     /**
@@ -148,10 +143,15 @@ public class CiLoadTestJobDao {
         return jdbcTemplate.update("DELETE FROM "+ TABLE_NAME+" WHERE id = ?", id);
     }
 
-    public List<CiLoadTestJob> search(CiLoadTestJob ciLoadTestJob) {
+    /**
+     * Search by fields
+     * @param ciLoadTestJob
+     * @return
+     */
+    public List<CiLoadTestJobGetWithType> search(CiLoadTestJob ciLoadTestJob) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE";
+        String query = "SELECT * FROM " + TABLE_NAME + "job WHERE";
         if(!ciLoadTestJob.getTestName().isEmpty()){
             query += " test_name = :testName " ;
             params.addValue("testName", ciLoadTestJob.getTestName() );
@@ -162,10 +162,12 @@ public class CiLoadTestJobDao {
             params.addValue("testType", ciLoadTestJob.getTestType() );
         }
 
+        query += JOIN_JOB_TYPE_SQL;
+
         // remove where from query if there are no params
         String finalQuery = (params.getValues().size() == 0) ? query.replace(" WHERE", "") : query;
 
         return getOrReturnEmpty(() ->
-                namedParameterJdbcTemplate.query(finalQuery, params, new BeanPropertyRowMapper<>(CiLoadTestJob.class)).stream().collect(toList()));
+                namedParameterJdbcTemplate.query(finalQuery, params, new BeanPropertyRowMapper<>(CiLoadTestJobGetWithType.class)).stream().collect(toList()));
     }
 }

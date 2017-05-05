@@ -2,7 +2,7 @@ version: '2'
 
 services:
   opp-service:
-    image: opp-service
+    image: craig2005/opp-service
     ports:
       - "8888:8080"
     networks:
@@ -16,7 +16,8 @@ services:
       #- couchdb:couchdb
       - elasticsearch:elasticsearch
   ui:
-    build: ./nginx
+    #build: ./nginx
+    image: craig2005/opp-ui
     links:
       - opp-service:opp-service
     volumes:
