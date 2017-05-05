@@ -9,7 +9,7 @@ server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
 	server_name ${NGINX_HOST_UI};
-  root /var/www/opp/load;
+  root /var/www/opp;
 
   ssl_certificate /etc/nginx/certs/opp-ui-crt.pem;
   ssl_certificate_key /etc/nginx/certs/opp-ui-key.pem;
@@ -35,6 +35,11 @@ server {
 
   location /ux {
     alias /var/www/opp/ux;
+    index index.html;
+  }
+
+  location /wpt {
+    alias /var/www/opp/wpt;
     index index.html;
   }
 
