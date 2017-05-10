@@ -1,6 +1,6 @@
 Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.loadtestsummary-loadtestsummary',
+    alias: 'viewmodel.loadtestsummary',
 
     stores: {
         remoteSummaryTrend: {
@@ -17,6 +17,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryModel', 
             listeners: {
                 load: 'onRemoteSummaryTrend'
             }
+        },
+        remoteSummaryTrendFilter: {
+            model: 'OppUI.model.loadTestDashboard.LoadTestReportSummary',
+            source: '{remoteSummaryTrend}',
+            autoLoad: false
         }
     }
 

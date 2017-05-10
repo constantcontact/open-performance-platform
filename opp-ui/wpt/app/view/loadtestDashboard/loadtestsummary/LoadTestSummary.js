@@ -9,41 +9,23 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
         'OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryModel'
     ],
 
-    controller: 'loadtestsummary-loadtestsummary',
+    controller: 'loadtestsummary',
     viewModel: {
-        type: 'loadtestsummary-loadtestsummary'
+        type: 'loadtestsummary'
     },
 
     bind: {
         store: '{remoteSummaryTrend}'
     },
 
-    tbar: [
-         {
-             itemId:'btnViewReport',
-             xtype:'button',
-             iconCls: 'x-fa fa-list-alt',
-             text: 'View Report',
-             tooltip:'Provides custom trending and comparison of selected test runs.'
-         },
-        {
+    tbar: [{
             itemId:'btnCreateGroupedReport',
             xtype:'button',
             iconCls: 'x-fa fa-list-alt',
             text: 'Build Grouped Report',
             tooltip:'Enables you to build a report for several different test runs.',
             listeners:{
-                click: function(){
-                    Ext.create('Ext.window.Window', {
-                        title: 'Grouped Report Creator',
-                        layout: 'vbox',
-                        height:500,
-                        autoScroll:true,
-                        autoDestroy: true,
-                        closeAction: 'destroy',
-                        items: {  xtype:'create-grouped-report' }
-                    }).show();
-                }
+                click: 'showGroupReportForm'
             }
         },'-',
          'Filter',

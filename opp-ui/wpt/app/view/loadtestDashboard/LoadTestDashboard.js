@@ -43,6 +43,21 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
         
         this.setActiveTab(tab);
     },
+
+    createGroupReportTab: function(groupReportName, columnFilter, textFilter) {
+        var tab;
+
+        tab = this.add({
+            closable: true,
+            xtype: 'loadtestgroupreport',
+            iconCls: 'x-fa fa-line-chart',
+            title: groupReportName,
+            columnFilter: columnFilter,
+            textFilter: textFilter
+        });
+
+        this.setActiveTab(tab);
+    },
     
 
     config: {
