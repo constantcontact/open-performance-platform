@@ -12,7 +12,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
 
         if(columnFilter && textFilter) {
             store = this.getView()
-                    .up('loadtestsummary')
+                    .up('loadtest')
                     .getViewModel()
                     .getStore('remoteSummaryTrendFilter');
         
@@ -34,12 +34,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
         groupReportName = view.down('#groupReportName').getValue();
 
         if(columnFilter && textFilter && groupReportName) {
-            console.log('Create Group Report Button Clicked!');
 
-            console.log(columnFilter + ' ' + textFilter + ' ' + groupReportName);
-
-            view.up('loadtest').createGroupReportTab(groupReportName, columnFilter, textFilter);
-
+            view.up('loadtest').down('loadtestsummarytab').createGroupReportTab(groupReportName, columnFilter, textFilter);
             view.up().close();
         }
     }

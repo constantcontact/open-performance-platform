@@ -2,20 +2,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
     extend: 'Ext.app.ViewController',
     alias: 'controller.loadtestsummary',
 
-
-    initViewModel: function() {
-        var store = this.getView()
-                    .getViewModel()
-                    .getStore('remoteSummaryTrendFilter');
-        
-        // store.filterBy(function(record){
-        //     return null;
-        // });  
-    },
-    onRemoteSummaryTrend: function() {
-        
-    },
     showGroupReportForm: function() {
+        console.log("Create Group Report Form");
         var window, store;
 
         window = Ext.create('Ext.window.Window', {
@@ -30,6 +18,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
         });
 
         store = this.getView()
+                    .up('loadtest')
                     .getViewModel()
                     .getStore('remoteSummaryTrendFilter');
 
@@ -39,6 +28,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
             return undefined;
         });
 
-        this.getView().add(window).show();
+        this.getView().up('loadtest').add(window).show();
     }
 });

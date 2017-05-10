@@ -1,10 +1,11 @@
 Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.panel.Panel',
     xtype: 'loadtest',
     itemId: 'loadtest',
 
     requires: [
-        'Ext.ux.TabReorderer'
+        'OppUI.view.loadtestDashboard.LoadTestDashboardController',
+        'OppUI.view.loadtestDashboard.LoadTestDashboardModel'
     ],
 
     controller: 'loadtest',
@@ -12,55 +13,45 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
         type: 'loadtest'
     },
 
-    plugins: 'tabreorderer',
-
-    defaults: {
-        bodyPadding: 10,
-        scrollable: true,
-        closable: true
-    },
-
     items: [{
-        title: 'Load Tests',
-        xtype: 'loadtestsummary',
-        iconCls: 'x-fa fa-table',
-        reorderable: false,
+        xtype: 'component',
+        itemId: 'stats',
+        cls: 'kpi-main kpi-tiles',
+        height: 100,
+
+        tpl: [
+            '<div class="kpi-meta">',
+                '<tpl for=".">',
+                    '<span>',
+                        '<div>{statistic}</div> {description}',
+                    '</span>',
+                '</tpl>',
+            '</div>'
+        ],
+
+        data: [{
+            description: 'Total WPT Runs',
+            statistic: 546
+        },{
+            description: 'Number of Apps',
+            statistic: 12
+        },{
+            description: 'Active Tests Per Page',
+            statistic: 35
+        },{
+            description: 'Failures',
+            statistic: 15
+        },{
+            description: 'Passing',
+            statistic: 434
+        }]
+    },{
+        xtype: 'loadtestsummarytab',
         closable: false
     }],
-
-    createTab: function(grid, record, item, index) {
-        var tab;
-
-        tab = this.add({
-                closable: true,
-                xtype: 'loadtestreport',
-                iconCls: 'x-fa fa-line-chart',
-                loadTestId: record.getData().loadTestId,
-                title: 'Test Run #' + record.getData().loadTestId
-                
-            }
-        );
-        
-        this.setActiveTab(tab);
-    },
-
-    createGroupReportTab: function(groupReportName, columnFilter, textFilter) {
-        var tab;
-
-        tab = this.add({
-            closable: true,
-            xtype: 'loadtestgroupreport',
-            iconCls: 'x-fa fa-line-chart',
-            title: groupReportName,
-            columnFilter: columnFilter,
-            textFilter: textFilter
-        });
-
-        this.setActiveTab(tab);
-    },
     
-
     config: {
+        scrollable: true,
         activeState: null,
         defaultActiveState: 'dashboard'
     },

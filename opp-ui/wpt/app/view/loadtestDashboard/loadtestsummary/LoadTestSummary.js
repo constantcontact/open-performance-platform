@@ -17,7 +17,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
     bind: {
         store: '{remoteSummaryTrend}'
     },
-
     tbar: [{
             itemId:'btnCreateGroupedReport',
             xtype:'button',
@@ -80,7 +79,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
 
     listeners: {
         itemdblclick: function(grid, record, item, index) {
-            this.up('loadtest').createTab(grid, record, item, index);
+            this.up('loadtest').down('loadtestsummarytab').createTab(grid, record, item, index);
         }
     },
 
