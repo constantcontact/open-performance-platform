@@ -22,7 +22,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.timeseriescombo.TimeSeri
                         {"display":'Std. Dev.', "value":'resp_stddev'}, {"display":'Total Bytes Rec.', "value":'total_bytes_received'},
                         {"display":'Total Bytes Sent', "value":'total_bytes_sent'}, {"display":'Total Bytes', "value":'total_bytes'}
                     ]
-            },
+            }
         }
     }
 });
