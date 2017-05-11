@@ -100,26 +100,26 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
         // round the percent
         trendPct = Math.round(trendPct*100)/100;
         // set CSS
-        var cls = ""; var color = "black"; var valColor = "black";
+        var cls = ""; var color = ""; var red = '#e15757'; var green = '#3dae3d';
 
         if(trendType == "time" || trendType == "errors") {
         	// lower is better
-	        if(trendVal<0) { cls = "arrow-ug"; color="green";}
-	        else if (trendVal>0) { cls = "arrow-dr"; color='red'; }
-	        else { cls = ""; color="black"; }
+	        if(trendVal<0) { cls = "arrow-ug"; color=green;}
+	        if (trendVal>0) { cls = "arrow-dr"; color=red; }
+            
             if(trendType == "errors"){
                 if(v > 0) valColor = 'DarkOrange'; // if any errors, make orange
-                if(v > rec.data.callCount * 0.005) valColor = 'red'; // if error rate is greater than 0.5% make red
+                if(v > rec.data.callCount * 0.005) valColor = red; // if error rate is greater than 0.5% make red
             }
         } else {
         	// higher is better
-        	if(trendVal>0) { cls = "arrow-ug"; color="green";}
-	        else if (trendVal<0) { cls = "arrow-dr"; color='red'; }
-	        else { cls = ""; color="black"; }
+        	if(trendVal>0) { cls = "arrow-ug"; color=green;}
+	        if (trendVal<0) { cls = "arrow-dr"; color=red; }
         }
         var quickTip = "<span style='padding-left:16px; color:"+color+"' class='"+cls+"'>" + trendVal + " ("+trendPct+"%)</span>";
+        var colorCss = (color === '') ? color : 'color:'+color;
         // returning html markup
-        return '<span style="color:'+valColor+'">'+v+'</span>' + '<span ext:qwidth="150" ext:qtip="'+quickTip+'" style="margin-left: 10px; padding-left:16px; color:'+color+'" class="'+cls+'">'+trendPct+'%</span>';
+        return v + '<span ext:qwidth="150" ext:qtip="'+quickTip+'" style="margin-left: 10px; padding-left:16px; '+colorCss+'" class="'+cls+'">'+trendPct+'%</span>';
     },
     loadAdmin: function(){
        if(this.getQueryVar('user') === 'admin') {

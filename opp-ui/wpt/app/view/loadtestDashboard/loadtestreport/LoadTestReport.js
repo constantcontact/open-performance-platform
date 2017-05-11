@@ -72,7 +72,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
 
     defaults: {
         collapsible: true,
-        split: true,
+        split: false,
         bodyPadding: 10
     },
 

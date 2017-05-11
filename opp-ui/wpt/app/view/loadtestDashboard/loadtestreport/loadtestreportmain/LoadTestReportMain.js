@@ -79,14 +79,14 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
         overflow: 'auto'
     },
     defaults: {
-        padding: 7,
+       // padding: 7,
         height: 300
     },
     margins: '5 0 0 0',
 
     items:[
         {
-            xtype: 'panel',
+            xtype: 'container',
             colspan: 2,
             height: 110,
             margin: '0 0 20 0',
