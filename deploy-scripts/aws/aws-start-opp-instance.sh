@@ -1,8 +1,7 @@
 #!/bin/bash
 
-./aws-config.sh
-
 ###### Configs #######
+source ./aws-config.sh
 maxMinutesToWait=10
 EC2_JSON_CONFIG_FILE=aws-opp-docker.json
 INIT_SCRIPT="--user-data file://aws-build-opp-docker-on-instance.sh"
