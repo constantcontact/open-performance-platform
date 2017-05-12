@@ -2,4 +2,4 @@
 commit.sh
 .vscode
 deploy-scripts/aws/aws-config.sh.private
-deploy-scripts/aws/aws-config.sh
+#deploy-scripts/aws/aws-config.sh

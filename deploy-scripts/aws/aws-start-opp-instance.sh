@@ -2,10 +2,6 @@
 
 ###### Configs #######
 source ./aws-config.sh
-maxMinutesToWait=10
-EC2_JSON_CONFIG_FILE=aws-opp-docker.json
-INIT_SCRIPT="--user-data file://aws-build-opp-docker-on-instance.sh"
-
 SECONDS=0 #start timer
 
 #GRAB JSON and replace env variables --- handle true|false params by removing quotes.  Need them in JSON file to make valid for minification, but need them removed to send to AWS since its replaced with boolean values
