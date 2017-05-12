@@ -15,10 +15,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsModel', {
 
             proxy: {
                 type: 'ajax',
-                //url: 'http://roadrunner.roving.com/uxsvc/v2/rrux/wptNav',
                 url: 'https://localhost/uxsvc/v1/wpt/navigation',
-                cors: true,
-                useDefaultXhrHeader: false,
                 reader: {
                     type: 'json'
                 }

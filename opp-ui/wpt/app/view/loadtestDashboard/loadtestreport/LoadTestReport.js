@@ -9,7 +9,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         'Ext.layout.container.Border'
     ],
 
-
     config: {
         title: 'Default title',
         loadTestId: undefined,
@@ -26,7 +25,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             { yaxis: 'tps_max', title: 'Trend: TPS Max' }
         ]
     },
-    
+
     initComponent: function() {
         var i, me;
 
@@ -179,6 +178,16 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         }
     ],
 
+    listeners: {
+        // This is needed if you are create a border layout inside of a panel. 
+        // If this is not set then you get:
+        // 'Uncaught Error: Border layout does not currently support shrinkWrap height. Please specify a height on component'
+        render: function() {
+            var me = this;
+            me.setHeight(window.innerHeight);
+        }
+    },
+    
     chartData: function(response, options) {
         var json, yaxis, chart, title, itemPrepend, item, series, type;
 
