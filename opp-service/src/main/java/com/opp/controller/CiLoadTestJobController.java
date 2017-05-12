@@ -1,10 +1,10 @@
 package com.opp.controller;
 
 import com.opp.domain.CiLoadTestJob;
+import com.opp.domain.CiLoadTestJobGetWithType;
 import com.opp.dto.ErrorResponse;
 import com.opp.exception.InternalServiceException;
 import com.opp.exception.ResourceNotFoundException;
-import com.opp.service.CiLoadTestJobService;
 import com.opp.service.CiLoadTestJobService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -87,7 +87,7 @@ public class CiLoadTestJobController {
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public List<CiLoadTestJob> searchForTest(
+    public List<CiLoadTestJobGetWithType> searchForTest(
             @RequestParam(value = "testName", defaultValue = "") String testName,
             @RequestParam(value = "testType", defaultValue = "") String testType )
     {

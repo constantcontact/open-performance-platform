@@ -1,0 +1,43 @@
+{
+    "ImageId": "'$AMI'",
+    "MinCount": 1,
+    "MaxCount": 1,
+    "KeyName": "opp-cluster",
+    "InstanceType": "'$INSTANCE_TYPE'",
+    "SecurityGroupIds": [
+        "'$SECURITY_GROUP'"
+    ],
+    "Monitoring": {
+        "Enabled": true
+    },
+    "DisableApiTermination": false,
+    "InstanceInitiatedShutdownBehavior": "terminate",
+    "TagSpecifications": [{
+        "ResourceType": "instance",
+        "Tags": [{
+            "Key": "opp-docker",
+            "Value": "'$ENV'"
+        }]
+    }],
+    "BlockDeviceMappings": [{
+            "VirtualName": "rootdisk",
+            "DeviceName": "/dev/sdc",
+            "Ebs": {
+                "VolumeSize": 8,
+                "DeleteOnTermination": true,
+                "VolumeType": "gp2",
+                "Encrypted": false
+            }
+        },
+        {
+            "VirtualName": "opp-disk-dev",
+            "DeviceName": "/dev/xvdb",
+            "Ebs": {
+                "VolumeSize": 50,
+                "DeleteOnTermination": "'$EBS_DELETE_ON_TERMINATION'",
+                "VolumeType": "gp2",
+                "Encrypted": false
+            }
+        }
+    ]
+}

@@ -15,7 +15,8 @@ opp:
     clusterNodes: elasticsearch:9300
     clusterName: docker-cluster
     wptData:
-      index: wpt-summary
+      index: wpt-summary   # alias to the version
+      indexVersion: v1
       type: result
       fetchLimit: 1000
   db:

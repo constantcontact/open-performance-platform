@@ -1,0 +1,56 @@
+{
+    "settings": {
+        "index.mapping.total_fields.limit": 3000,
+        "number_of_shards": 3,
+        "number_of_replicas": 2
+    },
+    "mappings": {
+        "result": {
+            "properties": {
+                "completed": { "type": "date", "format": "epoch_second" },
+                "median": {
+                    "properties": {
+                        "firstView": {
+                            "properties": {
+                                "date": { "type": "date", "format": "epoch_second" }
+                            }
+                        },
+                        "repeatView": {
+                            "properties": {
+                                "date": { "type": "date", "format": "epoch_second" }
+                            }
+                        }
+                    }
+                },
+                "min": {
+                    "properties": {
+                        "firstView": {
+                            "properties": {
+                                "date": { "type": "date", "format": "epoch_second" }
+                            }
+                        },
+                        "repeatView": {
+                            "properties": {
+                                "date": { "type": "date", "format": "epoch_second" }
+                            }
+                        }
+                    }
+                },
+                "max": {
+                    "properties": {
+                        "firstView": {
+                            "properties": {
+                                "date": { "type": "date", "format": "epoch_second" }
+                            }
+                        },
+                        "repeatView": {
+                            "properties": {
+                                "date": { "type": "date", "format": "epoch_second" }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

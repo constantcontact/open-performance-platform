@@ -1,3 +1,4 @@
 .DS_Store
 commit.sh
 .vscode
+deploy-scripts/aws/aws-config.sh.private

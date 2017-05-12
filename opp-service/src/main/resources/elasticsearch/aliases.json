@@ -1,0 +1,8 @@
+{
+    "actions": [{
+        "add": {
+            "alias": "wpt-summary",
+            "index": "wpt-summary-v1"
+        }
+    }]
+}

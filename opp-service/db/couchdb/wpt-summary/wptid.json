@@ -1,9 +1,0 @@
-{
-   "_id":"_design/wptid",
-   "language":"javascript",
-   "views":{
-      "list-data":{
-         "map":"function(doc) {\n   if(doc.label) {\n      emit(doc.id, doc);\n   }\n}"
-      }
-   }
-}

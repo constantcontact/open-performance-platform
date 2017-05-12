@@ -1,10 +1,9 @@
 package com.opp.service;
 
 import com.opp.dao.CiLoadTestJobDao;
-import com.opp.dao.CiLoadTestJobDao;
 import com.opp.domain.CiLoadTestJob;
+import com.opp.domain.CiLoadTestJobGetWithType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,26 +18,26 @@ public class CiLoadTestJobService {
     @Autowired
     private CiLoadTestJobDao dao;
 
-    public Optional<CiLoadTestJob> add(CiLoadTestJob ciLoadTestJob) {
+    public Optional<CiLoadTestJobGetWithType> add(CiLoadTestJob ciLoadTestJob) {
         int insertId = dao.insert(ciLoadTestJob);
         return dao.findById(insertId);
 
     }
 
-    public Optional<CiLoadTestJob> update(int applicationId, CiLoadTestJob updateCiLoadTestJob) {
+    public Optional<CiLoadTestJobGetWithType> update(int applicationId, CiLoadTestJob updateCiLoadTestJob) {
         dao.update(applicationId, updateCiLoadTestJob);
         return dao.findById(applicationId);
     }
 
-    public Optional<CiLoadTestJob> getById(int id) {
+    public Optional<CiLoadTestJobGetWithType> getById(int id) {
         return dao.findById(id);
     }
 
-    public List<CiLoadTestJob> getAll() {
+    public List<CiLoadTestJobGetWithType> getAll() {
         return dao.findAll();
     }
 
-    public Optional<CiLoadTestJob> getByTestName(String testName) {
+    public Optional<CiLoadTestJobGetWithType> getByTestName(String testName) {
         return dao.findByTestName(testName);
     }
 
@@ -46,7 +45,7 @@ public class CiLoadTestJobService {
         return dao.delete(id);
     }
 
-    public List<CiLoadTestJob> search(CiLoadTestJob ciLoadTestJob) {
+    public List<CiLoadTestJobGetWithType> search(CiLoadTestJob ciLoadTestJob) {
         return dao.search(ciLoadTestJob);
     }
 }

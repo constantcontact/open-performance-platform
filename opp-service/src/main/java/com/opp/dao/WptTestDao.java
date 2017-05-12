@@ -3,6 +3,12 @@ package com.opp.dao;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import com.opp.config.ScheduledTasks;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
@@ -15,6 +21,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.cluster.metadata.MetaData;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkIndexByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
@@ -26,10 +33,14 @@ import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
 import org.elasticsearch.search.aggregations.metrics.max.Max;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.net.URL;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -50,17 +61,26 @@ public class WptTestDao {
     @Value("${opp.elasticsearch.wptData.index}")
     private String wptEsIndex;
 
+    @Value("${opp.elasticsearch.wptData.index}")
+    private String wptEsIndexVersion;
+
     @Value("${opp.elasticsearch.wptData.type}")
     private String wptEsType;
 
     @Value("${opp.elasticsearch.wptData.fetchLimit}")
     private Integer wptEsFetchLimit;
 
+    @Value("${opp.elasticsearch.apiUrl}")
+    private String esApiUrl;
+
     @Autowired
     private TransportClient esClient;
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+
 
 
     /**
@@ -253,5 +273,93 @@ public class WptTestDao {
                 .get();
 
         return resp.getDeleted();
+    }
+
+    /**
+     * Gets cluster metadata info
+     * @return
+     */
+    public MetaData getClusterMetaData() {
+        return esClient.admin().cluster().prepareState().execute()
+                .actionGet().getState()
+                .getMetaData();
+
+    }
+
+    /**
+     * Adds an index
+     * @param indexName
+     * @param indexJson
+     * @return
+     */
+    public boolean addIndex(String indexName, String indexJson){
+        // add index and alias
+        try {
+            HttpResponse<com.mashape.unirest.http.JsonNode> indexResp = Unirest.put(esApiUrl + "/" + indexName).body(indexJson).asJson();
+            System.out.println("Response from index creation: " + indexResp.getStatusText());
+            return (indexResp.getStatus() == 200);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    /**
+     * Adds all aliases
+     * @param aliasesJson
+     * @return
+     */
+    public boolean addAliases(String aliasesJson){
+        // add index and alias
+        try {
+            HttpResponse<com.mashape.unirest.http.JsonNode> aliasResp = Unirest.post(esApiUrl + "/_aliases").body(aliasesJson).asJson();
+            System.out.println("Response from index creation: " + aliasResp.getStatusText());
+            return (aliasResp.getStatus() == 200);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Initializes the WPT Summary index
+     * @return
+     */
+    public boolean initWptSummaryIndex(){
+        MetaData metaData = getClusterMetaData();
+         if(!metaData.hasAlias(wptEsIndex)) {
+
+             // get resources
+             URL index = Resources.getResource("elasticsearch/wptIndex.json");
+             URL alias = Resources.getResource("elasticsearch/aliases.json");
+
+             String indexJson = null;
+             String aliasJson = null;
+             try {
+                 indexJson = Resources.toString(index, Charsets.UTF_8);
+                 aliasJson = Resources.toString(alias, Charsets.UTF_8);
+             } catch (IOException e) {
+                 log.error("Failed to get index and/or aliases json");
+                 e.printStackTrace();
+                 return false;
+             }
+
+             // add wpt-summary index
+             if (!addIndex(wptEsIndex + "-" + wptEsIndexVersion, indexJson)) {
+                 log.error("Failed to add index");
+                 return false;
+             }
+             // add aliases
+             if (!addAliases(aliasJson)) {
+                 log.error("Failed to add aliases");
+                 return false;
+             }
+         } else {
+             log.debug("ES is already initialized");
+         }
+
+
+        return true;
     }
 }
