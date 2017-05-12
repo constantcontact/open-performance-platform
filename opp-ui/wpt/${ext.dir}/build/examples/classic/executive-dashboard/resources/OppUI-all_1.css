@@ -31,6 +31,11 @@ div.x-border-layout-ct {
 .x-toolbar-default {
     background-color: #fff !important;
 }
+/* /Users/jhermida/Projects/open-performance-platform/opp-ui/wpt/sass/etc/all.scss:141 */
+.x-tab-bar-default-top > .x-tab-bar-body-default {
+    padding: 6px 10px;
+    background: #8da8c2;
+}
 /* /Users/jhermida/Projects/open-performance-platform/opp-ui/wpt/ext/packages/core/sass/src/util/SizeMonitor.scss:5 */
 .x-size-monitored {
     /**
