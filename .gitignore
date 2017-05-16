@@ -1,5 +1,6 @@
 .DS_Store
 commit.sh
 .vscode
+.gradle
 deploy-scripts/aws/aws-config.sh.private
 deploy-scripts/aws/aws-config.sh
