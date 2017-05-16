@@ -30,37 +30,6 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
     minWidth: 600,
 
     items: [{
-        xtype: 'component',
-        itemId: 'wptStats',
-        cls: 'kpi-main kpi-tiles',
-        height: 100,
-        tpl: [
-            '<div class="kpi-meta">',
-                '<tpl for=".">',
-                    '<span>',
-                        '<div>{statistic}</div> {description}',
-                    '</span>',
-                '</tpl>',
-            '</div>'
-        ],
-
-        data: [{
-            description: 'Number of Runs',
-            statistic: 0
-        },{
-            description: 'Environment',
-            statistic: 'S1'
-        },{
-            description: 'Last Run',
-            statistic: '03/28/2017 15:25'
-        },{
-            description: 'Failures',
-            statistic: 0
-        },{
-            description: 'Passing',
-            statistic: 0
-        }]
-    },{
         xtype: 'container',
         margin: '20px 20px 0px 20px',
         items: [{

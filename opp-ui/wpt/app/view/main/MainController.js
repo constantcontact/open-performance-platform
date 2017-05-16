@@ -18,6 +18,15 @@ Ext.define('OppUI.view.main.MainController', {
         '!:id/:state': {
             action: 'onNavigateDeep',
             before: 'beforeNavigateDeep'
+        },
+        '!:id/:state/:params': {
+            action: 'onDeepLink',
+            conditions: {
+                // for some reason I can't get | to pass this regex
+                ':params': '([0-9a-zA-Z\+\:\_\,\?\&=\-]+)'
+                //':params': '(.*)'
+            }
+            //before: 'beforeNavigateDeep'
         }
     },
 
@@ -54,6 +63,11 @@ Ext.define('OppUI.view.main.MainController', {
         var tab = view.getComponent(id);
         var valid;
 
+        console.log('Before Deep Navigation');
+        console.log('id: ' + id);
+        console.log('state: ' + state);
+        console.log('action: ' + action);
+        
         if (tab.isValidState) {
             valid = tab.isValidState(state);
         }
@@ -77,6 +91,7 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     getTabRoute: function (tab) {
+        console.log('getTabRoute called')
         var route = tab.xtype;
 
         if (tab.getActiveState) {
@@ -113,6 +128,16 @@ Ext.define('OppUI.view.main.MainController', {
         tab.setActiveState(state);
     },
 
+    onDeepLink: function (id, state, params) {
+        console.log('DEEP LINK ===> navigate: ' + id + ' / ' + state + '/ ' + params);
+        var tabs = this.getView();
+        var tab = tabs.setActiveTab(id) || tabs.getActiveTab();
+
+        //tab.setActiveState(state);
+        tab.processQueryParams(params.slice(1));
+        tab.setActiveState(state+'/'+params);
+    },
+
     onTabChange: function (mainView, newTab) {
         var route = this.getTabRoute(newTab);
         this.changeRoute(this, route);
@@ -134,6 +159,7 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     onUnmatchedRoute: function(token) {
+        console.log('onUnmatchedRoute called!');
         if (token) {
             this.onBadRoute();
         }

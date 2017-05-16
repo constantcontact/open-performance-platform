@@ -22,8 +22,8 @@
     /**
      * The name of the theme for this application.
      */
-     "theme": "theme-crisp-touch",
-    //"theme": "theme-triton",
+    // "theme": "theme-crisp-touch",
+    "theme": "theme-triton",
 
     /**
      * The list of required packages (with optional versions; default is "latest").

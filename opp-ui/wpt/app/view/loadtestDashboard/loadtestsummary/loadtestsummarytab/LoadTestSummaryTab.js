@@ -2,6 +2,7 @@
 Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTab',{
     extend: 'Ext.tab.Panel',
     alias: 'widget.loadtestsummarytab',
+    cls: 'loadtest-summary-tab',
 
     requires: [
         'OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTabController',
@@ -32,33 +33,157 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
     }],
 
     createTab: function(grid, record, item, index) {
-        var tab;
-
-        tab = this.add({
-                closable: true,
-                xtype: 'loadtestreport',
-                iconCls: 'x-fa fa-line-chart',
-                loadTestId: record.getData().loadTestId,
-                title: 'Test Run #' + record.getData().loadTestId,
-                scrollable: false
-            }
-        );
-        
-        this.setActiveTab(tab);
+        this.up('loadtest')
+            .getController()
+            .updateUrlTabState(record.getData().loadTestId, true);
     },
 
-    createGroupReportTab: function(groupReportName, columnFilter, textFilter) {
+    createGroupReportTab: function(groupReportName, columnFilter, textFilter, filters) {
         var tab;
 
         tab = this.add({
             closable: true,
             xtype: 'loadtestgroupreport',
+            itemId: 'loadtestgroupreport-'+ groupReportName,
             iconCls: 'x-fa fa-line-chart',
             title: groupReportName,
             columnFilter: columnFilter,
-            textFilter: textFilter
+            textFilter: textFilter,
+            filters: filters
         });
 
         this.setActiveTab(tab);
+    },
+
+    createLoadTestReport: function(loadTestId) {
+        var tab;
+
+        tab = this.add({
+                closable: true,
+                xtype: 'loadtestreport',
+                itemId: 'loadtestreport-' + loadTestId,
+                iconCls: 'x-fa fa-line-chart',
+                loadTestId: loadTestId,
+                title: 'Test Run #' + loadTestId,
+                scrollable: false
+            }
+        );
+
+        this.setActiveTab(tab);
+    },
+
+
+    createTabs: function(params) {
+        var tabIndex, tabGroupIndex, i, j, k, key, value, both, queryParams, 
+            loadTestIds, loadTestReport, groupReports, groupReport, groupFilters, 
+            filters, filterList, existingGroupReport;
+        console.log("CREATING TABSS!!! " + params);
+
+        // check if both query params are set.
+        both = params.indexOf('&') >= 0 ? true : false;
+
+        if(both) {
+            queryParams = params.split('&');
+            console.log('queryParams length: ' + queryParams.length);
+            for(i = 0; i < queryParams.length; i++) {
+                console.log('queryParams count: ' + i);
+                console.log('queryParam ==> ' + queryParams[i])
+                if(queryParams[i].indexOf('tab=') >= 0) {
+                    // ie, tab=1234,5678
+                    // the first split will split on the '=', the second
+                    // split will get the loadtestids.
+                    loadTestIds = queryParams[i].split('=')[1].split(',');
+
+                    for(j = 0; j < loadTestIds.length; j++) {
+                        loadTestReport = this.down('#loadtestreport-'+loadTestIds[j]);
+
+                        if(!loadTestReport) {
+                            console.log('Creating new Report for load test id: ' + loadTestIds[j]);
+                            this.createLoadTestReport(loadTestIds[j])
+                        }
+                    }
+                } else if (queryParams[i].indexOf('groupTab=') >= 0) {
+                    // it must be a groupTab query param
+                    groupReports = queryParams[i].split('=')[1].split('::');
+
+                    for(j = 0; j < groupReports.length; j++) {
+                        filters = {};
+                        groupReport = groupReports[j].split(':');
+                        console.log('both groupReportName: ' + groupReport[0]);
+                        console.log('both groupReportFilters: ' + groupReport[1]);
+
+                        groupFilters = groupReport[1].split(',');
+                        
+                        existingGroupReport = this.down('#loadtestgroupreport-' + groupReport[0]);
+
+                        if(!existingGroupReport) {
+                            for(k = 0; k < groupFilters.length; k++) {
+                                filtersList = groupFilters[k].split('+');
+                                filters[filtersList[0]] = filtersList[1];
+                            }
+                            console.log('both Filters: ');
+                            console.log(filters);
+
+                            this.createGroupReportTab(groupReport[0], undefined, undefined, filters);
+                        }
+                    }
+                }
+            }
+        } else {
+            tabIndex = params.indexOf('tab=');
+            tabGroupIndex = params.indexOf('groupTab=');
+
+            if(tabIndex >= 0) {
+                queryParams = params.split('=');
+                loadTestIds = queryParams[1].split(',');
+
+                for(j = 0; j < loadTestIds.length; j++) {
+                    loadTestReport = this.down('#loadtestreport-'+loadTestIds[j]);
+
+                    if(!loadTestReport) {
+                        console.log('Creating new Report for load test id: ' + loadTestIds[j]);
+                        this.createLoadTestReport(loadTestIds[j])
+                    }
+                }                    
+            }
+
+            if(tabGroupIndex >= 0) {
+                // it must be a groupTab query param
+                groupReports = params.split('=')[1].split('::');
+                
+                for(j = 0; j < groupReports.length; j++) {
+                    filters = {};
+                    groupReport = groupReports[j].split(':');
+                    console.log('groupReportName: ' + groupReport[0]);
+                    console.log('groupReportFilters: ' + groupReport[1]);
+
+                    groupFilters = groupReport[1].split(',');
+
+                    existingGroupReport = this.down('#loadtestgroupreport-' + groupReport[0]);
+
+                    if(!existingGroupReport) {
+                        for(i = 0; i < groupFilters.length; i++) {
+                            filtersList = groupFilters[i].split('+');
+                            filters[filtersList[0]] = filtersList[1];
+                        }
+                        console.log('Filters: ');
+                        console.log(filters);
+
+                        this.createGroupReportTab(groupReport[0], undefined, undefined, filters);
+                    }
+                }
+            }
+        }
+    },
+
+    _hashCode: function(str) {
+        var hash = 0;
+            if (str.length == 0) return hash;
+            for (i = 0; i < str.length; i++) {
+                char = str.charCodeAt(i);
+                hash = ((hash<<5)-hash)+char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
     }
 });

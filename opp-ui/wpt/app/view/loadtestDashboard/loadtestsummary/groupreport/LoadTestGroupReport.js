@@ -14,16 +14,34 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
 
     config: {
         columnFilter: undefined,
-        textFilter: undefined
+        textFilter: undefined,
+        filters: undefined
     },
 
     initComponent: function() {
+        var queryParams, i;
         this.callParent(arguments);
+
+        i = 0;
+        for(var prop in this.getFilters()) {
+            if(this.getFilters().hasOwnProperty(prop)) {
+                if(i > 0) {
+                    queryParams += ('&' + prop + '=' + this.getFilters()[prop]);
+                } else {
+                    queryParams = prop + '=' + this.getFilters()[prop];
+                }
+                i++;
+            }
+        }
+
+        console.log('Query Parameters: ' + queryParams);
+
         this.getViewModel()
             .getStore('groupReport')
             .getProxy()
             .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summaryTrendByGroup?' 
-                    + this.getColumnFilter() + '=' + this.getTextFilter());
+                    //+ this.getColumnFilter() + '=' + this.getTextFilter());
+                    + queryParams);
     },
 
     items: [

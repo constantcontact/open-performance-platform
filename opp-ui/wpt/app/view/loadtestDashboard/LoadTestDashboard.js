@@ -14,38 +14,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     },
 
     items: [{
-        xtype: 'component',
-        itemId: 'stats',
-        cls: 'kpi-main kpi-tiles',
-        height: 100,
-
-        tpl: [
-            '<div class="kpi-meta">',
-                '<tpl for=".">',
-                    '<span>',
-                        '<div>{statistic}</div> {description}',
-                    '</span>',
-                '</tpl>',
-            '</div>'
-        ],
-
-        data: [{
-            description: 'Total WPT Runs',
-            statistic: 546
-        },{
-            description: 'Number of Apps',
-            statistic: 12
-        },{
-            description: 'Active Tests Per Page',
-            statistic: 35
-        },{
-            description: 'Failures',
-            statistic: 15
-        },{
-            description: 'Passing',
-            statistic: 434
-        }]
-    },{
         xtype: 'loadtestsummarytab',
         closable: false
     }],
@@ -62,6 +30,10 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
 
     isValidState: function(state) {
         return state in this.validStates;
+    },
+
+    processQueryParams: function(params) {
+        this.down('loadtestsummarytab').createTabs(params);
     }
 
 });
