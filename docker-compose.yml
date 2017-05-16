@@ -16,7 +16,7 @@ services:
       #- couchdb:couchdb
       - elasticsearch:elasticsearch
   ui:
-    #build: ./nginx
+    build: ./nginx
     image: craig2005/opp-ui
     links:
       - opp-service:opp-service

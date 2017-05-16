@@ -4,11 +4,11 @@ upstream opp-service-app {
 }
 # ============ OPP UI ===========
 server {
-	listen 80;
-	listen [::]:80;
-  listen 443 ssl http2;
-  listen [::]:443 ssl http2;
-	server_name ${NGINX_HOST_UI};
+	listen 80 default_server;
+	listen [::]:80 default_server;
+  listen 443 ssl http2 default_server;
+  listen [::]:443 ssl http2 default_server;
+	server_name ${NGINX_HOST_UI} _;
   root /var/www/opp;
 
   ssl_certificate /etc/nginx/certs/opp-ui-crt.pem;
