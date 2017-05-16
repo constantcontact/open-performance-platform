@@ -21,7 +21,7 @@ services:
     links:
       - opp-service:opp-service
     volumes:
-      - ./opp-ui/wpt:/var/www/opp
+      - ./opp-ui/ui/build/opp-ui:/var/www/opp
       - nginxCerts:/var/certs
     ports:
       - "443:443"
