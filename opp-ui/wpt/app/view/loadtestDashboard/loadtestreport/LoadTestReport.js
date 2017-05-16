@@ -72,7 +72,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
 
     defaults: {
         collapsible: true,
-        split: true,
+        split: false,
         bodyPadding: 10
     },
 
@@ -185,6 +185,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         render: function() {
             var me = this;
             me.setHeight(window.innerHeight);
+        },
+        beforeclose: function(tab) {
+            console.log('tab closing ' + tab.getLoadTestId());
+            this.up('loadtest').getController().updateUrlTabState(tab.getLoadTestId(), false);
         }
     },
     

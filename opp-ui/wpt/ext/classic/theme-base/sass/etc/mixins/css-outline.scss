@@ -44,7 +44,7 @@
             right: -$offset - $width - right($border-width);
             bottom: -$offset - $width - bottom($border-width);
             left: -$offset - $width - left($border-width);
-            border: $width $style $color;
+            //border: $width $style $color;
             pointer-events: none;
         }
     }

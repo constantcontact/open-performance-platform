@@ -23,38 +23,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
     minWidth: 600,
 
     items: [{
-        xtype: 'component',
-        itemId: 'stats',
-        cls: 'kpi-main kpi-tiles',
-        height: 100,
-
-        tpl: [
-            '<div class="kpi-meta">',
-                '<tpl for=".">',
-                    '<span>',
-                        '<div>{statistic}</div> {description}',
-                    '</span>',
-                '</tpl>',
-            '</div>'
-        ],
-
-        data: [{
-            description: 'Total WPT Runs',
-            statistic: 546
-        },{
-            description: 'Number of Apps',
-            statistic: 12
-        },{
-            description: 'Active Tests Per Page',
-            statistic: 35
-        },{
-            description: 'Failures',
-            statistic: 15
-        },{
-            description: 'Passing',
-            statistic: 434
-        }]
-    },{
         xtype: 'grid',
         layout: 'fit',
         itemId: 'appGrid',
