@@ -61,7 +61,7 @@ public class WptTestDao {
     @Value("${opp.elasticsearch.wptData.index}")
     private String wptEsIndex;
 
-    @Value("${opp.elasticsearch.wptData.index}")
+    @Value("${opp.elasticsearch.wptData.indexVersion}")
     private String wptEsIndexVersion;
 
     @Value("${opp.elasticsearch.wptData.type}")
@@ -296,6 +296,8 @@ public class WptTestDao {
         // add index and alias
         try {
             HttpResponse<com.mashape.unirest.http.JsonNode> indexResp = Unirest.put(esApiUrl + "/" + indexName).body(indexJson).asJson();
+            System.out.println("Creating index: " + indexName);
+            System.out.println(indexJson);
             System.out.println("Response from index creation: " + indexResp.getStatusText());
             return (indexResp.getStatus() == 200);
         } catch (UnirestException e) {
@@ -314,7 +316,7 @@ public class WptTestDao {
         // add index and alias
         try {
             HttpResponse<com.mashape.unirest.http.JsonNode> aliasResp = Unirest.post(esApiUrl + "/_aliases").body(aliasesJson).asJson();
-            System.out.println("Response from index creation: " + aliasResp.getStatusText());
+            System.out.println("Response from alias creation: " + aliasResp.getStatusText());
             return (aliasResp.getStatus() == 200);
         } catch (UnirestException e) {
             e.printStackTrace();

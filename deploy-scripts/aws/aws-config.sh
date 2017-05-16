@@ -1,4 +1,4 @@
-PROFILE="" #aws profile to use for ec2 cli
+PROFILE="--profile ctctperformance" #aws profile to use for ec2 cli
 INSTANCE_TYPE=t2.large
 ENV=development
 EBS_DELETE_ON_TERMINATION=true    # keep true for dev
