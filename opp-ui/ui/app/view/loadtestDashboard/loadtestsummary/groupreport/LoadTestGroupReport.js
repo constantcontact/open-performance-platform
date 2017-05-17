@@ -13,8 +13,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
     },
 
     config: {
-        columnFilter: undefined,
-        textFilter: undefined,
         filters: undefined
     },
 
@@ -39,18 +37,26 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
         this.getViewModel()
             .getStore('groupReport')
             .getProxy()
-            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summaryTrendByGroup?' 
-                    //+ this.getColumnFilter() + '=' + this.getTextFilter());
-                    + queryParams);
+            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summaryTrendByGroup?' + queryParams);
     },
 
     items: [
         {
             xtype: 'container',
             html: '<p><b>TIP:</b> Double click on any row to drill down to that test run.</p>'
-        },
-        {
+        },{
             xtype: 'loadtestgroupreportgrid'
         }
-    ]
+    ],
+
+    listeners: {
+        beforeclose: function(tab) {
+            console.log('tab closing ' + tab.getTitle());
+            console.log(tab.getFilters());
+            
+            this.up('loadtest')
+                .getController()
+                .updateUrlGroupTabState({name: tab.getTitle(), filters: tab.getFilters()}, false);
+        }
+    }
 });

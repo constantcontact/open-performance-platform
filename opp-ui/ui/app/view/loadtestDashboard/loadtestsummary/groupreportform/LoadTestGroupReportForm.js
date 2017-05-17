@@ -1,6 +1,6 @@
 
 Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTestGroupReportForm',{
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.form.Panel',
     alias: 'widget.loadtestgroupreportform',
 
     requires: [

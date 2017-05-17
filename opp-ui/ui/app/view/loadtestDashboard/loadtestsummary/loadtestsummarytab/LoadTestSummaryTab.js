@@ -38,7 +38,13 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
             .updateUrlTabState(record.getData().loadTestId, true);
     },
 
-    createGroupReportTab: function(groupReportName, columnFilter, textFilter, filters) {
+    createGroupReport: function(groupReport) {
+        this.up('loadtest')
+            .getController()
+            .updateUrlGroupTabState(groupReport, true);
+    },
+
+    createGroupReportTab: function(groupReportName, filters) {
         var tab;
 
         tab = this.add({
@@ -47,8 +53,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
             itemId: 'loadtestgroupreport-'+ groupReportName,
             iconCls: 'x-fa fa-line-chart',
             title: groupReportName,
-            columnFilter: columnFilter,
-            textFilter: textFilter,
             filters: filters
         });
 
@@ -124,7 +128,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                             console.log('both Filters: ');
                             console.log(filters);
 
-                            this.createGroupReportTab(groupReport[0], undefined, undefined, filters);
+                            this.createGroupReportTab(groupReport[0], filters);
                         }
                     }
                 }
@@ -169,7 +173,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                         console.log('Filters: ');
                         console.log(filters);
 
-                        this.createGroupReportTab(groupReport[0], undefined, undefined, filters);
+                        this.createGroupReportTab(groupReport[0], filters);
                     }
                 }
             }
