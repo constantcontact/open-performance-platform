@@ -1,5 +1,4 @@
-
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadTestGroupReportFilter',{
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadTestGroupReportFilter', {
     extend: 'Ext.form.FieldContainer',
     alias: 'widget.groupreportfilter',
 
@@ -15,17 +14,17 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadT
 
     layout: {
         type: 'hbox',
-        align: 'top'  // Child items are stretched to full width
+        align: 'middle' // Child items are stretched to full width
     },
     fieldDefaults: {
-        padding:5
+        padding: 5
     },
     items: [{
         xtype: 'combobox',
         itemId: 'filterCombobox',
         store: {
             type: 'array',
-            fields: [ 'column_name' ],
+            fields: ['column_name'],
             data: [
                 ['app_under_test'],
                 ['app_under_test_version'],
@@ -43,33 +42,33 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadT
         },
         displayField: 'column_name',
         fieldLabel: 'Filter',
-        labelWidth:35,
+        labelWidth: 35,
         anchor: '0',
         queryMode: 'local',
         selectOnTab: false,
         name: 'columnName'
-    },{
+    }, {
         xtype: 'textfield',
         itemId: 'filterField',
         name: 'criteria',
         width: 200
-    },{
-        xtype:'button',
+    }, {
+        xtype: 'button',
         text: 'Add more',
         itemId: 'btnGroupedFilterFieldAdd',
-        padding:5,
+        padding: 5,
         handler: function(button) {
             console.log('Add more button clicked!');
             button.hide();
-            button.up('panel').add({ xtype: 'groupreportfilter'});
+            button.up('panel').add({ xtype: 'groupreportfilter' });
             button.up('fieldcontainer').down('#deleteFieldContainerBtn').show();
         }
-    },{
-        xtype:'button',
-        itemId:'deleteFieldContainerBtn',
+    }, {
+        xtype: 'button',
+        itemId: 'deleteFieldContainerBtn',
         text: 'X',
-        padding:5,
-        hidden:true,
+        padding: 5,
+        hidden: true,
         handler: function() {
             this.up('panel').remove(this.up('fieldcontainer'), true);
         }

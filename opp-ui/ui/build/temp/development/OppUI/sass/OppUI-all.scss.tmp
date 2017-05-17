@@ -1516,14 +1516,6 @@ $relative-image-path-for-uis: $ux-resource-path;
 @import '../../../../../ext/packages/ux/classic/sass/var/layout/ResponsiveColumn';
 @import '../../../../../ext/packages/ux/classic/sass/var/rating/Picker';
 
-/* including package OppUI */
-$OppUI-resource-root: '' !default;
-$OppUI-resource-path: 'images' !default;
-$current-package: false;
-$current-resource-root: $OppUI-resource-root;
-$relative-image-path-for-uis: $OppUI-resource-path;
-@import '../../../../../sass/var/view/main/Main';
-
 
 /* ======================== RULE ======================== */
 

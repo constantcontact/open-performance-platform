@@ -1,5 +1,4 @@
-
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTestGroupReportForm',{
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTestGroupReportForm', {
     extend: 'Ext.form.Panel',
     alias: 'widget.loadtestgroupreportform',
 
@@ -17,32 +16,32 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
     resizable: true,
     fieldDefaults: { anchor: '100%' },
     layout: {
-        type: 'vbox', align: 'stretch'  // Child items are stretched to full width
+        type: 'vbox',
+        align: 'stretch' // Child items are stretched to full width
     },
     items: [{
-            xtype: 'panel', title: 'Report Details',
+            xtype: 'container',
             items: [{
                 xtype: 'textfield',
-                itemId: 'groupReportName', 
-                fieldLabel: 'Name', 
-                labelWidth: 50, 
-                width: 400, 
-                name: 'report-name', 
-                padding:10
+                itemId: 'groupReportName',
+                fieldLabel: 'Name',
+                labelWidth: 50,
+                width: 400,
+                name: 'report-name',
+                padding: 10
             }]
         },
         {
-            title: 'Set filters (regex allowed)',
             xtype: 'panel',
-            items:[
+            header: false,
+            items: [
                 { xtype: 'groupreportfilter' }
             ]
         },
         {
             xtype: 'fieldcontainer',
             fieldDefaults: { padding: 5 },
-            items: [
-                {
+            items: [{
                     xtype: 'button',
                     itemId: 'btnShowGroupedSampleData',
                     padding: 5,
@@ -50,7 +49,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
                     margin: '5 5 5 0',
                     listeners: {
                         click: 'showSampleData'
-                    } 
+                    }
                 },
                 {
                     xtype: 'button',
@@ -61,36 +60,38 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
                     listeners: {
                         click: 'createReport'
                     }
-                }]
+                }
+            ]
         },
         {
             xtype: 'grid',
-            height:'auto',
+            height: 'auto',
             title: 'Sample Results',
             // store: Ext.data.StoreManager.lookup('reportTestData'),
-             bind: {
+            bind: {
                 store: '{remoteSummaryTrendFilter}'
             },
             columnLines: true,
             columns: [
-                {text: 'TestId', dataIndex: "load_test_id", hidden: true, flex: 1},
-                {text: 'Test Name', dataIndex: "test_name", flex: 1},
-                {text: 'Sub Name', dataIndex: "test_sub_name", hidden: true, flex: 1},
-                {text: 'Application', dataIndex: "app_under_test", flex: 1},
-                {text: 'App Version', dataIndex: "app_under_test_version", hidden: true, flex: 1},
-                {text: 'Comments', dataIndex: "comments", hidden: true, flex: 1},
-                {text: 'Description', dataIndex: "description", hidden: true, flex: 1},
-                {text: 'Environment', dataIndex: "environment", flex: 1},
+                { text: 'TestId', dataIndex: "load_test_id", hidden: true, flex: 1 },
+                { text: 'Test Name', dataIndex: "test_name", flex: 1 },
+                { text: 'Sub Name', dataIndex: "test_sub_name", hidden: true, flex: 1 },
+                { text: 'Application', dataIndex: "app_under_test", flex: 1 },
+                { text: 'App Version', dataIndex: "app_under_test_version", hidden: true, flex: 1 },
+                { text: 'Comments', dataIndex: "comments", hidden: true, flex: 1 },
+                { text: 'Description', dataIndex: "description", hidden: true, flex: 1 },
+                { text: 'Environment', dataIndex: "environment", flex: 1 },
                 {
-                    text: 'Start Time', 
-                    dataIndex: "start_time", 
-                    renderer: function (v) {
-                        return Ext.Date.format(new Date(v*1000), 'm/d/Y H:i a')
-                    }, flex: 1
+                    text: 'Start Time',
+                    dataIndex: "start_time",
+                    renderer: function(v) {
+                        return Ext.Date.format(new Date(v * 1000), 'm/d/Y H:i a')
+                    },
+                    flex: 1
                 },
-                {text: 'Test Tool', dataIndex: "test_tool", hidden: true, flex: 1},
-                {text: 'Tool Version', dataIndex: "test_tool_version", hidden: true, flex: 1},
-                {text: '# Users', dataIndex: "vuser_count", flex: 1}
+                { text: 'Test Tool', dataIndex: "test_tool", hidden: true, flex: 1 },
+                { text: 'Tool Version', dataIndex: "test_tool_version", hidden: true, flex: 1 },
+                { text: '# Users', dataIndex: "vuser_count", flex: 1 }
             ]
         }
     ]

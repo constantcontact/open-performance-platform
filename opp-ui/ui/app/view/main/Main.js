@@ -18,7 +18,6 @@ Ext.define('OppUI.view.main.Main', {
     },
 
     ui: 'navigation',
-    cls: 'exec-menu-navigation',
 
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -28,7 +27,7 @@ Ext.define('OppUI.view.main.Main', {
         layout: {
             align: 'stretchmax'
         },
-        iconCls: 'exec-header-icon',
+        iconCls: 'fa-bar-chart',
         title: {
             text: 'OPP',
             textAlign: 'center',
@@ -98,47 +97,56 @@ Ext.define('OppUI.view.main.Main', {
     },
 
     items: [{
-        // This page has a hidden tab so we can only get here during initialization. This
-        // allows us to avoid rendering an initial activeTab only to change it immediately
-        // by routing
-        xtype: 'component',
-        tabConfig: {
-            hidden: true
+            // This page has a hidden tab so we can only get here during initialization. This
+            // allows us to avoid rendering an initial activeTab only to change it immediately
+            // by routing
+            xtype: 'component',
+            tabConfig: {
+                hidden: true
+            }
+        },
+        {
+            xtype: 'container',
+            title: 'Dashboard',
+            iconCls: 'fa-home'
+        },
+        {
+            xtype: 'ux',
+            title: 'UX Tests',
+            iconCls: 'fa-line-chart'
+        }, {
+            xtype: 'loadtest',
+            title: 'Load Tests',
+            iconCls: 'fa-tachometer'
+        }, {
+            xtype: 'applicationmapping',
+            title: 'Application Mapping',
+            iconCls: 'fa-list'
         }
-    },{
-        xtype: 'ux',
-        title: 'UX Dashboard',
-        iconCls: 'exec-kpi-icon'
-    },{
-        xtype: 'loadtest',
-        title: 'Load Test',
-        iconCls: 'exec-quarterly-icon'
-    },{
-        xtype: 'applicationmapping',
-        title: 'Application Mapping',
-        iconCls: 'exec-news-icon'
-    }],
+    ],
 
     // This object is a config for the popup menu we present on very small form factors.
     // It is used by our controller (MainController).
     assistiveMenu: {
         items: [{
-            text: 'KPI Overview',
-            height: 50,
-            iconCls: 'exec-kpi-icon'
-        },{
-            text: 'Performance',
-            height: 50,
-            iconCls: 'exec-quarterly-icon'
-        },{
-            text: 'Profit & Loss',
-            height: 50,
-            iconCls: 'exec-pl-icon'
-        },{
-            text: 'Company News',
-            height: 50,
-            iconCls: 'exec-news-icon'
-        }],
+                height: 50,
+                text: 'Dashboard',
+                iconCls: 'fa-home'
+            },
+            {
+                height: 50,
+                text: 'UX Tests',
+                iconCls: 'fa-line-chart'
+            }, {
+                height: 50,
+                text: 'Load Tests',
+                iconCls: 'fa-tachometer'
+            }, {
+                height: 50,
+                text: 'Application Mapping',
+                iconCls: 'fa-list'
+            }
+        ],
         listeners: {
             click: 'onMenuClick'
         }
