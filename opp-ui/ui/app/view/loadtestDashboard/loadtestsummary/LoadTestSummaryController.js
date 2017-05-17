@@ -29,5 +29,40 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
         });
 
         this.getView().up('loadtest').add(window).show();
+    },
+
+    search: function() {
+        console.log()
+    },
+    specialkey: function(field, e) {
+        if(e.getKey() === window.parseInt(e.ENTER)) {
+            var searchString, store, view;
+
+            searchString = field.getValue();
+            view = this.getView();
+
+            store = view.up('loadtest')
+                        .getViewModel()
+                        .getStore('remoteSummaryTrend');
+            
+            if (!searchString || searchString.length === 0) {
+                //this.up('grid').getController().reBuildGridByCurrentFilterState();
+                store.clearFilter();
+            } else {
+                store.filterBy(function(record) {
+                    var app, env; 
+
+                    app = record.get('appUnderTest');
+                    env = record.get('environment');
+ 
+                    if (app.indexOf(searchString) >= 0 ||
+                        env.indexOf(searchString) >= 0) {
+                        return true;
+                    }
+
+                    return false;
+                });
+            }
+        }
     }
 });

@@ -27,26 +27,27 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
                 click: 'showGroupReportForm'
             }
         },'-',
-         'Filter',
+        'Search',
          {
             id:'txtFilterLoadGrid',
             xtype: 'textfield',
             name: 'searchField',
             hideLabel: true,
-            width: 125,
+            width: 250,
             listeners: {
-                specialkey: function(field, e){
-                    if (e.getKey() === e.ENTER) {
-                        btnFilterLoadGrid.click();
-                    }
-                }
+                specialkey: 'specialkey'
             }
-        }, {
+        },
+        {
             id:'btnFilterLoadGrid',
             xtype: 'button',
-            text: '&gt;',
-            tooltip: 'Filter the test runs'
-        },'-',{
+            iconCls: 'x-fa fa-search',
+            tooltip: 'Filter the test runs',
+            listeners: {
+                click: 'search'
+            }
+        },'-',
+        {
             itemId:'btnDelete',
             xtype: 'button',
             iconCls: 'x-fa fa-times',
