@@ -13,13 +13,13 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
     },
 
     config: {
-        filters: undefined
+        filters: undefined,
+        url: ''
     },
 
     initComponent: function() {
-        var queryParams, i;
-        this.callParent(arguments);
-
+        var queryParams, queryParam, i;
+        
         i = 0;
         for(var prop in this.getFilters()) {
             if(this.getFilters().hasOwnProperty(prop)) {
@@ -33,21 +33,25 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
         }
 
         console.log('Query Parameters: ' + queryParams);
+        console.log('Load Test Group Report Link: '+ this.reportLink);
 
         this.getViewModel()
             .getStore('groupReport')
             .getProxy()
             .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summaryTrendByGroup?' + queryParams);
-    },
 
-    items: [
-        {
-            xtype: 'container',
-            html: '<p><b>TIP:</b> Double click on any row to drill down to that test run.</p>'
-        },{
-            xtype: 'loadtestgroupreportgrid'
-        }
-    ],
+        // have to add this here in order to get the reportLink.
+        this.items = [
+            {
+                xtype: 'loadtestgroupreportheader',
+                reportLink: this.reportLink
+            },{
+                xtype: 'loadtestgroupreportgrid'
+            }
+        ],
+
+        this.callParent(arguments);
+    },
 
     listeners: {
         beforeclose: function(tab) {
