@@ -1,6 +1,6 @@
 
 Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadTestGroupReportFilter',{
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.form.FieldContainer',
     alias: 'widget.groupreportfilter',
 
     requires: [
@@ -48,24 +48,30 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadT
         queryMode: 'local',
         selectOnTab: false,
         name: 'columnName'
-    }, {
+    },{
         xtype: 'textfield',
         itemId: 'filterField',
         name: 'criteria',
         width: 200
-    }, {
+    },{
         xtype:'button',
         text: 'Add more',
         itemId: 'btnGroupedFilterFieldAdd',
-        padding:5
-    },  {
-            xtype:'button',
-            itemId:'deleteFieldContainerBtn',
-            text: 'X',
-            padding:5,
-            hidden:true,
-            handler: function() {
-                this.up('panel').remove(this.up('fieldcontainer'), true);
-            }
-        }]
+        padding:5,
+        handler: function(button) {
+            console.log('Add more button clicked!');
+            button.hide();
+            button.up('panel').add({ xtype: 'groupreportfilter'});
+            button.up('fieldcontainer').down('#deleteFieldContainerBtn').show();
+        }
+    },{
+        xtype:'button',
+        itemId:'deleteFieldContainerBtn',
+        text: 'X',
+        padding:5,
+        hidden:true,
+        handler: function() {
+            this.up('panel').remove(this.up('fieldcontainer'), true);
+        }
+    }]
 });

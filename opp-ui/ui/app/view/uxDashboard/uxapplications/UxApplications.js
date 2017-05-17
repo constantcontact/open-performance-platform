@@ -19,6 +19,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications',{
     },
 
     scrollable: 'y',
+    title: 'UX Dashboard',
 
     minWidth: 600,
 

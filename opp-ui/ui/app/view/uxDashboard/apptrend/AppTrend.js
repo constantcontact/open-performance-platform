@@ -25,6 +25,7 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
         align: 'stretch'
     },
 
+    title: 'App Trend',
     scrollable: 'y',
 
     minWidth: 600,
@@ -193,7 +194,7 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
         alias: 'wptsByPageGrid',
         itemId: 'wptsByPageGrid',
 
-        margin: '0 20px 20px 20px',
+        margin: '0 20 20 20',
 
         controller: 'apptrend',
         viewModel: {
@@ -202,6 +203,7 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
         store: {
             type: 'apptrend'
         },
+        title: 'WPT Summary',
         loadMask: true,
         loadViewModelStore: function(wptName) {
             console.log("Loading View Model Store");

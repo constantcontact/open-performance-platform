@@ -15,7 +15,7 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
             xtype: 'apptrend'
         }
     ],
-
+    
     listeners: {
         beforerender: function(panel) {
             panel.getLayout().setActiveItem(0);

@@ -11,3 +11,5 @@ load/dev/build
 load/dev/ext/*
 load/dev/build5.sh
 !load/dev/ext/extjs.zip
+ui/build
+build/

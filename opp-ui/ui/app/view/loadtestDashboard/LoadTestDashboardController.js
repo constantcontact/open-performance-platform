@@ -69,7 +69,7 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
                     newTabState = queryParams.concat(','+testId);
                     activeState = activeState.replace(initialTabState, newTabState);
                 } else {
-                    // at this point there's only a tabGroup query param.
+                    // at this point there's only a tab query param.
                     activeState = activeState.concat('&tab='+testId);
                 }
             } else {
@@ -104,12 +104,126 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
         this.updateActiveState(activeState);
     },
 
-    updateUrlGroupTabState: function(groupTab, add) {
-        var activeState, queryParams, groupTabs;
+    updateUrlGroupTabState: function(groupReportMetaData, add) {
+        var i, activeState, queryParams, queryParam, initialGroupTabQueryParams, 
+            groupReportQueryParams, groupReport, groupReportName, groupReportFilters;
 
         activeState = this.getView().getActiveState();
         queryParams = activeState.split('?');
-        queryParams = queryParams.length > 1 ? queryParams[1] : undefined; 
+        initialQueryParams = queryParams.length > 1 ? queryParams[1] : undefined;
+
+        groupReportName = groupReportMetaData.name;
+        groupReportFilters = groupReportMetaData.filters;
+
+        // build the query param
+        queryParam = groupReportName + ':';
+        for(var prop in groupReportFilters) {
+            if(groupReportFilters.hasOwnProperty(prop)) {
+                queryParam += (prop + '+' + groupReportFilters[prop] + ',')
+            }
+        }
+        // remove the last comma.
+        queryParam = queryParam.slice(0, -1);
+
+        if(!initialQueryParams) {
+            activeState = activeState.concat('/?groupTab='+queryParam);
+        } else if(initialQueryParams.indexOf('&') >= 0) {
+             queryParams = initialQueryParams.split('&');
+
+            for(i = 0; i < queryParams.length; i++) {
+                if(queryParams[i].indexOf('groupTab=') >= 0) {
+                    initialGroupTabQueryParams = queryParams[i];
+                    break;
+                }
+            }
+
+            if(initialGroupTabQueryParams) {
+                if(add) {
+                    groupReportQueryParams = initialGroupTabQueryParams.concat('::'+queryParam);
+                    activeState = activeState.replace(initialGroupTabQueryParams, groupReportQueryParams);
+                } else {
+                    // ie groupTab=visitor:app_under_test+visitor,environment+s1::visitor2:app_under_test+visitor,environment+s1
+                    groupReportQueryParams = initialGroupTabQueryParams.split('=')[1].split('::');
+
+                    for(i = 0; i < groupReportQueryParams.length; i++) {
+                        if(groupReportQueryParams[i].indexOf(groupReportName+ ':') >= 0) {
+                            console.log('Removing ==> name:' + groupReportName + ' queryParamValue: ' + groupReportQueryParams[i]);
+
+                            groupReport = groupReportQueryParams[i];
+                            console.log('Removing tab: ' + groupReport);
+                            break;
+                        }
+                    }
+
+                    if(groupReport) {
+                        // if its the first
+                        if(groupReportQueryParams[0].indexOf(groupReportName + ':') >= 0) {
+
+                            if(groupReportQueryParams.length > 1) {
+                                activeState = activeState.replace(groupReport+'::', '');
+                            } else {
+                                activeState = activeState.replace(groupReport, '');
+                            }
+                        } else {
+                            activeState = activeState.replace('::'+groupReport, '');
+                        }
+
+                        if(groupReportQueryParams.length === 1) {
+                            // if there's only one group report then remove the query param
+                            console.log('Remove the whole thing')
+
+                            if(initialQueryParams.split('&')[0].indexOf('groupTab=') >= 0) {
+                                activeState = activeState.replace('groupTab=&', '');
+                            } else {
+                                activeState = activeState.replace('&groupTab=', '');
+                            }
+                        }
+                        console.log('Active State: ' + activeState);
+                    }
+                }
+            } else {
+                queryParam = groupReportName + ':';
+
+                // build the query param
+                for(var prop in groupReportFilters) {
+                    if(groupReportFilters.hasOwnProperty(prop)) {
+                        queryParam += (prop + '+' + groupReportFilters[prop] + ',')
+                    }
+                }
+                // remove the last comma.
+                queryParam = queryParam.slice(0, -1);
+
+                activeState = activeState.concat('&groupTab='+queryParam);
+            }
+        } else {
+            // at this point there's a query param, need to find out what it is.
+            if(add) {
+                if(initialQueryParams.indexOf('groupTab=') >= 0) {
+                    queryParams = initialQueryParams.concat('::'+queryParam);
+                    activeState = activeState.replace(initialQueryParams, queryParams);
+                } else{
+                    activeState = activeState.concat('&groupTab='+queryParam);
+                }
+            } else {
+                if(initialQueryParams.indexOf('groupTab=') >= 0) {
+                    queryParams = initialQueryParams.split('=')[1].split('::');
+
+                    if(queryParams.length === 1) {
+                        activeState = activeState.replace('/?'+initialQueryParams, '');
+                    } else {
+                        // check if it's the first group report
+                        if(queryParams[0].indexOf(groupReportName+':') >= 0) {
+                            activeState = activeState.replace(queryParam+'::', '');
+                        } else {
+                            activeState = activeState.replace('::'+queryParam, ''); 
+                        }
+                    }
+                }
+            }
+        }
+
+
+        this.updateActiveState(activeState);
     }
     
 });

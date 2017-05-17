@@ -4,3 +4,5 @@ commit.sh
 .gradle
 deploy-scripts/aws/aws-config.sh.private
 deploy-scripts/aws/aws-config.sh
+opp-ui/ui/build/*
+

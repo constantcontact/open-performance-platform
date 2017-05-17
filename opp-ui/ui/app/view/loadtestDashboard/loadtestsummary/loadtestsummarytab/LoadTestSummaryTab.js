@@ -38,8 +38,26 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
             .updateUrlTabState(record.getData().loadTestId, true);
     },
 
-    createGroupReportTab: function(groupReportName, columnFilter, textFilter, filters) {
-        var tab;
+    createGroupReport: function(groupReport) {
+        this.up('loadtest')
+            .getController()
+            .updateUrlGroupTabState(groupReport, true);
+    },
+
+    createGroupReportTab: function(groupReportName, filters) {
+        var tab, reportLink, queryParam;
+
+        // build the query param
+        queryParam = groupReportName + ':';
+        for(var prop in filters) {
+            if(filters.hasOwnProperty(prop)) {
+                queryParam += (prop + '+' + filters[prop] + ',')
+            }
+        }
+        // remove the last comma.
+        queryParam = queryParam.slice(0, -1);
+        reportLink = window.location.origin+'/#!loadtest/dashboard/?groupTab='+queryParam;
+        console.log('REPORT LINK: ' +reportLink);
 
         tab = this.add({
             closable: true,
@@ -47,9 +65,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
             itemId: 'loadtestgroupreport-'+ groupReportName,
             iconCls: 'x-fa fa-line-chart',
             title: groupReportName,
-            columnFilter: columnFilter,
-            textFilter: textFilter,
-            filters: filters
+            filters: filters,
+            reportLink: reportLink
         });
 
         this.setActiveTab(tab);
@@ -124,7 +141,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                             console.log('both Filters: ');
                             console.log(filters);
 
-                            this.createGroupReportTab(groupReport[0], undefined, undefined, filters);
+                            this.createGroupReportTab(groupReport[0], filters);
                         }
                     }
                 }
@@ -169,7 +186,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                         console.log('Filters: ');
                         console.log(filters);
 
-                        this.createGroupReportTab(groupReport[0], undefined, undefined, filters);
+                        this.createGroupReportTab(groupReport[0], filters);
                     }
                 }
             }
@@ -185,5 +202,12 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                 hash = hash & hash; // Convert to 32bit integer
             }
             return hash;
+    },
+
+    processAdmin: function(params) {
+        console.log('processAdmin: ' + params);
+        if(params.indexOf('user=admin') >= 0) {
+            this.down('#btnDelete').show();
+        }
     }
 });

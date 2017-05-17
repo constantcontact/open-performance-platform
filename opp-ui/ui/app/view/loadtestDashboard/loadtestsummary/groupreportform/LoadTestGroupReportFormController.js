@@ -25,18 +25,67 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
         }
     },
 
-    createReport: function() {
-        var store, columnFilter, textFilter, groupReportName, view;
-        view = this.getView();
+    createReport: function(createReportButton) {
+        // var store, columnFilter, textFilter, groupReportName, view;
+        // view = this.getView();
 
-        columnFilter = view.down('#filterCombobox').getValue();
-        textFilter = view.down('#filterField').getValue();
-        groupReportName = view.down('#groupReportName').getValue();
+        // columnFilter = view.down('#filterCombobox').getValue();
+        // textFilter = view.down('#filterField').getValue();
+        // groupReportName = view.down('#groupReportName').getValue();
 
-        if(columnFilter && textFilter && groupReportName) {
+        // if(columnFilter && textFilter && groupReportName) {
 
-            view.up('loadtest').down('loadtestsummarytab').createGroupReportTab(groupReportName, columnFilter, textFilter);
+        //     view.up('loadtest').down('loadtestsummarytab').createGroupReportTab(groupReportName, columnFilter, textFilter);
+        //     view.up().close();
+        // }
+
+        var form = createReportButton.up('form'),
+            queryStr = this.buildGroupedReportQueryStr(form),
+            groupReport = this.buildGroupReportObject(form),
+            formVals = form.getValues(),
+            reportName = (formVals['report-name'] === '') ? 'Grouped Report' : formVals['report-name'],
+            view = this.getView();
+            groupReport.name = reportName;
+
+            console.log(reportName + ' ' + queryStr);
+            console.log(groupReport);
+            console.log(groupReport.filters);
+
+            view.up('loadtest').down('loadtestsummarytab').createGroupReport(groupReport);
             view.up().close();
+    },
+    buildGroupedReportQueryStr: function(form) {
+        var data = form.getValues();
+        var qStr = '';
+        if(typeof data['columnName'] === 'string'){
+            // process non-array
+            qStr = data['columnName'] + '=' + data['criteria'];
+        } else {
+            // I have more than one criteria, so this is an array... loop through it
+            for(var i=0; i<data['columnName'].length; i++){
+                if(data['columnName'][i].trim() !== ''){
+                    if(qStr !== '') qStr += '&';
+                    qStr += data['columnName'][i] + '=' + data['criteria'][i];
+                }
+            }
         }
+        return qStr;
+    },
+    buildGroupReportObject: function(form) {
+        var groupReport = {name: '', filters: {}}, data = form.getValues();
+
+        // process non-array
+        if(typeof data['columnName'] === 'string') {
+            groupReport.filters[[data['columnName']]] = data['criteria']; 
+        } else {
+             // I have more than one criteria, so this is an array... loop through it
+            for(var i=0; i<data['columnName'].length; i++){
+                if(data['columnName'][i].trim() !== ''){
+                    groupReport.filters[data['columnName'][i]] = data['criteria'][i];
+                }
+            }
+        }
+
+        return groupReport;
     }
 });

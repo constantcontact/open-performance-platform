@@ -27,28 +27,64 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
                 click: 'showGroupReportForm'
             }
         },'-',
-         'Filter',
+        'Search',
          {
             id:'txtFilterLoadGrid',
             xtype: 'textfield',
             name: 'searchField',
             hideLabel: true,
-            width: 125,
+            width: 250,
             listeners: {
-                specialkey: function(field, e){
-                    if (e.getKey() === e.ENTER) {
-                        btnFilterLoadGrid.click();
+                specialkey: 'specialkey'
+            }
+        },
+        {
+            id:'btnFilterLoadGrid',
+            xtype: 'button',
+            iconCls: 'x-fa fa-search',
+            tooltip: 'Filter the test runs',
+            listeners: {
+                click: 'search'
+            }
+        },'-',
+        {
+            itemId:'btnDelete',
+            xtype: 'button',
+            iconCls: 'x-fa fa-times',
+            text: 'Delete Selected',
+            hidden: true,
+            tooltip: 'Admin Only Feature.  Delete custom runs.',
+            listeners: {
+                click: function(button) {
+                    console.log('Delete Button clicked!');
+                    var grid, i, ids;
+
+                    function _handleInput(btn) {
+                        if(btn == 'yes') {
+                            grid.deleteRecords(ids);
+                        }
+                    }
+
+                    grid = button.up('grid');
+                    if(grid.getSelectionModel().selected.items.length > 0){
+                        ids = new Array(); 
+                        for(i=0; i<grid.getSelectionModel().selected.items.length; i++){
+                            ids.push(grid.getSelectionModel().selected.items[i].data.load_test_id);
+                        }
+                        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to delete ' + ids.length + ' record(s)', _handleInput);
+                    } else {
+                        Ext.Msg.alert("Warning...", "You must make a selection first");
                     }
                 }
             }
-        }, {
-            id:'btnFilterLoadGrid',
-            xtype: 'button',
-            text: '&gt;',
-            tooltip: 'Filter the test runs'
-        }, '-'
+        }
         
     ],
+
+    selModel: {
+       selType: 'rowmodel', // rowmodel is the default selection model
+       mode: 'MULTI' // Allows selection of multiple rows
+    },
 
     columns: {
         items: [
@@ -81,6 +117,20 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
         itemdblclick: function(grid, record, item, index) {
             this.up('loadtest').down('loadtestsummarytab').createTab(grid, record, item, index);
         }
+    },
+
+    deleteRecords: function(ids) {
+        console.log('Ids to delete: '+ ids);
+        var me = this;
+
+        Ext.Ajax.request({
+            url: '/loadsvc/v1/loadtests/' + ids.join(),
+            method:'delete',
+            success: function(response){
+                //var json = Ext.decode(response.responseText, false);
+                me.up('loadtest').getViewModel().getStore('remoteSummaryTrend').reload();
+            }
+        });
     },
 
     showTrend: function(v, rec, trendName, conversion, trendType){
