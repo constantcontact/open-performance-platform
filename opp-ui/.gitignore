@@ -13,3 +13,4 @@ load/dev/build5.sh
 !load/dev/ext/extjs.zip
 ui/build
 build/
+scripts/pushToDockerHub.sh
