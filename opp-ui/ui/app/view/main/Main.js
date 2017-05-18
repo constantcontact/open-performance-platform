@@ -25,14 +25,14 @@ Ext.define('OppUI.view.main.Main', {
 
     items: [{
             xtype: 'toolbar',
-            cls: 'sencha-dash-dash-headerbar shadow',
+            cls: 'opp-dash-dash-headerbar shadow',
             height: 64,
             itemId: 'headerBar',
             items: [{
                     xtype: 'component',
-                    reference: 'senchaLogo',
-                    cls: 'sencha-logo',
-                    html: '<div class="main-logo"><img src="resources/images/company-logo.png">Sencha</div>',
+                    reference: 'oppLogo',
+                    cls: 'opp-logo',
+                    html: '<div class="main-logo"><img src="resources/images/opp-logo.png">OPP</div>',
                     width: 250
                 },
                 {
@@ -40,69 +40,56 @@ Ext.define('OppUI.view.main.Main', {
                     ui: 'header',
                     iconCls: 'x-fa fa-navicon',
                     id: 'main-navigation-btn',
-                    handler: 'onToggleNavigationSize'
+                    handler: 'onToggleNavigationSize',
+                    tooltip: 'Toggle Navigation'
                 },
                 '->',
                 {
-                    xtype: 'segmentedbutton',
-                    margin: '0 16 0 0',
-
-                    platformConfig: {
-                        ie9m: {
-                            hidden: true
-                        }
-                    },
-
-                    items: [{
-                        iconCls: 'x-fa fa-desktop',
-                        pressed: true
-                    }, {
-                        iconCls: 'x-fa fa-tablet',
-                        handler: 'onSwitchToModern',
-                        tooltip: 'Switch to modern toolkit'
-                    }]
+                    iconCls: 'x-fa fa-home',
+                    ui: 'header',
+                    href: '#dashboard',
+                    hrefTarget: '_self',
+                    tooltip: 'Latest Runs'
                 },
                 {
-                    iconCls: 'x-fa fa-search',
+                    iconCls: 'x-fa fa-bar-chart',
                     ui: 'header',
-                    href: '#searchresults',
+                    href: '#dashboard',
                     hrefTarget: '_self',
-                    tooltip: 'See latest search'
+                    tooltip: 'UX Tests'
                 },
                 {
-                    iconCls: 'x-fa fa-envelope',
+                    iconCls: 'x-fa fa-tachometer',
                     ui: 'header',
-                    href: '#email',
+                    href: '#loadtest',
                     hrefTarget: '_self',
-                    tooltip: 'Check your email'
+                    tooltip: 'Load Tests'
                 },
                 {
                     iconCls: 'x-fa fa-question',
                     ui: 'header',
-                    href: '#faq',
-                    hrefTarget: '_self',
+                    href: 'https://github.com/constantcontact/open-performance-platform/wiki',
+                    hrefTarget: '_blank',
                     tooltip: 'Help / FAQ\'s'
                 },
                 {
-                    iconCls: 'x-fa fa-th-large',
-                    ui: 'header',
-                    href: '#profile',
-                    hrefTarget: '_self',
-                    tooltip: 'See your profile'
-                },
-                {
                     xtype: 'tbtext',
-                    text: 'Goff Smith',
+                    text: 'Standard User',
                     cls: 'top-user-name'
                 },
                 {
-                    xtype: 'image',
-                    cls: 'header-right-profile-image',
-                    height: 35,
-                    width: 35,
-                    alt: 'current user image',
-                    src: 'resources/images/user-profile/2.png'
+                    iconCls: 'x-fa fa-user',
+                    ui: 'header'
                 }
+                // show image of person instead --- cool feature
+                // {
+                //     xtype: 'image',
+                //     cls: 'header-right-profile-image',
+                //     height: 35,
+                //     width: 35,
+                //     alt: 'current user image',
+                //     src: 'resources/images/user-profile/2.png'
+                // }
             ]
         },
         {
@@ -129,6 +116,7 @@ Ext.define('OppUI.view.main.Main', {
                     reference: 'mainCardPanel',
                     cls: 'sencha-dash-right-main-container',
                     itemId: 'contentPanel',
+                    padding: 20,
                     layout: {
                         type: 'card',
                         anchor: '100%'

@@ -10,8 +10,16 @@ Ext.define('OppUI.store.NavigationTree', {
     root: {
         expanded: true,
         children: [{
+                text: 'Dashboard',
+                iconCls: 'x-fa fa-home',
+                rowCls: 'nav-tree-badge nav-tree-badge-new',
+                viewType: 'ux',
+                routeId: 'dashboard', // routeId defaults to viewType
+                leaf: true
+            },
+            {
                 text: 'UX Tests',
-                iconCls: 'x-fa fa-desktop',
+                iconCls: 'x-fa fa-bar-chart',
                 rowCls: 'nav-tree-badge nav-tree-badge-new',
                 viewType: 'ux',
                 routeId: 'dashboard', // routeId defaults to viewType
@@ -19,14 +27,14 @@ Ext.define('OppUI.store.NavigationTree', {
             },
             {
                 text: 'Load Tests',
-                iconCls: 'x-fa fa-send',
+                iconCls: 'x-fa fa-tachometer',
                 rowCls: 'nav-tree-badge nav-tree-badge-hot',
                 viewType: 'loadtest',
                 leaf: true
             },
             {
                 text: 'Application Mapping',
-                iconCls: 'x-fa fa-user',
+                iconCls: 'x-fa fa-list',
                 viewType: 'applicationmapping',
                 leaf: true
             }

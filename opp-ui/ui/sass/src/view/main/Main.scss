@@ -99,31 +99,21 @@ $row-indicator-width: 5px, $row-indicator-selected-color: $panel-header-backgrou
 }
 
 //--------------------------------------------------------
-.sencha-logo {
+.opp-logo {
     background-color: $base-color;
     height: 65px;
-    font-size: 16px;
     color: $lightest-color;
     margin-left: 17px;
     .main-logo {
+        font-size: 32px;
         line-height: 65px;
         img {
+            height: 20px;
             margin-left: 22px;
             margin-right: 22px;
             top: 8px;
             position: relative;
         }
-    }
-}
-
-.sencha-dash-dash-headerbar {
-    padding: 0 30px 0 0;
-    position: fixed;
-    width: 100%;
-    z-index: 10;
-    border: none;
-    .header-right-profile-image {
-        border-radius: 20px;
     }
 }
 
@@ -198,26 +188,75 @@ $row-indicator-width: 5px, $row-indicator-selected-color: $panel-header-backgrou
     border: 1px solid #ccc;
 }
 
-// //UI Styles for buttons
-// @include extjs-button-small-ui( $ui: 'soft-blue', $background-color: $color-soft-blue, $border-color: darken($color-soft-blue, 5%));
-// @include extjs-button-large-ui( $ui: 'soft-blue', $line-height: 34px, $background-color: $color-soft-blue, $border-color: darken($color-soft-blue, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'soft-blue', $background-color: $color-soft-blue, $border-color: darken($color-soft-blue, 5%));
-// @include extjs-button-small-ui( $ui: 'facebook', $background-color: $social-facebook-btn-background, $border-color: darken($social-facebook-btn-background, 5%));
-// @include extjs-button-large-ui( $ui: 'facebook', $line-height: 34px, $background-color: $social-facebook-btn-background, $border-color: darken($social-facebook-btn-background, 5%));
-// @include extjs-button-small-ui( $ui: 'soft-cyan', $background-color: $color-soft-cyan, $border-color: darken($color-soft-cyan, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'soft-cyan', $background-color: $color-soft-cyan, $border-color: darken($color-soft-cyan, 5%));
-// @include extjs-button-small-ui( $ui: 'soft-green', $background-color: $color-soft-green, $border-color:darken($color-soft-green, 5%));
-// @include extjs-button-large-ui( $ui: 'soft-green', $line-height: 34px, $background-color: $color-soft-green, $border-color:darken($color-soft-green, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'soft-green', $background-color: $color-soft-green, $border-color:darken($color-soft-green, 5%));
-// @include extjs-button-small-ui( $ui: 'soft-red', $background-color: $color-soft-red, $border-color:darken($color-soft-red, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'soft-red', $background-color: $color-soft-red, $border-color:darken($color-soft-red, 5%));
-// @include extjs-button-small-ui( $ui: 'soft-purple', $background-color: $color-soft-purple, $border-color:darken($color-soft-purple, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'soft-purple', $background-color: $color-soft-purple, $border-color:darken($color-soft-purple, 5%));
-// @include extjs-button-small-ui( $ui: 'gray', $background-color: $color-gray, $border-color:darken($color-gray, 5%));
-// @include extjs-button-large-ui( $ui: 'gray', $line-height: 34px, $background-color: $color-gray, $border-color:darken($color-gray, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'gray', $background-color: $color-gray, $border-color:darken($color-gray, 5%));
-// @include extjs-button-small-ui( $ui: 'green', $background-color: $color-green, $border-color:darken($color-green, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'green', $background-color: $color-green, $border-color:darken($color-green, 5%));
-// @include extjs-button-small-ui( $ui: 'blue', $background-color: $color-blue, $border-color:darken($color-blue, 5%));
-// @include extjs-button-toolbar-small-ui( $ui: 'blue', $background-color: $color-blue, $border-color:darken($color-blue, 5%));
-// @include extjs-button-small-ui( $ui: 'header', $color: #999, $glyph-color: #919191, $background-color: transparent, $border-width: 0);
+.x-body {
+    color: #404040;
+    font-size: 13px;
+    line-height: 17px;
+    font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+    background: #f6f6f6;
+}
+
+.x-viewport,
+.x-viewport>.x-body {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    overflow: hidden;
+    position: static;
+    touch-action: none;
+    -ms-touch-action: none;
+}
+
+.toolbar-btn-shadow {
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.x-toolbar-default {
+    padding: 6px 0 6px 8px;
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-width: 1px;
+    background-image: none;
+    background-color: #fff;
+}
+
+.opp-dash-dash-headerbar {
+    padding: 0 30px 0 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    border: none;
+    .header-right-profile-image {
+        border-radius: 20px;
+    }
+    -webkit-box-shadow:0px 2px 2px -2px #aaa;
+    -moz-box-shadow: 0px 2px 2px -2px #aaa;
+    box-shadow: 0px 2px 2px -2px #aaa;
+}
+
+//UI Styles for buttons
+@include extjs-button-small-ui( $ui: 'soft-blue', $background-color: $color-soft-blue, $border-color: darken($color-soft-blue, 5%));
+@include extjs-button-large-ui( $ui: 'soft-blue', $line-height: 34px, $background-color: $color-soft-blue, $border-color: darken($color-soft-blue, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'soft-blue', $background-color: $color-soft-blue, $border-color: darken($color-soft-blue, 5%));
+@include extjs-button-small-ui( $ui: 'facebook', $background-color: $social-facebook-btn-background, $border-color: darken($social-facebook-btn-background, 5%));
+@include extjs-button-large-ui( $ui: 'facebook', $line-height: 34px, $background-color: $social-facebook-btn-background, $border-color: darken($social-facebook-btn-background, 5%));
+@include extjs-button-small-ui( $ui: 'soft-cyan', $background-color: $color-soft-cyan, $border-color: darken($color-soft-cyan, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'soft-cyan', $background-color: $color-soft-cyan, $border-color: darken($color-soft-cyan, 5%));
+@include extjs-button-small-ui( $ui: 'soft-green', $background-color: $color-soft-green, $border-color:darken($color-soft-green, 5%));
+@include extjs-button-large-ui( $ui: 'soft-green', $line-height: 34px, $background-color: $color-soft-green, $border-color:darken($color-soft-green, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'soft-green', $background-color: $color-soft-green, $border-color:darken($color-soft-green, 5%));
+@include extjs-button-small-ui( $ui: 'soft-red', $background-color: $color-soft-red, $border-color:darken($color-soft-red, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'soft-red', $background-color: $color-soft-red, $border-color:darken($color-soft-red, 5%));
+@include extjs-button-small-ui( $ui: 'soft-purple', $background-color: $color-soft-purple, $border-color:darken($color-soft-purple, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'soft-purple', $background-color: $color-soft-purple, $border-color:darken($color-soft-purple, 5%));
+@include extjs-button-small-ui( $ui: 'gray', $background-color: $color-gray, $border-color:darken($color-gray, 5%));
+@include extjs-button-large-ui( $ui: 'gray', $line-height: 34px, $background-color: $color-gray, $border-color:darken($color-gray, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'gray', $background-color: $color-gray, $border-color:darken($color-gray, 5%));
+@include extjs-button-small-ui( $ui: 'green', $background-color: $color-green, $border-color:darken($color-green, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'green', $background-color: $color-green, $border-color:darken($color-green, 5%));
+@include extjs-button-small-ui( $ui: 'blue', $background-color: $color-blue, $border-color:darken($color-blue, 5%));
+@include extjs-button-toolbar-small-ui( $ui: 'blue', $background-color: $color-blue, $border-color:darken($color-blue, 5%));
+@include extjs-button-small-ui( $ui: 'header', $color: #999, $glyph-color: #919191, $background-color: transparent, $border-width: 0);
