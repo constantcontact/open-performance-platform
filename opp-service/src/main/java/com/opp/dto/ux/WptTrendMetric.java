@@ -1,66 +1,72 @@
 package com.opp.dto.ux;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by ctobe on 4/12/17.
  */
-public class WptTrendChart {
+public class WptTrendMetric {
 
+    private Long completedDate;
+    private BasicMetric ttfb;
+    private BasicMetric visuallyComplete;
+    private BasicMetric speedIndex;
+    private UserTimingMetric userTimings;
 
-    private List<BasicMetric> ttfb = new ArrayList<>();
-    private List<BasicMetric> visuallyComplete = new ArrayList<>();
-    private List<BasicMetric> speedIndex = new ArrayList<>();
-    private List<UserTimingMetric> userTimings = new ArrayList<>();
-
-    public WptTrendChart() {
+    public WptTrendMetric() {
     }
 
-    public WptTrendChart(List<BasicMetric> ttfb, List<BasicMetric> visuallyComplete, List<BasicMetric> speedIndex, List<UserTimingMetric> userTimings) {
+    public WptTrendMetric(Long completedDate, BasicMetric ttfb, BasicMetric visuallyComplete, BasicMetric speedIndex, UserTimingMetric userTimings) {
+        this.completedDate = completedDate;
         this.ttfb = ttfb;
         this.visuallyComplete = visuallyComplete;
         this.speedIndex = speedIndex;
         this.userTimings = userTimings;
     }
 
-    public List<BasicMetric> getTtfb() {
+    public Long getCompletedDate() {
+        return completedDate;
+    }
+
+    public void setCompletedDate(Long completedDate) {
+        this.completedDate = completedDate;
+    }
+
+    public BasicMetric getTtfb() {
         return ttfb;
     }
 
-    public void setTtfb(List<BasicMetric> ttfb) {
+    public void setTtfb(BasicMetric ttfb) {
         this.ttfb = ttfb;
     }
 
-    public List<BasicMetric> getVisuallyComplete() {
+    public BasicMetric getVisuallyComplete() {
         return visuallyComplete;
     }
 
-    public void setVisuallyComplete(List<BasicMetric> visuallyComplete) {
+    public void setVisuallyComplete(BasicMetric visuallyComplete) {
         this.visuallyComplete = visuallyComplete;
     }
 
-    public List<BasicMetric> getSpeedIndex() {
+    public BasicMetric getSpeedIndex() {
         return speedIndex;
     }
 
-    public void setSpeedIndex(List<BasicMetric> speedIndex) {
+    public void setSpeedIndex(BasicMetric speedIndex) {
         this.speedIndex = speedIndex;
     }
 
-    public List<UserTimingMetric> getUserTimings() {
+    public UserTimingMetric getUserTimings() {
         return userTimings;
     }
 
-    public void setUserTimings(List<UserTimingMetric> userTimings) {
+    public void setUserTimings(UserTimingMetric userTimings) {
         this.userTimings = userTimings;
     }
 
     public static class UserTimingMetric extends BasicMetric {
         String name;
 
-        public UserTimingMetric(Long completedDate, Integer min, Integer max, Integer median, Double average, String name) {
-            super(completedDate, min, max, median, average);
+        public UserTimingMetric(Integer min, Integer max, Integer median, Double average, String name) {
+            super(min, max, median, average);
             this.name = name;
         }
 
@@ -74,7 +80,6 @@ public class WptTrendChart {
     }
 
     public static class BasicMetric {
-        private Long completedDate;
         private Integer min;
         private Integer max;
         private Integer median;
@@ -84,8 +89,7 @@ public class WptTrendChart {
         public BasicMetric() {
         }
 
-        public BasicMetric(Long completedDate, Integer min, Integer max, Integer median, Double average) {
-            this.completedDate = completedDate;
+        public BasicMetric(Integer min, Integer max, Integer median, Double average) {
             this.min = min;
             this.max = max;
             this.median = median;
@@ -96,13 +100,6 @@ public class WptTrendChart {
             return min;
         }
 
-        public Long getCompletedDate() {
-            return completedDate;
-        }
-
-        public void setCompletedDate(Long completedDate) {
-            this.completedDate = completedDate;
-        }
 
         public void setMin(Integer min) {
             this.min = min;

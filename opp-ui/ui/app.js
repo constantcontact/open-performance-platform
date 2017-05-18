@@ -8,7 +8,7 @@ Ext.application({
 
     extend: 'OppUI.Application',
 
-    autoCreateViewport: 'OppUI.view.main.Main',
+    //autoCreateViewport: 'OppUI.view.main.Main',
 
     //-------------------------------------------------------------------------
     // Most customizations should be made to OppUI.Application. If you need to

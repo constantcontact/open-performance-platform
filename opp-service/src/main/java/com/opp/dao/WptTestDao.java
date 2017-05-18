@@ -13,7 +13,7 @@ import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ux.WptTestRunData;
-import com.opp.dto.ux.WptTrendChart;
+import com.opp.dto.ux.WptTrendMetric;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -43,13 +43,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
 
 import static com.opp.dao.util.SelectUtils.getOptional;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Created by ctobe on 3/22/17.
@@ -227,7 +227,7 @@ public class WptTestDao {
     }
 
 
-    public WptTrendChart getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
+    public List<WptTrendMetric> getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
 
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
                 .setSize(0)
@@ -251,18 +251,33 @@ public class WptTestDao {
 
         // get hashmap of all metrics to capture (just a dynamic way of doing this to later add more metrics)
         List<String> rangeMetricsToCapture = Arrays.asList("ttfb", "speedIndex", "visuallyComplete");
-        Map<String, List<WptTrendChart.BasicMetric>> rangeMetrics = rangeMetricsToCapture.stream()
-               .collect(toMap(Function.identity(), metric -> bucket.getBuckets().stream()
-                       .map(b -> {
-                            // get metrics
-                            Double min = ((Avg) b.getAggregations().get(metric + ".min")).getValue();
-                            Double max = ((Avg) b.getAggregations().get(metric + ".max")).getValue();
-                            Double median = ((Avg) b.getAggregations().get(metric + ".median")).getValue();
-                            Double average = ((Avg) b.getAggregations().get(metric + ".average")).getValue();
-                            return new WptTrendChart.BasicMetric(Long.valueOf(b.getKeyAsString()), min.intValue(), max.intValue(), median.intValue(), average);
-        }).collect(toList())));
 
-        return new WptTrendChart(rangeMetrics.get("ttfb"), rangeMetrics.get("visuallyComplete"), rangeMetrics.get("speedIndex"), new ArrayList<>());
+        List<WptTrendMetric> listTrendMetric = bucket.getBuckets().stream()
+                .map(b -> {
+                    // get metrics
+                    Double minTtfb = ((Avg) b.getAggregations().get("ttfb.min")).getValue();
+                    Double maxTtfb = ((Avg) b.getAggregations().get("ttfb.max")).getValue();
+                    Double medianTtfb = ((Avg) b.getAggregations().get("ttfb.median")).getValue();
+                    Double averageTtfb = ((Avg) b.getAggregations().get("ttfb.average")).getValue();
+
+                    Double minSI = ((Avg) b.getAggregations().get("ttfb.min")).getValue();
+                    Double maxSI = ((Avg) b.getAggregations().get("ttfb.max")).getValue();
+                    Double medianSI = ((Avg) b.getAggregations().get("ttfb.median")).getValue();
+                    Double averageSI = ((Avg) b.getAggregations().get("ttfb.average")).getValue();
+
+                    Double minVC = ((Avg) b.getAggregations().get("ttfb.min")).getValue();
+                    Double maxVC = ((Avg) b.getAggregations().get("ttfb.max")).getValue();
+                    Double medianVC = ((Avg) b.getAggregations().get("ttfb.median")).getValue();
+                    Double averageVC = ((Avg) b.getAggregations().get("ttfb.average")).getValue();
+
+                    return new WptTrendMetric(Long.valueOf(b.getKeyAsString()),
+                            new WptTrendMetric.BasicMetric(minTtfb.intValue(), maxTtfb.intValue(), medianTtfb.intValue(), averageTtfb),
+                            new WptTrendMetric.BasicMetric(minVC.intValue(), maxVC.intValue(), medianVC.intValue(), averageVC),
+                            new WptTrendMetric.BasicMetric(minSI.intValue(), maxSI.intValue(), medianSI.intValue(), averageSI),
+                            null);
+                }).collect(toList());
+
+        return listTrendMetric;
     }
 
 

@@ -5,11 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.wnameless.json.flattener.JsonFlattener;
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.opp.dao.WptTestDao;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
@@ -18,10 +14,9 @@ import com.opp.domain.ux.WptUINavigation;
 import com.opp.dto.ux.WptDeleteResp;
 import com.opp.dto.ux.WptSlaResults;
 import com.opp.dto.ux.WptTestRunData;
-import com.opp.dto.ux.WptTrendChart;
+import com.opp.dto.ux.WptTrendMetric;
 import com.opp.util.FileUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.elasticsearch.cluster.metadata.MetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +24,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-
 
 import static java.util.stream.Collectors.toMap;
 
@@ -356,9 +349,8 @@ public class WptService {
     }
 
     @Cacheable(value="wptTrendChartData", key="{#testName, #view, #isUserTimingBaseLine, #interval}")
-    public WptTrendChart getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
-        WptTrendChart chart = dao.getTrendChartData(testName, view, isUserTimingBaseLine, interval);
-        return chart;
+    public List<WptTrendMetric> getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
+        return dao.getTrendChartData(testName, view, isUserTimingBaseLine, interval);
     }
 
 

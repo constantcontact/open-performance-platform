@@ -1,288 +1,3 @@
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1946 */
-.x-tab-default-bottom.x-tab-focus.x-tab-over {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1975 */
-.x-tab-default-bottom.x-tab-focus.x-tab-active {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2001 */
-.x-tab-default-left {
-    margin: 0 0 4px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2005 */
-.x-tab-default-left.x-rtl {
-    margin: 0 0 4px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2010 */
-.x-tab-default-left.x-tab-rotate-right {
-    margin: 4px 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2014 */
-.x-tab-default-left.x-tab-rotate-right.x-rtl {
-    margin: 4px 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2032 */
-.x-tab-default-left.x-tab-focus {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2061 */
-.x-tab-default-left.x-tab-focus.x-tab-over {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2090 */
-.x-tab-default-left.x-tab-focus.x-tab-active {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2116 */
-.x-tab-button-default {
-    height: 20px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2121 */
-.x-tab-inner-default {
-    font: 400 13px/20px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
-    color: #f0f0f0;
-    max-width: 100%;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2129 */
-.x-tab-bar-plain .x-tab-inner-default {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2137 */
-.x-tab-icon-right > .x-tab-inner-default,
-.x-tab-icon-left > .x-tab-inner-default {
-    max-width: calc(100% - 20px);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2145 */
-.x-tab-icon-el-default {
-    min-height: 20px;
-    background-position: center center;
-    font-size: 20px;
-    line-height: 20px;
-    color: #f0f0f0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2146 */
-.x-tab-icon-left > .x-tab-icon-el-default,
-.x-tab-icon-right > .x-tab-icon-el-default {
-    width: 20px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2151 */
-.x-tab-icon-top > .x-tab-icon-el-default,
-.x-tab-icon-bottom > .x-tab-icon-el-default {
-    min-width: 20px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2162 */
-.x-tab-bar-plain .x-tab-icon-el-default {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2167 */
-.x-tab-icon-el-default.x-tab-glyph {
-    opacity: 0.7;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2187 */
-.x-tab-text.x-tab-icon-left > .x-tab-icon-el-default {
-    margin-right: 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2191 */
-.x-tab-text.x-tab-icon-left > .x-tab-icon-el-default.x-rtl {
-    margin-right: 0;
-    margin-left: 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2198 */
-.x-tab-text.x-tab-icon-right > .x-tab-icon-el-default {
-    margin-left: 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2202 */
-.x-tab-text.x-tab-icon-right > .x-tab-icon-el-default.x-rtl {
-    margin-left: 0;
-    margin-right: 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2209 */
-.x-tab-text.x-tab-icon-top > .x-tab-icon-el-default {
-    margin-bottom: 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2213 */
-.x-tab-text.x-tab-icon-bottom > .x-tab-icon-el-default {
-    margin-top: 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2218 */
-.x-tab-focus.x-tab-default {
-    border-color: transparent;
-    background-color: transparent;
-    outline: 1px solid #5fa2dd;
-    outline-offset: -3px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
-.x-ie .x-tab-focus.x-tab-default,
-.x-ie10p .x-tab-focus.x-tab-default,
-.x-edge .x-tab-focus.x-tab-default {
-    outline: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:40 */
-.x-ie .x-tab-focus.x-tab-default:after,
-.x-ie10p .x-tab-focus.x-tab-default:after,
-.x-edge .x-tab-focus.x-tab-default:after {
-    position: absolute;
-    content: ' ';
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-    left: 2px;
-    pointer-events: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2314 */
-.x-tab-bar-plain .x-tab-focus.x-tab-default .x-tab-inner-default {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2346 */
-.x-tab-bar-plain .x-tab-focus.x-tab-default .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2354 */
-.x-tab-over.x-tab-default {
-    border-color: #000;
-    background-image: none;
-    background-color: rgba(0, 0, 0, 0.08);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/background-opacity.scss:19 */
-.x-ie8 .x-tab-over.x-tab-default {
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#14000000, endColorstr=#14000000)";
-    zoom: 1;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2383 */
-.x-ie8 .x-tab-over.x-tab-default.x-tab-rotate-left {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2389 */
-.x-ie8 .x-tab-over.x-tab-default.x-tab-rotate-right {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2415 */
-.x-tab-bar-plain .x-tab-over.x-tab-default .x-tab-inner-default {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2446 */
-.x-tab-bar-plain .x-tab-over.x-tab-default .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2466 */
-.x-tab-focus.x-tab-over.x-tab-default {
-    border-color: #000;
-    background-image: none;
-    background-color: rgba(0, 0, 0, 0.08);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/background-opacity.scss:19 */
-.x-ie8 .x-tab-focus.x-tab-over.x-tab-default {
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#14000000, endColorstr=#14000000)";
-    zoom: 1;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2495 */
-.x-ie8 .x-tab-focus.x-tab-over.x-tab-default.x-tab-rotate-left {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2501 */
-.x-ie8 .x-tab-focus.x-tab-over.x-tab-default.x-tab-rotate-right {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2527 */
-.x-tab-bar-plain .x-tab-focus.x-tab-over.x-tab-default .x-tab-inner-default {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2558 */
-.x-tab-bar-plain .x-tab-focus.x-tab-over.x-tab-default .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2581 */
-.x-tab.x-tab-active.x-tab-default {
-    border-color: #fff;
-    background-color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2637 */
-.x-tab.x-tab-active.x-tab-default .x-tab-inner-default {
-    color: #4c82b1;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2642 */
-.x-tab-bar-plain .x-tab.x-tab-active.x-tab-default .x-tab-inner-default {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2657 */
-.x-tab.x-tab-active.x-tab-default .x-tab-icon-el {
-    color: #4c82b1;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2665 */
-.x-ie8 .x-tab.x-tab-active.x-tab-default .x-tab-icon-el {
-    color: #82a7c8;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2671 */
-.x-tab-bar-plain .x-tab.x-tab-active.x-tab-default .x-tab-icon-el {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2692 */
-.x-tab-focus.x-tab-active.x-tab-default {
-    border-color: #fff;
-    background-color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2753 */
-.x-tab-bar-plain .x-tab-focus.x-tab-active.x-tab-default .x-tab-inner-default {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2784 */
-.x-tab-bar-plain .x-tab-focus.x-tab-active.x-tab-default .x-tab-icon-el {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2808 */
-.x-tab.x-tab-disabled.x-tab-default {
-    border-color: transparent;
-    background-color: transparent;
-    cursor: default;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2868 */
-.x-tab.x-tab-disabled.x-tab-default .x-tab-inner-default {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-    opacity: 0.3;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2873 */
-.x-tab-bar-plain .x-tab.x-tab-disabled.x-tab-default .x-tab-inner-default {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2892 */
-.x-tab.x-tab-disabled.x-tab-default .x-tab-icon-el-default {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    opacity: 0.5;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2897 */
-.x-tab.x-tab-disabled.x-tab-default .x-tab-icon-el {
-    color: #f0f0f0;
-    opacity: 0.3;
-    filter: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2918 */
-.x-tab-bar-plain .x-tab.x-tab-disabled.x-tab-default .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2938 */
-.x-nbr .x-tab-default {
-    background-image: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-over .x-tab-default-top-tl,
-.x-tab-over .x-tab-default-top-bl,
-.x-tab-over .x-tab-default-top-tr,
-.x-tab-over .x-tab-default-top-br,
-.x-tab-over .x-tab-default-top-tc,
-.x-tab-over .x-tab-default-top-bc {
-    background-image: url(images/tab/tab-default-top-over-corners.gif);
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
 .x-tab-over .x-tab-default-top-ml,
 .x-tab-over .x-tab-default-top-mr {
@@ -819,150 +534,6 @@
     padding-right: 0px;
     padding-left: 16px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-top-focus-corners.gif), sides:url(images/tab/tab-default-top-focus-sides.gif), frame-bg:url(images/tab/tab-default-top-focus-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-right-focus-corners.gif), sides:url(images/tab/tab-default-right-focus-sides.gif), frame-bg:url(images/tab/tab-default-right-focus-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-bottom-focus-corners.gif), sides:url(images/tab/tab-default-bottom-focus-sides.gif), frame-bg:url(images/tab/tab-default-bottom-focus-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-left-focus-corners.gif), sides:url(images/tab/tab-default-left-focus-sides.gif), frame-bg:url(images/tab/tab-default-left-focus-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-top-over-corners.gif), sides:url(images/tab/tab-default-top-over-sides.gif), frame-bg:url(images/tab/tab-default-top-over-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-right-over-corners.gif), sides:url(images/tab/tab-default-right-over-sides.gif), frame-bg:url(images/tab/tab-default-right-over-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-bottom-over-corners.gif), sides:url(images/tab/tab-default-bottom-over-sides.gif), frame-bg:url(images/tab/tab-default-bottom-over-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-left-over-corners.gif), sides:url(images/tab/tab-default-left-over-sides.gif), frame-bg:url(images/tab/tab-default-left-over-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-top-active-corners.gif), sides:url(images/tab/tab-default-top-active-sides.gif), frame-bg:url(images/tab/tab-default-top-active-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-right-active-corners.gif), sides:url(images/tab/tab-default-right-active-sides.gif), frame-bg:url(images/tab/tab-default-right-active-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-bottom-active-corners.gif), sides:url(images/tab/tab-default-bottom-active-sides.gif), frame-bg:url(images/tab/tab-default-bottom-active-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-left-active-corners.gif), sides:url(images/tab/tab-default-left-active-sides.gif), frame-bg:url(images/tab/tab-default-left-active-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-top-focus-over-corners.gif), sides:url(images/tab/tab-default-top-focus-over-sides.gif), frame-bg:url(images/tab/tab-default-top-focus-over-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-right-focus-over-corners.gif), sides:url(images/tab/tab-default-right-focus-over-sides.gif), frame-bg:url(images/tab/tab-default-right-focus-over-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-bottom-focus-over-corners.gif), sides:url(images/tab/tab-default-bottom-focus-over-sides.gif), frame-bg:url(images/tab/tab-default-bottom-focus-over-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-left-focus-over-corners.gif), sides:url(images/tab/tab-default-left-focus-over-sides.gif), frame-bg:url(images/tab/tab-default-left-focus-over-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-top-focus-active-corners.gif), sides:url(images/tab/tab-default-top-focus-active-sides.gif), frame-bg:url(images/tab/tab-default-top-focus-active-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-right-focus-active-corners.gif), sides:url(images/tab/tab-default-right-focus-active-sides.gif), frame-bg:url(images/tab/tab-default-right-focus-active-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-bottom-focus-active-corners.gif), sides:url(images/tab/tab-default-bottom-focus-active-sides.gif), frame-bg:url(images/tab/tab-default-bottom-focus-active-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-left-focus-active-corners.gif), sides:url(images/tab/tab-default-left-focus-active-sides.gif), frame-bg:url(images/tab/tab-default-left-focus-active-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-top-disabled-corners.gif), sides:url(images/tab/tab-default-top-disabled-sides.gif), frame-bg:url(images/tab/tab-default-top-disabled-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-right-disabled-corners.gif), sides:url(images/tab/tab-default-right-disabled-sides.gif), frame-bg:url(images/tab/tab-default-right-disabled-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-bottom-disabled-corners.gif), sides:url(images/tab/tab-default-bottom-disabled-sides.gif), frame-bg:url(images/tab/tab-default-bottom-disabled-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-default-left-disabled-corners.gif), sides:url(images/tab/tab-default-left-disabled-sides.gif), frame-bg:url(images/tab/tab-default-left-disabled-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:168 */
 .x-tab-bar-default {
     background-color: #5fa2dd;
@@ -1185,30 +756,6 @@
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:586 */
 .x-box-scroller-tab-bar-default .x-ie8 .x-box-scroller-plain {
     background-color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-default-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-default-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-default-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-default-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:left" !important;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/toolbar/Breadcrumb.scss:162 */
 .x-breadcrumb-btn-default {
@@ -1582,7 +1129,6 @@
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
-    -o-border-radius: 0;
     border-radius: 0;
     padding: 7px 7px 7px 7px;
     border-width: 1px;
@@ -1600,7 +1146,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -1665,12 +1210,6 @@
 .x-btn-plain-toolbar-small-mc {
     padding: 7px 7px 7px 7px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:1px 1px 1px 1px" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-plain-toolbar-small {
     border-color: transparent;
@@ -1686,7 +1225,7 @@
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:464 */
 .x-btn-inner-plain-toolbar-small {
-    font: 400 12px/16px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+    font: 500 12px/16px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     color: #606060;
     padding: 0 5px;
     max-width: 100%;
@@ -1827,9 +1366,6 @@
 .x-btn-focus.x-btn-plain-toolbar-small {
     background-image: none;
     background-color: transparent;
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:762 */
 .x-btn-plain-toolbar-small .x-btn-arrow-el {
@@ -1855,25 +1391,12 @@
     background-image: none;
     background-color: #ececec;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:812 */
-.x-btn-focus.x-btn-over.x-btn-plain-toolbar-small {
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:840 */
 .x-btn.x-btn-menu-active.x-btn-plain-toolbar-small,
 .x-btn.x-btn-pressed.x-btn-plain-toolbar-small {
     border-color: #d2d2d2;
     background-image: none;
     background-color: #e2e2e2;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:868 */
-.x-btn-focus.x-btn-menu-active.x-btn-plain-toolbar-small,
-.x-btn-focus.x-btn-pressed.x-btn-plain-toolbar-small {
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:897 */
 .x-btn.x-btn-disabled.x-btn-plain-toolbar-small {
@@ -2110,42 +1633,6 @@
     border-width: 1px;
     border-color: #5fa2dd;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-small-focus-corners.gif), sides:url(images/btn/btn-plain-toolbar-small-focus-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-over.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-small-over-corners.gif), sides:url(images/btn/btn-plain-toolbar-small-over-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-small-focus-over-corners.gif), sides:url(images/btn/btn-plain-toolbar-small-focus-over-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-pressed.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-small-pressed-corners.gif), sides:url(images/btn/btn-plain-toolbar-small-pressed-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-small-focus-pressed-corners.gif), sides:url(images/btn/btn-plain-toolbar-small-focus-pressed-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-disabled.x-btn-plain-toolbar-small:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-small-disabled-corners.gif), sides:url(images/btn/btn-plain-toolbar-small-disabled-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:1246 */
 .x-button-plain-toolbar-small-cell > .x-grid-cell-inner {
     padding-top: 0px;
@@ -2160,7 +1647,6 @@
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
-    -o-border-radius: 0;
     border-radius: 0;
     padding: 8px 8px 8px 8px;
     border-width: 1px;
@@ -2178,7 +1664,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -2243,12 +1728,6 @@
 .x-btn-plain-toolbar-medium-mc {
     padding: 8px 8px 8px 8px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:1px 1px 1px 1px" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-plain-toolbar-medium {
     border-color: transparent;
@@ -2264,7 +1743,7 @@
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:464 */
 .x-btn-inner-plain-toolbar-medium {
-    font: 400 14px/18px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+    font: 500 14px/18px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     color: #606060;
     padding: 0 8px;
     max-width: 100%;
@@ -2405,9 +1884,6 @@
 .x-btn-focus.x-btn-plain-toolbar-medium {
     background-image: none;
     background-color: transparent;
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:762 */
 .x-btn-plain-toolbar-medium .x-btn-arrow-el {
@@ -2433,25 +1909,12 @@
     background-image: none;
     background-color: #ececec;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:812 */
-.x-btn-focus.x-btn-over.x-btn-plain-toolbar-medium {
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:840 */
 .x-btn.x-btn-menu-active.x-btn-plain-toolbar-medium,
 .x-btn.x-btn-pressed.x-btn-plain-toolbar-medium {
     border-color: #d2d2d2;
     background-image: none;
     background-color: #e2e2e2;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:868 */
-.x-btn-focus.x-btn-menu-active.x-btn-plain-toolbar-medium,
-.x-btn-focus.x-btn-pressed.x-btn-plain-toolbar-medium {
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:897 */
 .x-btn.x-btn-disabled.x-btn-plain-toolbar-medium {
@@ -2688,42 +2151,6 @@
     border-width: 1px;
     border-color: #5fa2dd;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-medium-focus-corners.gif), sides:url(images/btn/btn-plain-toolbar-medium-focus-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-over.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-medium-over-corners.gif), sides:url(images/btn/btn-plain-toolbar-medium-over-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-medium-focus-over-corners.gif), sides:url(images/btn/btn-plain-toolbar-medium-focus-over-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-pressed.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-medium-pressed-corners.gif), sides:url(images/btn/btn-plain-toolbar-medium-pressed-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-medium-focus-pressed-corners.gif), sides:url(images/btn/btn-plain-toolbar-medium-focus-pressed-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-disabled.x-btn-plain-toolbar-medium:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-medium-disabled-corners.gif), sides:url(images/btn/btn-plain-toolbar-medium-disabled-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:1246 */
 .x-button-plain-toolbar-medium-cell > .x-grid-cell-inner {
     padding-top: 0;
@@ -2738,7 +2165,6 @@
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
-    -o-border-radius: 0;
     border-radius: 0;
     padding: 9px 9px 9px 9px;
     border-width: 1px;
@@ -2756,7 +2182,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -2821,12 +2246,6 @@
 .x-btn-plain-toolbar-large-mc {
     padding: 9px 9px 9px 9px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:1px 1px 1px 1px" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-plain-toolbar-large {
     border-color: transparent;
@@ -2842,7 +2261,7 @@
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:464 */
 .x-btn-inner-plain-toolbar-large {
-    font: 400 16px/20px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+    font: 500 16px/20px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     color: #606060;
     padding: 0 10px;
     max-width: 100%;
@@ -2983,9 +2402,6 @@
 .x-btn-focus.x-btn-plain-toolbar-large {
     background-image: none;
     background-color: transparent;
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:762 */
 .x-btn-plain-toolbar-large .x-btn-arrow-el {
@@ -3011,25 +2427,12 @@
     background-image: none;
     background-color: #ececec;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:812 */
-.x-btn-focus.x-btn-over.x-btn-plain-toolbar-large {
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:840 */
 .x-btn.x-btn-menu-active.x-btn-plain-toolbar-large,
 .x-btn.x-btn-pressed.x-btn-plain-toolbar-large {
     border-color: #d2d2d2;
     background-image: none;
     background-color: #e2e2e2;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:868 */
-.x-btn-focus.x-btn-menu-active.x-btn-plain-toolbar-large,
-.x-btn-focus.x-btn-pressed.x-btn-plain-toolbar-large {
-    -webkit-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    -moz-box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
-    box-shadow: #5fa2dd 0 1px 0px 0 inset, #5fa2dd 0 -1px 0px 0 inset, #5fa2dd -1px 0 0px 0 inset, #5fa2dd 1px 0 0px 0 inset;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:897 */
 .x-btn.x-btn-disabled.x-btn-plain-toolbar-large {
@@ -3266,42 +2669,6 @@
     border-width: 1px;
     border-color: #5fa2dd;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-large-focus-corners.gif), sides:url(images/btn/btn-plain-toolbar-large-focus-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-over.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-large-over-corners.gif), sides:url(images/btn/btn-plain-toolbar-large-over-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-large-focus-over-corners.gif), sides:url(images/btn/btn-plain-toolbar-large-focus-over-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-pressed.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-large-pressed-corners.gif), sides:url(images/btn/btn-plain-toolbar-large-pressed-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-large-focus-pressed-corners.gif), sides:url(images/btn/btn-plain-toolbar-large-focus-pressed-sides.gif)" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-btn-disabled.x-btn-plain-toolbar-large:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom, frame:2px 2px 2px 2px, corners:url(images/btn/btn-plain-toolbar-large-disabled-corners.gif), sides:url(images/btn/btn-plain-toolbar-large-disabled-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/button/Button.scss:1246 */
 .x-button-plain-toolbar-large-cell > .x-grid-cell-inner {
     padding-top: 0;
@@ -3400,7 +2767,7 @@
 .x-panel-header-title-light {
     color: #606060;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     line-height: 20px;
 }
@@ -3457,7 +2824,7 @@
     border-color: #d0d0d0;
     color: #404040;
     font-size: 13px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     border-width: 1px;
     border-style: solid;
@@ -3492,30 +2859,6 @@
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:750 */
 .x-panel .x-panel-header-light-collapsed-border-left {
     border-right-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:left" !important;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:786 */
 .x-panel-header-light-horizontal .x-tool-after-title {
@@ -3764,7 +3107,7 @@
 .x-panel-header-title-light-framed {
     color: #606060;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     line-height: 20px;
 }
@@ -3821,7 +3164,7 @@
     border-color: #d0d0d0;
     color: #404040;
     font-size: 13px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     border-width: 1px;
     border-style: solid;
@@ -3856,7 +3199,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -3938,12 +3280,6 @@
 .x-panel-light-framed-mc {
     padding: 0px 0px 0px 0px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-light-framed:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 2px 2px, corners:url(images/panel/panel-light-framed-corners.gif), sides:url(images/panel/panel-light-framed-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-top {
     -moz-border-radius-topleft: 0;
@@ -3974,7 +3310,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4056,12 +3391,6 @@
 .x-panel-header-light-framed-top-mc {
     padding: 10px 14px 10px 14px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 0 2px, corners:url(images/panel-header/panel-header-light-framed-top-corners.gif), sides:url(images/panel-header/panel-header-light-framed-top-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-right {
     -moz-border-radius-topleft: 0;
@@ -4097,7 +3426,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4188,12 +3516,6 @@
 .x-panel-header-light-framed-right-mc {
     padding: 14px 10px 14px 10px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 2px 0, corners:url(images/panel-header/panel-header-light-framed-right-corners.gif), corners-rtl:url(images/panel-header/panel-header-light-framed-right-corners-rtl.gif), sides:url(images/panel-header/panel-header-light-framed-right-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-bottom {
     -moz-border-radius-topleft: 0;
@@ -4224,7 +3546,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4306,12 +3627,6 @@
 .x-panel-header-light-framed-bottom-mc {
     padding: 10px 14px 10px 14px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:0 2px 2px 2px, corners:url(images/panel-header/panel-header-light-framed-bottom-corners.gif), sides:url(images/panel-header/panel-header-light-framed-bottom-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-left {
     -moz-border-radius-topleft: 0;
@@ -4347,7 +3662,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4438,12 +3752,6 @@
 .x-panel-header-light-framed-left-mc {
     padding: 14px 10px 14px 10px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 0 2px 2px, corners:url(images/panel-header/panel-header-light-framed-left-corners.gif), corners-rtl:url(images/panel-header/panel-header-light-framed-left-corners-rtl.gif), sides:url(images/panel-header/panel-header-light-framed-left-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-collapsed-top {
     -moz-border-radius-topleft: 0;
@@ -4474,7 +3782,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4556,12 +3863,6 @@
 .x-panel-header-light-framed-collapsed-top-mc {
     padding: 10px 14px 10px 14px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-collapsed-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 2px 2px, corners:url(images/panel-header/panel-header-light-framed-collapsed-top-corners.gif), sides:url(images/panel-header/panel-header-light-framed-collapsed-top-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-collapsed-right {
     -moz-border-radius-topleft: 0;
@@ -4597,7 +3898,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4688,12 +3988,6 @@
 .x-panel-header-light-framed-collapsed-right-mc {
     padding: 14px 10px 14px 10px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-collapsed-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 2px 2px, corners:url(images/panel-header/panel-header-light-framed-collapsed-right-corners.gif), corners-rtl:url(images/panel-header/panel-header-light-framed-collapsed-right-corners-rtl.gif), sides:url(images/panel-header/panel-header-light-framed-collapsed-right-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-collapsed-bottom {
     -moz-border-radius-topleft: 0;
@@ -4724,7 +4018,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4806,12 +4099,6 @@
 .x-panel-header-light-framed-collapsed-bottom-mc {
     padding: 10px 14px 10px 14px;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-collapsed-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 2px 2px, corners:url(images/panel-header/panel-header-light-framed-collapsed-bottom-corners.gif), sides:url(images/panel-header/panel-header-light-framed-collapsed-bottom-sides.gif)" !important;
-}
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-panel-header-light-framed-collapsed-left {
     -moz-border-radius-topleft: 0;
@@ -4847,7 +4134,6 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
-    -o-border-radius: 0px;
     border-radius: 0px;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -4937,12 +4223,6 @@
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:464 */
 .x-panel-header-light-framed-collapsed-left-mc {
     padding: 14px 10px 14px 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-light-framed-collapsed-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:2px 2px 2px 2px, corners:url(images/panel-header/panel-header-light-framed-collapsed-left-corners.gif), corners-rtl:url(images/panel-header/panel-header-light-framed-collapsed-left-corners-rtl.gif), sides:url(images/panel-header/panel-header-light-framed-collapsed-left-sides.gif)" !important;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:638 */
 .x-panel .x-panel-header-light-framed-top {
@@ -8127,7 +7407,7 @@
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-triton/sass/src/menu/Menu.scss:1 */
 .x-menu-item-active .x-menu-item-text {
-    font-weight: 400;
+    font-weight: 500;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-triton/sass/src/tab/Tab.scss:1 */
 .x-tab-close-btn:before {
@@ -8135,12 +7415,6 @@
     width: 16px;
     line-height: 16px;
     text-align: center;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-triton/sass/src/window/Toast.scss:1 */
-.x-toast {
-    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
-    box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/charts/sass/src/draw/Surface.scss:1 */
 .x-surface {
@@ -8235,7 +7509,7 @@
     font-size: 13px;
     font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     line-height: 13px;
-    font-weight: 300;
+    font-weight: 400;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -8250,9 +7524,6 @@
     position: absolute;
     width: 0.8em;
     height: 0.8em;
-    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0, rgba(0, 0, 0, 0.4) 0 1px 0 inset;
-    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0, rgba(0, 0, 0, 0.4) 0 1px 0 inset;
-    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0, rgba(0, 0, 0, 0.4) 0 1px 0 inset;
     left: 0.7em;
     top: 0.85em;
 }
@@ -8281,9 +7552,6 @@
     white-space: nowrap;
     line-height: 0;
     background: #fff;
-    -webkit-box-shadow: rgba(255, 255, 255, 0.6) 0 1px 1px;
-    -moz-box-shadow: rgba(255, 255, 255, 0.6) 0 1px 1px;
-    box-shadow: rgba(255, 255, 255, 0.6) 0 1px 1px;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/charts/classic/sass/src/chart/AbstractChart.scss:1 */
 .x-chart-image {
@@ -8305,7 +7573,7 @@
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/ux/sass/var/Gauge.scss:36 */
 .x-gauge .x-gauge-value {
-    fill: #7fb5e4;
+    fill: #458fd2;
     fill-opacity: 1;
     stroke: none;
     stroke-opacity: 1;
@@ -8817,7 +8085,7 @@ tr.x-grid-subtable-row {
 .x-grid-subtable-header {
     border: 1px solid #d0d0d0;
     color: #404040;
-    font: 400 13px/19px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+    font: 500 13px/19px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
     background-image: none;
     background-color: #fff;
     padding: 6px 10px 5px 10px;
@@ -8895,2070 +8163,366 @@ tr.x-grid-subtable-row {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     opacity: 1;
 }
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
-.x-tab-navigation-top {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -ms-border-radius: 0;
-    -o-border-radius: 0;
-    border-radius: 0;
-    padding: 24px 24px 24px 24px;
-    border-width: 0;
-    border-style: solid;
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
-.x-tab-navigation-top-mc {
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
-.x-nbr .x-tab-navigation-top {
-    padding: 0 !important;
-    border-width: 0 !important;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:281 */
-.x-tab-navigation-top-frameInfo {
-    font-family: th-0-0-0-0-0-0-0-0-24-24-24-24;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:347 */
-.x-tab-navigation-top-tl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:351 */
-.x-tab-navigation-top-tr {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:355 */
-.x-tab-navigation-top-bl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:359 */
-.x-tab-navigation-top-br {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:363 */
-.x-tab-navigation-top-ml {
-    background-position: 0 top;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:371 */
-.x-tab-navigation-top-mr {
-    background-position: right top;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:379 */
-.x-tab-navigation-top-tc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:383 */
-.x-tab-navigation-top-bc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:388 */
-.x-tab-navigation-top-tr,
-.x-tab-navigation-top-br,
-.x-tab-navigation-top-mr {
-    padding-right: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:394 */
-.x-tab-navigation-top-tl,
-.x-tab-navigation-top-bl,
-.x-tab-navigation-top-ml {
-    padding-left: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:400 */
-.x-tab-navigation-top-tc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:403 */
-.x-tab-navigation-top-bc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:464 */
-.x-tab-navigation-top-mc {
-    padding: 24px 24px 24px 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:0 0 0 0" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
-.x-tab-navigation-bottom {
-    -moz-border-radius-topleft: 0;
-    -webkit-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -webkit-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-    -moz-border-radius-bottomright: 0;
-    -webkit-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-    -moz-border-radius-bottomleft: 0;
-    -webkit-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding: 24px 24px 24px 24px;
-    border-width: 0 0 0 0;
-    border-style: solid;
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
-.x-tab-navigation-bottom-mc {
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
-.x-nbr .x-tab-navigation-bottom {
-    padding: 0 !important;
-    border-width: 0 !important;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:281 */
-.x-tab-navigation-bottom-frameInfo {
-    font-family: th-0-0-0-0-0-0-0-0-24-24-24-24;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:347 */
-.x-tab-navigation-bottom-tl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:351 */
-.x-tab-navigation-bottom-tr {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:355 */
-.x-tab-navigation-bottom-bl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:359 */
-.x-tab-navigation-bottom-br {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:363 */
-.x-tab-navigation-bottom-ml {
-    background-position: 0 bottom;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:371 */
-.x-tab-navigation-bottom-mr {
-    background-position: right bottom;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:379 */
-.x-tab-navigation-bottom-tc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:383 */
-.x-tab-navigation-bottom-bc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:388 */
-.x-tab-navigation-bottom-tr,
-.x-tab-navigation-bottom-br,
-.x-tab-navigation-bottom-mr {
-    padding-right: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:394 */
-.x-tab-navigation-bottom-tl,
-.x-tab-navigation-bottom-bl,
-.x-tab-navigation-bottom-ml {
-    padding-left: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:400 */
-.x-tab-navigation-bottom-tc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:403 */
-.x-tab-navigation-bottom-bc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:464 */
-.x-tab-navigation-bottom-mc {
-    padding: 24px 24px 24px 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:0 0 0 0" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
-.x-tab-navigation-left {
-    -moz-border-radius-topleft: 0;
-    -webkit-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -webkit-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-    -moz-border-radius-bottomright: 0;
-    -webkit-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-    -moz-border-radius-bottomleft: 0;
-    -webkit-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding: 24px 24px 24px 24px;
-    border-width: 0 0 0 0;
-    border-style: solid;
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
-.x-tab-navigation-left-mc {
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
-.x-nbr .x-tab-navigation-left {
-    padding: 0 !important;
-    border-width: 0 !important;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:281 */
-.x-tab-navigation-left-frameInfo {
-    font-family: th-0-0-0-0-0-0-0-0-24-24-24-24;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:347 */
-.x-tab-navigation-left-tl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:351 */
-.x-tab-navigation-left-tr {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:355 */
-.x-tab-navigation-left-bl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:359 */
-.x-tab-navigation-left-br {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:363 */
-.x-tab-navigation-left-ml {
-    background-position: 0 top;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:371 */
-.x-tab-navigation-left-mr {
-    background-position: right top;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:379 */
-.x-tab-navigation-left-tc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:383 */
-.x-tab-navigation-left-bc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:388 */
-.x-tab-navigation-left-tr,
-.x-tab-navigation-left-br,
-.x-tab-navigation-left-mr {
-    padding-right: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:394 */
-.x-tab-navigation-left-tl,
-.x-tab-navigation-left-bl,
-.x-tab-navigation-left-ml {
-    padding-left: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:400 */
-.x-tab-navigation-left-tc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:403 */
-.x-tab-navigation-left-bc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:464 */
-.x-tab-navigation-left-mc {
-    padding: 24px 24px 24px 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:0 0 0 0" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
-.x-tab-navigation-right {
-    -moz-border-radius-topleft: 0;
-    -webkit-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -webkit-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-    -moz-border-radius-bottomright: 0;
-    -webkit-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-    -moz-border-radius-bottomleft: 0;
-    -webkit-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding: 24px 24px 24px 24px;
-    border-width: 0 0 0 0;
-    border-style: solid;
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
-.x-tab-navigation-right-mc {
-    background-color: transparent;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
-.x-nbr .x-tab-navigation-right {
-    padding: 0 !important;
-    border-width: 0 !important;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:281 */
-.x-tab-navigation-right-frameInfo {
-    font-family: th-0-0-0-0-0-0-0-0-24-24-24-24;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:347 */
-.x-tab-navigation-right-tl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:351 */
-.x-tab-navigation-right-tr {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:355 */
-.x-tab-navigation-right-bl {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:359 */
-.x-tab-navigation-right-br {
-    background-position: right 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:363 */
-.x-tab-navigation-right-ml {
-    background-position: 0 top;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:371 */
-.x-tab-navigation-right-mr {
-    background-position: right top;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:379 */
-.x-tab-navigation-right-tc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:383 */
-.x-tab-navigation-right-bc {
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:388 */
-.x-tab-navigation-right-tr,
-.x-tab-navigation-right-br,
-.x-tab-navigation-right-mr {
-    padding-right: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:394 */
-.x-tab-navigation-right-tl,
-.x-tab-navigation-right-bl,
-.x-tab-navigation-right-ml {
-    padding-left: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:400 */
-.x-tab-navigation-right-tc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:403 */
-.x-tab-navigation-right-bc {
-    height: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/frame.scss:464 */
-.x-tab-navigation-right-mc {
-    padding: 24px 24px 24px 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, frame:0 0 0 0" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1597 */
-.x-tab-navigation {
-    border-color: transparent;
-    cursor: pointer;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1656 */
-.x-tab-navigation-top {
-    margin: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1660 */
-.x-tab-navigation-top.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1665 */
-.x-tab-navigation-top.x-tab-rotate-left {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1669 */
-.x-tab-navigation-top.x-tab-rotate-left.x-rtl {
-    margin: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1687 */
-.x-tab-navigation-top.x-tab-focus {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1716 */
-.x-tab-navigation-top.x-tab-focus.x-tab-over {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1745 */
-.x-tab-navigation-top.x-tab-focus.x-tab-active {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1771 */
-.x-tab-navigation-right {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1775 */
-.x-tab-navigation-right.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1780 */
-.x-tab-navigation-right.x-tab-rotate-right {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1784 */
-.x-tab-navigation-right.x-tab-rotate-right.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1802 */
-.x-tab-navigation-right.x-tab-focus {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1831 */
-.x-tab-navigation-right.x-tab-focus.x-tab-over {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1860 */
-.x-tab-navigation-right.x-tab-focus.x-tab-active {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1886 */
-.x-tab-navigation-bottom {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1890 */
-.x-tab-navigation-bottom.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1895 */
-.x-tab-navigation-bottom.x-tab-rotate-left {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1899 */
-.x-tab-navigation-bottom.x-tab-rotate-left.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1917 */
-.x-tab-navigation-bottom.x-tab-focus {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1946 */
-.x-tab-navigation-bottom.x-tab-focus.x-tab-over {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:1975 */
-.x-tab-navigation-bottom.x-tab-focus.x-tab-active {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2001 */
-.x-tab-navigation-left {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2005 */
-.x-tab-navigation-left.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2010 */
-.x-tab-navigation-left.x-tab-rotate-right {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2014 */
-.x-tab-navigation-left.x-tab-rotate-right.x-rtl {
-    margin: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2032 */
-.x-tab-navigation-left.x-tab-focus {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2061 */
-.x-tab-navigation-left.x-tab-focus.x-tab-over {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2090 */
-.x-tab-navigation-left.x-tab-focus.x-tab-active {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2116 */
-.x-tab-button-navigation {
-    height: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2121 */
-.x-tab-inner-navigation {
-    font: bold 15px/19px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
-    color: #acacac;
-    max-width: 100%;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2137 */
-.x-tab-icon-right > .x-tab-inner-navigation,
-.x-tab-icon-left > .x-tab-inner-navigation {
-    max-width: calc(100% - 24px);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2145 */
-.x-tab-icon-el-navigation {
-    min-height: 24px;
-    background-position: center center;
-    font-size: 24px;
-    line-height: 24px;
-    color: #acacac;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2146 */
-.x-tab-icon-left > .x-tab-icon-el-navigation,
-.x-tab-icon-right > .x-tab-icon-el-navigation {
-    width: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2151 */
-.x-tab-icon-top > .x-tab-icon-el-navigation,
-.x-tab-icon-bottom > .x-tab-icon-el-navigation {
-    min-width: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2162 */
-.x-tab-bar-plain .x-tab-icon-el-navigation {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2187 */
-.x-tab-text.x-tab-icon-left > .x-tab-icon-el-navigation {
-    margin-right: 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2191 */
-.x-tab-text.x-tab-icon-left > .x-tab-icon-el-navigation.x-rtl {
-    margin-right: 0;
-    margin-left: 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2198 */
-.x-tab-text.x-tab-icon-right > .x-tab-icon-el-navigation {
-    margin-left: 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2202 */
-.x-tab-text.x-tab-icon-right > .x-tab-icon-el-navigation.x-rtl {
-    margin-left: 0;
-    margin-right: 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2209 */
-.x-tab-text.x-tab-icon-top > .x-tab-icon-el-navigation {
-    margin-bottom: 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2213 */
-.x-tab-text.x-tab-icon-bottom > .x-tab-icon-el-navigation {
-    margin-top: 10px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2218 */
-.x-tab-focus.x-tab-navigation {
-    border-color: transparent;
-    background-color: transparent;
-    outline: 1px solid #5fa2dd;
-    outline-offset: -3px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
-.x-ie .x-tab-focus.x-tab-navigation,
-.x-ie10p .x-tab-focus.x-tab-navigation,
-.x-edge .x-tab-focus.x-tab-navigation {
-    outline: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:40 */
-.x-ie .x-tab-focus.x-tab-navigation:after,
-.x-ie10p .x-tab-focus.x-tab-navigation:after,
-.x-edge .x-tab-focus.x-tab-navigation:after {
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:10 */
+.nav-tree-badge:after {
     position: absolute;
-    content: ' ';
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-    left: 2px;
-    pointer-events: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2314 */
-.x-tab-bar-plain .x-tab-focus.x-tab-navigation .x-tab-inner-navigation {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2346 */
-.x-tab-bar-plain .x-tab-focus.x-tab-navigation .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2354 */
-.x-tab-over.x-tab-navigation {
-    border-color: #000;
-    background-image: none;
-    background-color: rgba(80, 80, 80, 0.08);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/background-opacity.scss:19 */
-.x-ie8 .x-tab-over.x-tab-navigation {
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#14505050, endColorstr=#14505050)";
-    zoom: 1;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2383 */
-.x-ie8 .x-tab-over.x-tab-navigation.x-tab-rotate-left {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2389 */
-.x-ie8 .x-tab-over.x-tab-navigation.x-tab-rotate-right {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2410 */
-.x-tab-over.x-tab-navigation .x-tab-inner-navigation {
-    color: #c4c4c4;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2415 */
-.x-tab-bar-plain .x-tab-over.x-tab-navigation .x-tab-inner-navigation {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2430 */
-.x-tab-over.x-tab-navigation .x-tab-icon-el {
-    color: #c4c4c4;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2439 */
-.x-ie8m .x-tab-over.x-tab-navigation .x-tab-icon-el {
-    color: #c4c4c4;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2446 */
-.x-tab-bar-plain .x-tab-over.x-tab-navigation .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2466 */
-.x-tab-focus.x-tab-over.x-tab-navigation {
-    border-color: #000;
-    background-image: none;
-    background-color: rgba(80, 80, 80, 0.08);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/background-opacity.scss:19 */
-.x-ie8 .x-tab-focus.x-tab-over.x-tab-navigation {
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#14505050, endColorstr=#14505050)";
-    zoom: 1;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2495 */
-.x-ie8 .x-tab-focus.x-tab-over.x-tab-navigation.x-tab-rotate-left {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2501 */
-.x-ie8 .x-tab-focus.x-tab-over.x-tab-navigation.x-tab-rotate-right {
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2527 */
-.x-tab-bar-plain .x-tab-focus.x-tab-over.x-tab-navigation .x-tab-inner-navigation {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2558 */
-.x-tab-bar-plain .x-tab-focus.x-tab-over.x-tab-navigation .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2581 */
-.x-tab.x-tab-active.x-tab-navigation {
-    border-color: #fff;
-    background-color: #303030;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2637 */
-.x-tab.x-tab-active.x-tab-navigation .x-tab-inner-navigation {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2642 */
-.x-tab-bar-plain .x-tab.x-tab-active.x-tab-navigation .x-tab-inner-navigation {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2657 */
-.x-tab.x-tab-active.x-tab-navigation .x-tab-icon-el {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2665 */
-.x-ie8 .x-tab.x-tab-active.x-tab-navigation .x-tab-icon-el {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2671 */
-.x-tab-bar-plain .x-tab.x-tab-active.x-tab-navigation .x-tab-icon-el {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2692 */
-.x-tab-focus.x-tab-active.x-tab-navigation {
-    border-color: #fff;
-    background-color: #303030;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2753 */
-.x-tab-bar-plain .x-tab-focus.x-tab-active.x-tab-navigation .x-tab-inner-navigation {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2784 */
-.x-tab-bar-plain .x-tab-focus.x-tab-active.x-tab-navigation .x-tab-icon-el {
-    color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2808 */
-.x-tab.x-tab-disabled.x-tab-navigation {
-    border-color: transparent;
-    background-color: transparent;
-    cursor: default;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2868 */
-.x-tab.x-tab-disabled.x-tab-navigation .x-tab-inner-navigation {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-    opacity: 0.3;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2873 */
-.x-tab-bar-plain .x-tab.x-tab-disabled.x-tab-navigation .x-tab-inner-navigation {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2892 */
-.x-tab.x-tab-disabled.x-tab-navigation .x-tab-icon-el-navigation {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    opacity: 0.5;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2897 */
-.x-tab.x-tab-disabled.x-tab-navigation .x-tab-icon-el {
-    color: #acacac;
-    opacity: 0.3;
-    filter: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2918 */
-.x-tab-bar-plain .x-tab.x-tab-disabled.x-tab-navigation .x-tab-icon-el {
-    color: #606060;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2938 */
-.x-nbr .x-tab-navigation {
-    background-image: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-over .x-tab-navigation-top-tl,
-.x-tab-over .x-tab-navigation-top-bl,
-.x-tab-over .x-tab-navigation-top-tr,
-.x-tab-over .x-tab-navigation-top-br,
-.x-tab-over .x-tab-navigation-top-tc,
-.x-tab-over .x-tab-navigation-top-bc {
-    background-image: url(images/tab/tab-navigation-top-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-over .x-tab-navigation-top-ml,
-.x-tab-over .x-tab-navigation-top-mr {
-    background-image: url(images/tab/tab-navigation-top-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-over .x-tab-navigation-top-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-top-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus .x-tab-navigation-top-tl,
-.x-tab-focus .x-tab-navigation-top-bl,
-.x-tab-focus .x-tab-navigation-top-tr,
-.x-tab-focus .x-tab-navigation-top-br,
-.x-tab-focus .x-tab-navigation-top-tc,
-.x-tab-focus .x-tab-navigation-top-bc {
-    background-image: url(images/tab/tab-navigation-top-focus-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus .x-tab-navigation-top-ml,
-.x-tab-focus .x-tab-navigation-top-mr {
-    background-image: url(images/tab/tab-navigation-top-focus-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus .x-tab-navigation-top-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-top-focus-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-over .x-tab-navigation-top-tl,
-.x-tab-focus.x-tab-over .x-tab-navigation-top-bl,
-.x-tab-focus.x-tab-over .x-tab-navigation-top-tr,
-.x-tab-focus.x-tab-over .x-tab-navigation-top-br,
-.x-tab-focus.x-tab-over .x-tab-navigation-top-tc,
-.x-tab-focus.x-tab-over .x-tab-navigation-top-bc {
-    background-image: url(images/tab/tab-navigation-top-focus-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-over .x-tab-navigation-top-ml,
-.x-tab-focus.x-tab-over .x-tab-navigation-top-mr {
-    background-image: url(images/tab/tab-navigation-top-focus-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-over .x-tab-navigation-top-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-top-focus-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-active .x-tab-navigation-top-tl,
-.x-tab.x-tab-active .x-tab-navigation-top-bl,
-.x-tab.x-tab-active .x-tab-navigation-top-tr,
-.x-tab.x-tab-active .x-tab-navigation-top-br,
-.x-tab.x-tab-active .x-tab-navigation-top-tc,
-.x-tab.x-tab-active .x-tab-navigation-top-bc {
-    background-image: url(images/tab/tab-navigation-top-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-active .x-tab-navigation-top-ml,
-.x-tab.x-tab-active .x-tab-navigation-top-mr {
-    background-image: url(images/tab/tab-navigation-top-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-active .x-tab-navigation-top-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-top-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-active .x-tab-navigation-top-tl,
-.x-tab-focus.x-tab-active .x-tab-navigation-top-bl,
-.x-tab-focus.x-tab-active .x-tab-navigation-top-tr,
-.x-tab-focus.x-tab-active .x-tab-navigation-top-br,
-.x-tab-focus.x-tab-active .x-tab-navigation-top-tc,
-.x-tab-focus.x-tab-active .x-tab-navigation-top-bc {
-    background-image: url(images/tab/tab-navigation-top-focus-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-active .x-tab-navigation-top-ml,
-.x-tab-focus.x-tab-active .x-tab-navigation-top-mr {
-    background-image: url(images/tab/tab-navigation-top-focus-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-active .x-tab-navigation-top-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-top-focus-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-disabled .x-tab-navigation-top-tl,
-.x-tab.x-tab-disabled .x-tab-navigation-top-bl,
-.x-tab.x-tab-disabled .x-tab-navigation-top-tr,
-.x-tab.x-tab-disabled .x-tab-navigation-top-br,
-.x-tab.x-tab-disabled .x-tab-navigation-top-tc,
-.x-tab.x-tab-disabled .x-tab-navigation-top-bc {
-    background-image: url(images/tab/tab-navigation-top-disabled-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-disabled .x-tab-navigation-top-ml,
-.x-tab.x-tab-disabled .x-tab-navigation-top-mr {
-    background-image: url(images/tab/tab-navigation-top-disabled-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-disabled .x-tab-navigation-top-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-top-disabled-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-over .x-tab-navigation-right-tl,
-.x-tab-over .x-tab-navigation-right-bl,
-.x-tab-over .x-tab-navigation-right-tr,
-.x-tab-over .x-tab-navigation-right-br,
-.x-tab-over .x-tab-navigation-right-tc,
-.x-tab-over .x-tab-navigation-right-bc {
-    background-image: url(images/tab/tab-navigation-right-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-over .x-tab-navigation-right-ml,
-.x-tab-over .x-tab-navigation-right-mr {
-    background-image: url(images/tab/tab-navigation-right-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-over .x-tab-navigation-right-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-right-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus .x-tab-navigation-right-tl,
-.x-tab-focus .x-tab-navigation-right-bl,
-.x-tab-focus .x-tab-navigation-right-tr,
-.x-tab-focus .x-tab-navigation-right-br,
-.x-tab-focus .x-tab-navigation-right-tc,
-.x-tab-focus .x-tab-navigation-right-bc {
-    background-image: url(images/tab/tab-navigation-right-focus-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus .x-tab-navigation-right-ml,
-.x-tab-focus .x-tab-navigation-right-mr {
-    background-image: url(images/tab/tab-navigation-right-focus-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus .x-tab-navigation-right-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-right-focus-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-over .x-tab-navigation-right-tl,
-.x-tab-focus.x-tab-over .x-tab-navigation-right-bl,
-.x-tab-focus.x-tab-over .x-tab-navigation-right-tr,
-.x-tab-focus.x-tab-over .x-tab-navigation-right-br,
-.x-tab-focus.x-tab-over .x-tab-navigation-right-tc,
-.x-tab-focus.x-tab-over .x-tab-navigation-right-bc {
-    background-image: url(images/tab/tab-navigation-right-focus-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-over .x-tab-navigation-right-ml,
-.x-tab-focus.x-tab-over .x-tab-navigation-right-mr {
-    background-image: url(images/tab/tab-navigation-right-focus-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-over .x-tab-navigation-right-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-right-focus-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-active .x-tab-navigation-right-tl,
-.x-tab.x-tab-active .x-tab-navigation-right-bl,
-.x-tab.x-tab-active .x-tab-navigation-right-tr,
-.x-tab.x-tab-active .x-tab-navigation-right-br,
-.x-tab.x-tab-active .x-tab-navigation-right-tc,
-.x-tab.x-tab-active .x-tab-navigation-right-bc {
-    background-image: url(images/tab/tab-navigation-right-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-active .x-tab-navigation-right-ml,
-.x-tab.x-tab-active .x-tab-navigation-right-mr {
-    background-image: url(images/tab/tab-navigation-right-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-active .x-tab-navigation-right-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-right-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-active .x-tab-navigation-right-tl,
-.x-tab-focus.x-tab-active .x-tab-navigation-right-bl,
-.x-tab-focus.x-tab-active .x-tab-navigation-right-tr,
-.x-tab-focus.x-tab-active .x-tab-navigation-right-br,
-.x-tab-focus.x-tab-active .x-tab-navigation-right-tc,
-.x-tab-focus.x-tab-active .x-tab-navigation-right-bc {
-    background-image: url(images/tab/tab-navigation-right-focus-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-active .x-tab-navigation-right-ml,
-.x-tab-focus.x-tab-active .x-tab-navigation-right-mr {
-    background-image: url(images/tab/tab-navigation-right-focus-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-active .x-tab-navigation-right-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-right-focus-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-disabled .x-tab-navigation-right-tl,
-.x-tab.x-tab-disabled .x-tab-navigation-right-bl,
-.x-tab.x-tab-disabled .x-tab-navigation-right-tr,
-.x-tab.x-tab-disabled .x-tab-navigation-right-br,
-.x-tab.x-tab-disabled .x-tab-navigation-right-tc,
-.x-tab.x-tab-disabled .x-tab-navigation-right-bc {
-    background-image: url(images/tab/tab-navigation-right-disabled-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-disabled .x-tab-navigation-right-ml,
-.x-tab.x-tab-disabled .x-tab-navigation-right-mr {
-    background-image: url(images/tab/tab-navigation-right-disabled-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-disabled .x-tab-navigation-right-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-right-disabled-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-over .x-tab-navigation-bottom-tl,
-.x-tab-over .x-tab-navigation-bottom-bl,
-.x-tab-over .x-tab-navigation-bottom-tr,
-.x-tab-over .x-tab-navigation-bottom-br,
-.x-tab-over .x-tab-navigation-bottom-tc,
-.x-tab-over .x-tab-navigation-bottom-bc {
-    background-image: url(images/tab/tab-navigation-bottom-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-over .x-tab-navigation-bottom-ml,
-.x-tab-over .x-tab-navigation-bottom-mr {
-    background-image: url(images/tab/tab-navigation-bottom-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-over .x-tab-navigation-bottom-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-bottom-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus .x-tab-navigation-bottom-tl,
-.x-tab-focus .x-tab-navigation-bottom-bl,
-.x-tab-focus .x-tab-navigation-bottom-tr,
-.x-tab-focus .x-tab-navigation-bottom-br,
-.x-tab-focus .x-tab-navigation-bottom-tc,
-.x-tab-focus .x-tab-navigation-bottom-bc {
-    background-image: url(images/tab/tab-navigation-bottom-focus-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus .x-tab-navigation-bottom-ml,
-.x-tab-focus .x-tab-navigation-bottom-mr {
-    background-image: url(images/tab/tab-navigation-bottom-focus-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus .x-tab-navigation-bottom-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-bottom-focus-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-tl,
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-bl,
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-tr,
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-br,
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-tc,
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-bc {
-    background-image: url(images/tab/tab-navigation-bottom-focus-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-ml,
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-mr {
-    background-image: url(images/tab/tab-navigation-bottom-focus-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-over .x-tab-navigation-bottom-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-bottom-focus-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-active .x-tab-navigation-bottom-tl,
-.x-tab.x-tab-active .x-tab-navigation-bottom-bl,
-.x-tab.x-tab-active .x-tab-navigation-bottom-tr,
-.x-tab.x-tab-active .x-tab-navigation-bottom-br,
-.x-tab.x-tab-active .x-tab-navigation-bottom-tc,
-.x-tab.x-tab-active .x-tab-navigation-bottom-bc {
-    background-image: url(images/tab/tab-navigation-bottom-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-active .x-tab-navigation-bottom-ml,
-.x-tab.x-tab-active .x-tab-navigation-bottom-mr {
-    background-image: url(images/tab/tab-navigation-bottom-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-active .x-tab-navigation-bottom-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-bottom-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-tl,
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-bl,
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-tr,
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-br,
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-tc,
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-bc {
-    background-image: url(images/tab/tab-navigation-bottom-focus-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-ml,
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-mr {
-    background-image: url(images/tab/tab-navigation-bottom-focus-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-active .x-tab-navigation-bottom-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-bottom-focus-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-tl,
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-bl,
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-tr,
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-br,
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-tc,
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-bc {
-    background-image: url(images/tab/tab-navigation-bottom-disabled-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-ml,
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-mr {
-    background-image: url(images/tab/tab-navigation-bottom-disabled-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-disabled .x-tab-navigation-bottom-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-bottom-disabled-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-over .x-tab-navigation-left-tl,
-.x-tab-over .x-tab-navigation-left-bl,
-.x-tab-over .x-tab-navigation-left-tr,
-.x-tab-over .x-tab-navigation-left-br,
-.x-tab-over .x-tab-navigation-left-tc,
-.x-tab-over .x-tab-navigation-left-bc {
-    background-image: url(images/tab/tab-navigation-left-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-over .x-tab-navigation-left-ml,
-.x-tab-over .x-tab-navigation-left-mr {
-    background-image: url(images/tab/tab-navigation-left-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-over .x-tab-navigation-left-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-left-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus .x-tab-navigation-left-tl,
-.x-tab-focus .x-tab-navigation-left-bl,
-.x-tab-focus .x-tab-navigation-left-tr,
-.x-tab-focus .x-tab-navigation-left-br,
-.x-tab-focus .x-tab-navigation-left-tc,
-.x-tab-focus .x-tab-navigation-left-bc {
-    background-image: url(images/tab/tab-navigation-left-focus-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus .x-tab-navigation-left-ml,
-.x-tab-focus .x-tab-navigation-left-mr {
-    background-image: url(images/tab/tab-navigation-left-focus-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus .x-tab-navigation-left-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-left-focus-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-over .x-tab-navigation-left-tl,
-.x-tab-focus.x-tab-over .x-tab-navigation-left-bl,
-.x-tab-focus.x-tab-over .x-tab-navigation-left-tr,
-.x-tab-focus.x-tab-over .x-tab-navigation-left-br,
-.x-tab-focus.x-tab-over .x-tab-navigation-left-tc,
-.x-tab-focus.x-tab-over .x-tab-navigation-left-bc {
-    background-image: url(images/tab/tab-navigation-left-focus-over-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-over .x-tab-navigation-left-ml,
-.x-tab-focus.x-tab-over .x-tab-navigation-left-mr {
-    background-image: url(images/tab/tab-navigation-left-focus-over-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-over .x-tab-navigation-left-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-left-focus-over-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-active .x-tab-navigation-left-tl,
-.x-tab.x-tab-active .x-tab-navigation-left-bl,
-.x-tab.x-tab-active .x-tab-navigation-left-tr,
-.x-tab.x-tab-active .x-tab-navigation-left-br,
-.x-tab.x-tab-active .x-tab-navigation-left-tc,
-.x-tab.x-tab-active .x-tab-navigation-left-bc {
-    background-image: url(images/tab/tab-navigation-left-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-active .x-tab-navigation-left-ml,
-.x-tab.x-tab-active .x-tab-navigation-left-mr {
-    background-image: url(images/tab/tab-navigation-left-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-active .x-tab-navigation-left-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-left-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab-focus.x-tab-active .x-tab-navigation-left-tl,
-.x-tab-focus.x-tab-active .x-tab-navigation-left-bl,
-.x-tab-focus.x-tab-active .x-tab-navigation-left-tr,
-.x-tab-focus.x-tab-active .x-tab-navigation-left-br,
-.x-tab-focus.x-tab-active .x-tab-navigation-left-tc,
-.x-tab-focus.x-tab-active .x-tab-navigation-left-bc {
-    background-image: url(images/tab/tab-navigation-left-focus-active-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab-focus.x-tab-active .x-tab-navigation-left-ml,
-.x-tab-focus.x-tab-active .x-tab-navigation-left-mr {
-    background-image: url(images/tab/tab-navigation-left-focus-active-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab-focus.x-tab-active .x-tab-navigation-left-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-left-focus-active-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2957 */
-.x-tab.x-tab-disabled .x-tab-navigation-left-tl,
-.x-tab.x-tab-disabled .x-tab-navigation-left-bl,
-.x-tab.x-tab-disabled .x-tab-navigation-left-tr,
-.x-tab.x-tab-disabled .x-tab-navigation-left-br,
-.x-tab.x-tab-disabled .x-tab-navigation-left-tc,
-.x-tab.x-tab-disabled .x-tab-navigation-left-bc {
-    background-image: url(images/tab/tab-navigation-left-disabled-corners.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2966 */
-.x-tab.x-tab-disabled .x-tab-navigation-left-ml,
-.x-tab.x-tab-disabled .x-tab-navigation-left-mr {
-    background-image: url(images/tab/tab-navigation-left-disabled-sides.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2971 */
-.x-tab.x-tab-disabled .x-tab-navigation-left-mc {
-    background-repeat: repeat-x;
-    background-image: url(images/tab/tab-navigation-left-disabled-fbg.gif);
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2981 */
-.x-tab-navigation-tl,
-.x-tab-navigation-bl,
-.x-tab-navigation-tr,
-.x-tab-navigation-br {
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:2991 */
-.x-tab-navigation .x-tab-close-btn {
-    top: 0;
-    right: 0;
-    width: 16px;
-    height: 16px;
-    font: 12px/1 FontAwesome;
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:126 */
-.x-tab-navigation .x-tab-close-btn:before {
-    content: "\f00d";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3001 */
-.x-tab-bar-plain .x-tab-navigation .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3013 */
-.x-tab-navigation .x-tab-close-btn-over {
-    background-position: -16px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3023 */
-.x-tab-navigation .x-tab-close-btn-pressed {
-    background-position: -32px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3030 */
-.x-tab-navigation.x-tab-focus .x-tab-close-btn {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3034 */
-.x-tab-bar-plain .x-tab-navigation.x-tab-focus .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3044 */
-.x-tab-navigation.x-tab-over .x-tab-close-btn {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3048 */
-.x-tab-bar-plain .x-tab-navigation.x-tab-over .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3058 */
-.x-tab-navigation.x-tab-focus.x-tab-over .x-tab-close-btn {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3062 */
-.x-tab-bar-plain .x-tab-navigation.x-tab-focus.x-tab-over .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3072 */
-.x-tab-navigation.x-tab-active .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3102 */
-.x-tab-navigation.x-tab-focus.x-tab-active .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3115 */
-.x-tab-navigation.x-tab-disabled .x-tab-close-btn {
-    color: #fff;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-    opacity: 0.3;
-    background-position: 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3120 */
-.x-tab-bar-plain .x-tab-navigation.x-tab-disabled .x-tab-close-btn {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3136 */
-.x-rtl.x-tab-navigation .x-tab-close-btn {
-    right: auto;
-    left: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3142 */
-.x-tab-closable.x-tab-navigation .x-tab-button {
-    padding-right: 16px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Tab.scss:3147 */
-.x-rtl.x-tab-closable.x-tab-navigation .x-tab-button {
-    padding-right: 0px;
-    padding-left: 16px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-top-focus-corners.gif), sides:url(images/tab/tab-navigation-top-focus-sides.gif), frame-bg:url(images/tab/tab-navigation-top-focus-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-right-focus-corners.gif), sides:url(images/tab/tab-navigation-right-focus-sides.gif), frame-bg:url(images/tab/tab-navigation-right-focus-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-bottom-focus-corners.gif), sides:url(images/tab/tab-navigation-bottom-focus-sides.gif), frame-bg:url(images/tab/tab-navigation-bottom-focus-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-left-focus-corners.gif), sides:url(images/tab/tab-navigation-left-focus-sides.gif), frame-bg:url(images/tab/tab-navigation-left-focus-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-top-over-corners.gif), sides:url(images/tab/tab-navigation-top-over-sides.gif), frame-bg:url(images/tab/tab-navigation-top-over-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-right-over-corners.gif), sides:url(images/tab/tab-navigation-right-over-sides.gif), frame-bg:url(images/tab/tab-navigation-right-over-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-bottom-over-corners.gif), sides:url(images/tab/tab-navigation-bottom-over-sides.gif), frame-bg:url(images/tab/tab-navigation-bottom-over-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-over.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-left-over-corners.gif), sides:url(images/tab/tab-navigation-left-over-sides.gif), frame-bg:url(images/tab/tab-navigation-left-over-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-top-active-corners.gif), sides:url(images/tab/tab-navigation-top-active-sides.gif), frame-bg:url(images/tab/tab-navigation-top-active-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-right-active-corners.gif), sides:url(images/tab/tab-navigation-right-active-sides.gif), frame-bg:url(images/tab/tab-navigation-right-active-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-bottom-active-corners.gif), sides:url(images/tab/tab-navigation-bottom-active-sides.gif), frame-bg:url(images/tab/tab-navigation-bottom-active-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-active.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-left-active-corners.gif), sides:url(images/tab/tab-navigation-left-active-sides.gif), frame-bg:url(images/tab/tab-navigation-left-active-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-top-focus-over-corners.gif), sides:url(images/tab/tab-navigation-top-focus-over-sides.gif), frame-bg:url(images/tab/tab-navigation-top-focus-over-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-right-focus-over-corners.gif), sides:url(images/tab/tab-navigation-right-focus-over-sides.gif), frame-bg:url(images/tab/tab-navigation-right-focus-over-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-bottom-focus-over-corners.gif), sides:url(images/tab/tab-navigation-bottom-focus-over-sides.gif), frame-bg:url(images/tab/tab-navigation-bottom-focus-over-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-left-focus-over-corners.gif), sides:url(images/tab/tab-navigation-left-focus-over-sides.gif), frame-bg:url(images/tab/tab-navigation-left-focus-over-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-top-focus-active-corners.gif), sides:url(images/tab/tab-navigation-top-focus-active-sides.gif), frame-bg:url(images/tab/tab-navigation-top-focus-active-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-right-focus-active-corners.gif), sides:url(images/tab/tab-navigation-right-focus-active-sides.gif), frame-bg:url(images/tab/tab-navigation-right-focus-active-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-bottom-focus-active-corners.gif), sides:url(images/tab/tab-navigation-bottom-focus-active-sides.gif), frame-bg:url(images/tab/tab-navigation-bottom-focus-active-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-left-focus-active-corners.gif), sides:url(images/tab/tab-navigation-left-focus-active-sides.gif), frame-bg:url(images/tab/tab-navigation-left-focus-active-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-top-disabled-corners.gif), sides:url(images/tab/tab-navigation-top-disabled-sides.gif), frame-bg:url(images/tab/tab-navigation-top-disabled-fbg.gif), frame:0 0 0 0, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-right-disabled-corners.gif), sides:url(images/tab/tab-navigation-right-disabled-sides.gif), frame-bg:url(images/tab/tab-navigation-right-disabled-fbg.gif), frame:0 0 0 0, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-bottom-disabled-corners.gif), sides:url(images/tab/tab-navigation-bottom-disabled-sides.gif), frame-bg:url(images/tab/tab-navigation-bottom-disabled-fbg.gif), frame:0 0 0 0, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-disabled.x-tab-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, corners:url(images/tab/tab-navigation-left-disabled-corners.gif), sides:url(images/tab/tab-navigation-left-disabled-sides.gif), frame-bg:url(images/tab/tab-navigation-left-disabled-fbg.gif), frame:0 0 0 0, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:168 */
-.x-tab-bar-navigation {
-    background-color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:207 */
-.x-tab-bar-navigation-top > .x-tab-bar-body-navigation {
-    padding: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:211 */
-.x-tab-bar-navigation-bottom > .x-tab-bar-body-navigation {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:215 */
-.x-tab-bar-navigation-left > .x-tab-bar-body-navigation {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:220 */
-.x-rtl.x-tab-bar-navigation-left > .x-tab-bar-body-navigation {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:225 */
-.x-tab-bar-navigation-right > .x-tab-bar-body-navigation {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:230 */
-.x-rtl.x-tab-bar-navigation-right > .x-tab-bar-body-navigation {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:238 */
-.x-tab-bar-plain.x-tab-bar-navigation-top > .x-tab-bar-body-navigation {
-    padding: 8px 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:242 */
-.x-tab-bar-plain.x-tab-bar-navigation-bottom > .x-tab-bar-body-navigation {
-    padding: 0 0 8px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:246 */
-.x-tab-bar-plain.x-tab-bar-navigation-left > .x-tab-bar-body-navigation {
-    padding: 0 0 0 8px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:251 */
-.x-rtl.x-tab-bar-plain.x-tab-bar-navigation-left > .x-tab-bar-body-navigation {
-    padding: 0 8px 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:256 */
-.x-tab-bar-plain.x-tab-bar-navigation-right > .x-tab-bar-body-navigation {
-    padding: 0 8px 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:261 */
-.x-rtl.x-tab-bar-plain.x-tab-bar-navigation-right > .x-tab-bar-body-navigation {
-    padding: 0 0 0 8px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:269 */
-.x-tab-bar-plain.x-tab-bar-navigation-horizontal {
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-left-width: 0;
-    border-right-width: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:276 */
-.x-tab-bar-plain.x-tab-bar-navigation-vertical {
-    border-right-color: transparent;
-    border-left-color: transparent;
-    border-top-width: 0;
-    border-bottom-width: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:390 */
-.x-tab-bar-horizontal > .x-tab-bar-body-navigation {
-    min-height: 72px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:393 */
-.x-ie8m .x-tab-bar-horizontal > .x-tab-bar-body-navigation {
-    min-height: 72px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:400 */
-.x-tab-bar-vertical > .x-tab-bar-body-navigation {
-    min-width: 72px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:403 */
-.x-ie8m .x-tab-bar-vertical > .x-tab-bar-body-navigation {
-    min-width: 72px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:170 */
-.x-tab-bar-navigation-scroller .x-box-scroller-body-horizontal {
-    margin-left: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:175 */
-.x-tab-bar-navigation-scroller.x-rtl .x-box-scroller-body-horizontal {
-    margin-left: 0;
-    margin-right: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:183 */
-.x-tab-bar-navigation-vertical-scroller .x-box-scroller-body-vertical {
-    margin-top: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:188 */
-.x-box-scroller-tab-bar-navigation {
-    cursor: pointer;
-    color: #fff;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    opacity: 0.5;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:198 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-hover {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    opacity: 0.6;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:204 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-pressed {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-    opacity: 0.7;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:210 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-disabled {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
-    opacity: 0.25;
-    cursor: default;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:220 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-left,
-.x-box-scroller-tab-bar-navigation.x-box-scroller-right {
-    width: 24px;
-    height: 24px;
+    height: 18px;
+    width: 3.3em;
+    display: inline-block;
+    text-align: center;
     top: 50%;
-    margin-top: -12px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:247 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-left {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    font: 16px/24px FontAwesome;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:126 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-left:before {
-    content: "\f053";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:272 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-right {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    font: 16px/24px FontAwesome;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:126 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-right:before {
-    content: "\f054";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:299 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-top,
-.x-box-scroller-tab-bar-navigation.x-box-scroller-bottom {
-    height: 24px;
-    width: 24px;
-    left: 50%;
-    margin-left: -12px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:326 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-top {
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    font: 16px/24px FontAwesome;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:126 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-top:before {
-    content: "\f077";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/layout/container/Box.scss:351 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-bottom {
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    font: 16px/24px FontAwesome;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:126 */
-.x-box-scroller-tab-bar-navigation.x-box-scroller-bottom:before {
-    content: "\f078";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:483 */
-.x-tab-bar-more-icon {
-    font: 16px/1 FontAwesome;
-    color: #f0f0f0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:126 */
-.x-tab-bar-more-icon:before {
-    content: "\f0c9";
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:500 */
-.x-tab-bar-plain.x-tab-bar-navigation-scroller .x-box-scroller-body-horizontal {
-    margin-left: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:506 */
-.x-tab-bar-plain.x-tab-bar-navigation-vertical-scroller .x-box-scroller-body-vertical {
-    margin-top: 16px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:511 */
-.x-tab-bar-plain .x-box-scroller-tab-bar-navigation {
-    color: #919191;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:559 */
-.x-tab-bar-navigation-top .x-box-scroller-tab-bar-navigation {
-    margin-top: -12px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:563 */
-.x-tab-bar-navigation-right .x-box-scroller-tab-bar-navigation {
-    margin-left: -12px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:567 */
-.x-tab-bar-navigation-bottom .x-box-scroller-tab-bar-navigation {
-    margin-top: -12px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:571 */
-.x-tab-bar-navigation-left .x-box-scroller-tab-bar-navigation {
-    margin-left: -12px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:580 */
-.x-box-scroller-tab-bar-navigation {
-    background-color: #404040;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/tab/Bar.scss:586 */
-.x-box-scroller-tab-bar-navigation .x-ie8 .x-box-scroller-plain {
-    background-color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-tab-bar-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:276 */
-.x-panel-navigation {
-    border-color: #5fa2dd;
-    padding: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:282 */
-.x-panel-header-navigation {
-    font-size: 24px;
-    border: 1px solid #5fa2dd;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:307 */
-.x-panel-header-navigation .x-tool-tool-el {
-    background-color: #5fa2dd;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:313 */
-.x-panel-header-navigation-horizontal {
-    padding: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:317 */
-.x-panel-header-navigation-horizontal .x-panel-header-navigation-tab-bar {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:337 */
-.x-panel-header-navigation-vertical {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:341 */
-.x-panel-header-navigation-vertical .x-panel-header-navigation-tab-bar {
-    margin-right: 0;
-    margin-left: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:362 */
-.x-rtl.x-panel-header-navigation-vertical {
-    padding: 0 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:366 */
-.x-rtl.x-panel-header-navigation-vertical .x-panel-header-navigation-tab-bar {
-    margin-left: 0;
-    margin-right: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:387 */
-.x-panel-header-title-navigation {
+    margin-top: -9px;
+    right: 12px;
     color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
-    line-height: 26px;
-    margin: 20px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:400 */
-.x-panel-header-title-navigation > .x-title-text-navigation {
-    text-transform: none;
-    padding: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:447 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-top {
-    height: 39px;
-    padding-bottom: 15px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:452 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-right {
-    width: 39px;
-    padding-left: 15px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:457 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-right.x-rtl {
-    padding-left: 0;
-    padding-right: 15px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:464 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-bottom {
-    height: 39px;
-    padding-top: 15px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:469 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-left {
-    width: 39px;
-    padding-right: 15px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:474 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-left.x-rtl {
-    padding-right: 0;
-    padding-left: 15px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:481 */
-.x-panel-header-title-navigation > .x-title-icon-wrap-navigation > .x-title-icon-navigation {
-    width: 24px;
-    height: 24px;
-    font-size: 24px;
-    color: #fff;
-    background-position: center center;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:501 */
-.x-ie8 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation > .x-title-icon-navigation.x-title-glyph {
-    color: #fff;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:512 */
-.x-panel-body-navigation {
-    background: #fff;
-    border-color: #d0d0d0;
-    color: #404040;
-    font-size: 13px;
-    font-weight: 300;
-    font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
-    border-width: 1px;
-    border-style: solid;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:676 */
-.x-panel-header-navigation {
-    background-image: none;
-    background-color: #5fa2dd;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:680 */
-.x-panel-header-navigation-vertical {
-    background-image: none;
-    background-color: #5fa2dd;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:685 */
-.x-rtl.x-panel-header-navigation-vertical {
-    background-image: none;
-    background-color: #5fa2dd;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:738 */
-.x-panel .x-panel-header-navigation-collapsed-border-top {
-    border-bottom-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:742 */
-.x-panel .x-panel-header-navigation-collapsed-border-right {
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:746 */
-.x-panel .x-panel-header-navigation-collapsed-border-bottom {
-    border-top-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:750 */
-.x-panel .x-panel-header-navigation-collapsed-border-left {
-    border-right-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-navigation-top:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:bottom" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-navigation-bottom:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:top" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-navigation-left:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:right" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
-.x-cmd-slicer.x-panel-header-navigation-right:before {
-    /*<if slicer>*/
-    display: none;
-    content: "x-slicer:, stretch:left" !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:786 */
-.x-panel-header-navigation-horizontal .x-tool-after-title {
-    margin: 0 0 0 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:791 */
-.x-panel-header-navigation-horizontal .x-rtl.x-tool-after-title {
-    margin: 0 6px 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:796 */
-.x-panel-header-navigation-horizontal .x-tool-before-title {
-    margin: 0 6px 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:801 */
-.x-panel-header-navigation-horizontal .x-rtl.x-tool-before-title {
-    margin: 0 0 0 6px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:808 */
-.x-panel-header-navigation-vertical .x-tool-after-title {
-    margin: 6px 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:813 */
-.x-panel-header-navigation-vertical .x-rtl.x-tool-after-title {
-    margin: 6px 0 0 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:818 */
-.x-panel-header-navigation-vertical .x-tool-before-title {
-    margin: 0 0 6px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:823 */
-.x-panel-header-navigation-vertical .x-rtl.x-tool-before-title {
-    margin: 0 0 6px 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:830 */
-.x-panel-header-navigation .x-tool-focus {
-    outline: 1px solid #fff;
-    outline-offset: 1px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
-.x-ie .x-panel-header-navigation .x-tool-focus,
-.x-ie10p .x-panel-header-navigation .x-tool-focus,
-.x-edge .x-panel-header-navigation .x-tool-focus {
-    outline: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:40 */
-.x-ie .x-panel-header-navigation .x-tool-focus:after,
-.x-ie10p .x-panel-header-navigation .x-tool-focus:after,
-.x-edge .x-panel-header-navigation .x-tool-focus:after {
-    position: absolute;
-    content: ' ';
-    top: -2px;
-    right: -2px;
-    bottom: -2px;
-    left: -2px;
-    pointer-events: none;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:842 */
-.x-rtl.x-panel-header-navigation-collapsed-border-right {
-    border-right-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:845 */
-.x-rtl.x-panel-header-navigation-collapsed-border-left {
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-neutral/sass/src/panel/Panel.scss:859 */
-.x-panel-navigation-resizable .x-panel-handle {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    opacity: 0;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:2 */
-.x-panel-navigation-outer-border-l {
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:6 */
-.x-panel-navigation-outer-border-b {
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:10 */
-.x-panel-navigation-outer-border-bl {
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:16 */
-.x-panel-navigation-outer-border-r {
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:20 */
-.x-panel-navigation-outer-border-rl {
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:26 */
-.x-panel-navigation-outer-border-rb {
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:32 */
-.x-panel-navigation-outer-border-rbl {
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:40 */
-.x-panel-navigation-outer-border-t {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:44 */
-.x-panel-navigation-outer-border-tl {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:50 */
-.x-panel-navigation-outer-border-tb {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:56 */
-.x-panel-navigation-outer-border-tbl {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:64 */
-.x-panel-navigation-outer-border-tr {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:70 */
-.x-panel-navigation-outer-border-trl {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-    border-left-color: #5fa2dd !important;
-    border-left-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:78 */
-.x-panel-navigation-outer-border-trb {
-    border-top-color: #5fa2dd !important;
-    border-top-width: 1px !important;
-    border-right-color: #5fa2dd !important;
-    border-right-width: 1px !important;
-    border-bottom-color: #5fa2dd !important;
-    border-bottom-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/classic/theme-base/sass/etc/mixins/border-management.scss:86 */
-.x-panel-navigation-outer-border-trbl {
-    border-color: #5fa2dd !important;
-    border-width: 1px !important;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:12 */
-.x-title-icon-navigation {
-    font-family: FontAwesome;
-    color: #fff;
-    font-size: 24px;
-    line-height: 24px;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:19 */
-.x-tab-icon-el-navigation {
-    font-family: FontAwesome;
-    color: #acacac;
-}
-/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:22 */
-.x-tab-over .x-tab-icon-el-navigation {
-    color: #c4c4c4;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 18px;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:25 */
-.x-tab-active .x-tab-icon-el-navigation {
-    color: #fff;
+.nav-tree-badge-hot:after {
+    content: "HOT";
+    background-color: #e3495a;
 }
 /* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:30 */
-.x-panel-header-title-navigation>.x-title-text-navigation:after {
-    top: 30px;
-    right: -24px;
+.nav-tree-badge-new:after {
+    content: "NEW";
+    background-color: #2eadf5;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:39 */
+.circular {
+    border-radius: 50%;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:480 */
+.x-treelist-navigation {
+    background-color: #32404e;
+    background-position: 44px 0%;
+    padding: 0 0 0 0;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:100 */
+.x-treelist-navigation .x-treelist-toolstrip {
+    background-color: #32404e;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:109 */
+.x-treelist-navigation .x-treelist-item-selected.x-treelist-item-tool {
+    background-color: #475360;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:114 */
+.x-treelist-navigation .x-treelist-item-selected.x-treelist-item-tool:after {
+    height: 64px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: " ";
+    width: 5px;
+    background-color: #5fa2dd;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:131 */
+.x-treelist-navigation .x-treelist-item-selected > .x-treelist-row {
+    background-color: #475360;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:140 */
+.x-treelist-navigation .x-treelist-item-tool {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:147 */
+.x-treelist-navigation .x-treelist-item-tool-floated:after {
+    height: 64px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: " ";
+    width: 5px;
+    background-color: #5fa2dd;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:163 */
+.x-treelist-navigation .x-treelist-item-icon:before,
+.x-treelist-navigation .x-treelist-item-tool:before,
+.x-treelist-navigation .x-treelist-item-expander {
+    line-height: 64px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:175 */
+.x-treelist-navigation .x-treelist-item-icon,
+.x-treelist-navigation .x-treelist-item-tool,
+.x-treelist-navigation .x-treelist-item-expander {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:185 */
+.x-treelist-navigation .x-treelist-item-loading .x-treelist-item-icon {
+    background-image: url(images/tree/loading.gif);
+    color: transparent;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:190 */
+.x-treelist-navigation .x-treelist-item-icon,
+.x-treelist-navigation .x-treelist-item-tool {
+    color: #adb3b8;
+    font-size: 18px;
+    width: 44px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:203 */
+.x-treelist-navigation .x-treelist-item-tool {
+    width: 64px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:213 */
+.x-treelist-navigation .x-treelist-item-expander {
+    color: #fff;
+    font-size: 16px;
+    width: 24px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:242 */
+.x-treelist-navigation .x-treelist-item-text {
+    color: #adb3b8;
+    margin-left: 50px;
+    margin-right: 24px;
+    font-size: 14px;
+    line-height: 64px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:258 */
+.x-treelist-navigation .x-treelist-row {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:264 */
+.x-treelist-navigation .x-treelist-row-over:before,
+.x-treelist-navigation .x-treelist-item-selected > .x-treelist-row:before {
+    content: " ";
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:275 */
+.x-treelist-navigation .x-treelist-row-over:before {
+    background-color: transparent;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:279 */
+.x-treelist-navigation .x-treelist-item-selected > .x-treelist-row-over:before {
+    background-color: #7cb3e3;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:283 */
+.x-treelist-navigation .x-treelist-item-selected > .x-treelist-row:before {
+    background-color: #5fa2dd;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:289 */
+.x-treelist-navigation .x-treelist-item-floated .x-treelist-container {
+    width: auto;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:292 */
+.x-treelist-navigation .x-treelist-item-floated > .x-treelist-row {
+    background-color: #32404e;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:296 */
+.x-treelist-navigation .x-treelist-item-floated > .x-treelist-container {
+    margin-left: -44px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:305 */
+.x-treelist-navigation .x-treelist-item-floated > * > * > .x-treelist-item-text {
+    margin-left: 0;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:309 */
+.x-treelist-navigation .x-treelist-item-floated > * .x-treelist-row {
+    padding-left: 0;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:313 */
+.x-treelist-navigation .x-treelist-item-floated .x-treelist-row:before {
+    width: 0;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:317 */
+.x-treelist-navigation .x-treelist-item-floated > .x-treelist-row-over {
+    background-color: #32404e;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:320 */
+.x-treelist-navigation .x-treelist-item-floated > .x-treelist-row-over > * > .x-treelist-item-text {
+    color: #adb3b8;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:326 */
+.x-treelist-navigation .x-treelist-item-expanded {
+    background-color: #2c3845;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:344 */
+.x-treelist-navigation.x-treelist-highlight-path .x-treelist-item-over > * > .x-treelist-item-icon {
+    color: #fff;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:348 */
+.x-treelist-navigation.x-treelist-highlight-path .x-treelist-item-over > * > .x-treelist-item-text {
+    color: #d6d9dc;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:352 */
+.x-treelist-navigation.x-treelist-highlight-path .x-treelist-item-over > * > .x-treelist-item-expander {
+    color: #fff;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:359 */
+.x-treelist-navigation .x-treelist-row-over {
+    background-color: #3c4a57;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:362 */
+.x-treelist-navigation .x-treelist-row-over > * > .x-treelist-item-icon {
+    color: #fff;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:366 */
+.x-treelist-navigation .x-treelist-row-over > * > .x-treelist-item-text {
+    color: #d6d9dc;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:370 */
+.x-treelist-navigation .x-treelist-row-over > * > .x-treelist-item-expander {
+    color: #fff;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:377 */
+.x-treelist-navigation .x-treelist-expander-first .x-treelist-item-icon {
+    left: 24px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:386 */
+.x-treelist-navigation .x-treelist-expander-first .x-treelist-item-text {
+    margin-left: 74px;
+    margin-right: 0;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:396 */
+.x-treelist-navigation .x-treelist-expander-first .x-treelist-item-hide-icon > * > * > .x-treelist-item-text {
+    margin-left: 30px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/ext/packages/core/sass/src/list/TreeItem.scss:406 */
+.x-treelist-navigation .x-treelist-item-hide-icon > * > * > .x-treelist-item-text {
+    margin-left: 6px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:66 */
+.big-100 {
+    width: calc(100% - 20px);
+    background-position: 100% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:70 */
+.big-60 {
+    width: calc(60% - 20px);
+    background-position: 60% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:74 */
+.big-50 {
+    width: calc(50% - 20px);
+    background-position: 50% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:78 */
+.big-40 {
+    width: calc(40% - 20px);
+    background-position: 40% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:82 */
+.big-33 {
+    width: calc(33.33% - 20px);
+    background-position: 33.33% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:86 */
+.big-20 {
+    width: calc(20% - 20px);
+    background-position: 20% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:93 */
+.x-responsivecolumn-small >.small-100 {
+    width: calc(100% - 20px);
+    background-position: 100% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:96 */
+.x-responsivecolumn-small >.small-50 {
+    width: calc(50% - 20px);
+    background-position: 50% 20px !important;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:102 */
+.sencha-logo {
+    background-color: #5fa2dd;
+    height: 65px;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 17px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:108 */
+.sencha-logo .main-logo {
+    line-height: 65px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:110 */
+.sencha-logo .main-logo img {
+    margin-left: 22px;
+    margin-right: 22px;
+    top: 8px;
+    position: relative;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:119 */
+.sencha-dash-dash-headerbar {
+    padding: 0 30px 0 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    border: none;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:125 */
+.sencha-dash-dash-headerbar .header-right-profile-image {
+    border-radius: 20px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:131 */
+.top-english-button .x-btn-icon-el {
+    width: 21px;
+    height: 14px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:140 */
+.collapsed .hot-icon:after,
+.collapsed .new-icon:after {
+    display: none;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:144 */
+.collapsed .x-tree-elbow-img {
+    display: none;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:147 */
+.collapsed .x-tree-node-text {
+    display: none;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:152 */
+.x-grid-cell {
+    position: relative;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:158 */
+.hot-icon.hot-icon:after,
+.new-icon.hot-icon:after {
+    content: "HOT";
+    background: #e3495a;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:162 */
+.hot-icon.new-icon:after,
+.new-icon.new-icon:after {
+    content: "NEW";
+    background: #5fa2dd;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:166 */
+.hot-icon:after,
+.new-icon:after {
+    height: 18px;
+    width: 34px;
+    display: inline-block;
+    position: absolute;
+    top: 22px;
+    right: -180px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 18px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:181 */
+.x-treelist-item-tool {
+    height: 64px;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:183 */
+.x-treelist-item-tool.hot-icon:after,
+.x-treelist-item-tool.new-icon:after {
+    background: #5fa2dd;
+    content: '';
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/view/main/Main.scss:197 */
+.x-html-editor-input {
+    border: 1px solid #ccc;
+}
+/* /Users/ctobe/Projects/open-source/open-performance-platform/opp-ui/ui/sass/src/Application.scss:3 */
+body.x-ios.x-webview.x-portrait {
+    margin-top: 20px;
 }

@@ -10,7 +10,7 @@ import com.opp.dto.graphite.GraphiteSimpleResp;
 import com.opp.dto.ux.WptDeleteRequest;
 import com.opp.dto.ux.WptDeleteResp;
 import com.opp.dto.ux.WptTestRunData;
-import com.opp.dto.ux.WptTrendChart;
+import com.opp.dto.ux.WptTrendMetric;
 import com.opp.exception.BadRequestException;
 import com.opp.exception.InternalServiceException;
 import com.opp.exception.ResourceNotFoundException;
@@ -20,7 +20,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.elasticsearch.action.index.IndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.ServerHttpResponse;
@@ -237,12 +236,12 @@ public class WptController {
     @RequestMapping(value = "/uxsvc/v1/wpt/trend/histogram", method = RequestMethod.GET)
     @ApiOperation( value = "Get UX test trends by label as histogram aggregated by day" )
     @ApiResponses({
-            @ApiResponse(code = 200, message = "Successfully retrieved histogram", response = WptTrendChart.class),
+            @ApiResponse(code = 200, message = "Successfully retrieved histogram", response = WptTrendMetric.class, responseContainer = "List"),
             @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "Test with specified name not found", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
-    public WptTrendChart getTrendHistogram(
+    public List<WptTrendMetric> getTrendHistogram(
             @RequestParam(value="name") String testName,
             @RequestParam(value="view", defaultValue="firstView", required = false) String view,
             @RequestParam(value="utBaseline", defaultValue="false", required = false) boolean isUserTimingsBaseLine,

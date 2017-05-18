@@ -1165,6 +1165,7 @@ $include-oppui-model-loadtestdashboard-loadtestsla: dynamic(true);;
 $include-oppui-model-loadtestdashboard-loadtestsummary: dynamic(true);;
 $include-oppui-model-uxdashboard-apptrend: dynamic(true);;
 $include-oppui-model-uxdashboard-uxapplications: dynamic(true);;
+$include-oppui-store-navigationtree: dynamic(true);;
 $include-oppui-store-loadtestdashboard-samplegroupreportdata: dynamic(true);;
 $include-oppui-store-uxdashboard-apptrend: dynamic(true);;
 $include-oppui-store-uxdashboard-uxapplications: dynamic(true);;
@@ -1218,6 +1219,7 @@ $include-oppui-view-loadtestdashboard-loadtestsummary-loadtestsummarytab-loadtes
 $include-oppui-view-loadtestdashboard-loadtestsummary-loadtestsummarytab-loadtestsummarytabcontroller: dynamic(true);;
 $include-oppui-view-loadtestdashboard-loadtestsummary-loadtestsummarytab-loadtestsummarytabmodel: dynamic(true);;
 $include-oppui-view-main-main: dynamic(true);;
+$include-oppui-view-main-maincontainerwrap: dynamic(true);;
 $include-oppui-view-main-maincontroller: dynamic(true);;
 $include-oppui-view-main-mainmodel: dynamic(true);;
 $include-oppui-view-uxdashboard-uxdashboard: dynamic(true);;
@@ -1516,6 +1518,14 @@ $relative-image-path-for-uis: $ux-resource-path;
 @import '../../../../../ext/packages/ux/classic/sass/var/layout/ResponsiveColumn';
 @import '../../../../../ext/packages/ux/classic/sass/var/rating/Picker';
 
+/* including package OppUI */
+$OppUI-resource-root: '' !default;
+$OppUI-resource-path: 'images' !default;
+$current-package: false;
+$current-resource-root: $OppUI-resource-root;
+$relative-image-path-for-uis: $OppUI-resource-path;
+@import '../../../../../sass/var/all';
+
 
 /* ======================== RULE ======================== */
 
@@ -1779,3 +1789,4 @@ $current-package: false;
 $current-resource-root: $OppUI-resource-root;
 $relative-image-path-for-uis: $OppUI-resource-path;
 @import '../../../../../sass/src/view/main/Main';
+@import '../../../../../sass/src/Application';

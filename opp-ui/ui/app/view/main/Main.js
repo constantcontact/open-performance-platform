@@ -1,154 +1,140 @@
-/**
- * This class is the main view for the application. It is specified in app.js as the
- * "autoCreateViewport" property. That setting automatically applies the "viewport"
- * plugin to promote that instance of this class to the body element.
- */
 Ext.define('OppUI.view.main.Main', {
-    extend: 'Ext.tab.Panel',
-    xtype: 'app-main',
+    extend: 'Ext.container.Viewport',
 
     requires: [
-        'OppUI.view.*'
+        'OppUI.view.main.MainController',
+        'OppUI.view.main.MainModel',
+        'Ext.button.Segmented',
+        'Ext.list.Tree'
     ],
 
     controller: 'main',
+    viewModel: 'main',
 
-    viewModel: {
-        type: 'main'
-    },
+    cls: 'sencha-dash-viewport',
+    itemId: 'mainView',
 
-    ui: 'navigation',
-
-    tabBarHeaderPosition: 1,
-    titleRotation: 0,
-    tabRotation: 0,
-
-    header: {
-        layout: {
-            align: 'stretchmax'
-        },
-        iconCls: 'fa-bar-chart',
-        title: {
-            text: 'OPP',
-            textAlign: 'center',
-            flex: 0,
-            minWidth: 160
-        },
-        tools: [{
-            type: 'gear',
-            plugins: 'responsive',
-            width: 120,
-            margin: '0 0 0 0',
-            handler: 'onSwitchTool',
-            responsiveConfig: {
-                'width < 768 && tall': {
-                    visible: true
-                },
-                'width >= 768': {
-                    visible: false
-                }
-            }
-        }]
-    },
-
-    tabBar: {
-        flex: 1,
-        layout: {
-            align: 'stretch',
-            overflowHandler: 'none'
-        }
-    },
-
-    responsiveConfig: {
-        tall: {
-            headerPosition: 'top'
-        },
-        wide: {
-            headerPosition: 'left'
-        }
+    layout: {
+        type: 'vbox',
+        align: 'stretch'
     },
 
     listeners: {
-        tabchange: 'onTabChange'
-    },
-
-    defaults: {
-        tabConfig: {
-            plugins: 'responsive',
-            responsiveConfig: {
-                wide: {
-                    iconAlign: 'left',
-                    textAlign: 'left',
-                    flex: 0
-                },
-                tall: {
-                    iconAlign: 'top',
-                    textAlign: 'center',
-                    flex: 1
-                },
-                'width < 768 && tall': {
-                    visible: false
-                },
-                'width >= 768': {
-                    visible: true
-                }
-            }
-        }
+        render: 'onMainViewRender'
     },
 
     items: [{
-            // This page has a hidden tab so we can only get here during initialization. This
-            // allows us to avoid rendering an initial activeTab only to change it immediately
-            // by routing
-            xtype: 'component',
-            tabConfig: {
-                hidden: true
-            }
-        },
-        {
-            xtype: 'container',
-            title: 'Dashboard',
-            iconCls: 'fa-home'
-        },
-        {
-            xtype: 'ux',
-            title: 'UX Tests',
-            iconCls: 'fa-line-chart'
-        }, {
-            xtype: 'loadtest',
-            title: 'Load Tests',
-            iconCls: 'fa-tachometer'
-        }, {
-            xtype: 'applicationmapping',
-            title: 'Application Mapping',
-            iconCls: 'fa-list'
-        }
-    ],
+            xtype: 'toolbar',
+            cls: 'sencha-dash-dash-headerbar shadow',
+            height: 64,
+            itemId: 'headerBar',
+            items: [{
+                    xtype: 'component',
+                    reference: 'senchaLogo',
+                    cls: 'sencha-logo',
+                    html: '<div class="main-logo"><img src="resources/images/company-logo.png">Sencha</div>',
+                    width: 250
+                },
+                {
+                    margin: '0 0 0 8',
+                    ui: 'header',
+                    iconCls: 'x-fa fa-navicon',
+                    id: 'main-navigation-btn',
+                    handler: 'onToggleNavigationSize'
+                },
+                '->',
+                {
+                    xtype: 'segmentedbutton',
+                    margin: '0 16 0 0',
 
-    // This object is a config for the popup menu we present on very small form factors.
-    // It is used by our controller (MainController).
-    assistiveMenu: {
-        items: [{
-                height: 50,
-                text: 'Dashboard',
-                iconCls: 'fa-home'
-            },
-            {
-                height: 50,
-                text: 'UX Tests',
-                iconCls: 'fa-line-chart'
-            }, {
-                height: 50,
-                text: 'Load Tests',
-                iconCls: 'fa-tachometer'
-            }, {
-                height: 50,
-                text: 'Application Mapping',
-                iconCls: 'fa-list'
-            }
-        ],
-        listeners: {
-            click: 'onMenuClick'
+                    platformConfig: {
+                        ie9m: {
+                            hidden: true
+                        }
+                    },
+
+                    items: [{
+                        iconCls: 'x-fa fa-desktop',
+                        pressed: true
+                    }, {
+                        iconCls: 'x-fa fa-tablet',
+                        handler: 'onSwitchToModern',
+                        tooltip: 'Switch to modern toolkit'
+                    }]
+                },
+                {
+                    iconCls: 'x-fa fa-search',
+                    ui: 'header',
+                    href: '#searchresults',
+                    hrefTarget: '_self',
+                    tooltip: 'See latest search'
+                },
+                {
+                    iconCls: 'x-fa fa-envelope',
+                    ui: 'header',
+                    href: '#email',
+                    hrefTarget: '_self',
+                    tooltip: 'Check your email'
+                },
+                {
+                    iconCls: 'x-fa fa-question',
+                    ui: 'header',
+                    href: '#faq',
+                    hrefTarget: '_self',
+                    tooltip: 'Help / FAQ\'s'
+                },
+                {
+                    iconCls: 'x-fa fa-th-large',
+                    ui: 'header',
+                    href: '#profile',
+                    hrefTarget: '_self',
+                    tooltip: 'See your profile'
+                },
+                {
+                    xtype: 'tbtext',
+                    text: 'Goff Smith',
+                    cls: 'top-user-name'
+                },
+                {
+                    xtype: 'image',
+                    cls: 'header-right-profile-image',
+                    height: 35,
+                    width: 35,
+                    alt: 'current user image',
+                    src: 'resources/images/user-profile/2.png'
+                }
+            ]
+        },
+        {
+            xtype: 'maincontainerwrap',
+            id: 'main-view-detail-wrap',
+            reference: 'mainContainerWrap',
+            flex: 1,
+            items: [{
+                    xtype: 'treelist',
+                    reference: 'navigationTreeList',
+                    itemId: 'navigationTreeList',
+                    ui: 'navigation',
+                    store: 'NavigationTree',
+                    width: 250,
+                    expanderFirst: false,
+                    expanderOnly: false,
+                    listeners: {
+                        selectionchange: 'onNavigationTreeSelectionChange'
+                    }
+                },
+                {
+                    xtype: 'container',
+                    flex: 1,
+                    reference: 'mainCardPanel',
+                    cls: 'sencha-dash-right-main-container',
+                    itemId: 'contentPanel',
+                    layout: {
+                        type: 'card',
+                        anchor: '100%'
+                    }
+                }
+            ]
         }
-    }
+    ]
 });

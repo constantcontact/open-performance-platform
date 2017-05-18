@@ -54,7 +54,76 @@
          */
         "namespace": "OppUI",
 
-        "fashion": true
+        "fashion": true,
+
+        /**
+         * Comma-separated list of files or folders containing extra Sass. These
+         * files are automatically included in the Sass compilation. By default this
+         * is just "etc/all.scss" to allow import directives to control the order
+         * other files are included.
+         *
+         * All "etc" files are included at the top of the Sass compilation in their
+         * dependency order:
+         *
+         *      +-------+---------+
+         *      |       | base    |
+         *      | theme +---------+
+         *      |       | derived |
+         *      +-------+---------+
+         *      | packages        |  (in package dependency order)
+         *      +-----------------+
+         *      | application     |
+         *      +-----------------+
+         */
+        "etc": [
+            "sass/etc/all.scss",
+            "${toolkit.name}/sass/etc/all.scss"
+        ],
+
+        /**
+         * Comma-separated list of folders containing Sass variable definitions
+         * files. These file can also define Sass mixins for use by components.
+         *
+         * All "var" files are included after "etc" files in the Sass compilation in
+         * roughly reverse dependency order:
+         *
+         *      +-----------------+
+         *      | application     |
+         *      +-------+---------+
+         *      |       | derived |
+         *      | theme +---------+
+         *      |       | base    |
+         *      +-------+---------+
+         *      | packages        |  (in package dependency order)
+         *      +-----------------+
+         */
+        "var": [
+            "sass/var/all.scss",
+            "sass/var",
+            "${toolkit.name}/sass/var/all.scss",
+            "${toolkit.name}/sass/var"
+        ],
+
+        /**
+         * Comma-separated list of folders containing Sass rule files.
+         *
+         * All "src" files are included after "var" files in the Sass compilation in
+         * dependency order (the same order as "etc"):
+         *
+         *      +-------+---------+
+         *      |       | base    |
+         *      | theme +---------+
+         *      |       | derived |
+         *      +-------+---------+
+         *      | packages        |  (in package dependency order)
+         *      +-----------------+
+         *      | application     |
+         *      +-----------------+
+         */
+        "src": [
+            "sass/src",
+            "${toolkit.name}/sass/src"
+        ]
     },
 
     /**
