@@ -35,5 +35,9 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMapping',{
 
     isValidState: function(state) {
         return state in this.validStates;
+    },
+
+    processQueryParams: function() {
+        
     }
 });

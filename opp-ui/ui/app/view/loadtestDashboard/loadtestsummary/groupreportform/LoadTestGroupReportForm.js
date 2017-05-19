@@ -68,9 +68,10 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             height: 'auto',
             title: 'Sample Results',
             // store: Ext.data.StoreManager.lookup('reportTestData'),
-            bind: {
-                store: '{remoteSummaryTrendFilter}'
-            },
+            // bind: {
+            //     // store: '{remoteSummaryTrendFilter}'
+            //     store: Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter')
+            // },
             columnLines: true,
             columns: [
                 { text: 'TestId', dataIndex: "load_test_id", hidden: true, flex: 1 },
@@ -92,7 +93,17 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
                 { text: 'Test Tool', dataIndex: "test_tool", hidden: true, flex: 1 },
                 { text: 'Tool Version', dataIndex: "test_tool_version", hidden: true, flex: 1 },
                 { text: '# Users', dataIndex: "vuser_count", flex: 1 }
-            ]
+            ],
+
+            listeners: {
+                afterrender: function(view) {
+                    // view.bind = {
+                    //     store: Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter')
+                    // }
+                    console.log(view);
+                    view.store = Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter');
+                }
+            }
         }
     ]
 });

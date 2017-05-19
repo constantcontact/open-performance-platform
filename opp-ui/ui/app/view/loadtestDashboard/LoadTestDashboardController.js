@@ -13,7 +13,8 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
 
         console.log('LoadTestDashboard Update Active State: ' + activeState);
 
-        this.fireEvent('changeroute', this, 'loadtest/' + activeState);
+        //this.fireEvent('changeroute', this, 'loadtest/' + activeState);
+        this.fireEvent('changeroute', this, activeState);
     },
 
     updateUrlTabState: function(testId, add) {
@@ -97,9 +98,9 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
                 }
             }
         }
-        console.log('initialTabState: '+initialTabState);
-        console.log('newTabState: '+newTabState);
-        console.log('activeState: '+activeState);
+        // console.log('initialTabState: '+initialTabState);
+        // console.log('newTabState: '+newTabState);
+        // console.log('activeState: '+activeState);
 
         this.updateActiveState(activeState);
     },

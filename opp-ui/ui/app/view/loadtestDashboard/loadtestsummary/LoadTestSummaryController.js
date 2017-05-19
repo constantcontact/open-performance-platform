@@ -28,7 +28,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
             return undefined;
         });
 
-        this.getView().up('loadtest').add(window).show();
+        //this.getView().up('loadtest').add(window).show();
+        window.show();
     },
 
     search: function() {

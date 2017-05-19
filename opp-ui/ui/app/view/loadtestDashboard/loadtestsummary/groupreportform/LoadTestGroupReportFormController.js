@@ -11,10 +11,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
         textFilter = this.getView().down('#filterField').getValue();
 
         if(columnFilter && textFilter) {
-            store = this.getView()
-                    .up('loadtest')
-                    .getViewModel()
-                    .getStore('remoteSummaryTrendFilter');
+            // store = this.getView()
+            //         .up('loadtest')
+            //         .getViewModel()
+            //         .getStore('remoteSummaryTrendFilter');
+            store = Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter');
         
             store.clearFilter();
             store.filterBy(function(record) {
@@ -51,7 +52,10 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             console.log(groupReport);
             console.log(groupReport.filters);
 
-            view.up('loadtest').down('loadtestsummarytab').createGroupReport(groupReport);
+            // view.up('loadtest').down('loadtestsummarytab').createGroupReport(groupReport);
+            // view.up().close();
+
+            Ext.ComponentQuery.query('loadtestsummarytab')[0].createGroupReport(groupReport);
             view.up().close();
     },
     buildGroupedReportQueryStr: function(form) {
