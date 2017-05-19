@@ -2,25 +2,31 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
     extend: 'Ext.panel.Panel',
     xtype: 'ux',
     itemId: 'ux',
-    requires: [
-        'Ext.grid.feature.Grouping'
-    ],
+    // requires: [
+    //     'Ext.grid.feature.Grouping'
+    // ],
 
-    layout: 'card',
-    items: [
-        {
-            xtype: 'uxapplications'
-        },
-        {
-            xtype: 'apptrend'
-        }
-    ],
+    // layout: 'card',
+    // items: [
+    //     {
+    //         xtype: 'uxapplications'
+    //     },
+    //     {
+    //         xtype: 'apptrend'
+    //     }
+    // ],
     
-    listeners: {
-        beforerender: function(panel) {
-            panel.getLayout().setActiveItem(0);
-        }
-    },
+    // listeners: {
+    //     beforerender: function(panel) {
+    //         panel.getLayout().setActiveItem(0);
+    //     }
+    // },
+
+    items: [{
+        xtype: 'uxtabpanel',
+        closable: false
+    }],
+
     back: function() {
         //this.remove(this.getLayout().activeItem);
         this.getLayout().setActiveItem(0);
