@@ -21,7 +21,7 @@ Ext.define('OppUI.view.main.MainController', {
             action: 'onNavigateDeep',
             before: 'beforeNavigateDeep',
             conditions: {
-                ':params': '([0-9a-zA-Z\+\:\_\,\?\&=\-]+)'
+                ':params': '([0-9a-zA-Z\.\+\:\_\,\?\&=\-]+)'
             }
         }
     },
@@ -30,6 +30,7 @@ Ext.define('OppUI.view.main.MainController', {
 
     setCurrentView: function(hashTag) {
         //hashTag = (hashTag || '').toLowerCase();
+        console.log('setCurrentView ===> hashTag: ' + hashTag);
 
         var me = this,
             refs = me.getReferences(),

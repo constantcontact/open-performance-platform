@@ -2,41 +2,22 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
     extend: 'Ext.panel.Panel',
     xtype: 'ux',
     itemId: 'ux',
-    // requires: [
-    //     'Ext.grid.feature.Grouping'
-    // ],
 
-    // layout: 'card',
-    // items: [
-    //     {
-    //         xtype: 'uxapplications'
-    //     },
-    //     {
-    //         xtype: 'apptrend'
-    //     }
-    // ],
-    
-    // listeners: {
-    //     beforerender: function(panel) {
-    //         panel.getLayout().setActiveItem(0);
-    //     }
-    // },
+    require:[
+        'OppUI.view.uxDashboard.UxDashboardController',
+        'OppUI.view.uxDashboard.UxDashboardModel'
+    ],
+
+    controller: 'uxdashboard',
+    viewModel: {
+        type: 'uxdashboard'
+    },
+
 
     items: [{
         xtype: 'uxtabpanel',
         closable: false
     }],
-
-    back: function() {
-        //this.remove(this.getLayout().activeItem);
-        this.getLayout().setActiveItem(0);
-    },
-    wptName: function(wptName) {
-        Ext.ComponentQuery.query("#wptsByPageGrid")[0].loadViewModelStore(wptName);
-        this.getLayout().setActiveItem(1);
-        
-        //this.up('panel').getLayout().setActiveItem(1);
-    },
 
     config: {
         activeState: null,
@@ -49,6 +30,11 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
 
     isValidState: function(state) {
         return state in this.validStates;
+    },
+
+    processQueryParams: function(params) {
+        this.down('uxtabpanel').createTabs(params);
+        this.down('uxtabpanel').processAdmin(params);
     }
 
 });
