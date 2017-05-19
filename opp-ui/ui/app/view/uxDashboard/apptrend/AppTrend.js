@@ -30,24 +30,26 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
 
     minWidth: 600,
 
-    items: [{
-        xtype: 'container',
-        margin: '20px 20px 0px 20px',
-        items: [{
-            xtype: 'button',
-            text: 'Back',
-            iconCls: 'x-fa fa-arrow-left',
-            handler: function() {
-                var wptGridStore;
-                wptGridStore = Ext.ComponentQuery.query("#wptsByPageGrid")[0].getStore();
-                wptGridStore.proxy.data = [];
-                wptGridStore.load();
+    items: [
+    //     {
+    //     xtype: 'container',
+    //     margin: '20px 20px 0px 20px',
+    //     items: [{
+    //         xtype: 'button',
+    //         text: 'Back',
+    //         iconCls: 'x-fa fa-arrow-left',
+    //         handler: function() {
+    //             var wptGridStore;
+    //             wptGridStore = Ext.ComponentQuery.query("#wptsByPageGrid")[0].getStore();
+    //             wptGridStore.proxy.data = [];
+    //             wptGridStore.load();
 
-                this.up('ux').back();
-            }
-        }]
+    //             this.up('ux').back();
+    //         }
+    //     }]
         
-    },{
+    // },
+    {
         xtype: 'cartesian',
         alias: 'wptTrendChart',
         itemId: 'wptTrendChart',
@@ -300,6 +302,13 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
             }
         }
     }],
+
+    listeners: {
+        beforeclose: function(tab) {
+            console.log('tab closing ' + tab.getTitle());
+            this.up('uxtabpanel').getController().updateUrlTabState(tab.getTitle(), false);
+        }
+    },
 
      // needed for routing.
     config: {

@@ -4,20 +4,33 @@ Ext.define('OppUI.view.main.MainController', {
 
     listen: {
         controller: {
-            '#': {
+            '*': {
+                // We delegate all changes of router history to this controller by firing
+                // the "changeroute" event from other controllers.
+                changeroute: 'changeRoute',
+
                 unmatchedroute: 'onRouteChange'
             }
         }
     },
 
     routes: {
-        ':node': 'onRouteChange'
+        '!:node': 'onRouteChange',
+
+        '!:node/:params' : {
+            action: 'onNavigateDeep',
+            before: 'beforeNavigateDeep',
+            conditions: {
+                ':params': '([0-9a-zA-Z\.\+\:\_\,\?\&=\-]+)'
+            }
+        }
     },
 
     lastView: null,
 
     setCurrentView: function(hashTag) {
-        hashTag = (hashTag || '').toLowerCase();
+        //hashTag = (hashTag || '').toLowerCase();
+        console.log('setCurrentView ===> hashTag: ' + hashTag);
 
         var me = this,
             refs = me.getReferences(),
@@ -25,11 +38,11 @@ Ext.define('OppUI.view.main.MainController', {
             mainLayout = mainCard.getLayout(),
             navigationList = refs.navigationTreeList,
             store = navigationList.getStore(),
-            node = store.findNode('routeId', hashTag) ||
-            store.findNode('viewType', hashTag),
+            node = store.findNode('routeId', hashTag.split('/')[0]) ||
+            store.findNode('viewType', hashTag.split('/')[0]),
             view = (node && node.get('viewType')) || 'page404',
             lastView = me.lastView,
-            existingItem = mainCard.child('component[routeId=' + hashTag + ']'),
+            existingItem = mainCard.child('component[routeId=' + hashTag.split('/')[0] + ']'),
             newView;
 
         // Kill any previously routed window
@@ -71,13 +84,20 @@ Ext.define('OppUI.view.main.MainController', {
             newView.focus();
         }
 
+        newView.setActiveState(hashTag);
+
         me.lastView = newView;
     },
 
     onNavigationTreeSelectionChange: function(tree, node) {
+        console.log('onNavigationTreeSelectionChange ==> tree: '+tree + ' node: ' + node);
         var to = node && (node.get('routeId') || node.get('viewType'));
 
         if (to) {
+            if (to.substring(0, 1) !== '!') {
+                to = '!' + to;
+            }
+            console.log('onNavigationTreeSelectionChange ==> to: '+to);
             this.redirectTo(to);
         }
     },
@@ -142,6 +162,7 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     onRouteChange: function(id) {
+        console.log('onRouteChange ==> id: ' + id);
         this.setCurrentView(id);
     },
 
@@ -170,5 +191,40 @@ Ext.define('OppUI.view.main.MainController', {
 
     onEmailRouteChange: function() {
         this.setCurrentView('email');
+    },
+
+    changeRoute: function (controller, route) {
+        if (route.substring(0, 1) !== '!') {
+            route = '!' + route;
+        }
+        console.log("changeRoute called: " + route);
+
+        this.redirectTo(route);
+    },
+
+    beforeNavigateDeep: function(node, queryParams, action) {
+        console.log('beforeNavigateDeep: node=' + node + ' queryParams: ' + queryParams);
+        this.setCurrentView(node+'/'+queryParams);
+        console.log('beforeNavigateDeep: After Current View Set. node=' + node + ' queryParams: ' + queryParams);
+
+        action.resume();
+
+    },
+
+    onNavigateDeep: function(node, queryParams) {
+        var me = this,
+            refs = me.getReferences(),
+            mainCard = refs.mainCardPanel,
+            mainLayout = mainCard.getLayout(),
+            activeView;
+
+        activeView = mainLayout.getActiveItem();
+
+        activeView.processQueryParams(queryParams.slice(1));
+        //activeView.setActiveState(state+'/'+params);
+
+        console.log('onNavigateDeep called with node: ' + node + ' queryParams: ' + queryParams);
+
+
     }
 });

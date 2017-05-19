@@ -147,7 +147,9 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications', {
 
         listeners: {
             itemdblclick: function(grid, record, item, index) {
-                this.up('ux').wptName(record.getData().full);
+                //this.up('ux').wptName(record.getData().full);
+                this.up('uxtabpanel').createTab(record.getData().full);
+                //Ext.ComponentQuery.query('uxtabpanel')[0].createTab(record.getData().full);
             }
         }
     }],

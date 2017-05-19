@@ -10,6 +10,6 @@ Ext.define('OppUI.view.uxDashboard.UxDashboardController', {
         var refs = this.getReferences();
         var viewModel = this.getViewModel();
 
-        this.fireEvent('changeroute', this, 'ux/' + activeState);
+        this.fireEvent('changeroute', this, activeState);
     }
 });

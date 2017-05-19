@@ -56,7 +56,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
         }
         // remove the last comma.
         queryParam = queryParam.slice(0, -1);
-        reportLink = window.location.origin+'/#!loadtest/dashboard/?groupTab='+queryParam;
+        reportLink = window.location.origin+'/#!loadtest/?groupTab='+queryParam;
         console.log('REPORT LINK: ' +reportLink);
 
         tab = this.add({

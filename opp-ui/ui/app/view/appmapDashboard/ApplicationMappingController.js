@@ -13,7 +13,7 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMappingController', {
         // refs[activeState].setPressed(true);
         // viewModel.set('loadTestData', activeState);
 
-        this.fireEvent('changeroute', this, 'applicationmapping/' + activeState);
+        this.fireEvent('changeroute', this, activeState);
     },
 
     onRemoteAppMapping: function() {
