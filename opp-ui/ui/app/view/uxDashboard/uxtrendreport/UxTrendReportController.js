@@ -1,6 +1,6 @@
-Ext.define('OppUI.view.uxDashboard.apptrend.AppTrendController', {
+Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.apptrend',
+    alias: 'controller.uxtrendreport',
 
     init: function(view) {
         view.updateActiveState = this.updateActiveState.bind(this);

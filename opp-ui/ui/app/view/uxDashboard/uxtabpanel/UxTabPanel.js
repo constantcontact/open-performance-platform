@@ -73,7 +73,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
 
         tab = this.add({
                 closable: true,
-                xtype: 'apptrend',
+                xtype: 'uxtrendreport',
                 itemId: 'pagetrendreport-' + pageIdentifier,
                 iconCls: 'x-fa fa-line-chart',
                 title: pageName,

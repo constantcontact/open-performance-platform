@@ -1,8 +1,7 @@
-Ext.define('OppUI.view.uxDashboard.apptrend.AppTrendModel', {
+Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.apptrend',
-    itemId: 'appTrendViewModel',
-
+    alias: 'viewmodel.uxtrendreport',
+    
     data: {
         
     },

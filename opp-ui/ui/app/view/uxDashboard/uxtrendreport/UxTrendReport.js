@@ -1,16 +1,17 @@
-Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
+Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReport',{
     extend: 'Ext.panel.Panel',
-    xtype: 'apptrend',
-    itemId: 'apptrend',
+    alias: 'widget.uxtrendreport',
+    // xtype: 'apptrend',
+    // itemId: 'apptrend',
 
     requires: [
-        'OppUI.view.uxDashboard.apptrend.AppTrendController',
-        'OppUI.view.uxDashboard.apptrend.AppTrendModel'
+        'OppUI.view.uxDashboard.apptrend.UxTrendReportController',
+        'OppUI.view.uxDashboard.apptrend.UxTrendReportModel'
     ],
 
-    controller: 'apptrend',
+    controller: 'uxtrendreport',
     viewModel: {
-        type: 'apptrend'
+        type: 'uxtrendreport'
     },
 
     config: {
