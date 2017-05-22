@@ -16,8 +16,7 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
     ],
 
     config: {
-        activeState: null,
-        defaultActiveState: 'clicks'
+        activeState: null
     },
 
     layout: {
@@ -31,161 +30,9 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
     minWidth: 600,
 
     items: [
-    //     {
-    //     xtype: 'container',
-    //     margin: '20px 20px 0px 20px',
-    //     items: [{
-    //         xtype: 'button',
-    //         text: 'Back',
-    //         iconCls: 'x-fa fa-arrow-left',
-    //         handler: function() {
-    //             var wptGridStore;
-    //             wptGridStore = Ext.ComponentQuery.query("#wptsByPageGrid")[0].getStore();
-    //             wptGridStore.proxy.data = [];
-    //             wptGridStore.load();
-
-    //             this.up('ux').back();
-    //         }
-    //     }]
-        
-    // },
     {
-        xtype: 'cartesian',
-        alias: 'wptTrendChart',
-        itemId: 'wptTrendChart',
-        reference: 'chart',
-        width: '100%',
-        height: 500,
-
-        margin: '20px 20px 0 20px',
-
-        legend: {
-            docked: 'right'
-        },
-        insetPadding: 40,
-        store: {
-            type: 'wpttrenddata'
-        },
-        listeners: {
-             itemclick: function(o) {
-                 //THIS SERIESINDEX POINTS TO WHICH FIELD WAS SELECTED
-                 //IF YOUR FIELDS ARE IN SOME ARRAY THIS WILL WORK NICELY -- I JUST WISH THERE WAS GOOD DOCUMENTATION ON THIS
-                 alert ( "Selected: " + o.seriesIndex );   
-                var rec = store.getAt(o.index);
-             }
-
-        },
-
-        // sprites: [{
-        //     type: 'text',
-        //     text: 'WPT Trend - Campaign UI',
-        //     fontSize: 22,
-        //     width: 100,
-        //     height: 30,
-        //     x: 75, // the sprite x position
-        //     y: 20  // the sprite y position
-        // }],
-        axes: [{
-            type: 'numeric',
-            fields: ['TTFB', 'VisuallyComplete', 'SpeedIndex'],
-            position: 'left',
-            grid: true,
-            minimum: 0,
-            // renderer: function (axis, label, layoutContext) {
-            //     return label.toFixed(label < 10 ? 1: 0);
-            // },
-            title: "Milliseconds"
-        }, {
-            type: 'time',
-            fields: 'wptTimestamp',
-            position: 'bottom',
-            label: {
-                rotate: {
-                    degrees: -45
-                }
-            },
-            title: 'Run Date'
-        }],
-        series: [{
-            type: 'line',
-            title: 'TTFB',
-            xField: 'wptTimestamp',
-            yField: 'TTFB',
-            marker: {
-                type: 'square',
-                fx: {
-                    duration: 200,
-                    easing: 'backOut'
-                }
-            },
-            highlightCfg: {
-                scaling: 2
-            },
-            tooltip: {
-                trackMouse: true,
-                renderer: function (tooltip, record, item) {
-                    var title = item.series.getTitle();
-
-                    if(record) {
-                        tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
-                            record.get(item.series.getYField()) + ' (ms)');
-                    }
-                }
-            }
-        },{
-            type: 'line',
-            title: 'Visually Complete',
-            xField: 'wptTimestamp',
-            yField: 'VisuallyComplete',
-            marker: {
-                type: 'triangle',
-                fx: {
-                    duration: 200,
-                    easing: 'backOut'
-                }
-            },
-            highlightCfg: {
-                scaling: 2
-            },
-            tooltip: {
-                trackMouse: true,
-                renderer: function (tooltip, record, item) {
-                    var title = item.series.getTitle();
-
-                    if (record) {
-                        tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
-                            record.get(item.series.getYField()) + ' (ms)');
-                    }
-                }
-            }
-            
-        },{
-            type: 'line',
-            title: 'Speed Index',
-            xField: 'wptTimestamp',
-            yField: 'SpeedIndex',
-            marker: {
-                type: 'cross',
-                fx: {
-                    duration: 200,
-                    easing: 'backOut'
-                }
-            },
-            highlightCfg: {
-                scaling: 2
-            },
-            tooltip: {
-                trackMouse: true,
-                renderer: function (tooltip, record, item) {
-                    var title = item.series.getTitle();
-
-                    if (record) {
-                        tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
-                            record.get(item.series.getYField()) + ' (ms)');
-                    }
-                }
-            }
-        }]
+        xtype: 'wpttrendchart',
+        title: 'WPT Trend'
     },{
         xtype: 'container',
         height: 30
@@ -312,8 +159,7 @@ Ext.define('OppUI.view.uxDashboard.apptrend.AppTrend',{
 
      // needed for routing.
     config: {
-        activeState: null,
-        defaultActiveState: ''
+        activeState: null
     },
 
     validStates: {

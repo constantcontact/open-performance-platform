@@ -27,10 +27,14 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     lastView: null,
+    config: {
+        views: ['dashboard', 'ux', 'loadtest', 'applicationmapping']
+    },
 
     setCurrentView: function(hashTag) {
         //hashTag = (hashTag || '').toLowerCase();
         console.log('setCurrentView ===> hashTag: ' + hashTag);
+
 
         var me = this,
             refs = me.getReferences(),
@@ -43,7 +47,9 @@ Ext.define('OppUI.view.main.MainController', {
             view = (node && node.get('viewType')) || 'page404',
             lastView = me.lastView,
             existingItem = mainCard.child('component[routeId=' + hashTag.split('/')[0] + ']'),
-            newView;
+            newView,
+            activeState,
+            isNavigating = this.getViews().indexOf(hashTag) >= 0;
 
         // Kill any previously routed window
         if (lastView && lastView.isWindow) {
@@ -84,7 +90,24 @@ Ext.define('OppUI.view.main.MainController', {
             newView.focus();
         }
 
-        newView.setActiveState(hashTag);
+        activeState = newView.getActiveState();
+
+        console.log('isNavigating? ===> ' + isNavigating);
+        if(isNavigating) {
+            console.log('User is Navigating!');
+            if(activeState) {
+                console.log('Active State is set! Currently Set to: ' + activeState);
+                this.redirectTo(activeState);
+            } else {
+                console.log('Active State is NOT set! Setting active state to hashtag ' + hashTag);
+                newView.setActiveState(hashTag);
+            }
+        } else {
+            console.log('User is NOT Navigating! Setting Active State to HashTag: ' + hashTag);
+            
+            newView.setActiveState(hashTag);
+        }
+        
 
         me.lastView = newView;
     },
@@ -99,6 +122,7 @@ Ext.define('OppUI.view.main.MainController', {
             }
             console.log('onNavigationTreeSelectionChange ==> to: '+to);
             this.redirectTo(to);
+            //this.setCurrentView(to);
         }
     },
 

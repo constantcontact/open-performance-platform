@@ -29,7 +29,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
         },'-',
         'Search',
          {
-            id:'txtFilterLoadGrid',
             xtype: 'textfield',
             name: 'searchField',
             hideLabel: true,
@@ -39,7 +38,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
             }
         },
         {
-            id:'btnFilterLoadGrid',
             xtype: 'button',
             iconCls: 'x-fa fa-search',
             tooltip: 'Filter the test runs',
@@ -174,7 +172,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
     loadAdmin: function(){
        if(this.getQueryVar('user') === 'admin') {
             this.getDockedItems()[0].add({
-                 id:'btnDelete',
+                // id:'btnDelete',
                  xtype:'button',
                  iconCls: 'icon-delete',
                  text: 'Delete Selected',
