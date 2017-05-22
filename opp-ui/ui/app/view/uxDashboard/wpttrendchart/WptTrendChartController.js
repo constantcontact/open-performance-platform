@@ -3,8 +3,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
     alias: 'controller.wpttrendchart',
 
     buttonMetricClicked: function(button) {
-        console.log('Button Metric clicked ==>'+ button.getText());
-        var metricsStore, defaultStore, wptTrendGrid;
+        // console.log('Button Metric clicked ==>'+ button.getText());
+        var metricsStore, defaultStore, wptTrendGrid, defaultStoreData;
         metricStore = this.getView()
                 .up('uxtrendreport')
                 .getViewModel()
@@ -15,14 +15,28 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
                 .getViewModel()
                 .getStore('histogramData');
 
+        
         wptTrendGrid = this.getView().up('uxtrendreport').down('wpttrendgrid');
 
-        metricStore.getProxy().setData(defaultStore.getProxy().getData());
-        metricStore.load();
-        
+        if(!metricStore.getProxy().getData()) {
+            console.log('Loading ' + button.getText() + ' for the first time!');
+            defaultStoreData = defaultStore.getProxy().getData();
+
+            for(var i = 0; i < defaultStoreData.length; i++) {
+                defaultStoreData[i].page = this.getView().up('uxtrendreport').getPageName();
+                defaultStoreData[i].connection = this.getView().up('uxtrendreport').getConnection();
+            }
+            metricStore.getProxy().setData(defaultStoreData);
+            metricStore.load();   
+        } else {
+            metricStore.reload();
+        }
 
         this.getView().setStore(metricStore);
         wptTrendGrid.setStore(metricStore);
+
+        this.getView().up('uxtrendreport').down('wpttrendchart').setTitle('WPT Trend - ' + button.getText());
+        wptTrendGrid.setTitle('WPT Summary - ' + button.getText());
     }
 
 });

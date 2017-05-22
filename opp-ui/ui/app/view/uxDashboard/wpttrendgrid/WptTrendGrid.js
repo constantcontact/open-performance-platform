@@ -38,7 +38,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         sortable: false
     },{
         text: "Date",
-        dataIndex: 'timestamp',
+        dataIndex: 'wptTimestamp',
         width: 175,
         sortable: false
     },{
@@ -75,7 +75,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     },
     {
         text: "Connectivity",
-        dataIndex: 'connectivity',
+        dataIndex: 'Connection',
         sortable: false,
         flex: 1
     },

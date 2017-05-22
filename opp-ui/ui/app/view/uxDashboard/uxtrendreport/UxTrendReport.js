@@ -15,7 +15,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
 
     config: {
         activeState: null,
-        pageName: null
+        pageName: null,
+        connection: null
     },
 
     layout: {
@@ -30,10 +31,10 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
     items: [
     {
         xtype: 'wpttrendchart',
-        title: 'WPT Trend'
+        title: 'WPT Trend - median'
     },{
         xtype: 'wpttrendgrid',
-        title: 'WPT Summary'
+        title: 'WPT Summary - median'
        
     }],
 

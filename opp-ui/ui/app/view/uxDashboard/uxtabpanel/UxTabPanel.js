@@ -67,8 +67,9 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
     },
 
     createPageTrendReport: function(pageName) {
-        var tab, pageIdentifier;
+        var tab, pageIdentifier, connection;
 
+        connection = pageName.split('.')[3];
         pageIdentifier = pageName.split('.').join('');
 
         tab = this.add({
@@ -78,6 +79,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
                 iconCls: 'x-fa fa-line-chart',
                 title: pageName,
                 pageName: pageName,
+                connection: connection,
                 scrollable: false
             }
         );

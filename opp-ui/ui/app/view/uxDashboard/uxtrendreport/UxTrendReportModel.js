@@ -30,6 +30,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
+                { name: 'Page', mapping: 'page', type: 'auto'},
+                { name: 'Connection', mapping: 'connection', type: 'auto'}
             ],
             autoLoad: true,
             proxy: {
@@ -61,6 +63,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'TTFB', mapping: 'ttfb.min', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.min', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.min', type: 'auto' },
+                { name: 'Page', mapping: 'page', type: 'auto'},
+                { name: 'Connection', mapping: 'connection', type: 'auto'}
             ],
             autoLoad: false,
             proxy: {
@@ -85,6 +89,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'TTFB', mapping: 'ttfb.max', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.max', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.max', type: 'auto' },
+                { name: 'Page', mapping: 'page', type: 'auto'},
+                { name: 'Connection', mapping: 'connection', type: 'auto'}
             ],
             autoLoad: false,
             proxy: {
@@ -95,7 +101,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             },
             listeners: {
                 load: function() {
-                    console.log('Min histogram data loaded!');
+                    console.log('Max histogram data loaded!');
                 }
             }
         },
@@ -109,6 +115,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
+                { name: 'Page', mapping: 'page', type: 'auto'},
+                { name: 'Connection', mapping: 'connection', type: 'auto'}
             ],
             autoLoad: false,
             proxy: {
@@ -119,7 +127,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             },
             listeners: {
                 load: function() {
-                    console.log('Min histogram data loaded!');
+                    console.log('Median histogram data loaded!');
                 }
             }
         },
@@ -133,6 +141,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'TTFB', mapping: 'ttfb.average', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.average', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.average', type: 'auto' },
+                { name: 'Page', mapping: 'page', type: 'auto'},
+                { name: 'Connection', mapping: 'connection', type: 'auto'}
             ],
             autoLoad: false,
             proxy: {
@@ -143,7 +153,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             },
             listeners: {
                 load: function() {
-                    console.log('Min histogram data loaded!');
+                    console.log('Average histogram data loaded!');
                 }
             }
         },

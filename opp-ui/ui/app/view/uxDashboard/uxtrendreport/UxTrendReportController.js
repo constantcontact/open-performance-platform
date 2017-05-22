@@ -36,6 +36,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
 
     onHistogramDataLoaded: function(histogramData) {
         console.log('Histogram data loaded!!!');
+        
     }
     
 });
