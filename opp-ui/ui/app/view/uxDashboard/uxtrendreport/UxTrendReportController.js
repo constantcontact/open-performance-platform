@@ -1,17 +1,6 @@
-Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportController', {
+Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.uxtrendreport',
-
-    init: function(view) {
-        view.updateActiveState = this.updateActiveState.bind(this);
-    },
-
-    updateActiveState: function(activeState) {
-        var refs = this.getReferences();
-        var viewModel = this.getViewModel();
-
-        //this.fireEvent('changeroute', this, 'ux/' + activeState);
-    },
 
     onRemoteAppTrendLoad: function(remoteWPTTrendData) {
         var chartStore, items, view, gridData;
@@ -43,6 +32,10 @@ Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportController', {
             //items[i].getData().timestamp = new Date(items[i].getData().timestamp).getTime();
             chartStore.add(items[i]);
         }
+    },
+
+    onHistogramDataLoaded: function(histogramData) {
+        console.log('Histogram data loaded!!!');
     }
     
 });

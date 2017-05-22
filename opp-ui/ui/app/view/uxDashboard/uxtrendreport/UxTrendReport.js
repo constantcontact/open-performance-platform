@@ -1,12 +1,11 @@
-Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReport',{
+Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
     extend: 'Ext.panel.Panel',
     alias: 'widget.uxtrendreport',
-    // xtype: 'apptrend',
-    // itemId: 'apptrend',
+    xtype: 'uxtrendreport',
 
     requires: [
-        'OppUI.view.uxDashboard.apptrend.UxTrendReportController',
-        'OppUI.view.uxDashboard.apptrend.UxTrendReportModel'
+        'OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController',
+        'OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel'
     ],
 
     controller: 'uxtrendreport',
@@ -24,8 +23,6 @@ Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReport',{
         align: 'stretch'
     },
 
-
-    title: 'App Trend',
     scrollable: 'y',
 
     minWidth: 600,
@@ -35,7 +32,8 @@ Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReport',{
         xtype: 'wpttrendchart',
         title: 'WPT Trend'
     },{
-        xtype: 'wpttrendgrid'
+        xtype: 'wpttrendgrid',
+        title: 'WPT Summary'
        
     }],
 
@@ -44,13 +42,5 @@ Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReport',{
             console.log('tab closing ' + tab.getTitle());
             this.up('uxtabpanel').getController().updateUrlTabState(tab.getTitle(), false);
         }
-    },
-
-    validStates: {
-        dashboard: 1
-    },
-
-    isValidState: function(state) {
-        return state in this.validStates;
     }
 });

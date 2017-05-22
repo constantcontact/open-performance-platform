@@ -20,7 +20,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     bind: {
         store: '{histogramData}'
     },
-    title: 'WPT Summary',
+
     loadMask: true,
     selModel: {
         pruneRemoved: false

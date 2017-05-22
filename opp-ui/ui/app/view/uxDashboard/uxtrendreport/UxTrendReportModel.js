@@ -1,10 +1,7 @@
-Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportModel', {
+Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.uxtrendreport',
-    
-    data: {
-        
-    },
+
     stores: {
         remoteAppTrend: {
             model: 'OppUI.model.uxDashboard.AppTrend',
@@ -31,11 +28,8 @@ Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportModel', {
                     }
                 }, 
                 { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
-                { name: 'TTFB-min', mapping: 'ttfb.min', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
-                { name: 'VisuallyComplete-min', mapping: 'visuallyComplete.min', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
-                { name: 'SpeedIndex-min', mapping: 'speedIndex.min', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
@@ -54,34 +48,110 @@ Ext.define('OppUI.view.uxDashboard.apptrend.UxTrendReportModel', {
             },
 
             listeners: {
-                //load: 'onHistogramDataLoaded'
+                load: 'onHistogramDataLoaded'
             }
         },
+        min: {
+            fields: [
+                { name: 'wptTimestamp', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return value * 1000;                
+                    }
+                }, 
+                { name: 'TTFB', mapping: 'ttfb.min', type: 'auto' },
+                { name: 'VisuallyComplete', mapping: 'visuallyComplete.min', type: 'auto' },
+                { name: 'SpeedIndex', mapping: 'speedIndex.min', type: 'auto' },
+            ],
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: function() {
+                    console.log('Min histogram data loaded!');
+                }
+            }
+        },
+         max: {
+            fields: [
+                { name: 'wptTimestamp', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return value * 1000;                
+                    }
+                }, 
+                { name: 'TTFB', mapping: 'ttfb.max', type: 'auto' },
+                { name: 'VisuallyComplete', mapping: 'visuallyComplete.max', type: 'auto' },
+                { name: 'SpeedIndex', mapping: 'speedIndex.max', type: 'auto' },
+            ],
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: function() {
+                    console.log('Min histogram data loaded!');
+                }
+            }
+        },
+         median: {
+            fields: [
+                { name: 'wptTimestamp', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return value * 1000;                
+                    }
+                }, 
+                { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
+                { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
+                { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
+            ],
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: function() {
+                    console.log('Min histogram data loaded!');
+                }
+            }
+        },
+         average: {
+            fields: [
+                { name: 'wptTimestamp', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return value * 1000;                
+                    }
+                }, 
+                { name: 'TTFB', mapping: 'ttfb.average', type: 'auto' },
+                { name: 'VisuallyComplete', mapping: 'visuallyComplete.average', type: 'auto' },
+                { name: 'SpeedIndex', mapping: 'speedIndex.average', type: 'auto' },
+            ],
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: function() {
+                    console.log('Min histogram data loaded!');
+                }
+            }
+        },
+
+
+
         uxPageTrendGrid: {
             source: '{histogramData}'
         }
-        // uxPageTrendGrid: {
-        //     fields: [
-        //         '',
-        //         'page',
-        //         'TTFB',
-        //         'VisuallyComplete',
-        //         'SpeedIndex'
-        //     ],
-        //     pageSize: 15,
-        //     proxy: {
-        //         type: 'memory',
-        //         enablePaging: true,
-        //         reader: {
-        //             type: 'json'
-        //         }
-        //     },
-
-        //     listeners: {
-        //         load: function() {
-        //             console.log('Ux Page Trend Grid Loaded by Histogram Data');
-        //         }
-        //     }
-        // }
     }
 });

@@ -4,20 +4,25 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
 
     buttonMetricClicked: function(button) {
         console.log('Button Metric clicked ==>'+ button.getText());
+        var metricsStore, defaultStore, wptTrendGrid;
+        metricStore = this.getView()
+                .up('uxtrendreport')
+                .getViewModel()
+                .getStore(button.getText());
+            
+        defaultStore = this.getView()
+                .up('uxtrendreport')
+                .getViewModel()
+                .getStore('histogramData');
 
-        this.getView().setStore(this.getView().getViewModel().getStore(button.getText()));
-        //this.getView().redraw();
-    },
+        wptTrendGrid = this.getView().up('uxtrendreport').down('wpttrendgrid');
 
-    onHistogramDataLoaded : function(histogramData) {
-        var view;
-
-        view = this.getView();
-
-        items = histogramData.getData().items;
-
+        metricStore.getProxy().setData(defaultStore.getProxy().getData());
+        metricStore.load();
         
 
+        this.getView().setStore(metricStore);
+        wptTrendGrid.setStore(metricStore);
     }
 
 });
