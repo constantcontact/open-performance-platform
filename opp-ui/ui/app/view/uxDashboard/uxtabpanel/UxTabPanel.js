@@ -77,6 +77,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
                 itemId: 'pagetrendreport-' + pageIdentifier,
                 iconCls: 'x-fa fa-line-chart',
                 title: pageName,
+                pageName: pageName,
                 scrollable: false
             }
         );

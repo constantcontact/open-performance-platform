@@ -7,6 +7,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
 
         this.getView().setStore(this.getView().getViewModel().getStore(button.getText()));
         //this.getView().redraw();
+    },
+
+    onHistogramDataLoaded : function(histogramData) {
+        var view;
+
+        view = this.getView();
+
+        items = histogramData.getData().items;
+
+        
+
     }
 
 });

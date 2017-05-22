@@ -14,159 +14,156 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
     },
 
     bind: {
-        store: '{histogramData}'
+        store: '{histogramDataFilter}'
     },
 
     width: '100%',
-        height: 500,
+    height: 500,
 
-        margin: '20px 20px 0 20px',
+    margin: '20px 20px 0 20px',
 
-        legend: {
-            docked: 'right'
-        },
-        insetPadding: 40,
-        store: {
-            type: 'wpttrenddata'
-        },
-        listeners: {
-             itemclick: function(o) {
-                 //THIS SERIESINDEX POINTS TO WHICH FIELD WAS SELECTED
-                 //IF YOUR FIELDS ARE IN SOME ARRAY THIS WILL WORK NICELY -- I JUST WISH THERE WAS GOOD DOCUMENTATION ON THIS
-                 alert ( "Selected: " + o.seriesIndex );   
-                var rec = store.getAt(o.index);
-             }
+    legend: {
+        docked: 'right'
+    },
+    insetPadding: 40,
 
-        },
+    listeners: {
+            itemclick: function(o) {
+                //THIS SERIESINDEX POINTS TO WHICH FIELD WAS SELECTED
+                //IF YOUR FIELDS ARE IN SOME ARRAY THIS WILL WORK NICELY -- I JUST WISH THERE WAS GOOD DOCUMENTATION ON THIS
+                alert ( "Selected: " + o.seriesIndex );   
+            var rec = store.getAt(o.index);
+            }
 
-        tbar: {
-            items: [
-                '->',
-                {
-                    xtype: 'button',
-                    text: 'min',
-                    handler: 'buttonMetricClicked'
-                },
-                '-',
-                {
-                    xtype: 'button',
-                    text: 'max',
-                    handler: 'buttonMetricClicked'
-                },
-                '-',
-                {
-                    xtype: 'button',
-                    text: 'median',
-                    handler: 'buttonMetricClicked'
-                },
-                '-',
-                {
-                    xtype: 'button',
-                    text: 'average',
-                    handler: 'buttonMetricClicked'
-                }
-            ]
-        },
+    },
 
-        axes: [{
-            type: 'numeric',
-            fields: ['TTFB', 'VisuallyComplete', 'SpeedIndex'],
-            position: 'left',
-            grid: true,
-            minimum: 0,
-            // renderer: function (axis, label, layoutContext) {
-            //     return label.toFixed(label < 10 ? 1: 0);
-            // },
-            title: "Milliseconds"
-        }, {
-            type: 'time',
-            fields: 'wptTimestamp',
-            position: 'bottom',
-            label: {
-                rotate: {
-                    degrees: -45
-                }
+    tbar: {
+        items: [
+            '->',
+            {
+                xtype: 'button',
+                text: 'min',
+                handler: 'buttonMetricClicked'
             },
-            title: 'Run Date'
-        }],
-        series: [{
-            type: 'line',
-            title: 'TTFB',
-            xField: 'wptTimestamp',
-            yField: 'TTFB',
-            marker: {
-                type: 'square',
-                fx: {
-                    duration: 200,
-                    easing: 'backOut'
-                }
+            '-',
+            {
+                xtype: 'button',
+                text: 'max',
+                handler: 'buttonMetricClicked'
             },
-            highlightCfg: {
-                scaling: 2
+            '-',
+            {
+                xtype: 'button',
+                text: 'median',
+                handler: 'buttonMetricClicked'
             },
-            tooltip: {
-                trackMouse: true,
-                renderer: function (tooltip, record, item) {
-                    var title = item.series.getTitle();
+            '-',
+            {
+                xtype: 'button',
+                text: 'average',
+                handler: 'buttonMetricClicked'
+            }
+        ]
+    },
 
-                    if(record) {
-                        tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
-                            record.get(item.series.getYField()) + ' (ms)');
-                    }
+    axes: [{
+        type: 'numeric',
+        fields: ['TTFB', 'VisuallyComplete', 'SpeedIndex'],
+        position: 'left',
+        grid: true,
+        minimum: 0,
+        // renderer: function (axis, label, layoutContext) {
+        //     return label.toFixed(label < 10 ? 1: 0);
+        // },
+        title: "Milliseconds"
+    }, {
+        type: 'time',
+        fields: 'wptTimestamp',
+        position: 'bottom',
+        label: {
+            rotate: {
+                degrees: -45
+            }
+        },
+        title: 'Run Date'
+    }],
+    series: [{
+        type: 'line',
+        title: 'TTFB',
+        xField: 'wptTimestamp',
+        yField: 'TTFB',
+        marker: {
+            type: 'square',
+            fx: {
+                duration: 200,
+                easing: 'backOut'
+            }
+        },
+        highlightCfg: {
+            scaling: 2
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if(record) {
+                    tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        },{
-            type: 'line',
-            title: 'Visually Complete',
-            xField: 'wptTimestamp',
-            yField: 'VisuallyComplete',
-            marker: {
-                type: 'triangle',
-                fx: {
-                    duration: 200,
-                    easing: 'backOut'
-                }
-            },
-            highlightCfg: {
-                scaling: 2
-            },
-            tooltip: {
-                trackMouse: true,
-                renderer: function (tooltip, record, item) {
-                    var title = item.series.getTitle();
+        }
+    },{
+        type: 'line',
+        title: 'Visually Complete',
+        xField: 'wptTimestamp',
+        yField: 'VisuallyComplete',
+        marker: {
+            type: 'triangle',
+            fx: {
+                duration: 200,
+                easing: 'backOut'
+            }
+        },
+        highlightCfg: {
+            scaling: 2
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
 
-                    if (record) {
-                        tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
-                            record.get(item.series.getYField()) + ' (ms)');
-                    }
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-            
-        },{
-            type: 'line',
-            title: 'Speed Index',
-            xField: 'wptTimestamp',
-            yField: 'SpeedIndex',
-            marker: {
-                type: 'cross',
-                fx: {
-                    duration: 200,
-                    easing: 'backOut'
-                }
-            },
-            highlightCfg: {
-                scaling: 2
-            },
-            tooltip: {
-                trackMouse: true,
-                renderer: function (tooltip, record, item) {
-                    var title = item.series.getTitle();
+        }     
+    },{
+        type: 'line',
+        title: 'Speed Index',
+        xField: 'wptTimestamp',
+        yField: 'SpeedIndex',
+        marker: {
+            type: 'cross',
+            fx: {
+                duration: 200,
+                easing: 'backOut'
+            }
+        },
+        highlightCfg: {
+            scaling: 2
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
 
-                    if (record) {
-                        tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
-                            record.get(item.series.getYField()) + ' (ms)');
-                    }
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }]
+        }
+    }]
 });

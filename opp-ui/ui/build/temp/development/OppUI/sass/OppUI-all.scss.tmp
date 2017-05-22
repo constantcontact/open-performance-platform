@@ -1237,6 +1237,9 @@ $include-oppui-view-uxdashboard-uxtabpanel-uxtabpanelmodel: dynamic(true);;
 $include-oppui-view-uxdashboard-wpttrendchart-wpttrendchart: dynamic(true);;
 $include-oppui-view-uxdashboard-wpttrendchart-wpttrendchartcontroller: dynamic(true);;
 $include-oppui-view-uxdashboard-wpttrendchart-wpttrendchartmodel: dynamic(true);;
+$include-oppui-view-uxdashboard-wpttrendgrid-wpttrendgrid: dynamic(true);;
+$include-oppui-view-uxdashboard-wpttrendgrid-wpttrendgridcontroller: dynamic(true);;
+$include-oppui-view-uxdashboard-wpttrendgrid-wpttrendgridmodel: dynamic(true);;
 $output-paths: ("path": "../resources");
 
 /* ======================== ETC ======================== */
