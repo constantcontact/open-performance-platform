@@ -85,7 +85,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         dataIndex: 'Pages',
         sortable: false,
         renderer: function renderTopic(value, p, record) {
-            return Ext.String.format('<a href="{0}" target="_blank">WebPageTest</a>', value);
+            var href = 'http://wpt.roving.com/result/'+ record.getData().id;
+            return Ext.String.format('<a href="{0}" target="_blank">WebPageTest</a>', href);
         },
         flex: 1
     }],

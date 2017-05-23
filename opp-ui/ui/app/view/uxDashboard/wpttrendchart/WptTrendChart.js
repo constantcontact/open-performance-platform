@@ -5,7 +5,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
 
     requires: [
         'OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController',
-        'OppUI.view.uxDashboard.wpttrendchart.WptTrendChartModel'
+        'OppUI.view.uxDashboard.wpttrendchart.WptTrendChartModel',
+        'Ext.chart.plugin.ItemEvents'
     ],
 
     controller: 'wpttrendchart',
@@ -26,15 +27,15 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         docked: 'right'
     },
     insetPadding: 40,
+    plugins: {
+        ptype: 'chartitemevents'
+        // moveEvents: true
+    },
 
     listeners: {
-            itemclick: function(o) {
-                //THIS SERIESINDEX POINTS TO WHICH FIELD WAS SELECTED
-                //IF YOUR FIELDS ARE IN SOME ARRAY THIS WILL WORK NICELY -- I JUST WISH THERE WAS GOOD DOCUMENTATION ON THIS
-                alert ( "Selected: " + o.seriesIndex );   
-            var rec = store.getAt(o.index);
-            }
-
+        itemdblclick: function(series, item, event, eOpts ) {
+            console.log('itemdblclicked');
+        }
     },
 
     tbar: {
@@ -97,15 +98,14 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         title: 'TTFB',
         xField: 'wptTimestamp',
         yField: 'TTFB',
-        marker: {
-            type: 'square',
-            fx: {
-                duration: 200,
-                easing: 'backOut'
-            }
-        },
+        style: { lineWidth: 4 },
+        marker: { radius: 4 },
         highlightCfg: {
-            scaling: 2
+            // scaling: 2
+            fillStyle: '#000', 
+            radius: 5, 
+            lineWidth: 2, 
+            strokeStyle: '#fff'
         },
         tooltip: {
             trackMouse: true,
@@ -113,7 +113,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                 var title = item.series.getTitle();
 
                 if(record) {
-                    tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
@@ -123,15 +123,14 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         title: 'Visually Complete',
         xField: 'wptTimestamp',
         yField: 'VisuallyComplete',
-        marker: {
-            type: 'triangle',
-            fx: {
-                duration: 200,
-                easing: 'backOut'
-            }
-        },
+        style: { lineWidth: 4 },
+        marker: { radius: 4 },
         highlightCfg: {
-            scaling: 2
+            // scaling: 2
+            fillStyle: '#000', 
+            radius: 5, 
+            lineWidth: 2, 
+            strokeStyle: '#fff'
         },
         tooltip: {
             trackMouse: true,
@@ -139,7 +138,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                 var title = item.series.getTitle();
 
                 if (record) {
-                    tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
@@ -149,15 +148,14 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         title: 'Speed Index',
         xField: 'wptTimestamp',
         yField: 'SpeedIndex',
-        marker: {
-            type: 'cross',
-            fx: {
-                duration: 200,
-                easing: 'backOut'
-            }
-        },
+        style: { lineWidth: 4 },
+        marker: { radius: 4 },
         highlightCfg: {
-            scaling: 2
+            // scaling: 2
+            fillStyle: '#000', 
+            radius: 5, 
+            lineWidth: 2, 
+            strokeStyle: '#fff'
         },
         tooltip: {
             trackMouse: true,
@@ -165,7 +163,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                 var title = item.series.getTitle();
 
                 if (record) {
-                    tooltip.setHtml(title + ' on ' + record.get('timestamp') + ': ' +
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
