@@ -15,7 +15,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
     },
 
     bind: {
-        store: '{histogramDataFilter}'
+        store: '{median}'
     },
 
     width: '100%',
@@ -55,10 +55,11 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             '-',
             {
                 xtype: 'button',
+                itemId: 'medianButton',
                 text: 'median',
                 listeners: {
                     afterrender: function(button) {
-                        button.click();
+                        //button.click();
                     }
                 },
                 handler: 'buttonMetricClicked'
@@ -78,9 +79,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         position: 'left',
         grid: true,
         minimum: 0,
-        // renderer: function (axis, label, layoutContext) {
-        //     return label.toFixed(label < 10 ? 1: 0);
-        // },
         title: "Milliseconds"
     }, {
         type: 'time',

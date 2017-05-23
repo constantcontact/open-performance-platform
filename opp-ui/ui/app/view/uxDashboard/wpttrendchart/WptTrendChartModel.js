@@ -3,12 +3,5 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartModel', {
     alias: 'viewmodel.wpttrendchart',
     data: {
         name: 'OppUI'
-    },
-
-    stores: {
-        histogramDataFilter: {
-            source: '{histogramData}'
-        }
     }
-
 });
