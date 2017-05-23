@@ -44,7 +44,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
         if(queryParams.length >= 1) {
             for(i = 0; i < queryParams.length; i++) {
                 if(queryParams[i].indexOf('pages=') >= 0) {
-                    // ie, tab=pages=l1.campaign-ui.campaigns-morecampaigns.aws-us-east.chrome.cable
+                    // ie, pages=l1.campaign-ui.campaigns-morecampaigns.aws-us-east.chrome.cable
                     // the first split will split on the '=', the second
                     // split will get the pages.
                     pages = queryParams[i].split('=')[1].split(',');
@@ -69,7 +69,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
     createPageTrendReport: function(pageName) {
         var tab, pageIdentifier, connection;
 
-        connection = pageName.split('.')[3];
+        connection = pageName.split('.')[5];
         pageIdentifier = pageName.split('.').join('');
 
         tab = this.add({

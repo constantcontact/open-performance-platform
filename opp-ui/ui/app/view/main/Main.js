@@ -54,7 +54,7 @@ Ext.define('OppUI.view.main.Main', {
                 {
                     iconCls: 'x-fa fa-bar-chart',
                     ui: 'header',
-                    href: '#dashboard',
+                    href: '#ux',
                     hrefTarget: '_self',
                     tooltip: 'UX Tests'
                 },

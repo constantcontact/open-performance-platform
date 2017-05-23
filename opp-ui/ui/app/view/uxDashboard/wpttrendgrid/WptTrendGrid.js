@@ -38,7 +38,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         sortable: false
     },{
         text: "Date",
-        dataIndex: 'wptTimestamp',
+        dataIndex: 'date',
+        renderer: Ext.util.Format.dateRenderer('n/j/Y g:i A'),
         width: 175,
         sortable: false
     },{

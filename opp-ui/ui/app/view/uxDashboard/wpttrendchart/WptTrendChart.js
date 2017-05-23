@@ -55,6 +55,11 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             {
                 xtype: 'button',
                 text: 'median',
+                listeners: {
+                    afterrender: function(button) {
+                        button.click();
+                    }
+                },
                 handler: 'buttonMetricClicked'
             },
             '-',

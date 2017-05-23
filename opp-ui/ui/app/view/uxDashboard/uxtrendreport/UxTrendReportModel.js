@@ -64,7 +64,12 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.min', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.min', type: 'auto' },
                 { name: 'Page', mapping: 'page', type: 'auto'},
-                { name: 'Connection', mapping: 'connection', type: 'auto'}
+                { name: 'Connection', mapping: 'connection', type: 'auto'},
+                { name: 'date', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return new Date(value * 1000);
+                    }
+                }
             ],
             autoLoad: false,
             proxy: {
@@ -90,7 +95,11 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.max', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.max', type: 'auto' },
                 { name: 'Page', mapping: 'page', type: 'auto'},
-                { name: 'Connection', mapping: 'connection', type: 'auto'}
+                { name: 'Connection', mapping: 'connection', type: 'auto'},{ name: 'date', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return new Date(value * 1000);
+                    }
+                }
             ],
             autoLoad: false,
             proxy: {
@@ -116,7 +125,12 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
                 { name: 'Page', mapping: 'page', type: 'auto'},
-                { name: 'Connection', mapping: 'connection', type: 'auto'}
+                { name: 'Connection', mapping: 'connection', type: 'auto'},
+                { name: 'date', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return new Date(value * 1000);
+                    }
+                }
             ],
             autoLoad: false,
             proxy: {
@@ -142,7 +156,12 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.average', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.average', type: 'auto' },
                 { name: 'Page', mapping: 'page', type: 'auto'},
-                { name: 'Connection', mapping: 'connection', type: 'auto'}
+                { name: 'Connection', mapping: 'connection', type: 'auto'},
+                { name: 'date', mapping: 'completedDate', type: 'auto',
+                    convert: function(value, record) {
+                        return new Date(value * 1000);
+                    }
+                }
             ],
             autoLoad: false,
             proxy: {
