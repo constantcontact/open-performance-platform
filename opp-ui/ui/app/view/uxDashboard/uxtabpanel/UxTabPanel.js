@@ -14,6 +14,9 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
     viewModel: {
         type: 'uxtabpanel'
     },
+    config: {
+        admin: false
+    },
 
     plugins: 'tabreorderer',
 
@@ -88,6 +91,9 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
     },
 
     processAdmin: function(params) {
-        console.log("Processing Admin for UX Applications: " + params); 
+        console.log("Processing Admin for UX Applications: " + params);
+        if(params.indexOf('user=admin') >= 0) {
+            this.setAdmin(true);
+        }
     }
 });

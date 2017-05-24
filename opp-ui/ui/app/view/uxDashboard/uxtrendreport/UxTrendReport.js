@@ -41,19 +41,13 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
         title: 'WPT Trend - median'
     },{
         xtype: 'wpttrendgrid',
-        title: 'WPT Summary - median'
+        title: 'WPT Summary - median',
     }],
 
     listeners: {
         beforeclose: function(tab) {
             console.log('tab closing ' + tab.getTitle());
             this.up('uxtabpanel').getController().updateUrlTabState(tab.getTitle(), false);
-        },
-        histogramDataLoaded: function() {
-            console.log('histogramDataLoaded');
-        },
-        afterrender: function(tab) {
-            //tab.down('#medianButton').click();
         }
     }
 });

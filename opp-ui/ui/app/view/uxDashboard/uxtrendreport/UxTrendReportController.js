@@ -53,10 +53,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
             console.log('Loading median for the first time!');
             defaultStoreData = defaultStore.getProxy().getReader().rawData;
 
-            for(var i = 0; i < defaultStoreData.length; i++) {
-                defaultStoreData[i].page = this.getView().getPageName();
-                defaultStoreData[i].connection = this.getView().getConnection();
-            }
             metricStore.getProxy().setData(defaultStoreData);
             metricStore.load();   
         } else {
@@ -64,14 +60,10 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
         }
 
         this.getView().down('wpttrendchart').setStore(metricStore);
-        wptTrendGrid.setStore(metricStore);
-
         this.getView().down('wpttrendchart').setTitle('WPT Trend - median');
+        
+        wptTrendGrid.setStore(metricStore);
         wptTrendGrid.setTitle('WPT Summary - median' );
-    },
-
-    initViewModel: function() {
-        console.log('UxTrendReport ViewModel Initialized');
     }
 });
  

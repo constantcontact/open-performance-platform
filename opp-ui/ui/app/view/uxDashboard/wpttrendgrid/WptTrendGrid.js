@@ -44,7 +44,9 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         sortable: false
     },{
         text: "Page",
-        dataIndex: 'page',
+        renderer: function() {
+            return this.up('uxtrendreport').getPageName();
+        },
         width: 70,
         sortable: false,
         flex: 1
@@ -76,7 +78,9 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     },
     {
         text: "Connectivity",
-        dataIndex: 'Connection',
+        renderer: function() {
+            return this.up('uxtrendreport').getConnection();
+        },
         sortable: false,
         flex: 1
     },
@@ -87,6 +91,15 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         renderer: function renderTopic(value, p, record) {
             var href = 'http://wpt.roving.com/result/'+ record.getData().id;
             return Ext.String.format('<a href="{0}" target="_blank">WebPageTest</a>', href);
+        },
+        flex: 1
+    },{
+        text: "Action",
+        sortable: false,
+        renderer: function() {
+            if(this.up('uxtabpanel').getAdmin()) {
+                return '<span class="x-fa fa-trash"></span>'
+            }
         },
         flex: 1
     }],

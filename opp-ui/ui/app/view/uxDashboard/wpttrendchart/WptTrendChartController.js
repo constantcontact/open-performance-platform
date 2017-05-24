@@ -21,11 +21,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
         if(!metricStore.getProxy().getData()) {
             console.log('Loading ' + button.getText() + ' for the first time!');
             defaultStoreData = defaultStore.getProxy().getReader().rawData;
-
-            for(var i = 0; i < defaultStoreData.length; i++) {
-                defaultStoreData[i].page = this.getView().up('uxtrendreport').getPageName();
-                defaultStoreData[i].connection = this.getView().up('uxtrendreport').getConnection();
-            }
+            
             metricStore.getProxy().setData(defaultStoreData);
             metricStore.load();   
         } else {
@@ -33,9 +29,9 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
         }
 
         this.getView().setStore(metricStore);
-        wptTrendGrid.setStore(metricStore);
-
         this.getView().up('uxtrendreport').down('wpttrendchart').setTitle('WPT Trend - ' + button.getText());
+        
+        wptTrendGrid.setStore(metricStore);
         wptTrendGrid.setTitle('WPT Summary - ' + button.getText());
     }
 

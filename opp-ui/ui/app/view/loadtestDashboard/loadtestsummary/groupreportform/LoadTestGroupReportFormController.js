@@ -6,16 +6,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
     showSampleData: function() {
         var store, columnFilter, textFilter;
 
-        // console.log(this.getView().down('#filterCombobox'));
         columnFilter = this.getView().down('#filterCombobox').getValue();
         textFilter = this.getView().down('#filterField').getValue();
 
         if(columnFilter && textFilter) {
-            // store = this.getView()
-            //         .up('loadtest')
-            //         .getViewModel()
-            //         .getStore('remoteSummaryTrendFilter');
-            store = Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter');
+            store = this.getView().down('grid').getStore();
         
             store.clearFilter();
             store.filterBy(function(record) {
