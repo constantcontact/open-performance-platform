@@ -6,6 +6,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
         console.log("Create Group Report Form");
         var window, store;
 
+         store = this.getView()
+                    .up('loadtest')
+                    .getViewModel()
+                    .getStore('remoteSummaryTrendFilter');
+
         window = Ext.create('Ext.window.Window', {
             title: 'Grouped Report Creator',
             layout: 'vbox',
@@ -17,10 +22,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
             items: {  xtype:'loadtestgroupreportform' }
         });
 
-        store = this.getView()
-                    .up('loadtest')
-                    .getViewModel()
-                    .getStore('remoteSummaryTrendFilter');
+       
 
         // clear the grid when the build group
         // report button is clicked. 
@@ -28,7 +30,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
             return undefined;
         });
 
-        //this.getView().up('loadtest').add(window).show();
+        //this.getView().up('loadtest').add(window);
+        //this.getView().up('loadtestsummarytab').add(window);
         window.show();
     },
 

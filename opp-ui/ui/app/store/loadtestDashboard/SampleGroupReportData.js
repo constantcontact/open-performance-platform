@@ -1,13 +1,11 @@
 Ext.define('OppUI.store.loadtestDashboard.SampleGroupReportData', {
     extend: 'Ext.data.Store',
-    alias: 'store.apptrend',
-    model: 'OppUI.model.uxDashboard.AppTrend',
+    alias: 'store.samplegroupreportdata',
+    model: 'OppUI.model.loadTestDashboard.LoadTestReportSummary',
     autoLoad: false,
 
-    pageSize: 15,
     proxy: {
         type: 'memory',
-        enablePaging: true,
         reader: {
             type: 'json'
         }

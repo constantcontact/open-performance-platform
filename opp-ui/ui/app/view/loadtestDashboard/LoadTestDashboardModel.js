@@ -14,7 +14,8 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardModel', {
                 //url: 'http://localhost:8888/loadsvc/v1/loadtests/all/summarytrend',
                 url: 'http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summarytrend',
                 reader: {
-                    type: 'json'
+                    type: 'json',
+                    keepRawData: true
                 }
             }
         },

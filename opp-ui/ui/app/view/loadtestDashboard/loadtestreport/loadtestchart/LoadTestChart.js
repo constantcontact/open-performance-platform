@@ -5,7 +5,8 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
 
     requires: [
         'OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestChartController',
-        'OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestChartModel'
+        'OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestChartModel',
+        'Ext.chart.plugin.ItemEvents'
     ],
 
     controller: 'loadtestchart',
@@ -23,12 +24,18 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
             strokeStyle: '#fff'
         },
         seriesTooltip: {
-            trackMouse: true, style: 'background: #fff', showDelay: 0, dismissDelay: 0, hideDelay: 0,
+            trackMouse: true, 
             renderer: function (tooltip, record, item) {
-                var title;
-                if(record && item.series) {
-                    title = item.series.config.chart.getTitle();
-                    tooltip.setHtml('<b>' + title + ':</b>' + record.get(item.series.config.yField) + '(ms)');
+                var startTime;
+                if(item && record) {
+                    // determine if the tooltip is for a timeseries chart
+                    // or aggregation chart.
+                    startTime = record.data.start_time;
+                    if(!startTime) {
+                        startTime = window.parseInt(record.data.xaxis);
+                    }
+                    tooltip.setHtml(item.field + ' on ' + new Date(startTime * 1000) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
                 }
             }
         },
@@ -165,6 +172,24 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                 view.up('loadtestreport').add(window).showAt();
             }
         }] 
+    },
+
+    plugins: {
+        ptype: 'chartitemevents'
+        // moveEvents: true
+    },
+
+    listeners: {
+        itemdblclick: function(series, item, event, eOpts ) {
+            // only create a tab if the user is dblclicking
+            // on aggregation load test chart.
+            console.log(item);
+            if(this.getItemId().indexOf('trend-') >= 0) {
+                this.up('loadtest')
+                    .getController()
+                    .updateUrlTabState(item.record.id, true)
+            }
+        }
     },
 
     legend: {

@@ -25,8 +25,8 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMapping',{
    
     config: {
         scrollable: true,
-        activeState: null,
-        defaultActiveState: 'dashboard'
+        activeState: null
+        //defaultActiveState: 'dashboard'
     },
 
     validStates: {

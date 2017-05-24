@@ -198,7 +198,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         json = Ext.decode(response.responseText, false);
         series = json.chart.series;
         yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
-        type = options.url.indexOf('timeseries') >= 0 ? 'timeseries-' : 'agg-';
+        type = options.url.indexOf('timeseries') >= 0 ? 'timeseries-' : 'trend-';
 
 
         chart = this.down('#' + type + yaxis);
@@ -213,12 +213,12 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         }
 
         chart.axes[0].fields = json.chart.modelFields.slice(1);
-        chart.setTitle(json.chart.title);
+        //chart.setTitle(json.chart.title);
         chart.setSeries(series);
         chart.setStore(Ext.create('Ext.data.JsonStore', {
             fields: json.chart.modelFields,
             data: json.chart.data
         }));
-        chart.redraw();
+        //chart.redraw();
     }
 });

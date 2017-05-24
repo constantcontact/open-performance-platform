@@ -20,8 +20,8 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
     }],
 
     config: {
-        activeState: null,
-        defaultActiveState: 'dashboard'
+        activeState: null
+        //defaultActiveState: 'dashboard'
     },
 
     validStates: {

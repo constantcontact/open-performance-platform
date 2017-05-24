@@ -20,8 +20,7 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     
     config: {
         scrollable: true,
-        activeState: null,
-        defaultActiveState: 'dashboard'
+        activeState: null
     },
 
     validStates: {

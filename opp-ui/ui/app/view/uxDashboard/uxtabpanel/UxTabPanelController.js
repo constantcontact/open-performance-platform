@@ -87,6 +87,12 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
             }
         }
 
+        if(!add) {
+            // need to set this in order for the routing
+            // to work for deleted tabs.
+            parent.setActiveState(activeState);
+        }
+
         console.log('UpdateUrlTabState ===> activeState: ' + activeState);
         parent.getController().updateActiveState(activeState);
     }

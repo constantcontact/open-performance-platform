@@ -4,7 +4,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
 
     requires: [
         'OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTestGroupReportFormController',
-        'OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTestGroupReportFormModel'
+        'OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTestGroupReportFormModel',
+        'OppUI.store.loadtestDashboard.SampleGroupReportData'
     ],
 
     controller: 'loadtestgroupreportform',
@@ -67,11 +68,9 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             xtype: 'grid',
             height: 'auto',
             title: 'Sample Results',
-            // store: Ext.data.StoreManager.lookup('reportTestData'),
-            // bind: {
-            //     // store: '{remoteSummaryTrendFilter}'
-            //     store: Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter')
-            // },
+            store: {
+                type: 'samplegroupreportdata'
+            },
             columnLines: true,
             columns: [
                 { text: 'TestId', dataIndex: "load_test_id", hidden: true, flex: 1 },
@@ -97,11 +96,15 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
 
             listeners: {
                 afterrender: function(view) {
-                    // view.bind = {
-                    //     store: Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter')
-                    // }
-                    console.log(view);
-                    view.store = Ext.ComponentQuery.query('loadtest')[0].getViewModel().getStore('remoteSummaryTrendFilter');
+                    var defaultStore;
+
+                    defaultStore = Ext.ComponentQuery.query('loadtestsummary')[0].getStore();
+                    
+                    this.store.getProxy().setData(defaultStore.getProxy().getReader().rawData);
+                    this.store.filterBy(function(record) {
+                        return undefined;
+                    });
+                    this.store.load();
                 }
             }
         }

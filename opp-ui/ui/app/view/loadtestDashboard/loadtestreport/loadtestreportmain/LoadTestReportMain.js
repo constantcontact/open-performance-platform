@@ -22,6 +22,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
                 xtype: 'loadtestchart',
                 itemId: 'timeseries-' + timeSeriesYAxes[i].yaxis,
                 title: timeSeriesYAxes[i].title,
+                //width: '100%',
                 colspan: 2,
                 height: 300,
                 margin: '0 0 20 0',
@@ -50,11 +51,11 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
         for(i = 0; i < aggregateYAxes.length; i++) {
             this.items.push({
                 xtype: 'loadtestchart',
-                itemId: 'agg-' + aggregateYAxes[i].yaxis,
+                itemId: 'trend-' + aggregateYAxes[i].yaxis,
                 title: aggregateYAxes[i].title,
                 colspan: 1,
                 height: 300,
-                margin: '0 0 20 0'
+                margin: '0 20 20 0'
             });
         }
         
@@ -69,20 +70,14 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
     layout: {
         type: 'table',
         columns: 2,
-        tableAttrs: {
-            style: {
-                width: '100%'
-            }
+        tdAttrs: {
+            width: '100%'
         }
     },
+
     style: {
         overflow: 'auto'
     },
-    defaults: {
-       // padding: 7,
-        height: 300
-    },
-    margins: '5 0 0 0',
 
     items:[
         {

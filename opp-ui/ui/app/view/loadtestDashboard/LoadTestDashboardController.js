@@ -102,6 +102,11 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
         // console.log('newTabState: '+newTabState);
         // console.log('activeState: '+activeState);
 
+        if(!add) {
+            // need to set this in order for the routing
+            // to work for deleted tabs.
+            this.getView().setActiveState(activeState);
+        }
         this.updateActiveState(activeState);
     },
 
@@ -223,7 +228,12 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
             }
         }
 
-
+        if(!add) {
+            // need to set this in order for the routing
+            // to work for deleted tabs.
+            this.getView().setActiveState(activeState);
+        }
+        
         this.updateActiveState(activeState);
     }
     
