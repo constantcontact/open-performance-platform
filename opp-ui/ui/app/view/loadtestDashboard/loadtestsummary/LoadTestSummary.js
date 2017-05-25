@@ -127,6 +127,9 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
             success: function(response){
                 //var json = Ext.decode(response.responseText, false);
                 me.up('loadtest').getViewModel().getStore('remoteSummaryTrend').reload();
+            },
+            error: function(response) {
+                Ext.Msg.alert("Error...", "Error processing deletion. Please Try again Later.");
             }
         });
     },
