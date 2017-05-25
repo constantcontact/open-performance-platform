@@ -13,7 +13,8 @@ Ext.define('OppUI.store.NavigationTree', {
                 text: 'Dashboard',
                 iconCls: 'x-fa fa-home',
                 rowCls: 'nav-tree-badge nav-tree-badge-new',
-                viewType: 'dashboard',
+                viewType: 'maindashboard',
+                routeId: 'dashboard',
                 leaf: true
             },
             {
