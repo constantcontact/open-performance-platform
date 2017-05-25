@@ -25,7 +25,7 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
 
     items: [
         {
-            xtype: 'statswidget',
+            xtype: 'uxstatswidget',
             containerColor: 'green',
             userCls: 'big-50 small-100',
             data: {
@@ -35,7 +35,7 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
             }
         },
         {
-            xtype: 'statswidget',
+            xtype: 'loadteststatswidget',
             containerColor: 'magenta',
             userCls: 'big-50 small-100',
             data: {
@@ -53,18 +53,9 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
             },
             columnLines: true,
             columns: [
+                { xtype: 'rownumberer',width: 50, sortable: false }, 
+                { text: "Test Date", dataIndex: 'testDate', flex: 1,width: 150,sortable: false, renderer: Ext.util.Format.dateRenderer('n/j/Y g:i A') },
                 {
-                    xtype: 'rownumberer',
-                    width: 50,
-                    sortable: false
-                }, {
-                    text: "Test Date",
-                    dataIndex: 'testDate',
-                    flex: 1,
-                    width: 150,
-                    sortable: false,
-                    renderer: Ext.util.Format.dateRenderer('n/j/Y g:i A')
-                }, {
                     tdCls: 'x-grid-cell-topic',
                     text: "Application",
                     dataIndex: 'application',
@@ -86,29 +77,35 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
                 }, {
                     text: "Location",
                     dataIndex: 'location',
+                    hidden: true,
                     flex: 1,
                     width: 150,
                     sortable: false
                 }, {
                     text: "Browser",
                     dataIndex: 'browser',
+                    hidden: true,
                     flex: 1,
                     width: 150,
                     sortable: false
                 }, {
                     text: "Connection",
                     dataIndex: 'connection',
+                    hidden: true,
                     flex: 1,
                     width: 150,
                     sortable: false
                 }, {
                     text: "Misc",
                     dataIndex: 'misc',
+                    hidden: true,
                     sortable: false,
                     flex: 1
                 }
-                
-            ]
+            ],
+            listeners: {
+                itemdblclick: 'uxItemSelected'
+            },
             //,
             // bbar: {
             //     xtype: 'pagingtoolbar',
@@ -138,7 +135,10 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
                 {text: 'Environment', dataIndex: "environment", flex: 1},
                 {text: 'Start Time', dataIndex: "startTime", flex: 1, renderer: function(v) { return Ext.Date.format(new Date(v),'m/d/Y H:i a')}},
                 {text: 'End Time', dataIndex: "endTime", hidden:true, flex: 1, renderer: function(v) { return Ext.Date.format(new Date(v),'m/d/Y H:i a')}}
-            ]
+            ],
+            listeners: {
+                itemdblclick: 'loadtestItemSelected'
+            }
             //,
             // bbar: {
             //     xtype: 'pagingtoolbar',

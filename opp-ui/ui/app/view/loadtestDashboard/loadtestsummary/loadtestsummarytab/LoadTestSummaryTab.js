@@ -18,8 +18,9 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
     plugins: 'tabreorderer',
 
     config: {
-        scrollable: true,
-        closable: true
+        //scrollable: true,
+        closable: true,
+        autoHeight: true
     },
 
     items: [{
@@ -28,8 +29,16 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
         iconCls: 'x-fa fa-table',
         reorderable: false,
         closable: false,
-        scrollable: true,
-        layout: 'fit'
+        scrollable: false
+        //scrollable: 'x'
+        // autoscroll: true,
+        // height: 500,
+        // autoHeight: true,
+        // overflowX: 'auto'
+        // overflowY: 'disabled',
+        // viewConfig:{
+        //     forceFit: false
+        // }
     }],
 
     createTab: function(grid, record, item, index) {

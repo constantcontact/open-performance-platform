@@ -4,7 +4,7 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardModel', {
     data: {
         name: 'OppUI',
         totalUxTests: 0,
-        totalLostTests: 0
+        totalLoadTests: 0
     },
 
     stores: {

@@ -17,12 +17,15 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardController', {
     },
 
     uxApplicationsLoaded: function(uxApplicationData) {
-        var uxApplicationsFilterStore, data;
+        var uxApplicationsFilterStore, data, totalUxTests;
         
         data = [];
         uxApplicationsFilterStore = this.getView().getViewModel().getStore('uxApplicationFilter');
+        totalUxTests = uxApplicationData.getData().items.length;
 
-        for(var i = 0; i < uxApplicationData.getData().items.length; i++) {
+        this.getViewModel().set('totalUxTests', totalUxTests);
+
+        for(var i = 0; i < totalUxTests; i++) {
             data.push(uxApplicationData.getData().items[i].getData());
         }
 
@@ -31,10 +34,13 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardController', {
     }, 
 
     loadTestsLoaded: function(loadTestData) {
-        var loadTestFilterStore, data;
+        var loadTestFilterStore, data, totalLoadTests;
         
         data = [];
         loadTestFilterStore = this.getView().getViewModel().getStore('loadTestFilter');
+        totalLoadTests = loadTestData.getData().items.length;
+
+        this.getViewModel().set('totalLoadTests', totalLoadTests);
 
         for(var i = 0; i < loadTestData.getData().items.length; i++) {
             data.push(loadTestData.getData().items[i].getData());
@@ -42,6 +48,14 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardController', {
 
         loadTestFilterStore.getProxy().setData(data);
         loadTestFilterStore.load();
-    }
+    },
 
+    uxItemSelected: function(grid, record, domElement, index) {
+        this.fireEvent('changeroute', this, 'ux/?pages=' + record.getData().full);
+    },
+
+    loadtestItemSelected: function(grid, record, domElement, index) {
+        console.log(record.getData().loadTestId);
+        this.fireEvent('changeroute', this, 'loadtest/?tab=' + record.getData().loadTestId);
+    }
 });
