@@ -16,29 +16,14 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
     },
 
     plugins: 'tabreorderer',
-
-    config: {
-        //scrollable: true,
-        closable: true,
-        autoHeight: true
-    },
+    height: Ext.getBody().getViewSize().height,
 
     items: [{
         title: 'Load Tests',
         xtype: 'loadtestsummary',
         iconCls: 'x-fa fa-table',
         reorderable: false,
-        closable: false,
-        scrollable: false
-        //scrollable: 'x'
-        // autoscroll: true,
-        // height: 500,
-        // autoHeight: true,
-        // overflowX: 'auto'
-        // overflowY: 'disabled',
-        // viewConfig:{
-        //     forceFit: false
-        // }
+        closable: false
     }],
 
     createTab: function(grid, record, item, index) {
@@ -91,7 +76,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                 iconCls: 'x-fa fa-line-chart',
                 loadTestId: loadTestId,
                 title: 'Test Run #' + loadTestId,
-                scrollable: false
+                width: Ext.getBody().getViewSize().width
             }
         );
 

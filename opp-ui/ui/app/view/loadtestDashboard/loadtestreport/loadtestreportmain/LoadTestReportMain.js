@@ -22,7 +22,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
                 xtype: 'loadtestchart',
                 itemId: 'timeseries-' + timeSeriesYAxes[i].yaxis,
                 title: timeSeriesYAxes[i].title,
-                //width: '100%',
                 colspan: 2,
                 height: 300,
                 margin: '0 0 20 0',

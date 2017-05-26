@@ -86,6 +86,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
 
     columns: {
         items: [
+            {text: '#', xtype: 'rownumberer', width: 50, sortable: false },
             {text: 'TestId', dataIndex: "loadTestId", hidden:true},
             {text: 'Test Name', dataIndex:"testName"},
             {text: 'Sub Name', dataIndex:"testSubName", hidden:true},

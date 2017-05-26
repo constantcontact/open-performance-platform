@@ -22,30 +22,20 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
     },
 
     layout: 'responsivecolumn',
+    height: Ext.getBody().getViewSize().height,
 
     items: [
         {
             xtype: 'uxstatswidget',
             containerColor: 'green',
-            userCls: 'big-50 small-100',
-            data: {
-                amount: 611,
-                type: 'Active UX Tests',
-                icon: 'bar-chart'
-            }
+            userCls: 'big-50 small-100'
         },
         {
             xtype: 'loadteststatswidget',
             containerColor: 'magenta',
-            userCls: 'big-50 small-100',
-            data: {
-                amount: 792,
-                type: 'Active Load Tests',
-                icon: 'tachometer'
-            }
+            userCls: 'big-50 small-100'
         },{
             xtype: 'grid',
-            height: 'auto',
             title: 'Last 10 Ux Tests',
             userCls: 'big-50 small-100',
             bind: {
@@ -117,7 +107,6 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
             // }
         },{
             xtype: 'grid',
-            height: 'auto',
             userCls: 'big-50 small-100',
             title: 'Last 10 Load Tests',
             bind: {
