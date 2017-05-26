@@ -25,6 +25,12 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             { yaxis: 'tps_max', title: 'Trend: TPS Max' }
         ]
     },
+    defaults: {
+        collapsible: true,
+        split: false,
+        bodyPadding: 10,
+        scrollable: true
+    },
 
     initComponent: function() {
         var i, me;
@@ -68,12 +74,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     controller: 'loadtestreport',
     viewModel: {
         type: 'loadtestreport'
-    },
-
-    defaults: {
-        collapsible: true,
-        split: false,
-        bodyPadding: 10
     },
 
     items: [
@@ -172,7 +172,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         {
             xtype: 'loadtestreportmain',
             collapsible: false,
-            scrollable: true,
             region: 'center',
             margin: '5 0 0 0'
         }
@@ -182,10 +181,11 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         // This is needed if you are create a border layout inside of a panel. 
         // If this is not set then you get:
         // 'Uncaught Error: Border layout does not currently support shrinkWrap height. Please specify a height on component'
-        render: function() {
-            var me = this;
-            me.setHeight(window.innerHeight);
-        },
+        // render: function() {
+        //     var me = this;
+        //     me.setHeight(window.innerHeight);
+        // },
+    
         beforeclose: function(tab) {
             console.log('tab closing ' + tab.getLoadTestId());
             this.up('loadtest').getController().updateUrlTabState(tab.getLoadTestId(), false);

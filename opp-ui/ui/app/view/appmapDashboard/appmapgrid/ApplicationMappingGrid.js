@@ -13,9 +13,43 @@ Ext.define('OppUI.view.appmapDashboard.appmapgrid.ApplicationMappingGrid',{
         type: 'applicationmappinggrid'
     },
 
-     bind: {
+    bind: {
         store : '{remoteAppMapping}'
     },
+    initComponent: function () {
+        var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+            clicksToEdit: 1,
+            autoCancel: false,
+            listeners: {
+                beforeedit: function(editor, context, eOpts){
+                    // fix issue where checkbox columns were popping up row editor on edit.  This should not happen.
+                    if(context.column.config.xtype === 'checkcolumn'){
+                        return false;
+                    }
+                },
+                cancelEdit: function (rowEditing, context) {
+                    // Canceling editing of a locally added, unsaved record: remove it
+                    if (context.record.phantom) {
+                        context.view.up('grid').getStore().remove(context.record);
+                    }
+                }
+            }
+        });
+        this.plugins = [rowEditing];
+        this.height = Ext.getBody().getViewSize().height;
+        this.callParent(arguments);
+    },
+
+    tbar: [{
+        text: 'Add Application',
+        itemId: 'btnAddApplication',
+        scope: this,
+        handler: function (btn) {
+            var grid = btn.up('grid');
+            grid.getStore().insert(0, new OppUI.model.loadtestDashboard.ApplicationMapping())
+            grid.editingPlugin.startEdit(0, 0);
+        }
+    }],
 
     columns: {
         defaults: {
@@ -24,6 +58,7 @@ Ext.define('OppUI.view.appmapDashboard.appmapgrid.ApplicationMappingGrid',{
             field: { xtype: 'textfield' }
         },
         items: [
+            {text: '#', xtype: 'rownumberer', width: 50, sortable: false },
             {text: 'ID', dataIndex: 'id', hidden: true, renderer: function (v, meta, rec) { return rec.phantom ? '' : v; } },
             {text: 'Application Name', dataIndex: 'appKey', allowBlank: false},
             // {text: 'Team Name', dataIndex: 'teamName'},

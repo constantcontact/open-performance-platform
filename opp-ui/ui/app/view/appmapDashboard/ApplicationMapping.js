@@ -16,15 +16,14 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMapping',{
     },
     items: [{
         xtype: 'panel',
-        layout: 'fit',
-        items:[
-            { xtype: 'applicationmappinggrid' }
-        ],
+        items:[{ 
+            xtype: 'applicationmappinggrid',
+            layout: 'fit'
+        }],
         title: 'Application Mapping'
     }],
    
     config: {
-        scrollable: true,
         activeState: null
         //defaultActiveState: 'dashboard'
     },

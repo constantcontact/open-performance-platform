@@ -17,7 +17,6 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications', {
         align: 'stretch'
     },
 
-    scrollable: 'y',
     title: 'User Experience Tests',
 
     minWidth: 600,
