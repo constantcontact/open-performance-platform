@@ -207,7 +207,7 @@ public class WptTestDao {
     public List<WptTestRunData> getTrendTableData(String testName, String view, String runDuration){
 
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
-                .setSource(SearchSourceBuilder.searchSource().fetchSource(new String[] { "completed", "label", "runCount", runDuration + "."+view+".TTFB", runDuration + "."+view+".SpeedIndex", runDuration + "."+view+".visualComplete" }, new String[] {}))
+                .setSource(SearchSourceBuilder.searchSource().fetchSource(new String[] { "summary", "completed", "label", "runCount", runDuration + "."+view+".TTFB", runDuration + "."+view+".SpeedIndex", runDuration + "."+view+".visualComplete", runDuration + "." +view+".aft" }, new String[] {}))
                 .setQuery(QueryBuilders.termQuery("label.full.keyword", testName).queryName("label")).get();
 
         return Arrays.stream(resp.getHits().getHits()).map(h -> {
@@ -260,15 +260,15 @@ public class WptTestDao {
                     Double medianTtfb = ((Avg) b.getAggregations().get("ttfb.median")).getValue();
                     Double averageTtfb = ((Avg) b.getAggregations().get("ttfb.average")).getValue();
 
-                    Double minSI = ((Avg) b.getAggregations().get("ttfb.min")).getValue();
-                    Double maxSI = ((Avg) b.getAggregations().get("ttfb.max")).getValue();
-                    Double medianSI = ((Avg) b.getAggregations().get("ttfb.median")).getValue();
-                    Double averageSI = ((Avg) b.getAggregations().get("ttfb.average")).getValue();
+                    Double minSI = ((Avg) b.getAggregations().get("speedIndex.min")).getValue();
+                    Double maxSI = ((Avg) b.getAggregations().get("speedIndex.max")).getValue();
+                    Double medianSI = ((Avg) b.getAggregations().get("speedIndex.median")).getValue();
+                    Double averageSI = ((Avg) b.getAggregations().get("speedIndex.average")).getValue();
 
-                    Double minVC = ((Avg) b.getAggregations().get("ttfb.min")).getValue();
-                    Double maxVC = ((Avg) b.getAggregations().get("ttfb.max")).getValue();
-                    Double medianVC = ((Avg) b.getAggregations().get("ttfb.median")).getValue();
-                    Double averageVC = ((Avg) b.getAggregations().get("ttfb.average")).getValue();
+                    Double minVC = ((Avg) b.getAggregations().get("visuallyComplete.min")).getValue();
+                    Double maxVC = ((Avg) b.getAggregations().get("visuallyComplete.max")).getValue();
+                    Double medianVC = ((Avg) b.getAggregations().get("visuallyComplete.median")).getValue();
+                    Double averageVC = ((Avg) b.getAggregations().get("visuallyComplete.average")).getValue();
 
                     return new WptTrendMetric(Long.valueOf(b.getKeyAsString()),
                             new WptTrendMetric.BasicMetric(minTtfb.intValue(), maxTtfb.intValue(), medianTtfb.intValue(), averageTtfb),
