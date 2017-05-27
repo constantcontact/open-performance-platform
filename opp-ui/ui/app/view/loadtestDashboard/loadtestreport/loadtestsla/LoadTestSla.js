@@ -39,17 +39,16 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSla'
              text: 'Save All Changes',
              tooltip:'Saves all SLA changes',
              handler: function(btn){
-                 // TODO: What does sync do??
-                //  btn.up('gridpanel').getStore().sync({
-                //      scope:btn,
-                //      success: function(batch, opts) {
-                //          this.up('gridpanel').getStore().reload(); // need to do this to load all the correct ids that are missing for new transactions
-                //          CCPerf.util.Globals.reports.sla.dirty = true;
-                //      },
-                //      failure: function(batch, opts) {
-                //          alert('failed');
-                //      }
-                //  });
+                 btn.up('grid').getViewModel().getStore('remoteSlas').sync({
+                     scope:btn,
+                     success: function(batch, opts) {
+                         this.up('grid').getStore().reload(); // need to do this to load all the correct ids that are missing for new transactions
+                         OppUI.util.Globals.reports.sla.dirty = true;
+                     },
+                     failure: function(batch, opts) {
+                         alert('failed');
+                     }
+                 });
              }
          },
          {
@@ -101,12 +100,12 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSla'
         // }
 
       	
-      
-        // this.store.model.proxy.api.read = '/loadsvc/v1/loadtests/' + this.loadTestId + '/slas/';
-        // this.store.model.proxy.api.create = '/loadsvc/v1/loadtests/' + this.loadTestId + '/slas/';
-        // this.store.model.proxy.api.update = '/loadsvc/v1/slas/';
-   
         this.callParent(arguments);
+        // this.getViewModel().getStore('remoteSlas').model.proxy.api.read = '/loadsvc/v1/loadtests/' + this.loadTestId + '/slas/';
+        // this.getViewModel().getStore('remoteSlas').model.proxy.api.create = '/loadsvc/v1/loadtests/' + this.loadTestId + '/slas/';
+        // this.getViewModel().getStore('remoteSlas').model.proxy.api.update = '/loadsvc/v1/slas/';
+   
+        
     },
 
     columns: [

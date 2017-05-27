@@ -241,7 +241,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         var loadTestReport = container.up('loadtestreport');
         
         Ext.Ajax.request({
-            url: 'http://roadrunner.roving.com/loadsvc/v1/charts/timeseries/loadtests/'+ loadTestReport.getLoadTestId() + "?yaxis=" + yaxis,
+            url: '/loadsvc/v1/charts/timeseries/loadtests/'+ loadTestReport.getLoadTestId() + "?yaxis=" + yaxis,
             scope: container,
             disableCaching: false,
             success: function (response) {

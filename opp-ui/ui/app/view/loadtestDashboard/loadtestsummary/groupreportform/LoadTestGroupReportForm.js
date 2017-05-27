@@ -73,25 +73,25 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             },
             columnLines: true,
             columns: [
-                { text: 'TestId', dataIndex: "load_test_id", hidden: true, flex: 1 },
-                { text: 'Test Name', dataIndex: "test_name", flex: 1 },
-                { text: 'Sub Name', dataIndex: "test_sub_name", hidden: true, flex: 1 },
-                { text: 'Application', dataIndex: "app_under_test", flex: 1 },
-                { text: 'App Version', dataIndex: "app_under_test_version", hidden: true, flex: 1 },
+                { text: 'TestId', dataIndex: "loadTestId", hidden: true, flex: 1 },
+                { text: 'Test Name', dataIndex: "testName", flex: 1 },
+                { text: 'Sub Name', dataIndex: "testSubName", hidden: true, flex: 1 },
+                { text: 'Application', dataIndex: "appUnderTest", flex: 1 },
+                { text: 'App Version', dataIndex: "appUnderTestVersion", hidden: true, flex: 1 },
                 { text: 'Comments', dataIndex: "comments", hidden: true, flex: 1 },
                 { text: 'Description', dataIndex: "description", hidden: true, flex: 1 },
                 { text: 'Environment', dataIndex: "environment", flex: 1 },
                 {
                     text: 'Start Time',
-                    dataIndex: "start_time",
+                    dataIndex: "startTime",
                     renderer: function(v) {
                         return Ext.Date.format(new Date(v * 1000), 'm/d/Y H:i a')
                     },
                     flex: 1
                 },
-                { text: 'Test Tool', dataIndex: "test_tool", hidden: true, flex: 1 },
-                { text: 'Tool Version', dataIndex: "test_tool_version", hidden: true, flex: 1 },
-                { text: '# Users', dataIndex: "vuser_count", flex: 1 }
+                { text: 'Test Tool', dataIndex: "testTool", hidden: true, flex: 1 },
+                { text: 'Tool Version', dataIndex: "testToolVersion", hidden: true, flex: 1 },
+                { text: '# Users', dataIndex: "vuserCount", flex: 1 }
             ],
 
             listeners: {

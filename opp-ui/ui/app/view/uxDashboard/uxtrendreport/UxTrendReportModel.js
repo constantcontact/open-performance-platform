@@ -3,23 +3,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
     alias: 'viewmodel.uxtrendreport',
 
     stores: {
-        remoteAppTrend: {
-            model: 'OppUI.model.uxDashboard.AppTrend',
-            autoLoad: false,
-
-            proxy: {
-                type: 'ajax',
-                url: 'http://roadrunner.roving.com/uxsvc/v2/rrux/wptTrendData', 
-                reader: {
-                    type: 'json',
-                    rootProperty: 'dataTable'
-                },
-                data: []
-            },
-            listeners: {
-                load: 'onRemoteAppTrendLoad'
-            }
-        },
         histogramData: {
             fields: [
                 { name: 'wptTimestamp', mapping: 'completedDate', type: 'auto',
@@ -29,14 +12,12 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }, 
                 { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
-                { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
-                { name: 'Page', mapping: 'page', type: 'auto'},
-                { name: 'Connection', mapping: 'connection', type: 'auto'}
+                { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
                 type: 'ajax',
-                url:  'http://opp-svc.mydomain.com/uxsvc/v1/wpt/trend/histogram',
+                url:  '/uxsvc/v1/wpt/trend/histogram',
                 reader: {
                     type: 'json',
                     keepRawData: true
@@ -46,6 +27,36 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 load: 'onHistogramDataLoaded'
             }
         },
+        wptTrendTable: {
+            fields: [
+                { name: 'id', mapping: 'id', type: 'auto' },
+                { name: 'date', mapping: 'date', type: 'auto',
+                    convert: function(value, record) {
+                        return new Date(value * 1000);
+                    }
+                }, 
+                { name: 'TTFB', mapping: 'ttfb', type: 'auto' },
+                { name: 'VisuallyComplete', mapping: 'visuallyComplete', type: 'auto' },
+                { name: 'SpeedIndex', mapping: 'speedIndex', type: 'auto' },
+                { name: 'Page', mapping: 'label.page', type: 'auto'},
+                { name: 'Connection', mapping: 'label.connection', type: 'auto'},
+                { name: 'SummaryURL', mapping: 'summaryUrl', type: 'auto'}
+            ],
+            autoLoad: true,
+            proxy: {
+                type: 'ajax',
+                url:  '/uxsvc/v1/wpt/trend/table',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: function() {
+                    console.log('wptTrendTable data loaded!');
+                }
+            }
+        },
+
         min: {
             model: 'OppUI.model.uxDashboard.HistogramMin',
             autoLoad: false,
@@ -61,7 +72,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }
             }
         },
-         max: {
+            max: {
             model: 'OppUI.model.uxDashboard.HistogramMax',
             autoLoad: false,
             proxy: {
@@ -76,7 +87,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }
             }
         },
-         median: {
+            median: {
             model: 'OppUI.model.uxDashboard.HistogramMedian',
             autoLoad: false,
             proxy: {
@@ -91,7 +102,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }
             }
         },
-         average: {
+            average: {
             model: 'OppUI.model.uxDashboard.HistogramAverage',
             autoLoad: false,
             proxy: {
@@ -105,12 +116,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                     console.log('Average histogram data loaded!');
                 }
             }
-        },
-
-
-
-        uxPageTrendGrid: {
-            source: '{histogramData}'
         }
     }
 });

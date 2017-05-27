@@ -15,7 +15,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsModel', {
 
             proxy: {
                 type: 'ajax',
-                url: 'https://localhost/uxsvc/v1/wpt/navigation',
+                url: '/uxsvc/v1/wpt/navigation',
                 reader: {
                     type: 'json'
                 }

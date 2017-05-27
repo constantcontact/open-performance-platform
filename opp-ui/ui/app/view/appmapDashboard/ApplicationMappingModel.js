@@ -9,7 +9,7 @@ Ext.define('OppUI.view.appmapDashboard.ApplicationMappingModel', {
             autoSync: true,
             proxy: {
                 type: 'ajax',
-                url: 'https://appmap-svc.ctct.net/v1/applications',
+                url: '/loadsvc/v1/applications',
                 reader: {
                     type: 'json'
                 },

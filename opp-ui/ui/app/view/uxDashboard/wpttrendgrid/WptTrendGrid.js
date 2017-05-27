@@ -15,13 +15,11 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     width: 700,
     height: 470,
     
-
     margin: '0 20 20 20',
     bind: {
-        store: '{histogramData}'
+        store: '{wptTrendTable}'
     },
 
-    loadMask: true,
     selModel: {
         pruneRemoved: false
     },
@@ -44,9 +42,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         sortable: false
     },{
         text: "Page",
-        renderer: function() {
-            return this.up('uxtrendreport').getPageName();
-        },
+        dataIndex: 'Page',
         width: 70,
         sortable: false,
         flex: 1
@@ -66,7 +62,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     {
         text: "SpeedIndex",
         dataIndex: 'SpeedIndex',
-        width: 125,
+        width: 75,
         sortable: false
     },
     {
@@ -78,30 +74,34 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     },
     {
         text: "Connectivity",
-        renderer: function() {
-            return this.up('uxtrendreport').getConnection();
-        },
+        dataIndex: 'Connection',
         sortable: false,
         flex: 1
     },
     {
         text: "Result Details",
-        dataIndex: 'Pages',
+        dataIndex: 'SummaryURL',
         sortable: false,
         renderer: function renderTopic(value, p, record) {
-            var href = 'http://wpt.roving.com/result/'+ record.getData().id;
-            return Ext.String.format('<a href="{0}" target="_blank">WebPageTest</a>', href);
+            return Ext.String.format('<a href="{0}" target="_blank">WebPageTest</a>', record.getData().summaryUrl);
         },
         flex: 1
-    },{
-        text: "Action",
+    },
+    {
+        xtype: 'actioncolumn',
+        width: 30,
         sortable: false,
-        renderer: function() {
-            if(this.up('uxtabpanel').getAdmin()) {
-                return '<span class="x-fa fa-trash"></span>'
+        menuDisabled: true,
+        items: [{
+            getClass: function () {
+                return 'x-fa fa-trash'
+            },
+            tooltip: 'Delete WPT Data',
+            scope: this,
+            handler: function (grid, rowIndex) {
+                grid.getStore().removeAt(rowIndex);
             }
-        },
-        flex: 1
+        }]
     }],
     bbar: {
         xtype: 'pagingtoolbar',

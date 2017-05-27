@@ -2,7 +2,19 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.loadtestreport',
     data: {
-        name: 'OppUI'
+        loadTestId: 0,
+        testName: '',
+        testSubName: '',
+        vuserCount: 0,
+        environment: '',
+        appUnderTest: '',
+        appUnderTestVersion: '',
+        startTime: 0,
+        endTime: 0,
+        testTool: '',
+        testToolVersion: '',
+        description: '',
+        comments: ''
     },
 
     stores: {
@@ -15,9 +27,20 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportModel', {
                 reader: {
                     type: 'json'
                 }
+            }
+        },
+        remoteLoadTestInfo: {
+            model: 'OppUI.model.loadtestDashboard.LoadTestInfo',
+            autoLoad: true,
+            url: '',
+            proxy: {
+                type: 'ajax',
+                reader: {
+                    type: 'json'
+                }
             },
             listeners: {
-                load: 'remoteAggDataLoaded'
+                load: 'remoteLoadTestInfoLoaded'
             }
         },
         remoteSlas: {

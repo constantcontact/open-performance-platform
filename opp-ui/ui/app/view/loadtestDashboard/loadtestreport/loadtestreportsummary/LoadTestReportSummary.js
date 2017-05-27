@@ -72,8 +72,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
     },
 
     columns:[
-        {text: 'Transaction', dataIndex: "transaction_name", width: 180, flex: 1 },
-            {text: 'Min (s)', dataIndex: "resp_min", width: 75, 
+        {text: 'Transaction', dataIndex: "transactionName", width: 180, flex: 1 },
+            {text: 'Min (s)', dataIndex: "respMin", width: 75, 
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var sla = rec.data.sla_min;
                     var val = this.convertToSec(v);
@@ -83,7 +83,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + slaData['slaClass'] + "' data-qtip='"+slaData['slaTooltip']+"'>"+val+"</div>";
                 }, flex: 1 
             },
-            {text: 'Max (s)', dataIndex: "resp_max", width: 75, 
+            {text: 'Max (s)', dataIndex: "respMax", width: 75, 
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var sla = rec.data.sla_max;
                     var val = this.convertToSec(v);
@@ -92,7 +92,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + slaData['slaClass'] + "' data-qtip='"+slaData['slaTooltip']+"'>"+val+"</div>";
                 }, flex: 1 
             },
-            {text: 'Avg (s)', dataIndex: "resp_avg", width: 75, 
+            {text: 'Avg (s)', dataIndex: "respAvg", width: 75, 
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var sla = rec.data.sla_avg;
                     var val = this.convertToSec(v);
@@ -101,7 +101,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + slaData['slaClass'] + "' data-qtip='"+slaData['slaTooltip']+"'>"+val+"</div>";
                 }, flex: 1 
             },
-            {text: 'Median (s)', dataIndex: "resp_median",  
+            {text: 'Median (s)', dataIndex: "respMedian",  
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var sla = rec.data.sla_median;
                     var val = this.convertToSec(v);
@@ -110,7 +110,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + slaData['slaClass'] + "' data-qtip='"+slaData['slaTooltip']+"'>"+val+"</div>";
                 }, flex: 1 
             },
-            {text: '75th PCT (s)', dataIndex: "resp_pct75", 
+            {text: '75th PCT (s)', dataIndex: "respPct75", 
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var sla = rec.data.sla_pct75;
                     var val = this.convertToSec(v);
@@ -119,7 +119,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + slaData['slaClass'] + "' data-qtip='"+slaData['slaTooltip']+"'>"+val+"</div>";
                 }, flex: 1 
             },
-            {text: '90th PCT (s)', dataIndex: "resp_pct90", 
+            {text: '90th PCT (s)', dataIndex: "respPct90", 
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var sla = rec.data.sla_pct90;
                     var val = this.convertToSec(v);
@@ -128,7 +128,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + slaData['slaClass'] + "' data-qtip='"+slaData['slaTooltip']+"'>"+val+"</div>";
                 }, flex: 1 
             },
-            {text: 'Std Dev (s)', dataIndex: "resp_stddev",
+            {text: 'Std Dev (s)', dataIndex: "respStddev",
                 renderer: function(v, meta, rec, rowIndex, colIndex, store){ 
                     var avg = Number(rec.data.resp_avg);
                     v = Number(v);
@@ -148,12 +148,12 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     return "<div class='" + stdClass + "' data-qtip='"+stdToolTip+"'>"+this.convertToSec(v)+"</div>";
                 }, flex: 1 
             },
-            {text: 'Call Count', dataIndex: "call_count", flex: 1 },
-            {text: 'MB Received', dataIndex: "total_bytes_received", renderer: function(v){ return this.convertToMb(v)}, flex: 1  },
-            {text: 'MB Sent', dataIndex: "total_bytes_sent", renderer: function(v){ return this.convertToMb(v)}, flex: 1  },
-            {text: 'TPS (Median)', dataIndex: "tps_median", renderer: function(v){ return v; }, flex: 1  },
-            {text: 'TPS (Max)', dataIndex: "tps_max", renderer: function(v){ return v; }, flex: 1  },
-            {text: 'Errors', dataIndex: "error_count", renderer: function(v, meta, rec){
+            {text: 'Call Count', dataIndex: "callCount", flex: 1 },
+            {text: 'MB Received', dataIndex: "totalBytesReceived", renderer: function(v){ return this.convertToMb(v)}, flex: 1  },
+            {text: 'MB Sent', dataIndex: "totalBytesSent", renderer: function(v){ return this.convertToMb(v)}, flex: 1  },
+            {text: 'TPS (Median)', dataIndex: "tpsMedian", renderer: function(v){ return v; }, flex: 1  },
+            {text: 'TPS (Max)', dataIndex: "tpsMax", renderer: function(v){ return v; }, flex: 1  },
+            {text: 'Errors', dataIndex: "errorCount", renderer: function(v, meta, rec){
                 // set sla to .05% of total number of calls
                 var slaData = this.processSLA(v, rec.data.call_count *.005, 0);
                 var tooltip = slaData['slaTooltip'].replace('sec ', ' ').replace('the SLA.', 'the SLA error rate of 0.5%'); // quick hack so I can reuse sla function

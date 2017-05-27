@@ -14,7 +14,7 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardModel', {
 
             proxy: {
                 type: 'ajax',
-                url: 'https://localhost/uxsvc/v1/wpt/navigation',
+                url: '/uxsvc/v1/wpt/navigation',
                 reader: {
                     type: 'json'
                 }
@@ -29,7 +29,7 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardModel', {
 
             proxy: {
                 type: 'ajax',
-                url: 'http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summarytrend',
+                url: '/loadsvc/v1/loadtesttrends/summarytrend',
                 reader: {
                     type: 'json'
                 }

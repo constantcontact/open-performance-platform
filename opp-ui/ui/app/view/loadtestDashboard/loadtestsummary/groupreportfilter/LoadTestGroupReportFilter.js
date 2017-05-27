@@ -26,18 +26,18 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadT
             type: 'array',
             fields: ['column_name'],
             data: [
-                ['app_under_test'],
-                ['app_under_test_version'],
+                ['appUnderTest'],
+                ['appUnderTestVersion'],
                 ['comments'],
                 ['description'],
                 ['environment'],
-                ['start_time'],
-                ['test_name'],
-                ['test_sub_name'],
-                ['test_tool'],
-                ['test_tool_version'],
-                ['vuser_count'],
-                ['sla_group_id']
+                ['startTime'],
+                ['testName'],
+                ['testSubName'],
+                ['testTool'],
+                ['testToolVersion'],
+                ['vuserCount'],
+                ['slaGroupId']
             ]
         },
         displayField: 'column_name',

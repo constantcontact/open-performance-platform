@@ -2,17 +2,18 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
     extend: 'Ext.app.ViewController',
     alias: 'controller.loadtestreport',
 
-    remoteAggDataLoaded: function(aggData) {
+
+    remoteLoadTestInfoLoaded: function(loadTestInfo) {
         var viewModel, urTime, startTime, endTime, duration, cloudTestLink, externalTestId;
         viewModel = this.getViewModel();
 
 
-        startTime = aggData.getData().items[0].getData().start_time;
-        endTime = aggData.getData().items[0].getData().end_time;
+        startTime = loadTestInfo.getData().items[0].getData().startTime;
+        endTime = loadTestInfo.getData().items[0].getData().endTime;
         curTime = (typeof startTime === 'number' && startTime % 1 === 0) ? 
                     Ext.Date.format(new Date(startTime *1000),'m/d/Y h:i a') : startTime;
         duration = this.calculateDuration(startTime, endTime);
-        externalTestId = aggData.getData().items[0].getData().external_test_id;
+        externalTestId = loadTestInfo.getData().items[0].getData().externalTestId;
 
         if(externalTestId && externalTestId !== "") {
             cloudTestLink = 'http://cloudtest.roving.com/concerto/?initResultsTab=' + externalTestId;
@@ -21,22 +22,22 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
         }
         
         // Set all the bindings for the load test report.
-        viewModel.set('testName',  aggData.getData().items[0].getData().test_name);
+        viewModel.set('testName',  loadTestInfo.getData().items[0].getData().testName);
         viewModel.set('curTime',  curTime ? curTime : "");
         viewModel.set('duration',  duration);
-        viewModel.set('vuserCount',  aggData.getData().items[0].getData().vuser_count);
-        viewModel.set('environment',  aggData.getData().items[0].getData().environment);
-        viewModel.set('description',  aggData.getData().items[0].getData().description);
+        viewModel.set('vuserCount',  loadTestInfo.getData().items[0].getData().vuserCount);
+        viewModel.set('environment',  loadTestInfo.getData().items[0].getData().environment);
+        viewModel.set('description',  loadTestInfo.getData().items[0].getData().description);
         viewModel.set('cloudTestLink',  cloudTestLink);
-        viewModel.set('loadTestId', aggData.getData().items[0].getData().load_test_id);
-        viewModel.set('testSubName', aggData.getData().items[0].getData().test_sub_name);
-        viewModel.set('appUnderTest', aggData.getData().items[0].getData().app_under_test);
-        viewModel.set('appUnderTestVersion', aggData.getData().items[0].getData().app_under_test_version);
-        viewModel.set('startTime', Ext.Date.format(new Date(aggData.getData().items[0].getData().start_time *1000),'m/d/Y h:i a'));
-        viewModel.set('endTime', Ext.Date.format(new Date(aggData.getData().items[0].getData().end_time *1000),'m/d/Y h:i a'));
-        viewModel.set('testTool', aggData.getData().items[0].getData().test_tool);
-        viewModel.set('testToolVersion', aggData.getData().items[0].getData().test_tool_version);
-        viewModel.set('comments', aggData.getData().items[0].getData().comments);
+        viewModel.set('loadTestId', loadTestInfo.getData().items[0].getData().loadTestId);
+        viewModel.set('testSubName', loadTestInfo.getData().items[0].getData().testSubName);
+        viewModel.set('appUnderTest', loadTestInfo.getData().items[0].getData().appUnderTest);
+        viewModel.set('appUnderTestVersion', loadTestInfo.getData().items[0].getData().appUnderTestVersion);
+        viewModel.set('startTime', Ext.Date.format(new Date(loadTestInfo.getData().items[0].getData().startTime *1000),'m/d/Y h:i a'));
+        viewModel.set('endTime', Ext.Date.format(new Date(loadTestInfo.getData().items[0].getData().endTime *1000),'m/d/Y h:i a'));
+        viewModel.set('testTool', loadTestInfo.getData().items[0].getData().testTool);
+        viewModel.set('testToolVersion', loadTestInfo.getData().items[0].getData().testToolVersion);
+        viewModel.set('comments', loadTestInfo.getData().items[0].getData().comments);
     },
 
     remoteSlasLoaded: function() {
