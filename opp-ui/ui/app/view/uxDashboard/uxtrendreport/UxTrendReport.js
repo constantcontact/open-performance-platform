@@ -45,8 +45,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
         xtype: 'wpttrendchart',
         title: 'WPT Trend - median'
     },{
-        xtype: 'wpttrendgrid',
-        title: 'WPT Summary - median',
+        xtype: 'wpttrendgrid'
     }],
 
     listeners: {

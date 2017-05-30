@@ -11,8 +11,14 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                     }
                 }, 
                 { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
+                { name: 'TTFB-min', mapping: 'ttfb.min', type: 'auto' },
+                { name: 'TTFB-max', mapping: 'ttfb.max', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
-                { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' }
+                { name: 'VisuallyComplete-min', mapping: 'visuallyComplete.min', type: 'auto' },
+                { name: 'VisuallyComplete-max', mapping: 'visuallyComplete.max', type: 'auto' },
+                { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
+                { name: 'SpeedIndex-min', mapping: 'speedIndex.min', type: 'auto' },
+                { name: 'SpeedIndex-max', mapping: 'speedIndex.max', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
