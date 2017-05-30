@@ -21,7 +21,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
     width: '100%',
     height: 500,
 
-    margin: '20px 20px 0 20px',
+    margin: '20 0 0 0',
 
     legend: {
         docked: 'right'
@@ -132,7 +132,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }  
+        },
+        showInLegend: false  
     },{
         type: 'scatter',
         title: 'TTFB-min',
@@ -151,7 +152,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }  
+        },
+        showInLegend: false  
     },{
         type: 'line',
         title: 'Visually Complete',
@@ -176,7 +178,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }     
+        }   
     },{
         type: 'scatter',
         title: 'VisuallyComplete-min',
@@ -195,7 +197,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }  
+        },
+        showInLegend: false   
     },{
         type: 'scatter',
         title: 'VisuallyComplete-max',
@@ -214,7 +217,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }  
+        },
+        showInLegend: false  
     },{
         type: 'line',
         title: 'Speed Index',
@@ -258,7 +262,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }  
+        },
+        showInLegend: false  
     },{
         type: 'scatter',
         title: 'SpeedIndex-min',
@@ -277,6 +282,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
-        }  
+        },
+        showInLegend: false  
     }]
 });

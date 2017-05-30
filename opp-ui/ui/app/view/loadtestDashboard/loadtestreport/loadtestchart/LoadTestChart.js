@@ -206,7 +206,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         }, {
             type: 'category',
             position: 'bottom',
-            fields: ['xaxis'],
             title: 'Run Date', // gets overridden with xaxisTitle
             renderer: function (o, value) {
                 if (value.length > 20) {
