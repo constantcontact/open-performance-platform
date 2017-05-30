@@ -3,16 +3,16 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSlaC
     alias: 'controller.loadtestsla',
 
     importMissingTransactions: function() {
-        var view, aggregateData, i, transName, slaStore, slaCounter, msg;
+        var view, aggregateData, i, transactionName, slaStore, slaCounter, msg;
 
         /**
          * Check if the transaction name exists.
-         * @param {String} transName 
+         * @param {String} transactionName 
          */
-        function _transactionNameExists(transName) {
+        function _transactionNameExists(transactionName) {
             var i;
             for(i = 0; i < aggregateData.length; i++) {
-                if(transName === aggregateData[i].data.name) {
+                if(transactionName === aggregateData[i].data.name) {
                     return true;
                 }
             }
@@ -27,11 +27,11 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSlaC
         slaStore = view.up('loadtestreport').getViewModel().getStore('remoteSlas');
 
         for(i = 0; i < aggregateData.length; i++) {
-            transName = aggregateData[i].data.transaction_name;
-            if(!_transactionNameExists(transName)) {
+            transactionName = aggregateData[i].data.transactionName;
+            if(!_transactionNameExists(transactionName)) {
                 slaStore.add({
                     loadTestId: view.up('loadtestreport').getLoadTestId(),
-                    name: transName,
+                    name: transactionName,
                     min: '',
                     max: '',
                     avg: '',

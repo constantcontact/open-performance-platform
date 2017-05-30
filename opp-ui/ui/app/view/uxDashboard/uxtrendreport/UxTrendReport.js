@@ -15,16 +15,21 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
 
     config: {
         activeState: null,
-        pageName: null,
-        connection: null
+        pageName: null
     },
 
     initComponent: function() {
-        this.callParent(arguments);
+    
         this.getViewModel().getStore('histogramData').proxy.extraParams = {
             name: this.getPageName(),
             interval: '1d'
-        }
+        };
+
+        this.getViewModel().getStore('wptTrendTable').proxy.extraParams = {
+            name: this.getPageName()
+        };
+
+        this.callParent(arguments);
     },
 
     layout: {
@@ -40,8 +45,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
         xtype: 'wpttrendchart',
         title: 'WPT Trend - median'
     },{
-        xtype: 'wpttrendgrid',
-        title: 'WPT Summary - median',
+        xtype: 'wpttrendgrid'
     }],
 
     listeners: {

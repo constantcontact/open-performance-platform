@@ -41,17 +41,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
     tbar: {
         items: [
             '->',
-            {
-                xtype: 'button',
-                text: 'min',
-                handler: 'buttonMetricClicked'
-            },
-            '-',
-            {
-                xtype: 'button',
-                text: 'max',
-                handler: 'buttonMetricClicked'
-            },
             '-',
             {
                 xtype: 'button',
@@ -75,7 +64,16 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
 
     axes: [{
         type: 'numeric',
-        fields: ['TTFB', 'VisuallyComplete', 'SpeedIndex'],
+        fields: ['TTFB', 
+                'TTFB-min', 
+                'TTFB-max', 
+                'VisuallyComplete',
+                'VisuallyComplete-min',
+                'VisuallyComplete-max',
+                'SpeedIndex',
+                'SpeedIndex-min',
+                'SpeedIndex-max'
+                ],
         position: 'left',
         grid: true,
         minimum: 0,
@@ -117,6 +115,44 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             }
         }
     },{
+        type: 'scatter',
+        title: 'TTFB-min',
+        xField: 'wptTimestamp',
+        yField: 'TTFB-min',
+        marker: {
+            type: 'cross'
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
+                }
+            }
+        }  
+    },{
+        type: 'scatter',
+        title: 'TTFB-min',
+        xField: 'wptTimestamp',
+        yField: 'TTFB-max',
+        marker: {
+            type: 'cross'
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
+                }
+            }
+        }  
+    },{
         type: 'line',
         title: 'Visually Complete',
         xField: 'wptTimestamp',
@@ -142,6 +178,44 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             }
         }     
     },{
+        type: 'scatter',
+        title: 'VisuallyComplete-min',
+        xField: 'wptTimestamp',
+        yField: 'VisuallyComplete-min',
+        marker: {
+            type: 'cross'
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
+                }
+            }
+        }  
+    },{
+        type: 'scatter',
+        title: 'VisuallyComplete-max',
+        xField: 'wptTimestamp',
+        yField: 'VisuallyComplete-max',
+         marker: {
+            type: 'cross'
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
+                }
+            }
+        }  
+    },{
         type: 'line',
         title: 'Speed Index',
         xField: 'wptTimestamp',
@@ -166,5 +240,43 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                 }
             }
         }
+    },{
+        type: 'scatter',
+        title: 'SpeedIndex-min',
+        xField: 'wptTimestamp',
+        yField: 'SpeedIndex-min',
+        marker: {
+            type: 'cross'
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
+                }
+            }
+        }  
+    },{
+        type: 'scatter',
+        title: 'SpeedIndex-min',
+        xField: 'wptTimestamp',
+        yField: 'SpeedIndex-max',
+        marker: {
+            type: 'cross'
+        },
+        tooltip: {
+            trackMouse: true,
+            renderer: function (tooltip, record, item) {
+                var title = item.series.getTitle();
+
+                if (record) {
+                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+                        record.get(item.series.getYField()) + ' (ms)');
+                }
+            }
+        }  
     }]
 });

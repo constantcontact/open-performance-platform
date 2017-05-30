@@ -82,8 +82,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
                 iconCls: 'x-fa fa-line-chart',
                 title: pageName,
                 pageName: pageName,
-                connection: connection,
-                scrollable: false
+                connection: connection
             }
         );
 

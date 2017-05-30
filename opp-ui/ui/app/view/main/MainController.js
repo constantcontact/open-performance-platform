@@ -21,7 +21,7 @@ Ext.define('OppUI.view.main.MainController', {
             action: 'onNavigateDeep',
             before: 'beforeNavigateDeep',
             conditions: {
-                ':params': '([0-9a-zA-Z\.\+\:\_\,\?\&=\-]+)'
+                ':params': '([0-9a-zA-Z\%\.\+\:\_\,\?\&=\-]+)'
             }
         }
     },

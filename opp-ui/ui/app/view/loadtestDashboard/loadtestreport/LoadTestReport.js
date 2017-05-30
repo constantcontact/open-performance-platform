@@ -41,17 +41,22 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         me.getViewModel()
             .getStore('remoteAggData')
             .getProxy()
-            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/aggdata');
+            .setUrl('/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/aggData');
 
         me.getViewModel()
             .getStore('remoteSlas')
             .getProxy()
-            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/slas');
+            .setUrl('/loadsvc/v1/loadtests/'+ me.getLoadTestId() + '/slas');
+
+
+        me.getViewModel()
+            .getStore('remoteLoadTestInfo')
+            .getProxy()
+            .setUrl('/loadsvc/v1/loadtests/' + me.getLoadTestId());
 
         for(i = 0; i < me.getChartTimeSeriesYAxes().length; i++) {
             Ext.Ajax.request({
-                url: 'http://roadrunner.roving.com/loadsvc/v1/charts/timeseries/loadtests/' + me.getLoadTestId() + "?yaxis=" + me.getChartTimeSeriesYAxes()[i].yaxis,
-                async: true,
+                url: '/loadsvc/v1/charts/timeseries/loadtests/'+ me.getLoadTestId() + '?yaxis=' + me.getChartTimeSeriesYAxes()[i].yaxis,
                 scope: me,
                 success: 'chartData'
             });
@@ -59,8 +64,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
 
         for(i = 0; i < me.getChartAggregateYAxes().length; i++) {
             Ext.Ajax.request({
-                url: 'http://roadrunner.roving.com/loadsvc/v1/charts/aggregate/loadtests/' + me.getLoadTestId() + "?yaxis=" + me.getChartAggregateYAxes()[i].yaxis,
-                async: true,
+                url: '/loadsvc/v1/charts/aggregate/loadtests/' + me.getLoadTestId() + "?yaxis=" + me.getChartAggregateYAxes()[i].yaxis,
                 scope: me,
                 success: 'chartData'
             });
@@ -177,15 +181,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         }
     ],
 
-    listeners: {
-        // This is needed if you are create a border layout inside of a panel. 
-        // If this is not set then you get:
-        // 'Uncaught Error: Border layout does not currently support shrinkWrap height. Please specify a height on component'
-        // render: function() {
-        //     var me = this;
-        //     me.setHeight(window.innerHeight);
-        // },
-    
+    listeners: {    
         beforeclose: function(tab) {
             console.log('tab closing ' + tab.getLoadTestId());
             this.up('loadtest').getController().updateUrlTabState(tab.getLoadTestId(), false);
@@ -202,23 +198,27 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
 
 
         chart = this.down('#' + type + yaxis);
-        if(!chart) {
+
+        if(chart) {
+            for(var i=0; i<series.length; i++){
+                series[i].style=chart.getSeriesStyle();
+                series[i].highlight=chart.getSeriesHighlight();
+                series[i].marker=chart.getSeriesMarker();
+                series[i].tooltip=chart.getSeriesTooltip();
+            }
+
+            chart.axes[0].fields = json.chart.modelFields.slice(1);
+            chart.setSeries(series);
+            chart.setStore(Ext.create('Ext.data.JsonStore', {
+                fields: json.chart.modelFields,
+                data: json.chart.data
+            }));
+            chart.redraw();
+            
+        } else {
             console.log('Chart does not exist for yaxis' + yaxis);
         }
-        for(var i=0; i<series.length; i++){
-            series[i].style=chart.getSeriesStyle();
-            series[i].highlight=chart.getSeriesHighlight();
-            series[i].marker=chart.getSeriesMarker();
-            series[i].tooltip=chart.getSeriesTooltip();
-        }
-
-        chart.axes[0].fields = json.chart.modelFields.slice(1);
-        //chart.setTitle(json.chart.title);
-        chart.setSeries(series);
-        chart.setStore(Ext.create('Ext.data.JsonStore', {
-            fields: json.chart.modelFields,
-            data: json.chart.data
-        }));
-        //chart.redraw();
+        
+        
     }
 });

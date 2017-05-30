@@ -84,7 +84,7 @@ Ext.define('OppUI.view.appmapDashboard.appmapgrid.ApplicationMappingGrid',{
                 menuDisabled: true,
                 items: [{
                     getClass: function () {
-                        return 'icon-delete'
+                        return 'x-fa fa-trash'
                     },
                     tooltip: 'Delete application mapping',
                     scope: this,

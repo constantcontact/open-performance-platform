@@ -38,8 +38,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
         this.getViewModel()
             .getStore('groupReport')
             .getProxy()
-            .setUrl('http://roadrunner.roving.com/loadsvc/v1/loadtests/all/summaryTrendByGroup?' + queryParams);
-
+            .setUrl('/loadsvc/v1/loadtesttrends/summarytrendgroup?' + queryParams);
         // have to add this here in order to get the reportLink.
         this.items = [
             {

@@ -130,6 +130,7 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
         }
         // remove the last comma.
         queryParam = queryParam.slice(0, -1);
+        queryParam = window.encodeURI(queryParam);
 
         if(!initialQueryParams) {
             activeState = activeState.concat('/?groupTab='+queryParam);
