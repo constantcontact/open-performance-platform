@@ -31,6 +31,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         bodyPadding: 10,
         scrollable: true
     },
+    margin: '5 0 0 0',
 
     initComponent: function() {
         var i, me;
@@ -208,6 +209,11 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             }
 
             chart.axes[0].fields = json.chart.modelFields.slice(1);
+            if(type.indexOf('timesseries') >= 0) {
+                chart.axes[1].fields = ['start_time'];
+            } else {
+                chart.axes[1].fields = ['xaxis'];
+            }
             chart.setSeries(series);
             chart.setStore(Ext.create('Ext.data.JsonStore', {
                 fields: json.chart.modelFields,
