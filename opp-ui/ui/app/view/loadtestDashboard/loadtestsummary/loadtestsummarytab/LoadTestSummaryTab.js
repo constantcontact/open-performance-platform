@@ -51,7 +51,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
         // remove the last comma.
         queryParam = queryParam.slice(0, -1);
         reportLink = window.location.origin+'/#!loadtest/?groupTab='+queryParam;
-        console.log('REPORT LINK: ' +reportLink);
 
         tab = this.add({
             closable: true,
@@ -88,17 +87,14 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
         var tabIndex, tabGroupIndex, i, j, k, key, value, both, queryParams, 
             loadTestIds, loadTestReport, groupReports, groupReport, groupFilters, 
             filters, filterList, existingGroupReport;
-        console.log("CREATING TABSS!!! " + params);
 
         // check if both query params are set.
         both = params.indexOf('&') >= 0 ? true : false;
 
         if(both) {
             queryParams = params.split('&');
-            console.log('queryParams length: ' + queryParams.length);
+
             for(i = 0; i < queryParams.length; i++) {
-                console.log('queryParams count: ' + i);
-                console.log('queryParam ==> ' + queryParams[i])
                 if(queryParams[i].indexOf('tab=') >= 0) {
                     // ie, tab=1234,5678
                     // the first split will split on the '=', the second
@@ -109,7 +105,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                         loadTestReport = this.down('#loadtestreport-'+loadTestIds[j]);
 
                         if(!loadTestReport) {
-                            console.log('Creating new Report for load test id: ' + loadTestIds[j]);
                             this.createLoadTestReport(loadTestIds[j])
                         }
                     }
@@ -120,11 +115,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                     for(j = 0; j < groupReports.length; j++) {
                         filters = {};
                         groupReport = groupReports[j].split(':');
-                        console.log('both groupReportName: ' + groupReport[0]);
-                        console.log('both groupReportFilters: ' + groupReport[1]);
-
                         groupFilters = groupReport[1].split(',');
-                        
                         existingGroupReport = this.down('#loadtestgroupreport-' + groupReport[0]);
 
                         if(!existingGroupReport) {
@@ -132,9 +123,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                                 filtersList = groupFilters[k].split('+');
                                 filters[filtersList[0]] = filtersList[1];
                             }
-                            console.log('both Filters: ');
-                            console.log(filters);
-
                             this.createGroupReportTab(groupReport[0], filters);
                         }
                     }
@@ -152,7 +140,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                     loadTestReport = this.down('#loadtestreport-'+loadTestIds[j]);
 
                     if(!loadTestReport) {
-                        console.log('Creating new Report for load test id: ' + loadTestIds[j]);
                         this.createLoadTestReport(loadTestIds[j])
                     }
                 }                    
@@ -165,11 +152,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                 for(j = 0; j < groupReports.length; j++) {
                     filters = {};
                     groupReport = groupReports[j].split(':');
-                    console.log('groupReportName: ' + groupReport[0]);
-                    console.log('groupReportFilters: ' + groupReport[1]);
-
                     groupFilters = groupReport[1].split(',');
-
                     existingGroupReport = this.down('#loadtestgroupreport-' + groupReport[0]);
 
                     if(!existingGroupReport) {
@@ -177,8 +160,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
                             filtersList = groupFilters[i].split('+');
                             filters[filtersList[0]] = filtersList[1];
                         }
-                        console.log('Filters: ');
-                        console.log(filters);
 
                         this.createGroupReportTab(groupReport[0], filters);
                     }
@@ -199,7 +180,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
     },
 
     processAdmin: function(params) {
-        console.log('processAdmin: ' + params);
         if(params.indexOf('user=admin') >= 0) {
             this.down('#btnDelete').show();
         }

@@ -3,7 +3,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
     alias: 'controller.loadtestsummary',
 
     showGroupReportForm: function() {
-        console.log("Create Group Report Form");
         var window, store;
 
          store = this.getView()
@@ -35,9 +34,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryControll
         window.show();
     },
 
-    search: function() {
-        console.log()
-    },
+    search: function() {},
     specialkey: function(field, e) {
         if(e.getKey() === window.parseInt(e.ENTER)) {
             var searchString, store, view;

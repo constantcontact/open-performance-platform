@@ -54,7 +54,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
             tooltip: 'Admin Only Feature.  Delete custom runs.',
             listeners: {
                 click: function(button) {
-                    console.log('Delete Button clicked!');
                     var grid, i, ids;
 
                     function _handleInput(btn) {
@@ -119,7 +118,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
     },
 
     deleteRecords: function(ids) {
-        console.log('Ids to delete: '+ ids);
         var me = this;
 
         Ext.Ajax.request({

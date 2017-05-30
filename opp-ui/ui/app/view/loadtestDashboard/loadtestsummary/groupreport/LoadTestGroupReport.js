@@ -32,9 +32,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
             }
         }
 
-        console.log('Query Parameters: ' + queryParams);
-        console.log('Load Test Group Report Link: '+ this.reportLink);
-
         this.getViewModel()
             .getStore('groupReport')
             .getProxy()
@@ -53,10 +50,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
     },
 
     listeners: {
-        beforeclose: function(tab) {
-            console.log('tab closing ' + tab.getTitle());
-            console.log(tab.getFilters());
-            
+        beforeclose: function(tab) {            
             this.up('loadtest')
                 .getController()
                 .updateUrlGroupTabState({name: tab.getTitle(), filters: tab.getFilters()}, false);

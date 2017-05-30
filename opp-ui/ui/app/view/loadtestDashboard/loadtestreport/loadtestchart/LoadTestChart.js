@@ -183,7 +183,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         itemdblclick: function(series, item, event, eOpts ) {
             // only create a tab if the user is dblclicking
             // on aggregation load test chart.
-            console.log(item);
             if(this.getItemId().indexOf('trend-') >= 0) {
                 this.up('loadtest')
                     .getController()

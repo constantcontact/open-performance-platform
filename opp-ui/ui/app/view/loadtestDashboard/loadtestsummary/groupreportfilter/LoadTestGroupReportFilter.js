@@ -58,7 +58,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportfilter.LoadT
         itemId: 'btnGroupedFilterFieldAdd',
         padding: 5,
         handler: function(button) {
-            console.log('Add more button clicked!');
             button.hide();
             button.up('panel').add({ xtype: 'groupreportfilter' });
             button.up('fieldcontainer').down('#deleteFieldContainerBtn').show();

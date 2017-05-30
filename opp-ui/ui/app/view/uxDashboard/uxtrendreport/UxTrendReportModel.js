@@ -55,11 +55,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            },
-            listeners: {
-                load: function() {
-                    console.log('wptTrendTable data loaded!');
-                }
             }
         },
 
@@ -71,11 +66,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Min histogram data loaded!');
-                }
             }
         },
             max: {
@@ -85,11 +75,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 type: 'memory',
                 reader: {
                     type: 'json'
-                }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Max histogram data loaded!');
                 }
             }
         },
@@ -101,11 +86,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Median histogram data loaded!');
-                }
             }
         },
             average: {
@@ -115,11 +95,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 type: 'memory',
                 reader: {
                     type: 'json'
-                }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Average histogram data loaded!');
                 }
             }
         }

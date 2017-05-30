@@ -32,10 +32,6 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     setCurrentView: function(hashTag) {
-        //hashTag = (hashTag || '').toLowerCase();
-        console.log('setCurrentView ===> hashTag: ' + hashTag);
-
-
         var me = this,
             refs = me.getReferences(),
             mainCard = refs.mainCardPanel,
@@ -92,19 +88,13 @@ Ext.define('OppUI.view.main.MainController', {
 
         activeState = newView.getActiveState();
 
-        console.log('isNavigating? ===> ' + isNavigating);
         if(isNavigating) {
-            console.log('User is Navigating!');
             if(activeState) {
-                console.log('Active State is set! Currently Set to: ' + activeState);
                 this.redirectTo(activeState);
             } else {
-                console.log('Active State is NOT set! Setting active state to hashtag ' + hashTag);
                 newView.setActiveState(hashTag);
             }
-        } else {
-            console.log('User is NOT Navigating! Setting Active State to HashTag: ' + hashTag);
-            
+        } else {            
             newView.setActiveState(hashTag);
         }
         
@@ -113,16 +103,13 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     onNavigationTreeSelectionChange: function(tree, node) {
-        console.log('onNavigationTreeSelectionChange ==> tree: '+tree + ' node: ' + node);
         var to = node && (node.get('routeId') || node.get('viewType'));
 
         if (to) {
             if (to.substring(0, 1) !== '!') {
                 to = '!' + to;
             }
-            console.log('onNavigationTreeSelectionChange ==> to: '+to);
             this.redirectTo(to);
-            //this.setCurrentView(to);
         }
     },
 
@@ -186,7 +173,6 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     onRouteChange: function(id) {
-        console.log('onRouteChange ==> id: ' + id);
         this.setCurrentView(id);
     },
 
@@ -221,15 +207,12 @@ Ext.define('OppUI.view.main.MainController', {
         if (route.substring(0, 1) !== '!') {
             route = '!' + route;
         }
-        console.log("changeRoute called: " + route);
 
         this.redirectTo(route);
     },
 
     beforeNavigateDeep: function(node, queryParams, action) {
-        console.log('beforeNavigateDeep: node=' + node + ' queryParams: ' + queryParams);
         this.setCurrentView(node+'/'+queryParams);
-        console.log('beforeNavigateDeep: After Current View Set. node=' + node + ' queryParams: ' + queryParams);
 
         action.resume();
 
@@ -245,10 +228,5 @@ Ext.define('OppUI.view.main.MainController', {
         activeView = mainLayout.getActiveItem();
 
         activeView.processQueryParams(queryParams.slice(1));
-        //activeView.setActiveState(state+'/'+params);
-
-        console.log('onNavigateDeep called with node: ' + node + ' queryParams: ' + queryParams);
-
-
     }
 });

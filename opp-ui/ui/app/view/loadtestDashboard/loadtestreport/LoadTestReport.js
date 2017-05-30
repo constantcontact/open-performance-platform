@@ -184,7 +184,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
 
     listeners: {    
         beforeclose: function(tab) {
-            console.log('tab closing ' + tab.getLoadTestId());
             this.up('loadtest').getController().updateUrlTabState(tab.getLoadTestId(), false);
         }
     },
@@ -221,10 +220,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             }));
             chart.redraw();
             
-        } else {
-            console.log('Chart does not exist for yaxis' + yaxis);
         }
-        
-        
     }
 });

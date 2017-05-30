@@ -4,7 +4,6 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
 
     updateUrlTabState: function(pageName, add) {
         var view, activeState, queryParams, params, paren, pagest, newTabState, initialTabState;
-        console.log('updateUrlTabState ==> pageName' + pageName + ' add: ' + add);
 
         view = this.getView();
         parent = view.up();
@@ -12,8 +11,6 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
 
         queryParams = activeState.split('?');
         queryParams = queryParams.length > 1 ? queryParams[1] : undefined; 
-
-        console.log('queryParams: ' + queryParams);
 
         if (!queryParams) {
             activeState = activeState.concat('/?pages='+pageName);
@@ -92,8 +89,6 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
             // to work for deleted tabs.
             parent.setActiveState(activeState);
         }
-
-        console.log('UpdateUrlTabState ===> activeState: ' + activeState);
         parent.getController().updateActiveState(activeState);
     }
 

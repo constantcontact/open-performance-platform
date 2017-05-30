@@ -3,7 +3,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
     alias: 'controller.loadtest',
 
     init: function (view) {
-        console.log('LoadTestDashboard Init viewController!');
         view.updateActiveState = this.updateActiveState.bind(this);
     },
 
@@ -11,9 +10,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
         var refs = this.getReferences();
         var viewModel = this.getViewModel();
 
-        console.log('LoadTestDashboard Update Active State: ' + activeState);
-
-        //this.fireEvent('changeroute', this, 'loadtest/' + activeState);
         this.fireEvent('changeroute', this, activeState);
     },
 
@@ -23,8 +19,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
         activeState = this.getView().getActiveState();
         queryParams = activeState.split('?');
         queryParams = queryParams.length > 1 ? queryParams[1] : undefined; 
-
-        console.log('queryParams: ' + queryParams);
 
         if (!queryParams) {
             activeState = activeState.concat('/?tab='+testId);
@@ -98,9 +92,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
                 }
             }
         }
-        // console.log('initialTabState: '+initialTabState);
-        // console.log('newTabState: '+newTabState);
-        // console.log('activeState: '+activeState);
 
         if(!add) {
             // need to set this in order for the routing
@@ -154,10 +145,7 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
 
                     for(i = 0; i < groupReportQueryParams.length; i++) {
                         if(groupReportQueryParams[i].indexOf(groupReportName+ ':') >= 0) {
-                            console.log('Removing ==> name:' + groupReportName + ' queryParamValue: ' + groupReportQueryParams[i]);
-
                             groupReport = groupReportQueryParams[i];
-                            console.log('Removing tab: ' + groupReport);
                             break;
                         }
                     }
@@ -177,7 +165,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
 
                         if(groupReportQueryParams.length === 1) {
                             // if there's only one group report then remove the query param
-                            console.log('Remove the whole thing')
 
                             if(initialQueryParams.split('&')[0].indexOf('groupTab=') >= 0) {
                                 activeState = activeState.replace('groupTab=&', '');
@@ -185,7 +172,6 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboardController', {
                                 activeState = activeState.replace('&groupTab=', '');
                             }
                         }
-                        console.log('Active State: ' + activeState);
                     }
                 }
             } else {

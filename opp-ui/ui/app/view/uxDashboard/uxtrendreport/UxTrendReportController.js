@@ -3,7 +3,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     alias: 'controller.uxtrendreport',
 
     onHistogramDataLoaded: function(histogramData) {
-        console.log('Histogram data loaded!!!');
         var metricStore, defaultStore, wptTrendGrid, defaultStoreData;
 
         metricStore = this.getView()
@@ -15,7 +14,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                 .getStore('histogramData');
 
         if(!metricStore.getProxy().getData()) {
-            console.log('Loading median for the first time!');
             defaultStoreData = defaultStore.getProxy().getReader().rawData;
 
             metricStore.getProxy().setData(defaultStoreData);

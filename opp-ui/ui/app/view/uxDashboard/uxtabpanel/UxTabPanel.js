@@ -31,18 +31,14 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
     }],
 
     createTab: function(pageName) {
-        console.log('Creating tab for pagename: ' + pageName);
         this.getController().updateUrlTabState(pageName, true);
     },
 
 
     createTabs: function(params) {
         var queryParams, i, j, ages, pageTrendReport, pageIdentifier;
-        
-        console.log("Creating tabs for UX Applications: " + params);
 
         queryParams = params.split('&');
-        console.log('queryParams count: ' + i);
 
         if(queryParams.length >= 1) {
             for(i = 0; i < queryParams.length; i++) {
@@ -54,11 +50,9 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
 
                     for(j = 0; j < pages.length; j++) {
                         pageIdentifier = pages[j].split('.').join('');
-                        console.log('Page Identifier: ' + pageIdentifier);
                         pageTrendReport = this.down('#pagetrendreport-'+pageIdentifier);
 
                         if(!pageTrendReport) {
-                            console.log('Creating new Page Trending Report for ' + pages[j]);
                             this.createPageTrendReport(pages[j]);
                         }
                     }
@@ -90,7 +84,6 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanel',{
     },
 
     processAdmin: function(params) {
-        console.log("Processing Admin for UX Applications: " + params);
         if(params.indexOf('user=admin') >= 0) {
             this.setAdmin(true);
         }
