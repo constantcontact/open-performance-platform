@@ -25,6 +25,13 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
         this.getView().down('wpttrendchart').setStore(metricStore);
         this.getView().down('wpttrendchart').setTitle('WPT Trend - median');
         
+    },
+    
+    updateUrlTabState: function(tab) {
+        this.getView()
+            .up('uxtabpanel')
+            .getController()
+            .updateUrlTabState(tab.getTitle(), false);
     }
 });
  

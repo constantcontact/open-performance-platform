@@ -85,7 +85,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         style: { lineWidth: 4 },
         marker: { radius: 4 },
         highlightCfg: {
-            // scaling: 2
             fillStyle: '#000', 
             radius: 5, 
             lineWidth: 2, 
@@ -150,7 +149,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         style: { lineWidth: 4 },
         marker: { radius: 4 },
         highlightCfg: {
-            // scaling: 2
             fillStyle: '#000', 
             radius: 5, 
             lineWidth: 2, 
@@ -215,7 +213,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         style: { lineWidth: 4 },
         marker: { radius: 4 },
         highlightCfg: {
-            // scaling: 2
             fillStyle: '#000', 
             radius: 5, 
             lineWidth: 2, 

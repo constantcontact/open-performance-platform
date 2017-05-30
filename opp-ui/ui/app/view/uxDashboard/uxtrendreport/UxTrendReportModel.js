@@ -57,28 +57,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }
             }
         },
-
-        min: {
-            model: 'OppUI.model.uxDashboard.HistogramMin',
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
-            }
-        },
-            max: {
-            model: 'OppUI.model.uxDashboard.HistogramMax',
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
-            }
-        },
-            median: {
+        median: {
             model: 'OppUI.model.uxDashboard.HistogramMedian',
             autoLoad: false,
             proxy: {
@@ -88,7 +67,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }
             }
         },
-            average: {
+        average: {
             model: 'OppUI.model.uxDashboard.HistogramAverage',
             autoLoad: false,
             proxy: {

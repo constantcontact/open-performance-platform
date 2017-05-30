@@ -355,5 +355,5 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplicationsController', {
                 })
             }
         }
-    }      
+    }    
 });

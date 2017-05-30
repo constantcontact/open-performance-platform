@@ -68,9 +68,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
     }],
 
     listeners: {
-        beforeclose: function(tab) {
-            this.up('uxtabpanel').getController().updateUrlTabState(tab.getTitle(), false);
-        }
+        beforeclose: 'updateUrlTabState'
     },
 
     customTimingChartData: function(response, options) {
