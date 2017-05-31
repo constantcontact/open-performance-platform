@@ -1,6 +1,6 @@
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryController', {
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.LoadTestSummaryGridController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.loadtestsummary',
+    alias: 'controller.loadtestsummarygrid',
 
     showGroupReportForm: function() {
         var window, store;

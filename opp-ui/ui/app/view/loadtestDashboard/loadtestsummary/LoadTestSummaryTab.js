@@ -1,12 +1,12 @@
 
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTab',{
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTab',{
     extend: 'Ext.tab.Panel',
     alias: 'widget.loadtestsummarytab',
     cls: 'loadtest-summary-tab',
 
     requires: [
-        'OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTabController',
-        'OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTabModel',
+        'OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabController',
+        'OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabModel',
         'Ext.ux.TabReorderer'
     ],
 
@@ -20,7 +20,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.Load
 
     items: [{
         title: 'Load Tests',
-        xtype: 'loadtestsummary',
+        xtype: 'loadtestsummarygrid',
         iconCls: 'x-fa fa-table',
         reorderable: false,
         closable: false
