@@ -30,7 +30,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             view = this.getView();
             groupReport.name = reportName;
 
-            Ext.ComponentQuery.query('loadtestsummarytab')[0].createGroupReport(groupReport);
+            Ext.ComponentQuery.query('loadtestsummarytab')[0].getController().createGroupReport(groupReport);
             view.up().close();
     },
     buildGroupedReportQueryStr: function(form) {
@@ -66,5 +66,17 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
         }
 
         return groupReport;
-    }
+    },
+
+    populateSampleGrid: function(grid) {
+        var defaultStore;
+
+        defaultStore = Ext.ComponentQuery.query('loadtestsummary')[0].getStore();
+        
+        grid.store.getProxy().setData(defaultStore.getProxy().getReader().rawData);
+        grid.store.filterBy(function(record) {
+            return undefined;
+        });
+        grid.store.load();
+    }    
 });

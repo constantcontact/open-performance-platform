@@ -15,9 +15,9 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     routes: {
-        '!:node': 'onRouteChange',
+        ':node': 'onRouteChange',
 
-        '!:node/:params' : {
+        ':node/:params' : {
             action: 'onNavigateDeep',
             before: 'beforeNavigateDeep',
             conditions: {
@@ -39,10 +39,13 @@ Ext.define('OppUI.view.main.MainController', {
             navigationList = refs.navigationTreeList,
             store = navigationList.getStore(),
             node = store.findNode('routeId', hashTag.split('/')[0]) ||
-            store.findNode('viewType', hashTag.split('/')[0]),
+                    store.findNode('routeId', hashTag.split('?')[0]) ||
+                    store.findNode('viewType', hashTag.split('/')[0]) ||
+                    store.findNode('viewType', hashTag.split('?')[0]),
             view = (node && node.get('viewType')) || 'page404',
             lastView = me.lastView,
-            existingItem = mainCard.child('component[routeId=' + hashTag.split('/')[0] + ']'),
+            //existingItem = mainCard.child('component[routeId=' + hashTag.split('/')[0] + ']'),
+            existingItem = mainCard.child('component[routeId=' + view + ']'),
             newView,
             activeState,
             isNavigating = this.getViews().indexOf(hashTag) >= 0;
@@ -106,9 +109,9 @@ Ext.define('OppUI.view.main.MainController', {
         var to = node && (node.get('routeId') || node.get('viewType'));
 
         if (to) {
-            if (to.substring(0, 1) !== '!') {
-                to = '!' + to;
-            }
+            // if (to.substring(0, 1) !== '!') {
+            //     to = '!' + to;
+            // }
             this.redirectTo(to);
         }
     },
@@ -204,9 +207,9 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     changeRoute: function (controller, route) {
-        if (route.substring(0, 1) !== '!') {
-            route = '!' + route;
-        }
+        // if (route.substring(0, 1) !== '!') {
+        //     route = '!' + route;
+        // }
 
         this.redirectTo(route);
     },

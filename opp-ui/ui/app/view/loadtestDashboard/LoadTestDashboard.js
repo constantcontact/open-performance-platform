@@ -31,8 +31,8 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     },
 
     processQueryParams: function(params) {
-        this.down('loadtestsummarytab').createTabs(params);
-        this.down('loadtestsummarytab').processAdmin(params);
+        this.down('loadtestsummarytab').getController().createTabs(params);
+        this.down('loadtestsummarytab').getController().processAdmin(params);
     }
 
 });

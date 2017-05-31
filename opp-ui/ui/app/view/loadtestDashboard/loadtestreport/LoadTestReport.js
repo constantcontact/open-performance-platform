@@ -183,43 +183,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
     ],
 
     listeners: {    
-        beforeclose: function(tab) {
-            this.up('loadtest').getController().updateUrlTabState(tab.getLoadTestId(), false);
-        }
+        beforeclose: 'beforeLoadTestReportClose'
     },
     
     chartData: function(response, options) {
-        var json, yaxis, chart, title, itemPrepend, item, series, type;
-
-        json = Ext.decode(response.responseText, false);
-        series = json.chart.series;
-        yaxis = options.url.substring(options.url.indexOf("=")).slice(1);
-        type = options.url.indexOf('timeseries') >= 0 ? 'timeseries-' : 'trend-';
-
-
-        chart = this.down('#' + type + yaxis);
-
-        if(chart) {
-            for(var i=0; i<series.length; i++){
-                series[i].style=chart.getSeriesStyle();
-                series[i].highlight=chart.getSeriesHighlight();
-                series[i].marker=chart.getSeriesMarker();
-                series[i].tooltip=chart.getSeriesTooltip();
-            }
-
-            chart.axes[0].fields = json.chart.modelFields.slice(1);
-            if(type.indexOf('timesseries') >= 0) {
-                chart.axes[1].fields = ['start_time'];
-            } else {
-                chart.axes[1].fields = ['xaxis'];
-            }
-            chart.setSeries(series);
-            chart.setStore(Ext.create('Ext.data.JsonStore', {
-                fields: json.chart.modelFields,
-                data: json.chart.data
-            }));
-            chart.redraw();
-            
-        }
+       this.getController().chartData(response, options);
     }
 });
