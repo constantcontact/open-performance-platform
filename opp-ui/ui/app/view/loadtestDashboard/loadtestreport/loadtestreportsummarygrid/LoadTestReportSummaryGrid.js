@@ -1,16 +1,16 @@
 
-Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.LoadTestReportSummary',{
+Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummarygrid.LoadTestReportSummaryGrid',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.loadtestreportsummary',
+    alias: 'widget.loadtestreportsummarygrid',
 
     requires: [
-        'OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.LoadTestReportSummaryController',
-        'OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.LoadTestReportSummaryModel'
+        'OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummarygrid.LoadTestReportSummaryGridController',
+        'OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummarygrid.LoadTestReportSummaryGridModel'
     ],
 
-    controller: 'loadtestreportsummary',
+    controller: 'loadtestreportsummarygrid',
     viewModel: {
-        type: 'loadtestreportsummary'
+        type: 'loadtestreportsummarygrid'
     },
     bind: {
         store: '{remoteAggData}'
@@ -32,7 +32,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
             handler: function(event, element, view){
                 var chart, grid, markup;
 
-                grid = view.up('loadtestreportsummary');
+                grid = view.up('loadtestreportsummarygrid');
                 markup = grid.getController().getWikiMarkup();
                 Ext.Msg.alert('Wiki Markup', markup);
             }
@@ -47,7 +47,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                     maximizable: true,
                     items: [
                         {
-                            xtype: 'loadtestreportsummary',      
+                            xtype: 'loadtestreportsummarygrid',      
                             header: false,
                             collapsible: false
                         }
@@ -57,7 +57,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.Lo
                         handler: function(event, element, view){
                             var chart, grid, markup;
 
-                            grid = view.up('loadtestreportsummary');
+                            grid = view.up('loadtestreportsummarygrid');
                             markup = grid.getController().getWikiMarkup();
                             Ext.Msg.alert('Wiki Markup', markup);
                         }

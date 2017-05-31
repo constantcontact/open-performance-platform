@@ -124,7 +124,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
             }
         },
         { 
-            xtype: 'loadtestreportsummary',
+            xtype: 'loadtestreportsummarygrid',
             height: 300,
             margin: '0px 0px 20px 0px',
             colspan: 2

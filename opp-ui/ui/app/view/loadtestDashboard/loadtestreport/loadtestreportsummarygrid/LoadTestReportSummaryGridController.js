@@ -1,6 +1,6 @@
-Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummary.LoadTestReportSummaryController', {
+Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummarygrid.LoadTestReportSummaryGridController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.loadtestreportsummary',
+    alias: 'controller.loadtestreportsummarygrid',
 
     onRemoteAggDataLoad: function() {
         
