@@ -44,7 +44,6 @@ Ext.define('OppUI.view.main.MainController', {
                     store.findNode('viewType', hashTag.split('?')[0]),
             view = (node && node.get('viewType')) || 'page404',
             lastView = me.lastView,
-            //existingItem = mainCard.child('component[routeId=' + hashTag.split('/')[0] + ']'),
             existingItem = mainCard.child('component[routeId=' + view + ']'),
             newView,
             activeState,
@@ -60,7 +59,7 @@ Ext.define('OppUI.view.main.MainController', {
         if (!existingItem) {
             newView = Ext.create({
                 xtype: view,
-                routeId: hashTag, // for existingItem search later
+                routeId: view,
                 hideMode: 'offsets'
             });
         }
@@ -207,10 +206,6 @@ Ext.define('OppUI.view.main.MainController', {
     },
 
     changeRoute: function (controller, route) {
-        // if (route.substring(0, 1) !== '!') {
-        //     route = '!' + route;
-        // }
-
         this.redirectTo(route);
     },
 
