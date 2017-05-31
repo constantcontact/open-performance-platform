@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTabController', {
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.loadtestsummarytab',
 

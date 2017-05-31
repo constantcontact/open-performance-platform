@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarytab.LoadTestSummaryTabModel', {
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.loadtestsummarytab',
     data: {

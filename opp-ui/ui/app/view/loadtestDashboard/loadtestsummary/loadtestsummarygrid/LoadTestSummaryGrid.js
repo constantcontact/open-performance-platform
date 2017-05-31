@@ -1,17 +1,17 @@
 
-Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummary',{
+Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.LoadTestSummaryGrid',{
     extend: 'Ext.grid.Panel',
-    xtype: 'loadtestsummary',
-    alias: 'widget.loadtestsummary',
+    xtype: 'loadtestsummarygrid',
+    alias: 'widget.loadtestsummarygrid',
 
     requires: [
-        'OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryController',
-        'OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryModel'
+        'OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.LoadTestSummaryGridController',
+        'OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.LoadTestSummaryGridModel'
     ],
 
-    controller: 'loadtestsummary',
+    controller: 'loadtestsummarygrid',
     viewModel: {
-        type: 'loadtestsummary'
+        type: 'loadtestsummarygrid'
     },
 
     bind: {
