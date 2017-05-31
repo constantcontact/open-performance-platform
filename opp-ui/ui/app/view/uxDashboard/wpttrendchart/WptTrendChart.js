@@ -29,13 +29,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
     insetPadding: 40,
     plugins: {
         ptype: 'chartitemevents'
-        // moveEvents: true
-    },
-
-    listeners: {
-        itemdblclick: function(series, item, event, eOpts ) {
-            console.log('itemdblclicked');
-        }
     },
 
     tbar: {
@@ -46,11 +39,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
                 xtype: 'button',
                 itemId: 'medianButton',
                 text: 'median',
-                listeners: {
-                    afterrender: function(button) {
-                        //button.click();
-                    }
-                },
                 handler: 'buttonMetricClicked'
             },
             '-',
@@ -97,7 +85,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         style: { lineWidth: 4 },
         marker: { radius: 4 },
         highlightCfg: {
-            // scaling: 2
             fillStyle: '#000', 
             radius: 5, 
             lineWidth: 2, 
@@ -162,7 +149,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         style: { lineWidth: 4 },
         marker: { radius: 4 },
         highlightCfg: {
-            // scaling: 2
             fillStyle: '#000', 
             radius: 5, 
             lineWidth: 2, 
@@ -227,7 +213,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         style: { lineWidth: 4 },
         marker: { radius: 4 },
         highlightCfg: {
-            // scaling: 2
             fillStyle: '#000', 
             radius: 5, 
             lineWidth: 2, 

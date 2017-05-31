@@ -1,5 +1,4 @@
 Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications', {
-    //extend: 'Ext.grid.Panel',
     extend: 'Ext.panel.Panel',
     xtype: 'uxapplications',
     itemId: 'uxapplications',
@@ -146,9 +145,7 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications', {
 
         listeners: {
             itemdblclick: function(grid, record, item, index) {
-                //this.up('ux').wptName(record.getData().full);
-                this.up('uxtabpanel').createTab(record.getData().full);
-                //Ext.ComponentQuery.query('uxtabpanel')[0].createTab(record.getData().full);
+                this.up('uxtabpanel').getController().createTab(record.getData().full);
             }
         }
     }],
@@ -156,12 +153,5 @@ Ext.define('OppUI.view.uxDashboard.uxapplications.UxApplications', {
     menuItemDefaults: {
         checked: false,
         hideOnClick: true
-    },
-
-
-    listeners: {
-        itemdblclick: function(grid, record, item, index) {
-            this.up('ux').test();
-        }
     }
 });

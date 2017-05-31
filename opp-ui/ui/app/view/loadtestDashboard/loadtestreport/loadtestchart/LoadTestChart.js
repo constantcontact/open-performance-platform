@@ -183,7 +183,6 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         itemdblclick: function(series, item, event, eOpts ) {
             // only create a tab if the user is dblclicking
             // on aggregation load test chart.
-            console.log(item);
             if(this.getItemId().indexOf('trend-') >= 0) {
                 this.up('loadtest')
                     .getController()
@@ -215,39 +214,5 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                 return Ext.Date.format(new Date(parseInt(value) * 1000), 'm/d/y');
             }
         }
-    ],
-
-    updateChart: function(container, yaxis, json){    
-        var series = json.chart.series;
-    
-        for(var i=0; i<series.length; i++){
-            series[i].style = container.getSeriesStyle();
-            series[i].highlight = container.getSeriesHighlight();
-            series[i].marker = container.getSeriesMarker();
-            series[i].tooltip = container.getSeriesTooltip();
-        }
-
-        container.axes[0].fields = json.chart.modelFields.slice(1);
-        container.setTitle(json.chart.title);
-        container.setSeries(series);
-        container.setStore(Ext.create('Ext.data.JsonStore', {
-            fields: json.chart.modelFields,
-            data: json.chart.data
-        }));
-    },
-
-    loadChart: function(yaxis, container) {
-        var loadTestReport = container.up('loadtestreport');
-        
-        Ext.Ajax.request({
-            url: '/loadsvc/v1/charts/timeseries/loadtests/'+ loadTestReport.getLoadTestId() + "?yaxis=" + yaxis,
-            scope: container,
-            disableCaching: false,
-            success: function (response) {
-                var json = Ext.decode(response.responseText, false);
-                // callback to either update or create method
-                this.updateChart(container, this.yaxis, json);
-            }
-        });
-    }
+    ]
 });

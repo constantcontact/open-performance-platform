@@ -3,7 +3,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
     alias: 'controller.wpttrendchart',
 
     buttonMetricClicked: function(button) {
-        // console.log('Button Metric clicked ==>'+ button.getText());
         var metricsStore, defaultStore, wptTrendGrid, defaultStoreData;
         metricStore = this.getView()
                 .up('uxtrendreport')
@@ -16,7 +15,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController', {
                 .getStore('histogramData');
 
         if(!metricStore.getProxy().getData()) {
-            console.log('Loading ' + button.getText() + ' for the first time!');
             defaultStoreData = defaultStore.getProxy().getReader().rawData;
             
             metricStore.getProxy().setData(defaultStoreData);

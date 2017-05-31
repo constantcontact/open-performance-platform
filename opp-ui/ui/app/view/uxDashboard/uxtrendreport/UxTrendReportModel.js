@@ -55,45 +55,9 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            },
-            listeners: {
-                load: function() {
-                    console.log('wptTrendTable data loaded!');
-                }
             }
         },
-
-        min: {
-            model: 'OppUI.model.uxDashboard.HistogramMin',
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Min histogram data loaded!');
-                }
-            }
-        },
-            max: {
-            model: 'OppUI.model.uxDashboard.HistogramMax',
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Max histogram data loaded!');
-                }
-            }
-        },
-            median: {
+        median: {
             model: 'OppUI.model.uxDashboard.HistogramMedian',
             autoLoad: false,
             proxy: {
@@ -101,25 +65,15 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Median histogram data loaded!');
-                }
             }
         },
-            average: {
+        average: {
             model: 'OppUI.model.uxDashboard.HistogramAverage',
             autoLoad: false,
             proxy: {
                 type: 'memory',
                 reader: {
                     type: 'json'
-                }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Average histogram data loaded!');
                 }
             }
         }

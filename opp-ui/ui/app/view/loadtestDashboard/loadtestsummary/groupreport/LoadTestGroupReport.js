@@ -32,13 +32,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
             }
         }
 
-        console.log('Query Parameters: ' + queryParams);
-        console.log('Load Test Group Report Link: '+ this.reportLink);
-
         this.getViewModel()
             .getStore('groupReport')
             .getProxy()
             .setUrl('/loadsvc/v1/loadtesttrends/summarytrendgroup?' + queryParams);
+
         // have to add this here in order to get the reportLink.
         this.items = [
             {
@@ -53,13 +51,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
     },
 
     listeners: {
-        beforeclose: function(tab) {
-            console.log('tab closing ' + tab.getTitle());
-            console.log(tab.getFilters());
-            
-            this.up('loadtest')
-                .getController()
-                .updateUrlGroupTabState({name: tab.getTitle(), filters: tab.getFilters()}, false);
-        }
+        beforeclose: 'beforeGroupReportClose'
     }
 });

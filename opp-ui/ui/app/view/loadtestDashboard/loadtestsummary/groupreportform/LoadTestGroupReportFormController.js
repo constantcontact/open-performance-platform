@@ -22,19 +22,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
     },
 
     createReport: function(createReportButton) {
-        // var store, columnFilter, textFilter, groupReportName, view;
-        // view = this.getView();
-
-        // columnFilter = view.down('#filterCombobox').getValue();
-        // textFilter = view.down('#filterField').getValue();
-        // groupReportName = view.down('#groupReportName').getValue();
-
-        // if(columnFilter && textFilter && groupReportName) {
-
-        //     view.up('loadtest').down('loadtestsummarytab').createGroupReportTab(groupReportName, columnFilter, textFilter);
-        //     view.up().close();
-        // }
-
         var form = createReportButton.up('form'),
             queryStr = this.buildGroupedReportQueryStr(form),
             groupReport = this.buildGroupReportObject(form),
@@ -43,14 +30,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             view = this.getView();
             groupReport.name = reportName;
 
-            console.log(reportName + ' ' + queryStr);
-            console.log(groupReport);
-            console.log(groupReport.filters);
-
-            // view.up('loadtest').down('loadtestsummarytab').createGroupReport(groupReport);
-            // view.up().close();
-
-            Ext.ComponentQuery.query('loadtestsummarytab')[0].createGroupReport(groupReport);
+            Ext.ComponentQuery.query('loadtestsummarytab')[0].getController().createGroupReport(groupReport);
             view.up().close();
     },
     buildGroupedReportQueryStr: function(form) {
@@ -86,5 +66,17 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
         }
 
         return groupReport;
-    }
+    },
+
+    populateSampleGrid: function(grid) {
+        var defaultStore;
+
+        defaultStore = Ext.ComponentQuery.query('loadtestsummary')[0].getStore();
+        
+        grid.store.getProxy().setData(defaultStore.getProxy().getReader().rawData);
+        grid.store.filterBy(function(record) {
+            return undefined;
+        });
+        grid.store.load();
+    }    
 });

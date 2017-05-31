@@ -4,7 +4,6 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
 
     updateUrlTabState: function(pageName, add) {
         var view, activeState, queryParams, params, paren, pagest, newTabState, initialTabState;
-        console.log('updateUrlTabState ==> pageName' + pageName + ' add: ' + add);
 
         view = this.getView();
         parent = view.up();
@@ -12,8 +11,6 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
 
         queryParams = activeState.split('?');
         queryParams = queryParams.length > 1 ? queryParams[1] : undefined; 
-
-        console.log('queryParams: ' + queryParams);
 
         if (!queryParams) {
             activeState = activeState.concat('/?pages='+pageName);
@@ -92,9 +89,66 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
             // to work for deleted tabs.
             parent.setActiveState(activeState);
         }
-
-        console.log('UpdateUrlTabState ===> activeState: ' + activeState);
         parent.getController().updateActiveState(activeState);
+    },
+
+    createTab: function(pageName) {
+        this.updateUrlTabState(pageName, true);
+    }, 
+
+    createTabs: function(params) {
+        var queryParams, i, j, ages, pageTrendReport, pageIdentifier;
+
+        queryParams = params.split('&');
+
+        if(queryParams.length >= 1) {
+            for(i = 0; i < queryParams.length; i++) {
+                if(queryParams[i].indexOf('pages=') >= 0) {
+                    // ie, pages=l1.campaign-ui.campaigns-morecampaigns.aws-us-east.chrome.cable
+                    // the first split will split on the '=', the second
+                    // split will get the pages.
+                    pages = queryParams[i].split('=')[1].split(',');
+
+                    for(j = 0; j < pages.length; j++) {
+                        pageIdentifier = pages[j].split('.').join('');
+                        pageTrendReport = this.getView().down('#pagetrendreport-'+pageIdentifier);
+
+                        if(!pageTrendReport) {
+                            this.createPageTrendReport(pages[j]);
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+    },
+
+    createPageTrendReport: function(pageName) {
+        var tab, pageIdentifier, connection, view;
+
+        view = this.getView();
+        connection = pageName.split('.')[5];
+        pageIdentifier = pageName.split('.').join('');
+
+        tab = view.add({
+                closable: true,
+                xtype: 'uxtrendreport',
+                itemId: 'pagetrendreport-' + pageIdentifier,
+                iconCls: 'x-fa fa-line-chart',
+                title: pageName,
+                pageName: pageName,
+                connection: connection
+            }
+        );
+
+        view.setActiveTab(tab);
+    },
+
+    processAdmin: function(params) {
+        if(params.indexOf('user=admin') >= 0) {
+            this.getView().setAdmin(true);
+        }
     }
 
 });

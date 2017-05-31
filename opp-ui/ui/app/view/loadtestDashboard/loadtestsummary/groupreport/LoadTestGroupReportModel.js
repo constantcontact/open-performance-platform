@@ -15,11 +15,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreport.LoadTestGro
                 reader: {
                     type: 'json'
                 }
-            },
-            listeners: {
-                load: function() {
-                    console.log('Load Test Group Report Data loaded!');
-                }
             }
         }
     }

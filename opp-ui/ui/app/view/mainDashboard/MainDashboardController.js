@@ -55,7 +55,6 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardController', {
     },
 
     loadtestItemSelected: function(grid, record, domElement, index) {
-        console.log(record.getData().loadTestId);
         this.fireEvent('changeroute', this, 'loadtest/?tab=' + record.getData().loadTestId);
     }
 });

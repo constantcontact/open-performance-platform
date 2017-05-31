@@ -95,17 +95,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
             ],
 
             listeners: {
-                afterrender: function(view) {
-                    var defaultStore;
-
-                    defaultStore = Ext.ComponentQuery.query('loadtestsummary')[0].getStore();
-                    
-                    this.store.getProxy().setData(defaultStore.getProxy().getReader().rawData);
-                    this.store.filterBy(function(record) {
-                        return undefined;
-                    });
-                    this.store.load();
-                }
+                afterrender: 'populateSampleGrid'
             }
         }
     ]

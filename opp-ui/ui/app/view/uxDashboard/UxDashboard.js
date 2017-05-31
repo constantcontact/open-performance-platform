@@ -21,7 +21,6 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
 
     config: {
         activeState: null
-        //defaultActiveState: 'dashboard'
     },
 
     validStates: {
@@ -33,8 +32,9 @@ Ext.define('OppUI.view.uxDashboard.UxDashboard',{
     },
 
     processQueryParams: function(params) {
-        this.down('uxtabpanel').createTabs(params);
-        this.down('uxtabpanel').processAdmin(params);
+        var controller = this.down('uxtabpanel').getController();
+        controller.createTabs(params);
+        controller.processAdmin(params);
     }
 
 });
