@@ -39,34 +39,37 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.loadtestreportsummarygri
         },{
             type:'maximize',
             handler: function(event, element, view){
+                var parentContainer = this.up().up().up();  // header --> grid --> container
+                var grid = view.up('loadtestreportsummarygrid');
+                grid.getHeader().hide();
 
                 var window = Ext.create('Ext.window.Window', {
                     layout: 'fit',
+                    parentContainer: parentContainer,
                     height: Ext.getBody().getViewSize().height - 100,
                     width: Ext.getBody().getViewSize().width - 100,
                     maximizable: true,
-                    items: [
-                        {
-                            xtype: 'loadtestreportsummarygrid',      
-                            header: false,
-                            collapsible: false
-                        }
-                    ],
+                    hideCollapseTool: true,
+                    items: grid,
                     tools: [{
                         type:'print',
                         handler: function(event, element, view){
-                            var chart, grid, markup;
+                            var chart, markup;
 
-                            grid = view.up('loadtestreportsummarygrid');
                             markup = grid.getController().getWikiMarkup();
                             Ext.Msg.alert('Wiki Markup', markup);
                         }
-                    }]
+                    }],
+                    listeners: {
+                        beforeclose: function(grid, options) {
+                            var child = this.items.items[0];
+                            child.getHeader().show();
+                            this.parentContainer.add(child);
+                        }
+                    }
                 });
                 
-                // add the window to the parent loadTestReport
-                // so the window will share the viewmodel.
-                view.up('loadtestreport').add(window).showAt();
+                window.show();
             }
         }]
     },

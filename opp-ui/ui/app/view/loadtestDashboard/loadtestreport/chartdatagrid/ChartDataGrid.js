@@ -30,7 +30,10 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestreport.chartdatagrid.ChartDataG
                 // SET COLUMNS AND DATA STORE HERE
                 this.setColumns(json.chart.data);
                 this.formatData(json.chart.modelFields, json.chart.data);
-            }
+            },
+			failure: function() {
+				Ext.Msg.alert('Error:', 'Error occurred retrieving data.');
+			}
         });
 		this.callParent();
 	},

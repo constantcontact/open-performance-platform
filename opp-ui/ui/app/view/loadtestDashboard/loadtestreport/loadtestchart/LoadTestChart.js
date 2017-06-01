@@ -39,30 +39,15 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                 }
             }
         },
-        tools: [
-            {
-                type:'gear',
-                listeners: {
-                    afterrender: function(me) {
-                    //     if(me.up().up().yaxis == undefined || me.up().up().yaxis == null) {
-                    //         // remove table views for panels that have none
-                    //         document.getElementById(me.getId()).style.display = "none";
-                    //     } else {
-                    //         // Tool tips to switch to table view
-                    //         // Ext.tip.QuickTipManager.register({
-                    //         //     target: me.getId(),
-                    //         //     title: 'Switch to Table View',
-                    //         //     text: 'View this graph as a trend table'
-                    //         // });
-                    //     }
-                    }
-            },
+        tools: [{
+            type:'gear',    
             handler: function(event, element, view){
                 var chart = this.up('loadtestchart');
                 var type = chart.getItemId().split('-');
+                var loadTestId = chart.up('loadtestreport').getLoadTestId();
                 var yAxis = type[0].indexOf('timeseries') >= 0 ? 
-                                chart.getDockedItems()[1].items.items[1].getValue() :
-                                type[1];
+                                chart.getDockedItems()[1].items.items[1].getValue() : // get the combobox's selected value
+                                type[1]; // just get the item id's yAxis type.
 
                 if(chart.getStore().getData().items.length > 0) {
                     var window = Ext.create('Ext.window.Window', {
@@ -73,16 +58,9 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                         title: chart.title,
                         items: [{
                             xtype: 'chartdatagrid',
-                            loadTestId: chart.up('loadtestreport').getLoadTestId(),
+                            loadTestId: loadTestId,
                             yAxis: yAxis
                         }],
-                        // items:[
-                        //     Ext.create('OppUI.view.report.LoadTestRawDataChart', {
-                        //         loadTestId:chart.loadTestId,
-                        //         yaxis:chart.yaxis,
-                        //         dataType: chart.dataType
-                        //     })
-                        // ],
                         tools: [ {
                             type:'print',
                             listeners: {
@@ -114,14 +92,13 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                                 var grid = this.up('window').down('grid');
                                 var csv = grid.getCsv();
                                 var link = document.createElement("a");
-                                link.download=chart.loadTestId + "_" + chart.yaxis + "_data.csv";
+                                link.download = loadTestId + "_" + yAxis + "_data.csv";
                                 link.href='data:text/plain;charset=utf-8,' + encodeURIComponent(csv);
                                 link.click();
                             }
                         }]
                     });
                     window.show();
-                    //chart.add(window).show();
 
                     // Ext.tip.QuickTipManager.register({
                     //     target: window.tools[2].id,
