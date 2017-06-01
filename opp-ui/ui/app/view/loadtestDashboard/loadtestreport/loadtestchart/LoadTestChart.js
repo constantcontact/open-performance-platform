@@ -59,6 +59,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
             },
             handler: function(event, element, view){
                 var chart = this.up('loadtestchart');
+                var type = chart.getItemId().split('-');
+                var yAxis = type[0].indexOf('timeseries') >= 0 ? 
+                                chart.getDockedItems()[1].items.items[1].getValue() :
+                                type[1];
 
                 if(chart.getStore().getData().items.length > 0) {
                     var window = Ext.create('Ext.window.Window', {
@@ -70,7 +74,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                         items: [{
                             xtype: 'chartdatagrid',
                             loadTestId: chart.up('loadtestreport').getLoadTestId(),
-                            yAxis: chart.getDockedItems()[1].items.items[1].getValue()
+                            yAxis: yAxis
                         }],
                         // items:[
                         //     Ext.create('OppUI.view.report.LoadTestRawDataChart', {
