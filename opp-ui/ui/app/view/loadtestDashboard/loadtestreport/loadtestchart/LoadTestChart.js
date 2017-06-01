@@ -44,35 +44,41 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                 type:'gear',
                 listeners: {
                     afterrender: function(me) {
-                        if(me.up().up().yaxis == undefined || me.up().up().yaxis == null) {
-                            // remove table views for panels that have none
-                            document.getElementById(me.getId()).style.display = "none";
-                        } else {
-                            // Tool tips to switch to table view
-                            // Ext.tip.QuickTipManager.register({
-                            //     target: me.getId(),
-                            //     title: 'Switch to Table View',
-                            //     text: 'View this graph as a trend table'
-                            // });
-                        }
+                    //     if(me.up().up().yaxis == undefined || me.up().up().yaxis == null) {
+                    //         // remove table views for panels that have none
+                    //         document.getElementById(me.getId()).style.display = "none";
+                    //     } else {
+                    //         // Tool tips to switch to table view
+                    //         // Ext.tip.QuickTipManager.register({
+                    //         //     target: me.getId(),
+                    //         //     title: 'Switch to Table View',
+                    //         //     text: 'View this graph as a trend table'
+                    //         // });
+                    //     }
                     }
             },
-            handler: function(a,b,c){
-                var cstPanel = this.up('cstpanel');
-                if(cstPanel.yaxis !== undefined  && cstPanel.yaxis !== null) {
+            handler: function(event, element, view){
+                var chart = this.up('loadtestchart');
+
+                if(chart.getStore().getData().items.length > 0) {
                     var window = Ext.create('Ext.window.Window', {
                         layout: 'fit',
                         height: Ext.getBody().getViewSize().height - 100,
                         width: Ext.getBody().getViewSize().width - 100,
                         maximizable: true,
-                        title: cstPanel.down(cstPanel.childxtype).title,
-                        items:[
-                            Ext.create('OppUI.view.report.LoadTestRawDataChart', {
-                                loadTestId:cstPanel.loadTestId,
-                                yaxis:cstPanel.yaxis,
-                                dataType: cstPanel.dataType
-                            })
-                        ],
+                        title: chart.title,
+                        items: [{
+                            xtype: 'chartdatagrid',
+                            loadTestId: chart.up('loadtestreport').getLoadTestId(),
+                            yAxis: chart.getDockedItems()[1].items.items[1].getValue()
+                        }],
+                        // items:[
+                        //     Ext.create('OppUI.view.report.LoadTestRawDataChart', {
+                        //         loadTestId:chart.loadTestId,
+                        //         yaxis:chart.yaxis,
+                        //         dataType: chart.dataType
+                        //     })
+                        // ],
                         tools: [ {
                             type:'print',
                             listeners: {
@@ -84,7 +90,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                                     // });
                                 }
                             },
-                            handler: function(a,b,c){
+                            handler: function(event, element, view){
                                 var grid = this.up('window').down('grid');
                                 var wiki = grid.getWikiFormat();
                                 Ext.Msg.alert('Wiki Markup', wiki);
@@ -93,24 +99,25 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                             type: 'save',
                             listeners: {
                                 afterrender: function(me) {
-                                    Ext.tip.QuickTipManager.register({
-                                        target: me.getId(),
-                                        title: 'Save Data',
-                                        text: 'Save Data as CSV'
-                                    });
+                                    // Ext.tip.QuickTipManager.register({
+                                    //     target: me.getId(),
+                                    //     title: 'Save Data',
+                                    //     text: 'Save Data as CSV'
+                                    // });
                                 }
                             },
                             handler: function(a,b,c) {
                                 var grid = this.up('window').down('grid');
                                 var csv = grid.getCsv();
                                 var link = document.createElement("a");
-                                link.download=cstPanel.loadTestId + "_" + cstPanel.yaxis + "_data.csv";
+                                link.download=chart.loadTestId + "_" + chart.yaxis + "_data.csv";
                                 link.href='data:text/plain;charset=utf-8,' + encodeURIComponent(csv);
                                 link.click();
                             }
                         }]
                     });
                     window.show();
+                    //chart.add(window).show();
 
                     // Ext.tip.QuickTipManager.register({
                     //     target: window.tools[2].id,
@@ -124,7 +131,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
                     // });
 
                 } else {
-                    alert("This chart has no raw data");
+                    Ext.Msg.alert('Error', 'This chart has no raw data');
                 }
             }
         },
@@ -146,30 +153,36 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
         {
             type:'maximize',
             handler: function(event, element, view){
-
+                var parentContainer = this.up().up().up();  // header --> chart --> container
+                var chart = view.up('loadtestchart');
+                chart.getHeader().hide();
                 var window = Ext.create('Ext.window.Window', {
                     layout: 'fit',
+                    parentContainer: parentContainer,
                     height: Ext.getBody().getViewSize().height - 100,
                     width: Ext.getBody().getViewSize().width - 100,
                     maximizable: true,
-                    items: view.up('loadtestchart').getItems(),
+                    title: view.up('loadtestchart').getTitle(),
+                    hideCollapseTool: true,
+                    items: chart,
 
                     tools: [{
                         type:'print',
                         handler: function(event, element, view){
-                            view.up('loadtestchart').download();
+                            view.up('window').down('loadtestchart').download();
                         }
-                    }]
-                    // listeners: {
-                    //     beforeclose: function(panel, opts){
-                    //         view.up('loadtestreport').add(this.items);
-                    //     }
-                    // }
+                    }],
+                    listeners: {
+                        beforeclose: function(chart, options) {
+                            var child = this.items.items[0];
+                            child.getHeader().show();
+                            this.parentContainer.add(child);
+                        }
+                    }
                 });
 
-                // add the window to the parent loadTestReport
-                // so the window will share the viewmodel.
-                view.up('loadtestreport').add(window).showAt();
+                window.show();
+                //window.center();
             }
         }] 
     },

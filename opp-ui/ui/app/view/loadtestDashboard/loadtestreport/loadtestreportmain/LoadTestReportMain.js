@@ -19,42 +19,49 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
          */
         for(i = 0; i < timeSeriesYAxes.length; i++) {
             this.items.push({
-                xtype: 'loadtestchart',
-                itemId: 'timeseries-' + timeSeriesYAxes[i].yaxis,
-                title: timeSeriesYAxes[i].title,
+                xtype: 'container',
                 colspan: 2,
-                height: 300,
-                margin: '0 0 20 0',
-                tbar: [
-                    '->',
-                    {
-                        xtype: 'timeseriescombobox'
-                    },
-                    '-',
-                    {
-                        text: 'Undo Zoom',
-                        handler: function() {
-                            var chart = this.up('panel').down('cartesian'),
-                                interaction = chart && Ext.ComponentQuery.query('interaction', chart)[0],
-                                undoButton = interaction && interaction.getUndoButton(),
-                                handler = undoButton && undoButton.handler;
-                            if (handler) {
-                                handler();
+                items: [{
+                    xtype: 'loadtestchart',
+                    itemId: 'timeseries-' + timeSeriesYAxes[i].yaxis,
+                    title: timeSeriesYAxes[i].title,
+                    height: 300,
+                    margin: '0 0 20 0',
+                    tbar: [
+                        '->',
+                        {
+                            xtype: 'timeseriescombobox',
+                            value: timeSeriesYAxes[i].yaxis
+                        },
+                        '-',
+                        {
+                            text: 'Undo Zoom',
+                            handler: function() {
+                                var chart = this.up('panel').down('cartesian'),
+                                    interaction = chart && Ext.ComponentQuery.query('interaction', chart)[0],
+                                    undoButton = interaction && interaction.getUndoButton(),
+                                    handler = undoButton && undoButton.handler;
+                                if (handler) {
+                                    handler();
+                                }
                             }
                         }
-                    }
-                ]
+                    ]
+                }]
             });
         }
 
         for(i = 0; i < aggregateYAxes.length; i++) {
             this.items.push({
-                xtype: 'loadtestchart',
-                itemId: 'trend-' + aggregateYAxes[i].yaxis,
-                title: aggregateYAxes[i].title,
+                xtype: 'container',
                 colspan: 1,
-                height: 300,
-                margin: '0 20 20 0'
+                items: [{
+                    xtype: 'loadtestchart',
+                    itemId: 'trend-' + aggregateYAxes[i].yaxis,
+                    title: aggregateYAxes[i].title,
+                    height: 300,
+                    margin: '0 20 20 0'
+                }]
             });
         }
         
