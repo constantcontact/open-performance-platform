@@ -4,4 +4,5 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
     data: {
         name: 'OppUI'
     }
+    
 });

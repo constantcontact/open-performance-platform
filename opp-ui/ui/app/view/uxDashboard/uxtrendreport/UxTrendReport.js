@@ -86,7 +86,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
                 series[i].tooltip=chart.getSeriesTooltip();
             }
 
-            chart.axes[0].fields = json.chart.modelFields.slice(1);
+            //chart.axes[0].fields = json.chart.modelFields.slice(1);
             chart.setSeries(series);
             chart.setStore(Ext.create('Ext.data.JsonStore', {
                 fields: json.chart.modelFields,
