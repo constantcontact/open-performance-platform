@@ -30,11 +30,11 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart',{
                 if(item && record) {
                     // determine if the tooltip is for a timeseries chart
                     // or aggregation chart.
-                    startTime = record.data.start_time;
+                    startTime = record.data.completedDate;
                     if(!startTime) {
                         startTime = window.parseInt(record.data.xaxis);
                     }
-                    tooltip.setHtml(item.field + ' on ' + new Date(startTime * 1000) + ': ' +
+                    tooltip.setHtml(item.field + ' on ' + new Date(startTime) + ': ' +
                         record.get(item.series.getYField()) + ' (ms)');
                 }
             }
@@ -49,8 +49,28 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart',{
     },
     title: 'Custom Timings',
     height: 500,
+    insetPadding: 40,
 
-     axes: [
+     tbar: {
+        items: [
+            '->',
+            '-',
+            {
+                xtype: 'button',
+                itemId: 'medianButton',
+                text: 'median',
+                handler: 'buttonMetricClicked'
+            },
+            '-',
+            {
+                xtype: 'button',
+                text: 'average',
+                handler: 'buttonMetricClicked'
+            }
+        ]
+    },
+    
+    axes: [
         {
             type: 'numeric',
             minimum: 0,
@@ -58,17 +78,15 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart',{
             title: 'Response Time (msec)', // gets overridden with yaxisTitle
             grid: true
         }, {
-            type: 'category',
+            type: 'time',
             position: 'bottom',
-            fields: ['start_time'],
+            fields: ['completedDate'],
             title: 'Run Date', // gets overridden with xaxisTitle
-            renderer: function (o, value) {
-                if (value.length > 20) {
-                    this.font = "10px Arial, Helvetica, sans-serif";
+            label: {
+                rotate: {
+                    degrees: -45
                 }
-                //return parseInt(value) * 1000;
-                return Ext.Date.format(new Date(parseInt(value) * 1000), 'm/d/y');
-            }
+            },
         }
     ]
 });

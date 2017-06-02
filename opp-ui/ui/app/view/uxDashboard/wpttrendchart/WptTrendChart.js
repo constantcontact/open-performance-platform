@@ -52,16 +52,6 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
 
     axes: [{
         type: 'numeric',
-        fields: ['TTFB', 
-                'TTFB-min', 
-                'TTFB-max', 
-                'VisuallyComplete',
-                'VisuallyComplete-min',
-                'VisuallyComplete-max',
-                'SpeedIndex',
-                'SpeedIndex-min',
-                'SpeedIndex-max'
-                ],
         position: 'left',
         grid: true,
         minimum: 0,
@@ -102,7 +92,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             }
         }
     },{
-        type: 'scatter',
+        type: 'line',
         title: 'TTFB-min',
         xField: 'wptTimestamp',
         yField: 'TTFB-min',
@@ -122,7 +112,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         },
         showInLegend: false  
     },{
-        type: 'scatter',
+        type: 'line',
         title: 'TTFB-min',
         xField: 'wptTimestamp',
         yField: 'TTFB-max',
@@ -166,7 +156,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             }
         }   
     },{
-        type: 'scatter',
+        type: 'line',
         title: 'VisuallyComplete-min',
         xField: 'wptTimestamp',
         yField: 'VisuallyComplete-min',
@@ -186,7 +176,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         },
         showInLegend: false   
     },{
-        type: 'scatter',
+        type: 'line',
         title: 'VisuallyComplete-max',
         xField: 'wptTimestamp',
         yField: 'VisuallyComplete-max',
@@ -230,7 +220,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
             }
         }
     },{
-        type: 'scatter',
+        type: 'line',
         title: 'SpeedIndex-min',
         xField: 'wptTimestamp',
         yField: 'SpeedIndex-min',
@@ -250,7 +240,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         },
         showInLegend: false  
     },{
-        type: 'scatter',
+        type: 'line',
         title: 'SpeedIndex-min',
         xField: 'wptTimestamp',
         yField: 'SpeedIndex-max',
