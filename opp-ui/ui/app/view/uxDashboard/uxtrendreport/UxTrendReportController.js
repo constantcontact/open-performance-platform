@@ -46,12 +46,13 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
             customTimingChart = this.getView().down('customtimingchart');
 
             for(var i=0; i<customTimingsChartData.series.length; i++){
-                customTimingsChartData.series[i].style = customTimingChart.getSeriesStyle();
-                customTimingsChartData.series[i].highlight = customTimingChart.getSeriesHighlight();
-                customTimingsChartData.series[i].marker = customTimingChart.getSeriesMarker();
-                customTimingsChartData.series[i].tooltip = customTimingChart.getSeriesTooltip();
-
                 var yField = customTimingsChartData.series[i].yField;
+                if(!(yField.indexOf('-min') >= 0 || yField.indexOf('-max') >= 0)) {
+                    customTimingsChartData.series[i].style = customTimingChart.getSeriesStyle();
+                    customTimingsChartData.series[i].highlightCfg = customTimingChart.getSeriesHighlight();
+                    customTimingsChartData.series[i].marker = customTimingChart.getSeriesMarker();
+                }
+                customTimingsChartData.series[i].tooltip = customTimingChart.getSeriesTooltip();
                 customTimingsChartData.series[i].showInLegend = 
                     !(yField.indexOf('-min') >= 0 || yField.indexOf('-max') >= 0);// || yField.indexOf('median') >= 0 || yField.indexOf('average') >= 0);
             }
@@ -69,7 +70,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
             customUserTimingsAverageStore.load();
 
             customTimingChart.show();
-            customTimingChart.redraw();
+            //customTimingChart.redraw();
 
             customTimingChart.setTitle('Custom Timings - median');
         }
@@ -105,7 +106,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                 for(var j = 0; j< record.userTimings.length; j++) {
                     
                     // keep track of the unique custom user timing names.
-                    customTimingName = (record.userTimings[j].name);//.replace(/\s/g, "-");;
+                    customTimingName = (record.userTimings[j].name);
                     uniqueCustomTimingNames[customTimingName] = undefined;
 
                     // build the data for the chart.
@@ -115,8 +116,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                     customTimingMedianData[customTimingName] = record.userTimings[j].median;
                     customTimingMedianData[minName] = record.userTimings[j].min;
                     customTimingMedianData[maxName] = record.userTimings[j].max;
-                    // customTimingMedianData['average'] = record.userTimings[j].average;
-                    // customTimingMedianData['median'] = record.userTimings[j].median;
                     customTimingMedianData['completedDate'] = record.getData().wptTimestamp;
 
                     medianData.push(customTimingMedianData);
@@ -127,8 +126,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                     customTimingAverageData[customTimingName] = record.userTimings[j].average;
                     customTimingAverageData[minName] = record.userTimings[j].min;
                     customTimingAverageData[maxName] = record.userTimings[j].max;
-                    // customTimingAverageData['average'] = record.userTimings[j].average;
-                    // customTimingAverageData['median'] = record.userTimings[j].median;
                     customTimingAverageData['completedDate'] = record.getData().wptTimestamp;
 
                     averageData.push(customTimingAverageData);
@@ -142,14 +139,13 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                 
                 series.push({
                     type: 'line',
-                    //axis: 'left',
+                    title: prop,
                     xField: 'completedDate',
                     yField: prop
                 });
 
                 series.push({
                     type: 'line',
-                    //axis: 'left',
                     xField: 'completedDate',
                     yField: (prop + '-min'),
                     marker: {
@@ -159,7 +155,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
 
                 series.push({
                     type: 'line',
-                    //axis: 'left',
                     xField: 'completedDate',
                     yField: (prop + '-max'),
                     marker: {
@@ -175,11 +170,17 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     mockCustomTimings: function(histogramData) {
         for(var i = 0; i < histogramData.length; i++) {
             record = histogramData[i];
-            record.userTimings = [{name: 'Custom Timing 1', average: 1100, max: 3000, median: 900, min: 400},
-                {name: 'Custom Timing 2', average: 2100, max: 4200, median: 130, min: 540},
-                {name: 'Custom Timing 3', average: 3100, max: 5200, median: 230, min: 640},
-                {name: 'Custom Timing 4', average: 4100, max: 6200, median: 330, min: 740},
-                {name: 'Custom Timing 5', average: 5100, max: 7200, median: 430, min: 840}]
+            // record.userTimings = [{name: 'Custom Timing 1', average: 1000, max: 3000, median: 2000, min: 400},
+            //     {name: 'Custom Timing 2', average: 2100, max: 4200, median: 1130, min: 540},
+            //     {name: 'Custom Timing 3', average: 1100, max: 5200, median: 2030, min: 640},
+            //     {name: 'Custom Timing 4', average: 2100, max: 6200, median: 1330, min: 740},
+            //     {name: 'Custom Timing 5', average: 1100, max: 7200, median: 2430, min: 840}]
+
+            record.userTimings = [{name: 'Custom Timing 1', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
+                {name: 'Custom Timing 2', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
+                {name: 'Custom Timing 3', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
+                {name: 'Custom Timing 4', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
+                {name: 'Custom Timing 5', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)}]
         }
     }
 });

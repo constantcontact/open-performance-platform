@@ -41,7 +41,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
     scrollable: 'y',
 
     minWidth: 600,
-    height: 1000,
+    height: Ext.getBody().getViewSize().height - 100,
 
     items: [{
         xtype: 'wpttrendchart',
