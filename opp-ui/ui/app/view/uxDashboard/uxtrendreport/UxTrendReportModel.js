@@ -18,7 +18,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'VisuallyComplete-max', mapping: 'visuallyComplete.max', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
                 { name: 'SpeedIndex-min', mapping: 'speedIndex.min', type: 'auto' },
-                { name: 'SpeedIndex-max', mapping: 'speedIndex.max', type: 'auto' }
+                { name: 'SpeedIndex-max', mapping: 'speedIndex.max', type: 'auto' },
+                { name: 'userTimings', mapping: 'userTimings', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
@@ -76,6 +77,40 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                     type: 'json'
                 }
             }
+        },
+        customTimings: {
+            fields: ['completedDate', 'name', 'average', 'max', 'median', 'min'],
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                load: function(customTimings) {
+                    console.log(customTimings);
+                }
+            }
+        },
+
+        customUserTimingsMedian: {
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            }  
+        },
+        customUserTimingsAverage: {
+            autoLoad: false,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            } 
         }
     }
 });

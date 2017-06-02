@@ -71,7 +71,7 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.groupreportform.LoadTes
     populateSampleGrid: function(grid) {
         var defaultStore;
 
-        defaultStore = Ext.ComponentQuery.query('loadtestsummary')[0].getStore();
+        defaultStore = Ext.ComponentQuery.query('loadtestsummarygrid')[0].getStore();
         
         grid.store.getProxy().setData(defaultStore.getProxy().getReader().rawData);
         grid.store.filterBy(function(record) {
