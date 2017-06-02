@@ -55,7 +55,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         position: 'left',
         grid: true,
         minimum: 0,
-        title: "Milliseconds"
+        title: "Response Time (msec)"
     }, {
         type: 'time',
         fields: 'wptTimestamp',
