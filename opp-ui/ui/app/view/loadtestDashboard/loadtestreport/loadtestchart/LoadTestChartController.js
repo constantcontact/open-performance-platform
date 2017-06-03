@@ -29,9 +29,9 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
     
         for(var i=0; i<series.length; i++){
             series[i].style = container.getSeriesStyle();
-            series[i].highlight = container.getSeriesHighlight();
+            //series[i].highlight = container.getSeriesHighlight();
             series[i].marker = container.getSeriesMarker();
-            series[i].tooltip = container.getSeriesTooltip();
+            //series[i].tooltip = container.getSeriesTooltip();
         }
 
         container.axes[0].fields = json.chart.modelFields.slice(1);

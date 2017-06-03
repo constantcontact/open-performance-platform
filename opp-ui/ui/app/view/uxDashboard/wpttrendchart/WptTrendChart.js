@@ -6,6 +6,9 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
     requires: [
         'OppUI.view.uxDashboard.wpttrendchart.WptTrendChartController',
         'OppUI.view.uxDashboard.wpttrendchart.WptTrendChartModel',
+        'Ext.chart.series.Line',
+        'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Time',
         'Ext.chart.plugin.ItemEvents'
     ],
 
@@ -55,8 +58,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         position: 'left',
         grid: true,
         minimum: 0,
-        title: "Response Time (msec)"
-    }, {
+        title: 'Response Time (msec)'
+    },{
         type: 'time',
         fields: 'wptTimestamp',
         position: 'bottom',
@@ -73,24 +76,27 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         xField: 'wptTimestamp',
         yField: 'TTFB',
         style: { lineWidth: 4 },
-        marker: { radius: 4 },
-        highlightCfg: {
-            fillStyle: '#000', 
-            radius: 5, 
-            lineWidth: 2, 
-            strokeStyle: '#fff'
-        },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+        marker: { radius: 4 }
+        // highlight: true,
+        // highlightCfg: {
+        //     fillStyle: '#000', 
+        //     radius: 5, 
+        //     lineWidth: 2, 
+        //     strokeStyle: '#fff'
+        // }
+        // ,
+        // tooltip: {
+        //     trackMouse: true,
+        //     scope: this,
+        //     renderer: function (tooltip, record, item) {
+        //         // var title = item.series.getTitle();
 
-                if(record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        }
+        //         // if(record) {
+        //         //     tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+        //         //         record.get(item.series.getYField()) + ' (ms)');
+        //         // }
+        //     }
+        // }
     },{
         type: 'line',
         title: 'TTFB-min',
@@ -99,17 +105,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         marker: {
             type: 'cross'
         },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        },
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     },
         showInLegend: false  
     },{
         type: 'line',
@@ -119,17 +125,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         marker: {
             type: 'cross'
         },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        },
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     },
         showInLegend: false  
     },{
         type: 'line',
@@ -137,24 +143,24 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         xField: 'wptTimestamp',
         yField: 'VisuallyComplete',
         style: { lineWidth: 4 },
-        marker: { radius: 4 },
-        highlightCfg: {
-            fillStyle: '#000', 
-            radius: 5, 
-            lineWidth: 2, 
-            strokeStyle: '#fff'
-        },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+        marker: { radius: 4 }
+    //     highlightCfg: {
+    //         fillStyle: '#000', 
+    //         radius: 5, 
+    //         lineWidth: 2, 
+    //         strokeStyle: '#fff'
+    //     },
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        }   
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     }   
     },{
         type: 'line',
         title: 'VisuallyComplete-min',
@@ -163,17 +169,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         marker: {
             type: 'cross'
         },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        },
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     },
         showInLegend: false   
     },{
         type: 'line',
@@ -183,17 +189,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
          marker: {
             type: 'cross'
         },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        },
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     },
         showInLegend: false  
     },{
         type: 'line',
@@ -201,24 +207,24 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         xField: 'wptTimestamp',
         yField: 'SpeedIndex',
         style: { lineWidth: 4 },
-        marker: { radius: 4 },
-        highlightCfg: {
-            fillStyle: '#000', 
-            radius: 5, 
-            lineWidth: 2, 
-            strokeStyle: '#fff'
-        },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+        marker: { radius: 4 }
+    //     highlightCfg: {
+    //         fillStyle: '#000', 
+    //         radius: 5, 
+    //         lineWidth: 2, 
+    //         strokeStyle: '#fff'
+    //     },
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        }
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     }
     },{
         type: 'line',
         title: 'SpeedIndex-min',
@@ -227,17 +233,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         marker: {
             type: 'cross'
         },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        },
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     },
         showInLegend: false  
     },{
         type: 'line',
@@ -247,17 +253,17 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart',{
         marker: {
             type: 'cross'
         },
-        tooltip: {
-            trackMouse: true,
-            renderer: function (tooltip, record, item) {
-                var title = item.series.getTitle();
+    //     tooltip: {
+    //         trackMouse: true,
+    //         renderer: function (tooltip, record, item) {
+    //             var title = item.series.getTitle();
 
-                if (record) {
-                    tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        },
+    //             if (record) {
+    //                 tooltip.setHtml(title + ' on ' + new Date(record.get('wptTimestamp')) + ': ' +
+    //                     record.get(item.series.getYField()) + ' (ms)');
+    //             }
+    //         }
+    //     },
         showInLegend: false  
     }]
 });

@@ -49,10 +49,10 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                 var yField = customTimingsChartData.series[i].yField;
                 if(!(yField.indexOf('-min') >= 0 || yField.indexOf('-max') >= 0)) {
                     customTimingsChartData.series[i].style = customTimingChart.getSeriesStyle();
-                    customTimingsChartData.series[i].highlightCfg = customTimingChart.getSeriesHighlight();
+                    //customTimingsChartData.series[i].highlightCfg = customTimingChart.getSeriesHighlight();
                     customTimingsChartData.series[i].marker = customTimingChart.getSeriesMarker();
                 }
-                customTimingsChartData.series[i].tooltip = customTimingChart.getSeriesTooltip();
+                //customTimingsChartData.series[i].tooltip = customTimingChart.getSeriesTooltip();
                 customTimingsChartData.series[i].showInLegend = 
                     !(yField.indexOf('-min') >= 0 || yField.indexOf('-max') >= 0);// || yField.indexOf('median') >= 0 || yField.indexOf('average') >= 0);
             }

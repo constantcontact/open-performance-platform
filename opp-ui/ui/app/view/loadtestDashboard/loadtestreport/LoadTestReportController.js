@@ -75,9 +75,9 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportController
         if(chart) {
             for(var i=0; i<series.length; i++){
                 series[i].style=chart.getSeriesStyle();
-                series[i].highlight=chart.getSeriesHighlight();
+                //series[i].highlight=chart.getSeriesHighlight();
                 series[i].marker=chart.getSeriesMarker();
-                series[i].tooltip=chart.getSeriesTooltip();
+                //series[i].tooltip=chart.getSeriesTooltip();
             }
 
             chart.axes[0].fields = json.chart.modelFields.slice(1);

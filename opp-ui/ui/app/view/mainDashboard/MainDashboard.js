@@ -1,6 +1,5 @@
 
 Ext.define('OppUI.view.mainDashboard.MainDashboard',{
-    //extend: 'Ext.panel.Panel',
     extend: 'Ext.container.Container',
     alias: 'widget.maindashboard',
     xtype: 'maindashboard',
@@ -9,7 +8,8 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
     requires: [
         'OppUI.view.mainDashboard.MainDashboardController',
         'OppUI.view.mainDashboard.MainDashboardModel',
-        'Ext.toolbar.Paging'
+        'Ext.toolbar.Paging',
+        'Ext.ux.layout.ResponsiveColumn'
     ],
 
     controller: 'maindashboard',
@@ -95,7 +95,7 @@ Ext.define('OppUI.view.mainDashboard.MainDashboard',{
             ],
             listeners: {
                 itemdblclick: 'uxItemSelected'
-            },
+            }
             //,
             // bbar: {
             //     xtype: 'pagingtoolbar',
