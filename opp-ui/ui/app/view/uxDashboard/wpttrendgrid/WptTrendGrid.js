@@ -12,6 +12,15 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
     viewModel: {
         type: 'wpttrendgrid'
     },
+
+    initComponent: function() {
+        this.callParent(arguments);
+        var admin = this.up('uxtabpanel').getAdmin();
+        
+        if(admin) {
+            this.columns[9].hidden = false;
+        }
+    },
     width: 700,
     height: 470,
     
@@ -93,6 +102,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
         width: 30,
         sortable: false,
         menuDisabled: true,
+        hidden: true,
         items: [{
             getClass: function () {
                 return 'x-fa fa-trash'
@@ -100,7 +110,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGrid',{
             tooltip: 'Delete WPT Data',
             scope: this,
             handler: function (grid, rowIndex) {
-                grid.getStore().removeAt(rowIndex);
+                grid.up('wpttrendgrid').getController().deleteWptTest(grid, rowIndex);
             }
         }]
     }],

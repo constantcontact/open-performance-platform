@@ -99,5 +99,8 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.Loa
     },
     calculateDuration: function(start, end){
         return this.getController().calculateDuration(start, end);
+    },
+    deleteRecords: function(ids) {
+        this.getController().deleteRecords(ids);
     }
 });

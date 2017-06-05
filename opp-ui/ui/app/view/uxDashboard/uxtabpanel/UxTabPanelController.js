@@ -41,7 +41,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
                     }
                     activeState = activeState.replace(initialTabState, newTabState);
 
-                    if(pages && pages.length === 1) {
+                    if(pages && pages.length === 1 && !add) {
                         // also remove the &
                         activeState = activeState.replace('&', '');
                     }
@@ -97,11 +97,11 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
     }, 
 
     createTabs: function(params) {
-        var queryParams, i, j, ages, pageTrendReport, pageIdentifier;
+        var queryParams, i, j, ages, pageTrendReport, pageIdentifier, duplicateEntries = {}, view = this.getView();
 
         queryParams = params.split('&');
 
-        if(queryParams.length >= 1) {
+        if(queryParams.length > 0) {
             for(i = 0; i < queryParams.length; i++) {
                 if(queryParams[i].indexOf('pages=') >= 0) {
                     // ie, pages=l1.campaign-ui.campaigns-morecampaigns.aws-us-east.chrome.cable
@@ -110,14 +110,22 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
                     pages = queryParams[i].split('=')[1].split(',');
 
                     for(j = 0; j < pages.length; j++) {
-                        pageIdentifier = pages[j].split('.').join('');
-                        pageTrendReport = this.getView().down('#pagetrendreport-'+pageIdentifier);
+                        if(duplicateEntries[pages[j]]) {
+                            // user tried loading the same report
+                            // so just make that report tab active.
+                            pageIdentifier = pages[j].split('.').join('');
+                            view.setActiveTab(view.down('#pagetrendreport-'+pageIdentifier));
+                        } else {
+                            duplicateEntries[pages[j]] = 1;
 
-                        if(!pageTrendReport) {
-                            this.createPageTrendReport(pages[j]);
+                            pageIdentifier = pages[j].split('.').join('');
+                            pageTrendReport = view.down('#pagetrendreport-'+pageIdentifier);
+
+                            if(!pageTrendReport) {
+                                this.createPageTrendReport(pages[j]);
+                            }
                         }
                     }
-
                     break;
                 }
             }
@@ -137,8 +145,7 @@ Ext.define('OppUI.view.uxDashboard.uxtabpanel.UxTabPanelController', {
                 itemId: 'pagetrendreport-' + pageIdentifier,
                 iconCls: 'x-fa fa-line-chart',
                 title: pageName,
-                pageName: pageName,
-                connection: connection
+                pageName: pageName
             }
         );
 

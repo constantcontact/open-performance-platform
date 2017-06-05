@@ -29,8 +29,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.Loa
             return undefined;
         });
 
-        //this.getView().up('loadtest').add(window);
-        //this.getView().up('loadtestsummarytab').add(window);
         window.show();
     },
 
@@ -47,7 +45,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.Loa
                         .getStore('remoteSummaryTrend');
             
             if (!searchString || searchString.length === 0) {
-                //this.up('grid').getController().reBuildGridByCurrentFilterState();
                 store.clearFilter();
             } else {
                 store.filterBy(function(record) {
@@ -134,11 +131,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.Loa
             }
         }
 
-        grid = button.up('grid');
+        grid = button.up('loadtestsummarygrid');
         if(grid.getSelectionModel().selected.items.length > 0){
             ids = new Array(); 
             for(i=0; i<grid.getSelectionModel().selected.items.length; i++){
-                ids.push(grid.getSelectionModel().selected.items[i].data.load_test_id);
+                ids.push(grid.getSelectionModel().selected.items[i].data.loadTestId);
             }
             Ext.MessageBox.confirm('Confirm', 'Are you sure you want to delete ' + ids.length + ' record(s)', _handleInput);
         } else {
@@ -159,6 +156,6 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.loadtestsummarygrid.Loa
                 Ext.Msg.alert("Error...", "Error processing deletion. Please Try again Later.");
             }
         });
-    },
+    }
     
 });

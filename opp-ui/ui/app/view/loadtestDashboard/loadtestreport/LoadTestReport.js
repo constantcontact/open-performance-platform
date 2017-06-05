@@ -37,7 +37,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         var i, me;
 
         me = this;
-        me.callParent(arguments);
+        
 
         me.getViewModel()
             .getStore('remoteAggData')
@@ -70,6 +70,8 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
                 success: 'chartData'
             });
         }
+
+        me.callParent(arguments);
     },
 
     closable: true,
