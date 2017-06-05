@@ -5,11 +5,11 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabContr
     createTabs: function(params) {
         var tabIndex, tabGroupIndex, i, j, k, key, value, both, queryParams, 
             loadTestIds, view, loadTestReport, groupReports, groupReport, groupFilters, 
-            filters, filterList, existingGroupReport;
+            filters, filterList, existingGroupReport, duplicateEntries = {};
 
         view = this.getView();
 
-        // check if both query params are set.
+        // check if both query params are set (tabs and groupTabs).
         both = params.indexOf('&') >= 0 ? true : false;
 
         if(both) {
@@ -23,10 +23,18 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabContr
                     loadTestIds = queryParams[i].split('=')[1].split(',');
 
                     for(j = 0; j < loadTestIds.length; j++) {
-                        loadTestReport = view.down('#loadtestreport-'+loadTestIds[j]);
+                        if(duplicateEntries[loadTestIds[j]]) {
+                            // user tried loading the same report
+                            // so just make that report tab active.
+                            view.setActiveTab(view.down('#loadtestreport-'+loadTestIds[j]));
+                        } else {
+                            duplicateEntries[loadTestIds[j]] = 1;
+                            
+                            loadTestReport = view.down('#loadtestreport-'+loadTestIds[j]);
 
-                        if(!loadTestReport) {
-                            this.createLoadTestReport(loadTestIds[j])
+                            if(!loadTestReport) {
+                                this.createLoadTestReport(loadTestIds[j])
+                            }
                         }
                     }
                 } else if (queryParams[i].indexOf('groupTab=') >= 0) {
@@ -58,10 +66,17 @@ Ext.define('OppUI.view.loadtestDashboard.loadtestsummary.LoadTestSummaryTabContr
                 loadTestIds = queryParams[1].split(',');
 
                 for(j = 0; j < loadTestIds.length; j++) {
-                    loadTestReport = view.down('#loadtestreport-'+loadTestIds[j]);
+                    if(duplicateEntries[loadTestIds[j]]) {
+                        // user tried loading the same report
+                        // so just make that report tab active.
+                        view.setActiveTab(view.down('#loadtestreport-'+loadTestIds[j]));     
+                    } else {
+                        duplicateEntries[loadTestIds[j]] = 1;
+                        loadTestReport = view.down('#loadtestreport-'+loadTestIds[j]);
 
-                    if(!loadTestReport) {
-                        this.createLoadTestReport(loadTestIds[j])
+                        if(!loadTestReport) {
+                            this.createLoadTestReport(loadTestIds[j])
+                        }
                     }
                 }                    
             }

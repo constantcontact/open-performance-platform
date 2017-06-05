@@ -51,10 +51,80 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardController', {
     },
 
     uxItemSelected: function(grid, record, domElement, index) {
-        this.fireEvent('changeroute', this, 'ux/?pages=' + record.getData().full);
+        var uxDashboard = Ext.ComponentQuery.query('ux')[0],
+            fullPageName = record.getData().full,
+            activeState, queryParams, i, newState;
+
+        if(uxDashboard) {
+            activeState = uxDashboard.getActiveState();
+            queryParams = activeState.split('?');
+
+            if(queryParams.length > 1) {
+                queryParams = queryParams[1];
+                queryParams = activeState.split('&');
+
+                for(i = 0; i < queryParams.length; i++) {
+                    if(queryParams[i].indexOf('pages=') >= 0) {
+                        newState = queryParams[i].concat(','+fullPageName);
+                        activeState = activeState.replace(queryParams[i], newState);
+                        break;
+                    }
+                }
+
+                if(i === queryParams.length) {
+                    if(queryParams.length > 0) {
+                        // there is no pages query param
+                        activeState = activeState.concat('&pages=' + fullPageName);
+                    } else {
+                        // there are no query params
+                        activeState = 'ux/?pages=' + fullPageName;
+                    }
+                }
+            }
+        } else {
+            activeState = 'ux/?pages=' + fullPageName;
+        }
+
+        this.fireEvent('changeroute', this, activeState);
     },
 
     loadtestItemSelected: function(grid, record, domElement, index) {
-        this.fireEvent('changeroute', this, 'loadtest/?tab=' + record.getData().loadTestId);
+        var loadTestDashboard = Ext.ComponentQuery.query('loadtest')[0],
+            loadTestId = record.getData().loadTestId,
+            queryParams, newTabState, i, activeState;
+
+        if(loadTestDashboard) {
+            activeState = loadTestDashboard.getActiveState();
+            queryParams = activeState.split('?');
+
+            if(queryParams.length > 1) {
+                queryParams = queryParams[1];
+                queryParams = queryParams.split('&');
+
+                // find the tab query param
+                for(i = 0; i < queryParams.length; i++) {
+                    if(queryParams[i].indexOf('tab=') >= 0) {
+                        newTabState = queryParams[i].concat(','+loadTestId);
+                        activeState = activeState.replace(queryParams[i], newTabState);
+                        break;
+                    }
+                }
+
+                if(i === queryParams.length) {
+                    if(queryParams.length > 0) {
+                        // there is no tab query param
+                        activeState = activeState.concat('&tab='+loadTestId);
+                    } else {
+                        // there are no query params
+                        activeState = 'loadtest/?tab=' + loadTestId;
+                    }   
+                } 
+            } else {
+                activeState = 'loadtest/?tab=' + loadTestId;
+            }
+        } else {
+            activeState = 'loadtest/?tab=' + loadTestId;
+        }
+        this.fireEvent('changeroute', this, activeState);
     }
 });

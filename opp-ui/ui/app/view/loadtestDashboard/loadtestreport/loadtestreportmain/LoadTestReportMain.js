@@ -14,6 +14,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
         timeSeriesYAxes = this.up('loadtestreport').getChartTimeSeriesYAxes();
         aggregateYAxes = this.up('loadtestreport').getChartAggregateYAxes();
 
+        // for some reason the tabs share items,
+        // so we need to do a splice as a workaround.
+        this.items.splice(2);
+
         /**
          * Build all the charts.
          */
@@ -64,8 +68,9 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestreportmain.LoadT
                 }]
             });
         }
-        
+
         this.callParent(arguments);
+        
     },
 
     controller: 'loadtestreportmain',

@@ -39,14 +39,14 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSla'
              text: 'Save All Changes',
              tooltip:'Saves all SLA changes',
              handler: function(btn){
-                 btn.up('grid').getViewModel().getStore('remoteSlas').sync({
+                 btn.up('loadtestreport').getViewModel().getStore('remoteSlas').sync({
                      scope:btn,
                      success: function(batch, opts) {
-                         this.up('grid').getStore().reload(); // need to do this to load all the correct ids that are missing for new transactions
+                         this.up('loadtestreport').getViewModel().getStore('remoteSlas').reload(); // need to do this to load all the correct ids that are missing for new transactions
                          OppUI.util.Globals.reports.sla.dirty = true;
                      },
                      failure: function(batch, opts) {
-                         alert('failed');
+                         Ext.Msg.alert('Error:', 'Failed Saving All Changes.');
                      }
                  });
              }
@@ -99,13 +99,13 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestsla.LoadTestSla'
         //     maxValue: 99999999
         // }
 
-      	
         this.callParent(arguments);
-        // this.getViewModel().getStore('remoteSlas').model.proxy.api.read = '/loadsvc/v1/loadtests/' + this.loadTestId + '/slas/';
-        // this.getViewModel().getStore('remoteSlas').model.proxy.api.create = '/loadsvc/v1/loadtests/' + this.loadTestId + '/slas/';
-        // this.getViewModel().getStore('remoteSlas').model.proxy.api.update = '/loadsvc/v1/slas/';
-   
+
+      	var loadTestId = this.up('loadtestreport').getLoadTestId();
         
+        this.up('loadtestreport').getViewModel().getStore('remoteSlas').proxy.api.read = '/loadsvc/v1/loadtests/' + loadTestId + '/slas';
+        this.up('loadtestreport').getViewModel().getStore('remoteSlas').proxy.api.create = '/loadsvc/v1/slas/';
+        this.up('loadtestreport').getViewModel().getStore('remoteSlas').proxy.api.update = '/loadsvc/v1/slas/';     
     },
 
     columns: [

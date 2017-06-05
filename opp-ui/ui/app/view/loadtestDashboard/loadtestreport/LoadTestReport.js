@@ -37,7 +37,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         var i, me;
 
         me = this;
-        me.callParent(arguments);
+        
 
         me.getViewModel()
             .getStore('remoteAggData')
@@ -70,6 +70,8 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
                 success: 'chartData'
             });
         }
+
+        me.callParent(arguments);
     },
 
     closable: true,
@@ -81,8 +83,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
         type: 'loadtestreport'
     },
 
-    items: [
-        {
+    items: [{
             title: 'SLAs',
             xtype: 'loadtestsla',
             region: 'north',
@@ -90,8 +91,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
             minHeight: 300,
             maxHeight: 500,
             collapsed: true
-        },
-        {
+        },{
             title: 'Load Test Details',
             region:'west',
             floatable: false,
@@ -173,8 +173,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReport', {
                     comments: '{comments}'
                 }
             }
-        },
-        {
+        },{
             xtype: 'loadtestreportmain',
             collapsible: false,
             region: 'center',

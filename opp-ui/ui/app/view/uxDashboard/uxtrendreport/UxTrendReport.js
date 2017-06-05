@@ -19,8 +19,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
     },
 
     initComponent: function() {
-
-        
         this.callParent(arguments);
 
         this.getViewModel().getStore('histogramData').proxy.extraParams = {
@@ -55,31 +53,5 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
 
     listeners: {
         beforeclose: 'updateUrlTabState'
-    },
-
-    customTimingChartData: function(response, options) {
-        var json, chart, title, item, series;
-
-        json = Ext.decode(response.responseText, false);
-        series = json.chart.series;
-        chart = this.down('customtimingchart');
-
-        if(json && chart) {
-            for(var i=0; i<series.length; i++){
-                series[i].style=chart.getSeriesStyle();
-                series[i].highlight=chart.getSeriesHighlight();
-                series[i].marker=chart.getSeriesMarker();
-                series[i].tooltip=chart.getSeriesTooltip();
-            }
-
-            //chart.axes[0].fields = json.chart.modelFields.slice(1);
-            chart.setSeries(series);
-            chart.setStore(Ext.create('Ext.data.JsonStore', {
-                fields: json.chart.modelFields,
-                data: json.chart.data
-            }));
-            chart.redraw();
-            chart.show();
-        } 
     }
 });

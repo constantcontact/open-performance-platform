@@ -6,6 +6,10 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestCh
     requires: [
         'OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestChartController',
         'OppUI.view.loadTestDashboard.loadtestreport.loadtestchart.LoadTestChartModel',
+        'Ext.chart.series.Line',
+        'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Time',
+        'Ext.chart.axis.Category',
         'Ext.chart.plugin.ItemEvents'
     ],
 
