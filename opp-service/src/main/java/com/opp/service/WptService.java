@@ -340,7 +340,7 @@ public class WptService {
         return dao.deleteBadRuns();
     }
 
-    @Cacheable(value="wptTrendTableData", key="{#testName, #view, #runDuration}")
+    //@Cacheable(value="wptTrendTableData", key="{#testName, #view, #runDuration}")
     public List<WptTestRunData> getTrendTableData(String testName, String view, String runDuration){
 
         List<WptTestRunData> runData = dao.getTrendTableData(testName, view, runDuration);
@@ -348,7 +348,7 @@ public class WptService {
 
     }
 
-    @Cacheable(value="wptTrendChartData", key="{#testName, #view, #isUserTimingBaseLine, #interval}")
+    //@Cacheable(value="wptTrendChartData", key="{#testName, #view, #isUserTimingBaseLine, #interval}")
     public List<WptTrendMetric> getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
         return dao.getTrendChartData(testName, view, isUserTimingBaseLine, interval);
     }

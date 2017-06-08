@@ -27,24 +27,21 @@ server {
   # add nosniff header (https://www.owasp.org/index.php/List_of_useful_HTTP_headers)
   add_header X-Content-Type-Options nosniff;
 
+  access_log            /var/log/nginx/${NGINX_HOST_UI}.access.log;
+  error_log             /var/log/nginx/${NGINX_HOST_UI}.error.log;
 
   location / {
     index index.html;
     try_files $uri $uri/ /index.html;
   }
 
-  location /ux {
-    alias /var/www/opp/ux;
-    index index.html;
+  location ~* \.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {
+        expires max;
+        log_not_found off;
+        access_log off;
   }
 
-  location /wpt {
-    alias /var/www/opp/wpt;
-    index index.html;
-  }
-
-  access_log            /var/log/nginx/${NGINX_HOST_UI}.access.log;
-  error_log             /var/log/nginx/${NGINX_HOST_UI}.error.log;
+  
 
   # all the java endpoints needed for the performance java app
  location ~ ^/(uxsvc|loadsvc) {

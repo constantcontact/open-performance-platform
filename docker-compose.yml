@@ -16,12 +16,11 @@ services:
       #- couchdb:couchdb
       - elasticsearch:elasticsearch
   ui:
-    build: ./nginx
+    build: ./opp-ui
     image: craig2005/opp-ui
     links:
       - opp-service:opp-service
     volumes:
-      - ./opp-ui/ui/build/opp-ui:/var/www/opp
       - nginxCerts:/var/certs
     ports:
       - "443:443"

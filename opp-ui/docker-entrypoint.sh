@@ -23,6 +23,12 @@ chown -R nginx:nginx /var/www/opp
 echo "SVC: $NGINX_HOST_SVC"
 echo "UI: $NGINX_HOST_UI"
 
+# if not run through docker-compose this directory won't exist
+if [ ! -d "/var/certs" ]; then
+	echo "Creating certs directory"
+	mkdir -p /var/certs
+fi
+
 ##### build or get certs for UI and SVC #####
 CERTS=(ui svc)
 for app in ${CERTS[@]}; do
