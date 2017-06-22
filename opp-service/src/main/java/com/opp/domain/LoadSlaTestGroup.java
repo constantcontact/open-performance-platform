@@ -3,6 +3,7 @@ package com.opp.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Created by ctobe on 6/28/16.
@@ -10,10 +11,21 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoadSlaTestGroup {
     private int id;
-    private LocalDateTime creationDate;
+    private ZonedDateTime creationDate;
     private boolean isActive;
     private int loadSlaGroupId;
     private int loadTestId;
+
+    public LoadSlaTestGroup() {
+    }
+
+    public LoadSlaTestGroup(int id, ZonedDateTime creationDate, boolean isActive, int loadSlaGroupId, int loadTestId) {
+        this.id = id;
+        this.creationDate = creationDate;
+        this.isActive = isActive;
+        this.loadSlaGroupId = loadSlaGroupId;
+        this.loadTestId = loadTestId;
+    }
 
     public int getId() {
         return id;
@@ -23,11 +35,11 @@ public class LoadSlaTestGroup {
         this.id = id;
     }
 
-    public LocalDateTime getCreationDate() {
+    public ZonedDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(ZonedDateTime creationDate) {
         this.creationDate = creationDate;
     }
 

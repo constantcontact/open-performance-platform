@@ -41,6 +41,19 @@ public class LoadSlaController {
         return service.add(sla).orElseThrow(()->new InternalServiceException("Error occurred while creating SLA"));
     }
 
+    @RequestMapping(value = "/loadsvc/v1/slas_bulk_import/{load_test_id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation( value = "Creates a new sla" )
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Successfully created new sla", response = LoadSla.class),
+            @ApiResponse(code = 400, message = "Invalid sla object provided", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public LoadSlaService.LoadSlaBulkImportResult bulkImport(@PathVariable("load_test_id") Integer loadTestId, @Valid @RequestBody List<LoadSla> slas) {
+        return service.bulkImport(loadTestId, slas);
+    }
+
     @RequestMapping(value = "/loadsvc/v1/slas/{sla_id}", method = RequestMethod.PUT)
     @ApiOperation(
             value = "Update an SLA",
@@ -55,6 +68,21 @@ public class LoadSlaController {
     })
     public LoadSla update(@PathVariable("sla_id") Integer slaId, @Valid @RequestBody LoadSla update) {
         return service.update(slaId, update).orElseThrow(()->new InternalServiceException("Error occurred while updating SLA"));
+    }
+
+    @RequestMapping(value = "/loadsvc/v1/slas_bulk_update/{load_test_id}", method = RequestMethod.PUT)
+    @ApiOperation(
+            value = "Bulk update SLAs"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successfully updated SLA", response = LoadSla.class),
+            @ApiResponse(code = 400, message = "Invalid SLA object provided", response = ErrorResponse.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "SLA not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public LoadSlaService.LoadSlaBulkImportResult bulkUpdate(@Valid @RequestBody List<LoadSla> update) {
+        return service.bulkUpdate(update);
     }
 
     @RequestMapping(value = "/loadsvc/v1/slas/{sla_id}", method = RequestMethod.DELETE)

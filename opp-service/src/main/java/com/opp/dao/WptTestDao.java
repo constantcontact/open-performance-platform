@@ -12,6 +12,7 @@ import com.opp.config.ScheduledTasks;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
+import com.opp.dto.ux.CustomUserTimings;
 import com.opp.dto.ux.WptTestRunData;
 import com.opp.dto.ux.WptTrendMetric;
 import org.elasticsearch.action.delete.DeleteResponse;
@@ -22,6 +23,7 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.metadata.MetaData;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkIndexByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
@@ -43,9 +45,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import static com.opp.dao.util.SelectUtils.getOptional;
@@ -378,5 +378,26 @@ public class WptTestDao {
 
 
         return true;
+    }
+
+    /**
+     * Gets custom user timings
+     * @param testName
+     * @return
+     */
+    public List<CustomUserTimings> getCustomUserTimings(String testName) {
+
+        SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
+                .setSize(0)
+                .setSource(SearchSourceBuilder.searchSource().fetchSource(new String[] {"*.firstView.userTimes.*", "completed" }, new String[] {} ))
+                .setQuery(QueryBuilders.termQuery("label.full.keyword", testName))
+                .get();
+
+        return Arrays.stream(resp.getHits().getHits()).map((SearchHit h) -> {
+            CustomUserTimings usertimings = objectMapper.convertValue(h.getSource(), CustomUserTimings.class);
+            usertimings.setWptTestId(h.getId());
+            return usertimings;
+        }).collect(toList());
+
     }
 }

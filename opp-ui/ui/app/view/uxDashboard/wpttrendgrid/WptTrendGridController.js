@@ -12,10 +12,16 @@ Ext.define('OppUI.view.uxDashboard.wpttrendgrid.WptTrendGridController', {
     deleteRecord: function(wptId) {
         Ext.Ajax.request({
             url: '/uxsvc/v1/wpt/tests/' + wptId,
-            method:'delete',
+            method: 'delete',
             scope: this,
-            success: function(response){
-                this.getView().getStore().reload();
+            success: function(response) {
+                this.getView().getStore().reload(
+                    // {
+                    //     params: {
+                    //         cachebuster: (new Date).getTime()
+                    //     }
+                    // }
+                );
             },
             failure: function(response) {
                 Ext.Msg.alert("Error...", "Error processing deletion. Please Try again Later.");

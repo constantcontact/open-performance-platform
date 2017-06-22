@@ -11,16 +11,14 @@ import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestImport;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
-import com.opp.dto.ux.WptDeleteResp;
-import com.opp.dto.ux.WptSlaResults;
-import com.opp.dto.ux.WptTestRunData;
-import com.opp.dto.ux.WptTrendMetric;
+import com.opp.dto.ux.*;
 import com.opp.util.FileUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -364,7 +362,7 @@ public class WptService {
      * @param timestamp
      * @return Hashmap with "timings" and "rangeTimings"
      */
-    private Map<String, Map<String, List<Long>>> getCustomUserTimingData(JsonNode dataByDate, JsonNode testData, boolean isUserTimingBaseLine, String minKey, String maxKey, String view, long timestamp) {
+    private Map<String, Map<String, List<Long>>> getCustomUserTimingDataOld(JsonNode dataByDate, JsonNode testData, boolean isUserTimingBaseLine, String minKey, String maxKey, String view, long timestamp) {
         JsonNode viewDataNode = dataByDate.at("/" + minKey + "/" + view);
 
         // if isUserTimingBaseLine is set, recalculate the userTimingsMin baseline
@@ -393,6 +391,11 @@ public class WptService {
         userTimingMap.put("rangeTimings", userTimingsRange);
         return userTimingMap;
     }
+
+    public List<CustomUserTimings> getCustomUserTimingData(String testName) {
+        return dao.getCustomUserTimings(testName);
+    }
+
 
 
     /**

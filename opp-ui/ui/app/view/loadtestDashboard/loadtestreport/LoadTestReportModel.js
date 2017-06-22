@@ -48,13 +48,7 @@ Ext.define('OppUI.view.loadTestDashboard.loadtestreport.LoadTestReportModel', {
             autoLoad: true,
             url: '',
             sortOnLoad: true,
-            sorters: { property: 'name', direction : 'ASC' },
-            proxy: {
-                type: 'ajax',
-                reader: {
-                    type: 'json'
-                }
-            },
+            sorters: { property: 'name', direction: 'ASC' },
             listeners: {
                 load: 'remoteSlasLoaded'
             }

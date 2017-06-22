@@ -1,0 +1,123 @@
+version: '2'
+
+services:
+  opp-service:
+    image: craig2005/opp-service
+    ports:
+      - "8888:8080"
+    networks:
+      - opp-net
+    depends_on:
+      - mysql
+      #- couchdb
+      - elasticsearch
+    links:
+      - mysql:mysql
+      #- couchdb:couchdb
+      - elasticsearch:elasticsearch
+  ui:
+    # debug live code using mounted volume
+    build: 
+      context: ./opp-ui
+      dockerfile: Dockerfile-compose-dev
+    links:
+      - opp-service:opp-service
+    volumes:
+      - ./opp-ui/ui:/var/www/opp
+      - nginxCerts:/var/certs
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - opp-net
+    environment:
+      - SSL_CERT_INFO="C=US/ST=MA/L=Boston/O=MyOrg/OU=Performance Team/emailAddress=craig@myteam.org"
+      - SSL_DH_SIZE=2048 #Diffie-Hellman size (extra ssl security - slow to generate)
+      - NGINX_HOST_UI=opp-ui.mydomain.com
+      - NGINX_HOST_SVC=opp-svc.mydomain.com
+      - NGINX_PORT=443
+    #command: /bin/bash -c "envsubst '$$NGINX_HOST_UI $$NGINX_HOST_SVC $$NGINX_PORT' < /etc/nginx/conf.d/opp.template > /etc/nginx/conf.d/opp.conf && nginx -g 'daemon off;' && chown -R nginx:nginx /var/www/opp"
+  # couchdb:
+  #   build: ./couchdb
+  #   volumes:
+  #     - couchdbData:/usr/local/var/lib/couchdb
+  #     - ./opp-service/db/couchdb:/docker-entrypoint-initdb.d
+  #   ports:
+  #     - "5984:5984"
+  #   networks:
+  #     - opp-net
+  mysql:
+    image: mysql:5.6
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - opp-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=Pa$$word!
+      - MYSQL_DATABASE=opp
+      - MYSQL_USER=oppuser
+      - MYSQL_PASSWORD=opppass
+    volumes:
+      - mysqlData:/var/lib/mysql
+      - ./opp-service/db/mysql/schema:/docker-entrypoint-initdb.d
+  #### START ELK STACK ####
+  elasticsearch:
+    build: elk/elasticsearch/
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g -Dmapper.allow_dots_in_name=true"
+      # disable X-Pack
+      # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
+      #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
+      xpack.security.enabled: "false"
+      xpack.monitoring.enabled: "false"
+      xpack.graph.enabled: "false"
+      xpack.watcher.enabled: "false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      - opp-net
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+  # logstash:
+  #   build: elk/logstash/
+  #   volumes:
+  #     - ./elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+  #     - ./elk/logstash/pipeline:/usr/share/logstash/pipeline
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - opp-net
+  #   depends_on:
+  #     - elasticsearch
+  kibana:
+    build: elk/kibana/
+    volumes:
+      - ./elk/kibana/config/:/usr/share/kibana/config
+    ports:
+      - "5601:5601"
+    networks:
+      - opp-net
+    depends_on:
+      - elasticsearch
+volumes:
+  mysqlData:
+    driver: local
+  esdata:
+    driver: local
+  couchdbData:
+    driver: local
+  nginxCerts: 
+    driver: local
+networks:
+  opp-net:
+    driver: bridge
+  

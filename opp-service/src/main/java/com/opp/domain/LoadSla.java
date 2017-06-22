@@ -11,6 +11,7 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoadSla {
     private int id;
+
     @NotNull
     private int loadSlaGroupId;
     private String customName;
@@ -24,6 +25,7 @@ public class LoadSla {
     private Integer pct75;
     private Integer pct90;
     private Integer avg;
+
 
     public int getId() {
         return id;
