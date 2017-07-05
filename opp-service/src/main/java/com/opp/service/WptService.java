@@ -18,8 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
@@ -347,8 +345,8 @@ public class WptService {
     }
 
     //@Cacheable(value="wptTrendChartData", key="{#testName, #view, #isUserTimingBaseLine, #interval}")
-    public List<WptTrendMetric> getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
-        return dao.getTrendChartData(testName, view, isUserTimingBaseLine, interval);
+    public List<WptTrendMetric> getTrendChartData(String testName, String view, String interval){
+        return dao.getTrendChartData(testName, view, interval);
     }
 
 
@@ -392,32 +390,11 @@ public class WptService {
         return userTimingMap;
     }
 
-    public List<CustomUserTimings> getCustomUserTimingData(String testName) {
-        return dao.getCustomUserTimings(testName);
+    public List<CustomUserTimingsAgg> getCustomUserTimingData(String testName, String run, String view, boolean isUserTimingsBaseLine, String interval) {
+        return dao.getCustomUserTimings(testName, run, view, interval);
     }
 
 
-
-    /**
-     * Build and return TestRunData object for a UX test.  This is the data displayed in the grid on a test trend page.
-     * @param dataByDate
-     * @param testData
-     * @param pageName
-     * @param timestamp
-     * @return
-     */
-    private WptTestRunData getTestRunData(JsonNode dataByDate, JsonNode testData, String pageName, long timestamp) {
-        // data for the data table
-        WptTestRunData wptTestRunData = null;
-//        testRunData.set_id(dataByDate.get("_id").asText());
-//        testRunData.setPage(pageName);
-//        testRunData.setRev(dataByDate.get("_rev").asText());
-//        testRunData.setTimestamp(new SimpleDateFormat("yyyy-MM-dd H:m").format(new Date(timestamp)));
-//        testRunData.setWptId(dataByDate.get("id").asText());
-//        testRunData.setConnectivity(dataByDate.get("connectivity").asText());
-//        testRunData.setViewData(testData);
-        return wptTestRunData;
-    }
 
     /**
      * When using the userTimingBaseLine option, this will return the min custom user timing to subtract from the rest of the user timings to baseline it at 0.
@@ -634,5 +611,6 @@ public class WptService {
         wptSlaResults.setSlaDetails(wptSlaResultDetailsList);
         return wptSlaResults;
     }
+
 
 }

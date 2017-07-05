@@ -12,7 +12,7 @@ import com.opp.config.ScheduledTasks;
 import com.opp.domain.ux.WptResult;
 import com.opp.domain.ux.WptTestLabel;
 import com.opp.domain.ux.WptUINavigation;
-import com.opp.dto.ux.CustomUserTimings;
+import com.opp.dto.ux.CustomUserTimingsAgg;
 import com.opp.dto.ux.WptTestRunData;
 import com.opp.dto.ux.WptTrendMetric;
 import org.elasticsearch.action.delete.DeleteResponse;
@@ -23,18 +23,20 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.metadata.MetaData;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkIndexByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.AggregatorFactories;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
 import org.elasticsearch.search.aggregations.metrics.max.Max;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +49,13 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.opp.dao.util.SelectUtils.getOptional;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by ctobe on 3/22/17.
@@ -227,7 +233,7 @@ public class WptTestDao {
     }
 
 
-    public List<WptTrendMetric> getTrendChartData(String testName, String view, boolean isUserTimingBaseLine, String interval){
+    public List<WptTrendMetric> getTrendChartData(String testName, String view, String interval){
 
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
                 .setSize(0)
@@ -381,23 +387,98 @@ public class WptTestDao {
     }
 
     /**
-     * Gets custom user timings
+     * Get user timings
      * @param testName
+     * @param view
+     * @param interval
      * @return
      */
-    public List<CustomUserTimings> getCustomUserTimings(String testName) {
+    public List<CustomUserTimingsAgg> getCustomUserTimings(String testName, String run, String view, String interval) {
 
+        // get last 200
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
+                .setSource(SearchSourceBuilder.searchSource().fetchSource(new String[] {"*."+view+".userTimes.*", "completed" }, new String[] {} ))
+                .addAggregation(AggregationBuilders.dateHistogram("histogram").field("completed").dateHistogramInterval(new DateHistogramInterval(interval)).minDocCount(1))
+                .setQuery(QueryBuilders.termQuery("label.full.keyword", testName))
+                .setSize(200)
+                .addSort("completed", SortOrder.DESC)
+                .get();
+
+//        List<CustomUserTimings> collect = Arrays.stream(resp.getHits().getHits()).map((SearchHit h) -> {
+//            CustomUserTimings userTimings = objectMapper.convertValue(h.getSource(), CustomUserTimings.class);
+//            userTimings.setWptTestId(h.getId());
+//            return userTimings;
+//        }).collect(toList());
+
+        // get all the user timings
+        Set<String> customUserTimingNames = Arrays.stream(resp.getHits().getHits()).flatMap((SearchHit h) -> getTimingsFromSearchHit(h, run, view)).distinct().collect(toSet());
+
+        // great subaggregations for each user timing
+        AggregatorFactories.Builder aggBuilder = new AggregatorFactories.Builder();
+        customUserTimingNames.stream().forEach(s -> {
+            aggBuilder.addAggregator(AggregationBuilders.avg(s + ".min").field("min."+view+".userTimes." + s));
+            aggBuilder.addAggregator(AggregationBuilders.avg(s + ".median").field("median."+view+".userTimes." + s));
+            aggBuilder.addAggregator(AggregationBuilders.avg(s + ".max").field("max."+view+".userTimes." + s));
+            aggBuilder.addAggregator(AggregationBuilders.avg(s + ".average").field("average."+view+".userTimes." + s));
+        });
+
+        // get user timing aggregates from all user timings found above
+        SearchResponse respAgg = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
                 .setSize(0)
-                .setSource(SearchSourceBuilder.searchSource().fetchSource(new String[] {"*.firstView.userTimes.*", "completed" }, new String[] {} ))
+                .setSource(SearchSourceBuilder.searchSource().fetchSource(new String[]{"completed"}, new String[]{}))
+                .addAggregation(
+                        AggregationBuilders.dateHistogram("histogram").field("completed").dateHistogramInterval(new DateHistogramInterval(interval)).minDocCount(1)
+                                .subAggregations(aggBuilder)
+                )
                 .setQuery(QueryBuilders.termQuery("label.full.keyword", testName))
                 .get();
 
-        return Arrays.stream(resp.getHits().getHits()).map((SearchHit h) -> {
-            CustomUserTimings usertimings = objectMapper.convertValue(h.getSource(), CustomUserTimings.class);
-            usertimings.setWptTestId(h.getId());
-            return usertimings;
+        // get data histogram
+        Histogram histogram = respAgg.getAggregations().get("histogram");
+
+        // stream all the ES buckets and map to CustomUserTimingsAgg object
+        return histogram.getBuckets().stream().map(b -> {
+            CustomUserTimingsAgg customUserTimingsAgg = new CustomUserTimingsAgg();
+
+            Map<String, WptTrendMetric.BasicMetric> userTimings = customUserTimingNames.stream().collect(toMap(name->name, name -> {
+                return new WptTrendMetric.BasicMetric(
+                        getAggValueFromHistogramBucket(b, name, "min").intValue(),
+                        getAggValueFromHistogramBucket(b, name, "max").intValue(),
+                        getAggValueFromHistogramBucket(b, name, "median").intValue(),
+                        getAggValueFromHistogramBucket(b, name, "average"));
+            }));
+
+            // set values
+            customUserTimingsAgg.setUserTimings(userTimings);
+            customUserTimingsAgg.setTimePeriod(Long.valueOf(b.getKeyAsString()));
+
+
+            // map to CustomUserTimingsAgg object
+//            HashMap<String, Integer> userTimings = b.getAggregations().asList().stream().collect(Collectors.toMap(Aggregation::getName, agg -> {
+//                Double val = ((Avg) agg).getValue();
+//                return (val.isNaN()) ? 0 : val.intValue();
+//            }, (x, y) -> x, HashMap<String, Integer>::new));
+
+
+            return customUserTimingsAgg;
+
         }).collect(toList());
 
+    }
+
+    private Stream<String> getTimingsFromSearchHit(SearchHit h, String run, String view){
+        try {
+            JsonNode userTimingsNode = objectMapper.valueToTree(h.getSource()).at("/"+run+"/"+view+"/userTimes");
+            HashMap<String, Integer> userTimingsMap = objectMapper.convertValue(userTimingsNode, HashMap.class);
+            return userTimingsMap.keySet().stream();
+        } catch (Exception ex) {
+            return Stream.empty();
+        }
+    }
+
+    private Double getAggValueFromHistogramBucket(Histogram.Bucket b, String name, String run){
+       Avg avg = b.getAggregations().get(name + "."+run);
+       Double val = avg.getValue();
+       return (val.isNaN()) ? 0 : val;
     }
 }
