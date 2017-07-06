@@ -2,6 +2,7 @@ package com.opp.dto.ux;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomUserTimingsAgg {
     private long timePeriod;
-    private Map<String, WptTrendMetric.BasicMetric> userTimings;
+    private List<WptTrendMetric.BasicMetric> userTimings;
 
     public long getTimePeriod() {
         return timePeriod;
@@ -22,11 +23,11 @@ public class CustomUserTimingsAgg {
         this.timePeriod = timePeriod;
     }
 
-    public Map<String, WptTrendMetric.BasicMetric> getUserTimings() {
+    public List<WptTrendMetric.BasicMetric> getUserTimings() {
         return userTimings;
     }
 
-    public void setUserTimings(Map<String, WptTrendMetric.BasicMetric> userTimings) {
+    public void setUserTimings(List<WptTrendMetric.BasicMetric> userTimings) {
         this.userTimings = userTimings;
     }
 }

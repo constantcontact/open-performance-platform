@@ -53,9 +53,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.opp.dao.util.SelectUtils.getOptional;
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
-import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by ctobe on 3/22/17.
@@ -413,7 +411,7 @@ public class WptTestDao {
         // get all the user timings
         Set<String> customUserTimingNames = Arrays.stream(resp.getHits().getHits()).flatMap((SearchHit h) -> getTimingsFromSearchHit(h, run, view)).distinct().collect(toSet());
 
-        // great subaggregations for each user timing
+        // great sub-aggregations for each user timing
         AggregatorFactories.Builder aggBuilder = new AggregatorFactories.Builder();
         customUserTimingNames.stream().forEach(s -> {
             aggBuilder.addAggregator(AggregationBuilders.avg(s + ".min").field("min."+view+".userTimes." + s));
@@ -440,13 +438,13 @@ public class WptTestDao {
         return histogram.getBuckets().stream().map(b -> {
             CustomUserTimingsAgg customUserTimingsAgg = new CustomUserTimingsAgg();
 
-            Map<String, WptTrendMetric.BasicMetric> userTimings = customUserTimingNames.stream().collect(toMap(name->name, name -> {
-                return new WptTrendMetric.BasicMetric(
+            List<WptTrendMetric.BasicMetric> userTimings = customUserTimingNames.stream().map(name -> {
+                return new WptTrendMetric.UserTimingMetric(
                         getAggValueFromHistogramBucket(b, name, "min").intValue(),
                         getAggValueFromHistogramBucket(b, name, "max").intValue(),
                         getAggValueFromHistogramBucket(b, name, "median").intValue(),
-                        getAggValueFromHistogramBucket(b, name, "average"));
-            }));
+                        getAggValueFromHistogramBucket(b, name, "average"), name);
+            }).collect(toList());
 
             // set values
             customUserTimingsAgg.setUserTimings(userTimings);

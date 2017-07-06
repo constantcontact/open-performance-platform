@@ -4,12 +4,14 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
 
     stores: {
         histogramData: {
-            fields: [
-                { name: 'wptTimestamp', mapping: 'completedDate', type: 'auto',
+            fields: [{
+                    name: 'wptTimestamp',
+                    mapping: 'completedDate',
+                    type: 'auto',
                     convert: function(value, record) {
-                        return value * 1000;                
+                        return value * 1000;
                     }
-                }, 
+                },
                 { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
                 { name: 'TTFB-min', mapping: 'ttfb.min', type: 'auto' },
                 { name: 'TTFB-max', mapping: 'ttfb.max', type: 'auto' },
@@ -18,13 +20,13 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 { name: 'VisuallyComplete-max', mapping: 'visuallyComplete.max', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
                 { name: 'SpeedIndex-min', mapping: 'speedIndex.min', type: 'auto' },
-                { name: 'SpeedIndex-max', mapping: 'speedIndex.max', type: 'auto' },
-                { name: 'userTimings', mapping: 'userTimings', type: 'auto' }
+                { name: 'SpeedIndex-max', mapping: 'speedIndex.max', type: 'auto' }
+                //,{ name: 'userTimings', mapping: 'userTimings', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
                 type: 'ajax',
-                url:  '/uxsvc/v1/wpt/trend/histogram',
+                url: '/uxsvc/v1/wpt/trend/histogram',
                 reader: {
                     type: 'json',
                     keepRawData: true
@@ -37,22 +39,25 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
         wptTrendTable: {
             fields: [
                 { name: 'id', mapping: 'id', type: 'auto' },
-                { name: 'date', mapping: 'date', type: 'auto',
+                {
+                    name: 'date',
+                    mapping: 'date',
+                    type: 'auto',
                     convert: function(value, record) {
                         return new Date(value * 1000);
                     }
-                }, 
+                },
                 { name: 'TTFB', mapping: 'ttfb', type: 'auto' },
                 { name: 'VisuallyComplete', mapping: 'visuallyComplete', type: 'auto' },
                 { name: 'SpeedIndex', mapping: 'speedIndex', type: 'auto' },
-                { name: 'Page', mapping: 'label.page', type: 'auto'},
-                { name: 'Connection', mapping: 'label.connection', type: 'auto'},
-                { name: 'SummaryURL', mapping: 'summaryUrl', type: 'auto'}
+                { name: 'Page', mapping: 'label.page', type: 'auto' },
+                { name: 'Connection', mapping: 'label.connection', type: 'auto' },
+                { name: 'SummaryURL', mapping: 'summaryUrl', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
                 type: 'ajax',
-                url:  '/uxsvc/v1/wpt/trend/table',
+                url: '/uxsvc/v1/wpt/trend/table',
                 reader: {
                     type: 'json'
                 }
@@ -79,18 +84,17 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             }
         },
         customTimings: {
-            fields: ['completedDate', 'name', 'average', 'max', 'median', 'min'],
-            autoLoad: false,
+            fields: ['timePeriod', { name: 'userTimings', type: 'auto' }],
             proxy: {
-                type: 'memory',
+                type: 'ajax',
+                url: '/uxsvc/v1/wpt/trend/histogram_usertimings',
                 reader: {
-                    type: 'json'
+                    type: 'json',
+                    keepRawData: true
                 }
             },
             listeners: {
-                load: function(customTimings) {
-                    console.log(customTimings);
-                }
+                load: 'onHistogramUserTimingDataLoaded'
             }
         },
 
@@ -101,7 +105,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            }  
+            }
         },
         customUserTimingsAverage: {
             autoLoad: false,
@@ -110,7 +114,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 reader: {
                     type: 'json'
                 }
-            } 
+            }
         }
     }
 });

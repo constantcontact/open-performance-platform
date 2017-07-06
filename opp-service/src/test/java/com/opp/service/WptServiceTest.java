@@ -50,7 +50,10 @@ public class WptServiceTest extends BaseIntegrationTest {
 
     @Test
     public void getUserTimings(){
-        wptService.getCustomUserTimingData("l1.em-ui.editor.cc-us-east.chrome.cable", run, view, isUserTimingsBaseLine, interval);
+        String run = "median";
+        String view = "firstView";
+        String interval = "1d";
+        wptService.getCustomUserTimingData("l1.em-ui.editor.cc-us-east.chrome.cable", run, view, false, interval);
     }
 
 
