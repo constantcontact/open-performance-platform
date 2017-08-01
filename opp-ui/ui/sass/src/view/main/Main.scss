@@ -423,6 +423,13 @@ $FAQ-tip-list-color-4: #a97fe3;
 // end of widgets
 // ---------------------------
 
+// adding support for selecting buttons
+.x-btn-selected {
+    background-color: #5fa2dd;
+    .x-btn-inner {
+        color: #ffffff;
+    }
+}
 
 
 //UI Styles for buttons

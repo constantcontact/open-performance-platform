@@ -1,15 +1,10 @@
 Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart', {
     extend: 'Ext.panel.Panel',
-    //extend: 'Chart.ux.Highcharts',
     alias: 'widget.customtimingchart',
 
     requires: [
         'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartController',
-        'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartModel' //,
-        // 'Ext.chart.series.Line',
-        // 'Ext.chart.axis.Numeric',
-        // 'Ext.chart.axis.Time',
-        // 'Ext.chart.plugin.ItemEvents'
+        'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartModel'
     ],
 
     controller: 'customtimingchart',
@@ -19,12 +14,12 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart', {
     tbar: {
         items: [
             '->',
-            '-',
             {
                 xtype: 'button',
                 itemId: 'medianButton',
                 text: 'median',
-                handler: 'buttonMetricClicked'
+                handler: 'buttonMetricClicked',
+                cls: 'x-btn-selected'
             },
             '-',
             {

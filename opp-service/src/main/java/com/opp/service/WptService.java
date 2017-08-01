@@ -350,45 +350,6 @@ public class WptService {
     }
 
 
-    /**
-     * Get the custom user timings.
-     * @param dataByDate
-     * @param testData
-     * @param isUserTimingBaseLine
-     * @param minKey
-     * @param view
-     * @param timestamp
-     * @return Hashmap with "timings" and "rangeTimings"
-     */
-    private Map<String, Map<String, List<Long>>> getCustomUserTimingDataOld(JsonNode dataByDate, JsonNode testData, boolean isUserTimingBaseLine, String minKey, String maxKey, String view, long timestamp) {
-        JsonNode viewDataNode = dataByDate.at("/" + minKey + "/" + view);
-
-        // if isUserTimingBaseLine is set, recalculate the userTimingsMin baseline
-        long userTimingsMin = calculateMinUserTimings(viewDataNode, testData, isUserTimingBaseLine);
-
-        // build user timings array
-        Map<String, List<Long>> userTimingsRange = new HashMap<>();
-        Map<String, List<Long>> userTimings = new HashMap<>();
-        Iterator<String> fieldIterator = viewDataNode.fieldNames();
-        while(fieldIterator.hasNext()){
-            String fieldName = fieldIterator.next();
-            if(fieldName.startsWith("userTime.")){
-                String userTimingName = fieldName.replace("userTime.", "");
-                userTimingsRange.put(userTimingName, Arrays.asList(timestamp, dataByDate.at(String.format("/%s/%s/%s", minKey, view, fieldName)).asLong(), dataByDate.at(String.format("/%s/%s/%s", maxKey, view, fieldName)).asLong()));
-                try {
-                    userTimings.put(userTimingName, Arrays.asList(timestamp, testData.get(fieldName).asLong() - userTimingsMin));
-                } catch (Exception ex) {
-                    // not sure why this happens, but sometimes the selected view data like median doesn't have the user timing
-                    System.out.printf("User timing '%s' missing from select run ('%s') data%n", userTimingName, view);
-                }
-            }
-        }
-
-        Map<String, Map<String, List<Long>>> userTimingMap = new HashMap<>();
-        userTimingMap.put("timings", userTimings);
-        userTimingMap.put("rangeTimings", userTimingsRange);
-        return userTimingMap;
-    }
 
     public List<CustomUserTimingsAgg> getCustomUserTimingData(String testName, String run, String view, boolean isUserTimingsBaseLine, String interval) {
         return dao.getCustomUserTimings(testName, run, view, interval);

@@ -5,23 +5,14 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
     stores: {
         histogramData: {
             fields: [{
-                    name: 'wptTimestamp',
-                    mapping: 'completedDate',
-                    type: 'auto',
+                    name: 'completedDate',
                     convert: function(value, record) {
                         return value * 1000;
                     }
                 },
-                { name: 'TTFB', mapping: 'ttfb.median', type: 'auto' },
-                { name: 'TTFB-min', mapping: 'ttfb.min', type: 'auto' },
-                { name: 'TTFB-max', mapping: 'ttfb.max', type: 'auto' },
-                { name: 'VisuallyComplete', mapping: 'visuallyComplete.median', type: 'auto' },
-                { name: 'VisuallyComplete-min', mapping: 'visuallyComplete.min', type: 'auto' },
-                { name: 'VisuallyComplete-max', mapping: 'visuallyComplete.max', type: 'auto' },
-                { name: 'SpeedIndex', mapping: 'speedIndex.median', type: 'auto' },
-                { name: 'SpeedIndex-min', mapping: 'speedIndex.min', type: 'auto' },
-                { name: 'SpeedIndex-max', mapping: 'speedIndex.max', type: 'auto' }
-                //,{ name: 'userTimings', mapping: 'userTimings', type: 'auto' }
+                { name: 'TTFB', type: 'auto' },
+                { name: 'VisuallyComplete', type: 'auto' },
+                { name: 'SpeedIndex', type: 'auto' }
             ],
             autoLoad: true,
             proxy: {
@@ -58,26 +49,6 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             proxy: {
                 type: 'ajax',
                 url: '/uxsvc/v1/wpt/trend/table',
-                reader: {
-                    type: 'json'
-                }
-            }
-        },
-        median: {
-            model: 'OppUI.model.uxDashboard.HistogramMedian',
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
-            }
-        },
-        average: {
-            model: 'OppUI.model.uxDashboard.HistogramAverage',
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
                 reader: {
                     type: 'json'
                 }

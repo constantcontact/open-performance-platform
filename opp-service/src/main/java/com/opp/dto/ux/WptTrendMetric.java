@@ -11,17 +11,15 @@ public class WptTrendMetric {
     private BasicMetric ttfb;
     private BasicMetric visuallyComplete;
     private BasicMetric speedIndex;
-    private List<UserTimingMetric> userTimings;
 
     public WptTrendMetric() {
     }
 
-    public WptTrendMetric(Long completedDate, BasicMetric ttfb, BasicMetric visuallyComplete, BasicMetric speedIndex, List<UserTimingMetric> userTimings) {
+    public WptTrendMetric(Long completedDate, BasicMetric ttfb, BasicMetric visuallyComplete, BasicMetric speedIndex) {
         this.completedDate = completedDate;
         this.ttfb = ttfb;
         this.visuallyComplete = visuallyComplete;
         this.speedIndex = speedIndex;
-        this.userTimings = userTimings;
     }
 
     public Long getCompletedDate() {
@@ -56,13 +54,6 @@ public class WptTrendMetric {
         this.speedIndex = speedIndex;
     }
 
-    public List<UserTimingMetric> getUserTimings() {
-        return userTimings;
-    }
-
-    public void setUserTimings(List<UserTimingMetric> userTimings) {
-        this.userTimings = userTimings;
-    }
 
     public static class UserTimingMetric extends BasicMetric {
         String name;

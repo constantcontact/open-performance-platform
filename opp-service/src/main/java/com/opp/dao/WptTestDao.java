@@ -277,8 +277,8 @@ public class WptTestDao {
                     return new WptTrendMetric(Long.valueOf(b.getKeyAsString()),
                             new WptTrendMetric.BasicMetric(minTtfb.intValue(), maxTtfb.intValue(), medianTtfb.intValue(), averageTtfb),
                             new WptTrendMetric.BasicMetric(minVC.intValue(), maxVC.intValue(), medianVC.intValue(), averageVC),
-                            new WptTrendMetric.BasicMetric(minSI.intValue(), maxSI.intValue(), medianSI.intValue(), averageSI),
-                            null);
+                            new WptTrendMetric.BasicMetric(minSI.intValue(), maxSI.intValue(), medianSI.intValue(), averageSI)
+                            );
                 }).collect(toList());
 
         return listTrendMetric;
