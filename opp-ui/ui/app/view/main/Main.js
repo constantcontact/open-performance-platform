@@ -5,7 +5,9 @@ Ext.define('OppUI.view.main.Main', {
         'OppUI.view.main.MainController',
         'OppUI.view.main.MainModel',
         'Ext.button.Segmented',
-        'Ext.list.Tree'
+        'Ext.list.Tree',
+        'Chart.ux.Highcharts',
+        'Chart.ux.Highcharts.AreaRangeSerie'
     ],
 
     controller: 'main',

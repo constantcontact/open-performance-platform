@@ -1,187 +1,282 @@
 Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.uxtrendreport',
+    transactionData: null,
 
-    onHistogramDataLoaded: function(histogramData) {
-        var metricStore, 
-            defaultStore, 
-            wptTrendGrid, 
-            defaultStoreData,
-            customTimingsStore,
-            customTimingChart, 
+    onHistogramUserTimingDataLoaded: function(histogramData) {
+
+        var customTimingsStore,
+            customTimingChart,
             customTimingsChartData;
 
+        customTimingsStore = this.getView()
+            .getViewModel()
+            .getStore('customTimings');
+
+        var data = customTimingsStore.getData().items;
+
+        // store data for later use
+        this.transactionData = data;
+
+        this.createRangeAreaHighchart(data);
+
+    },
+
+    getHighchartsSeries: function(data) {
+        // get all names
+        var names = new Set();
+        data.forEach(function(d) {
+            var obj = d.data;
+            names.add(d.data.name);
+        });
+
+        // create object like this:
+        /*
+        [{
+            series1: [ [1, 3, 8], [2, 5, 10], [7, 1, 12]],
+            series2: [ [2, 4, 14], [5, 7] ],
+            series3: [ [1, 8, 16], [4, 6, 8], [5, 1, 5], [9, 4, 10]]
+        }]
+        */
+
+        var series = [];
+        var colorIndex = 0;
+        names.forEach((n) => {
+
+            // set color and series
+            var color = this.getColor(colorIndex);
+            var lineSeries = {
+                name: n,
+                //plot: 'line',
+                type: 'line',
+                dataIndex: n + "-line",
+                color: color,
+                marker: { fillColor: color, lineWidth: 2, lineColor: color },
+                zIndex: 1
+            };
+            var rangeSeries = {
+                name: n + "-range",
+                //   plot: 'arearange',
+                type: 'arearange',
+                dataIndex: n,
+                color: color,
+                fillOpacity: 0.4,
+                lineWidth: 0,
+                linkedTo: ':previous',
+                zIndex: 0,
+                marker: { enabled: false }
+            };
+            series.push(lineSeries);
+            series.push(rangeSeries);
+            colorIndex++;
+        });
+        return series;
+    },
+
+    createRangeAreaHighchart: function(data) {
+        var series = this.getHighchartsSeries(data);
+        var dataStore = this.getHighchartsUTData(data, "median");
+
+        var chart = this.getCustomTimingsChart();
+        chart.store.loadData([dataStore], false);
+        chart.addSeries(series, false);
+        chart.draw();
+
+    },
+    getCustomTimingsChart: function() {
+        return this.getView().down('customtimingchart').down('highchart');
+    },
+    getHighchartsUTData: function(data, lineMetric) {
+        var dataStore = Object();
+        data.forEach((d) => {
+            var obj = d.data;
+            if (obj.min !== 0 && obj.max !== 0) {
+                // add line value
+                var lineValue = [obj.timePeriod, obj[lineMetric]];
+                var lineKey = obj.name + "-line";
+                if (!dataStore.hasOwnProperty(lineKey)) dataStore[lineKey] = []; // init if it doesn't exist
+                dataStore[lineKey].push(lineValue);
+                // add range value
+                if (!dataStore.hasOwnProperty(obj.name)) dataStore[obj.name] = [];
+                dataStore[obj.name].push([obj.timePeriod, obj.min, obj.max]);
+            }
+        })
+        return dataStore;
+    },
+
+    // createExtChart: function(data) {
+    //     var names = new Set();
+    //     var fields = new Set();
+    //     data.forEach(function(d) {
+    //         var obj = d.data;
+    //         names.add(obj.name);
+    //         // not really needed, but probably good form
+    //         fields.add(obj.name + "-min");
+    //         fields.add(obj.name + "-max");
+    //         fields.add(obj.name + "-median");
+    //         fields.add(obj.name + "-median");
+    //     });
+
+    //     this.transactionNames = names;
+
+    //     var rec = Object();
+    //     data.forEach(function(d) {
+    //         var obj = d.data;
+    //         var timePeriod = obj.timePeriod / 1000;
+    //         if (!rec.hasOwnProperty(timePeriod)) {
+    //             rec[timePeriod] = Object();
+    //         }
+    //         var curRec = rec[timePeriod];
+    //         curRec[obj.name + "-min"] = obj.min;
+    //         curRec[obj.name + "-max"] = obj.max;
+    //         curRec[obj.name + "-average"] = obj.average;
+    //         curRec[obj.name + "-median"] = obj.median;
+    //         rec[timePeriod] = curRec;
+
+    //     });
+
+
+    //     // need to get this to work... its currently showing up as an array
+    //     var dataArr = [];
+    //     for (key in rec) {
+    //         var obj = rec[key];
+    //         obj.timePeriod = key;
+    //         dataArr.push(Object(obj));
+    //     };
+    //     console.log(dataArr);
+    //     this.getView().down('customtimingchart').down('highcharts').store.loadData(dataArr, false);
+    //     customTimingsStore.loadData(dataArr, false);
+
+
+    //     // build out series
+    //     var series = [];
+    //     var colorIndex = 0;
+    //     names.forEach((n) => {
+    //         series.push(this.createUtSeries(n, "median", "line", this.getColor(colorIndex), null, true, false));
+    //         // don't do this for 2 reasdons... 1 bug in extjs... can't set same color and two the charts get too crowded
+    //         series.push(this.createUtSeries(n, "min", "scatter", this.getColor(colorIndex), 'square', false, true));
+    //         series.push(this.createUtSeries(n, "max", "scatter", this.getColor(colorIndex), 'circle', false, true));
+    //         colorIndex++;
+    //     });
+    //     var chart = this.getView().down('customtimingchart');
+    //     chart.getAxes()[0].setFields(Array.from(fields)); // set fields --- not really needed
+    //     chart.setSeries(series);
+    //     chart.setStore(customTimingsStore);
+    //     chart.redraw();
+    // },
+
+    getColor: function(index) {
+        // 20 preferred colors for the charts that are easy to read
+        var chartColors = ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC']
+        if (index < 20) {
+            return chartColors[index];
+        } else {
+            // over 20... just generate random color
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+    },
+
+    // createUtSeries: function(transName, metric, seriesType, color, markerType, showInLegend, hidden) {
+    //     return {
+    //         type: seriesType,
+    //         style: { stroke: color, lineWidth: 2 },
+    //         // style: { lineWidth: 2 },
+    //         xField: 'timePeriod',
+    //         yField: transName + "-" + metric,
+    //         hidden: hidden,
+    //         showInLegend: showInLegend,
+    //         marker: { type: markerType, radius: 4, lineWidth: 2, fill: 'white' }
+    //     };
+    // },
+
+    onHistogramDataLoaded: function(histogramData) {
+        var metricStore,
+            defaultStore,
+            wptTrendGrid,
+            defaultStoreData,
+            customTimingsStore;
+
         metricStore = this.getView()
-                .getViewModel()
-                .getStore('median');
-            
+            .getViewModel()
+            .getStore('median');
+
         defaultStore = this.getView()
-                .getViewModel()
-                .getStore('histogramData');
+            .getViewModel()
+            .getStore('histogramData');
 
-        customUserTimingsMedianStore = this.getView()
-                .getViewModel()
-                .getStore('customUserTimingsMedian');
+        customTimingsStore = this.getView()
+            .getViewModel()
+            .getStore('customTimings');
 
-        customUserTimingsAverageStore = this.getView()
-                .getViewModel()
-                .getStore('customUserTimingsAverage');
-                
+        // load user timings store
+        customTimingsStore.load();
 
-        if(!metricStore.getProxy().getData()) {
+        if (!metricStore.getProxy().getData()) {
             defaultStoreData = defaultStore.getProxy().getReader().rawData;
 
             metricStore.getProxy().setData(defaultStoreData);
-            metricStore.load();   
+            metricStore.load();
         } else {
             metricStore.reload();
         }
 
-        // TODO: Remove this once the endpoint is ready.
-        this.mockCustomTimings(histogramData.getData().items);
-
-        customTimingsChartData = this.buildCustomTimingsChartData(histogramData.getData().items);
-
-        if(customTimingsChartData.series.length > 0) {
-            customTimingChart = this.getView().down('customtimingchart');
-
-            for(var i=0; i<customTimingsChartData.series.length; i++){
-                var yField = customTimingsChartData.series[i].yField;
-                if(!(yField.indexOf('-min') >= 0 || yField.indexOf('-max') >= 0)) {
-                    customTimingsChartData.series[i].style = customTimingChart.getSeriesStyle();
-                    //customTimingsChartData.series[i].highlightCfg = customTimingChart.getSeriesHighlight();
-                    customTimingsChartData.series[i].marker = customTimingChart.getSeriesMarker();
-                }
-                //customTimingsChartData.series[i].tooltip = customTimingChart.getSeriesTooltip();
-                customTimingsChartData.series[i].showInLegend = 
-                    !(yField.indexOf('-min') >= 0 || yField.indexOf('-max') >= 0);// || yField.indexOf('median') >= 0 || yField.indexOf('average') >= 0);
-            }
-
-            customUserTimingsMedianStore.getProxy().setData(customTimingsChartData.medianData);
-            customUserTimingsMedianStore.setFields(customTimingsChartData.customTimingFields);
-
-            customUserTimingsAverageStore.getProxy().setData(customTimingsChartData.averageData);
-            customUserTimingsAverageStore.setFields(customTimingsChartData.customTimingFields);
-
-            customTimingChart.setSeries(customTimingsChartData.series);
-            customTimingChart.setStore(customUserTimingsMedianStore);
-
-            customUserTimingsMedianStore.load();
-            customUserTimingsAverageStore.load();
-
-            customTimingChart.show();
-            //customTimingChart.redraw();
-
-            customTimingChart.setTitle('Custom Timings - median');
-        }
-
         this.getView().down('wpttrendchart').setStore(metricStore);
         this.getView().down('wpttrendchart').setTitle('WPT Trend - median');
-        
+
     },
-    
+
+    onUTMetricChange: function(newMetric) {
+        var chart = this.getCustomTimingsChart();
+        var dataStore = this.getHighchartsUTData(this.transactionData, newMetric);
+        chart.store.loadData([dataStore], false);
+        chart.refresh();
+    },
+
+    // onUTMetricChange(newMetric) {
+
+    //     var view = this.getView();
+
+    //     // build out series
+    //     var series = [];
+    //     var colorIndex = 0;
+    //     this.transactionNames.forEach((n) => {
+    //         series.push(this.createUtSeries(n, newMetric, "line", this.getColor(colorIndex), null, true));
+    //         // don't do this for 2 reasdons... 1 bug in extjs... can't set same color and two the charts get too crowded
+    //         // series.push(this.createUtSeries(n, "min", "scatter", this.getColor(colorIndex), 'square', false));
+    //         // series.push(this.createUtSeries(n, "max", "scatter", this.getColor(colorIndex), 'circle', false));
+    //         colorIndex++;
+    //     });
+
+    //     // create data that is min, median, max, and average all with the trans name
+    //     // then on button clicks, show and hide average and median series
+    //     var chart = view.down('customtimingchart');
+    //     var oldSeries = chart.getSeries();
+    //     console.log("starting series removal");
+    //     oldSeries.forEach((s) => {
+    //         console.log(s);
+    //         chart.removeSeries(s.getId());
+    //         console.log("removed - " + s.getId());
+    //     });
+    //     console.log('removed series');
+    //     chart.setSeries(series);
+
+    //     // view.setStore(store);
+    //     // view.setTitle('Custom Timings - ' + button.getText());
+    // },
+
+
     updateUrlTabState: function(tab) {
         this.getView()
             .up('uxtabpanel')
             .getController()
             .updateUrlTabState(tab.getTitle(), false);
     },
-
-    buildCustomTimingsChartData: function(histogramData) {
-        var record, 
-            uniqueCustomTimingNames = {}, // = {min: undefined, max: undefined },
-            customTimingFields = [],
-            minName,
-            maxName,
-            customTimingName,
-            customTimingMedianData,
-            customTimingAverageData,
-            series = [],
-            medianData = [];
-            averageData = [];
-
-        for(var i = 0; i < histogramData.length; i++) {
-            record = histogramData[i];
-            if(record && record.userTimings) {
-                for(var j = 0; j< record.userTimings.length; j++) {
-                    
-                    // keep track of the unique custom user timing names.
-                    customTimingName = (record.userTimings[j].name);
-                    uniqueCustomTimingNames[customTimingName] = undefined;
-
-                    // build the data for the chart.
-                    customTimingMedianData = new Object({});
-                    minName = (customTimingName + '-min');
-                    maxName = (customTimingName + '-max');
-                    customTimingMedianData[customTimingName] = record.userTimings[j].median;
-                    customTimingMedianData[minName] = record.userTimings[j].min;
-                    customTimingMedianData[maxName] = record.userTimings[j].max;
-                    customTimingMedianData['completedDate'] = record.getData().wptTimestamp;
-
-                    medianData.push(customTimingMedianData);
-
-                    customTimingAverageData = new Object({});
-                    minName = (customTimingName + '-min');
-                    maxName = (customTimingName + '-max');
-                    customTimingAverageData[customTimingName] = record.userTimings[j].average;
-                    customTimingAverageData[minName] = record.userTimings[j].min;
-                    customTimingAverageData[maxName] = record.userTimings[j].max;
-                    customTimingAverageData['completedDate'] = record.getData().wptTimestamp;
-
-                    averageData.push(customTimingAverageData);
-                }
+    listen: {
+        controller: {
+            'customtimingchart': {
+                // names of events fired by any controller
+                utMetricChange: 'onUTMetricChange'
             }
-        }
-
-        for(var prop in uniqueCustomTimingNames) {
-            if(uniqueCustomTimingNames.hasOwnProperty(prop)) {
-                customTimingFields.push(prop);
-                
-                series.push({
-                    type: 'line',
-                    title: prop,
-                    xField: 'completedDate',
-                    yField: prop
-                });
-
-                series.push({
-                    type: 'line',
-                    xField: 'completedDate',
-                    yField: (prop + '-min'),
-                    marker: {
-                        type: 'cross'
-                    }
-                });
-
-                series.push({
-                    type: 'line',
-                    xField: 'completedDate',
-                    yField: (prop + '-max'),
-                    marker: {
-                        type: 'cross'
-                    }
-                });
-            }
-        }
-
-        return { series: series, medianData: medianData, averageData: averageData, customTimingFields: customTimingFields };
-    },
-
-    mockCustomTimings: function(histogramData) {
-        for(var i = 0; i < histogramData.length; i++) {
-            record = histogramData[i];
-            // record.userTimings = [{name: 'Custom Timing 1', average: 1000, max: 3000, median: 2000, min: 400},
-            //     {name: 'Custom Timing 2', average: 2100, max: 4200, median: 1130, min: 540},
-            //     {name: 'Custom Timing 3', average: 1100, max: 5200, median: 2030, min: 640},
-            //     {name: 'Custom Timing 4', average: 2100, max: 6200, median: 1330, min: 740},
-            //     {name: 'Custom Timing 5', average: 1100, max: 7200, median: 2430, min: 840}]
-
-            record.userTimings = [{name: 'Custom Timing 1', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
-                {name: 'Custom Timing 2', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
-                {name: 'Custom Timing 3', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
-                {name: 'Custom Timing 4', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)},
-                {name: 'Custom Timing 5', average: Math.floor((Math.random() * 1000) + 1), max: Math.floor((Math.random() * 1000) + 1), median: Math.floor((Math.random() * 1000) + 1), min: Math.floor((Math.random() * 1000) + 1)}]
         }
     }
 });
- 

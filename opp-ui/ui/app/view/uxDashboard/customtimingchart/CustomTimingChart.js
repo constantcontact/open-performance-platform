@@ -1,60 +1,22 @@
-
-Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart',{
-    extend: 'Ext.chart.CartesianChart',
+Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart', {
+    extend: 'Ext.panel.Panel',
+    //extend: 'Chart.ux.Highcharts',
     alias: 'widget.customtimingchart',
 
     requires: [
         'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartController',
-        'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartModel',
-        'Ext.chart.series.Line',
-        'Ext.chart.axis.Numeric',
-        'Ext.chart.axis.Time',
-        'Ext.chart.plugin.ItemEvents'
+        'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartModel' //,
+        // 'Ext.chart.series.Line',
+        // 'Ext.chart.axis.Numeric',
+        // 'Ext.chart.axis.Time',
+        // 'Ext.chart.plugin.ItemEvents'
     ],
 
     controller: 'customtimingchart',
     viewModel: {
         type: 'customtimingchart'
     },
-
-    config: {
-        seriesStyle: { lineWidth: 4 },
-        seriesMarker: { radius: 4 },
-        seriesHighlight: {
-            fillStyle: '#000', 
-            radius: 5, 
-            lineWidth: 2, 
-            strokeStyle: '#fff'
-        },
-        seriesTooltip: {
-            trackMouse: true, 
-            renderer: function (tooltip, record, item) {
-                var startTime;
-                if(item && record) {
-                    // determine if the tooltip is for a timeseries chart
-                    // or aggregation chart.
-                    startTime = record.data.completedDate;
-                    if(!startTime) {
-                        startTime = window.parseInt(record.data.xaxis);
-                    }
-                    tooltip.setHtml(item.field + ' on ' + new Date(startTime) + ': ' +
-                        record.get(item.series.getYField()) + ' (ms)');
-                }
-            }
-        }
-    },
-
-    plugins: {
-        ptype: 'chartitemevents'
-    },
-    legend: {
-        docked: 'right'
-    },
-    title: 'Custom Timings',
-    height: 500,
-    insetPadding: 40,
-
-     tbar: {
+    tbar: {
         items: [
             '->',
             '-',
@@ -72,24 +34,49 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart',{
             }
         ]
     },
-    
-    axes: [
-        {
-            type: 'numeric',
-            minimum: 0,
-            position: 'left',
-            title: 'Response Time (msec)', // gets overridden with yaxisTitle
-            grid: true
-        }, {
-            type: 'time',
-            position: 'bottom',
-            fields: ['completedDate'],
-            title: 'Run Date', // gets overridden with xaxisTitle
-            label: {
-                rotate: {
-                    degrees: -45
+    layout: 'fit',
+    items: [{
+        xtype: 'highcharts',
+        series: [],
+        height: 500,
+        width: 700,
+        store: Ext.create('Ext.data.Store', {
+            fields: ['timePeriod', 'min', 'max'],
+            autoLoad: true,
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json'
+                }
+            }
+        }),
+        chartConfig: {
+            chart: {
+                type: 'arearange',
+                zoomType: 'x',
+                marginLeft: 50,
+                marginRight: 50
+            },
+            // rangeSelector: {
+            //     selected: 1
+            // },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+                    text: null
                 }
             },
+            tooltip: {
+                crosshairs: true,
+                shared: true,
+                valueSuffix: 'ms'
+            },
+            title: {
+                text: 'Custom User Timings'
+            }
         }
-    ]
+    }]
+
 });

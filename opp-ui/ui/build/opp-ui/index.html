@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html manifest="cache.appcache">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
@@ -8,6 +9,11 @@
     <title>Open Performance Platform</title>
 
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="//code.highcharts.com/highcharts-more.js"></script>
+
+
     <script id="microloader" data-app="30995804-454a-4b10-8285-9e6e9c8e6266" type="text/javascript">var Ext=Ext||{};Ext.manifest=Ext.manifest||'app.json';Ext=Ext||{};
 Ext.Boot=Ext.Boot||function(emptyFn){function Request(cfg){if(cfg.$isRequest)return cfg;cfg=cfg.url?cfg:{url:cfg};var url=cfg.url,url=url.charAt?[url]:url,charset=cfg.charset||Boot.config.charset;_apply(this,cfg);delete this.url;this.urls=url;this.charset=charset}function Entry(cfg){if(cfg.$isEntry)return cfg;var charset=cfg.charset||Boot.config.charset,manifest=Ext.manifest,manifest=manifest&&manifest.loader,cache=void 0!==cfg.cache?cfg.cache:manifest&&manifest.cache,buster;Boot.config.disableCaching&&
 (void 0===cache&&(cache=!Boot.config.disableCaching),!1===cache?buster=+new Date:!0!==cache&&(buster=cache),buster&&(manifest=manifest&&manifest.cacheParam||Boot.config.disableCachingParam,buster=manifest+'\x3d'+buster));_apply(this,cfg);this.charset=charset;this.buster=buster;this.requests=[]}var doc=document,_emptyArray=[],_config={disableCaching:/[?&](?:cache|disableCacheBuster)\b/i.test(location.search)||!/http[s]?\:/i.test(location.href)||/(^|[ ;])ext-cache=1/.test(doc.cookie)?!1:!0,disableCachingParam:'_dc',
@@ -84,5 +90,7 @@ Microloader.appUpdate)},1E3)},checksum:function(content,hash){if(!content||!hash
 304===result.status||Boot.env.phantom||0===result.status&&0<result.content.length?rst.content=result.content:rst.error=!0:rst.error=!0;return rst}};return Microloader}();Ext.manifest=Ext.manifest||'bootstrap';Ext.Microloader.run();</script>
 
 </head>
+
 <body></body>
+
 </html>

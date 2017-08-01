@@ -11,9 +11,8 @@ import java.util.Map;
  * Created by ctobe on 6/13/17.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomUserTimingsAgg {
+public class CustomUserTimingsAgg extends WptTrendMetric.UserTimingMetric {
     private long timePeriod;
-    private List<WptTrendMetric.BasicMetric> userTimings;
 
     public long getTimePeriod() {
         return timePeriod;
@@ -23,12 +22,9 @@ public class CustomUserTimingsAgg {
         this.timePeriod = timePeriod;
     }
 
-    public List<WptTrendMetric.BasicMetric> getUserTimings() {
-        return userTimings;
-    }
-
-    public void setUserTimings(List<WptTrendMetric.BasicMetric> userTimings) {
-        this.userTimings = userTimings;
+    public CustomUserTimingsAgg(Integer min, Integer max, Integer median, Double average, String name, long timePeriod) {
+        super(min, max, median, average, name);
+        this.timePeriod = timePeriod;
     }
 }
 

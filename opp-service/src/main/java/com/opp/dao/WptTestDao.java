@@ -434,33 +434,22 @@ public class WptTestDao {
         // get data histogram
         Histogram histogram = respAgg.getAggregations().get("histogram");
 
+        List<CustomUserTimingsAgg> userTimings = new ArrayList<>();
+
         // stream all the ES buckets and map to CustomUserTimingsAgg object
-        return histogram.getBuckets().stream().map(b -> {
-            CustomUserTimingsAgg customUserTimingsAgg = new CustomUserTimingsAgg();
+        histogram.getBuckets().forEach(b -> customUserTimingNames.stream().forEach(name -> {
+                    userTimings.add(new CustomUserTimingsAgg(
+                            getAggValueFromHistogramBucket(b, name, "min").intValue(),
+                            getAggValueFromHistogramBucket(b, name, "max").intValue(),
+                            getAggValueFromHistogramBucket(b, name, "median").intValue(),
+                            getAggValueFromHistogramBucket(b, name, "average"),
+                            name,
+                            Long.valueOf(b.getKeyAsString())));
+                }
+        ));
 
-            List<WptTrendMetric.BasicMetric> userTimings = customUserTimingNames.stream().map(name -> {
-                return new WptTrendMetric.UserTimingMetric(
-                        getAggValueFromHistogramBucket(b, name, "min").intValue(),
-                        getAggValueFromHistogramBucket(b, name, "max").intValue(),
-                        getAggValueFromHistogramBucket(b, name, "median").intValue(),
-                        getAggValueFromHistogramBucket(b, name, "average"), name);
-            }).collect(toList());
+        return userTimings;
 
-            // set values
-            customUserTimingsAgg.setUserTimings(userTimings);
-            customUserTimingsAgg.setTimePeriod(Long.valueOf(b.getKeyAsString()));
-
-
-            // map to CustomUserTimingsAgg object
-//            HashMap<String, Integer> userTimings = b.getAggregations().asList().stream().collect(Collectors.toMap(Aggregation::getName, agg -> {
-//                Double val = ((Avg) agg).getValue();
-//                return (val.isNaN()) ? 0 : val.intValue();
-//            }, (x, y) -> x, HashMap<String, Integer>::new));
-
-
-            return customUserTimingsAgg;
-
-        }).collect(toList());
 
     }
 

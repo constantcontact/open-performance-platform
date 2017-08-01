@@ -43,7 +43,7 @@ public class WptServiceTest extends BaseIntegrationTest {
     @Test
     public void getTestTrendHistogram() throws UnirestException {
 
-        wptService.getTrendChartData("l1.em-ui.editor.cc-us-east.chrome.cable", "firstView", false, "1d");
+        wptService.getTrendChartData("l1.em-ui.editor.cc-us-east.chrome.cable", "firstView", "1d");
         // assertTrue("its working and getting a response back", response.getHits().getTotalHits() == 0);
 
     }

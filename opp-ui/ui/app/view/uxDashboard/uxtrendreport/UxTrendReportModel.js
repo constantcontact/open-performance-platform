@@ -84,36 +84,38 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             }
         },
         customTimings: {
-            fields: ['timePeriod', { name: 'userTimings', type: 'auto' }],
+            fields: [{
+                    name: 'timePeriod',
+                    type: 'auto',
+                    convert: function(value, record) {
+                        return value * 1000;
+                    }
+                },
+                { name: 'min', type: 'int' },
+                { name: 'max', type: 'int' },
+                { name: 'median', type: 'int' },
+                { name: 'average', type: 'int' },
+                'name'
+            ],
             proxy: {
                 type: 'ajax',
                 url: '/uxsvc/v1/wpt/trend/histogram_usertimings',
                 reader: {
                     type: 'json',
                     keepRawData: true
-                }
+                } //,
+                // extraParams: {
+                //     // avaiable extra params to send
+                //     // name: '',
+                //     // run: '',
+                //     // view: '',
+                //     // utBaseline: '',
+                //     // interval: '1d'
+                // }
             },
+            autoLoad: false,
             listeners: {
                 load: 'onHistogramUserTimingDataLoaded'
-            }
-        },
-
-        customUserTimingsMedian: {
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
-            }
-        },
-        customUserTimingsAverage: {
-            autoLoad: false,
-            proxy: {
-                type: 'memory',
-                reader: {
-                    type: 'json'
-                }
             }
         }
     }

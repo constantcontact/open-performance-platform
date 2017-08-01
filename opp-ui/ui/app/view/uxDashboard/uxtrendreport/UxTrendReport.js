@@ -1,4 +1,4 @@
-Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
+Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.uxtrendreport',
     xtype: 'uxtrendreport',
@@ -29,6 +29,10 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
         this.getViewModel().getStore('wptTrendTable').proxy.extraParams = {
             name: this.getPageName()
         };
+
+        this.getViewModel().getStore('customTimings').proxy.extraParams = {
+            name: this.getPageName()
+        }
     },
 
     layout: {
@@ -44,10 +48,10 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport',{
     items: [{
         xtype: 'wpttrendchart',
         title: 'WPT Trend - median'
-    },{
-        xtype: 'customtimingchart',
-        hidden: true
-    },{
+    }, {
+        xtype: 'customtimingchart'
+            //hidden: true
+    }, {
         xtype: 'wpttrendgrid'
     }],
 
