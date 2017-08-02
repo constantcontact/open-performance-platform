@@ -5,7 +5,9 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport', {
 
     requires: [
         'OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController',
-        'OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel'
+        'OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel',
+        'Chart.ux.Highcharts.LineSerie',
+        'Chart.ux.Highcharts.AreaRangeSerie'
     ],
 
     controller: 'uxtrendreport',
@@ -47,10 +49,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport', {
 
     items: [{
         xtype: 'wpttrendchart',
-        title: 'WPT Trend - median'
     }, {
         xtype: 'customtimingchart'
-            //hidden: true
     }, {
         xtype: 'wpttrendgrid'
     }],

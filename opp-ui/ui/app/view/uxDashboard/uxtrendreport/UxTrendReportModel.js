@@ -24,7 +24,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
                 }
             },
             listeners: {
-                load: 'onHistogramDataLoaded'
+                load: 'onPageLoadChartDataLoad'
             }
         },
         wptTrendTable: {
@@ -86,7 +86,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportModel', {
             },
             autoLoad: false,
             listeners: {
-                load: 'onHistogramUserTimingDataLoaded'
+                load: 'onUserTimingDataLoad'
             }
         }
     }

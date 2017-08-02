@@ -1,44 +1,53 @@
 Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.uxtrendreport',
-    userTimingData: null,
-    pageLoadData: null,
     // default settings
-    pageLoadMetrics: ['ttfb', 'visuallyComplete', 'speedIndex'],
     defaultLineMetric: 'median',
-    utDateField: 'timePeriod',
-    plDateField: 'completedDate',
-
-    // =========== page load chart
+    pageLoadChart: {
+        data: null,
+        metrics: ['ttfb', 'visuallyComplete', 'speedIndex'],
+        dateField: 'completedDate',
+        title: 'Page Load Time Metrics'
+    },
+    userTimingChart: {
+        data: null,
+        dateField: 'timePeriod',
+        title: 'Custom User Timings'
+    },
     // listener for when the ajax call returns with the page load data
-    onHistogramDataLoaded: function(histogramData) {
+    onPageLoadChartDataLoad: function(histogramData) {
         // get data and save for later use
-        this.pageLoadData = histogramData.data.items;
+        this.pageLoadChart.data = histogramData.data.items;
         // start loading user timings store
         this.getView().getViewModel().getStore('customTimings').load();
         // create page load chart
-        this.createRangeAreaPageLoadHc(this.pageLoadData);
+        this.createPageLoadChart(this.pageLoadChart.data);
     },
     // listener for when someone clicks the median or average button
     onPLMetricChange: function(newMetric) {
         var chart = this.getPageLoadTimingsChart();
-        var dataStore = this.getHcPageLoadData(this.pageLoadData, newMetric, this.plDateField, this.pageLoadMetrics);
+        var dataStore = this.getPageLoadData(this.pageLoadChart.data, newMetric, this.pageLoadChart.dateField, this.pageLoadChart.metrics);
         chart.store.loadData([dataStore], false);
+        chart.up('panel').setTitle(this.pageLoadChart.title + ' - ' + newMetric);
+
         chart.refresh();
     },
+
+    // =========== page load chart
     // main method that creates the chart
-    createRangeAreaPageLoadHc: function(data) {
-        var series = this.buildAreaRangeLineSeries(this.pageLoadMetrics);
-        var dataStore = this.getHcPageLoadData(data, this.defaultLineMetric, this.plDateField, this.pageLoadMetrics);
+    createPageLoadChart: function(data) {
+        var series = this.buildAreaRangeLineSeries(this.pageLoadChart.metrics);
+        var dataStore = this.getPageLoadData(data, this.defaultLineMetric, this.pageLoadChart.dateField, this.pageLoadChart.metrics);
         var chart = this.getPageLoadTimingsChart();
         chart.addSeries(series, false);
         chart.store.loadData([dataStore], false);
-        chart.setTitle('Page Load Summary - ' + this.defaultLineMetric);
+        chart.up('panel').setTitle(this.pageLoadChart.title + ' - ' + this.defaultLineMetric);
         chart.draw();
 
     },
+    
     // get datastore for chart
-    getHcPageLoadData: function(data, lineMetric, dateField, names) {
+    getPageLoadData: function(data, lineMetric, dateField, names) {
         var dataStore = Object();
         data.forEach((d) => {
             var obj = d.data;
@@ -68,18 +77,19 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
 
     // listener for when median or average button is clicked
     onUTMetricChange: function(newMetric) {
-        var chart = this.getUTChart();
-        var dataStore = this.getHcUTData(this.userTimingData, newMetric, this.utDateField);
+        var chart = this.getUserTimingChart();
+        var dataStore = this.getUserTimingData(this.userTimingChart.data, newMetric, this.userTimingChart.dateField);
         chart.store.loadData([dataStore], false);
+        chart.up('panel').setTitle(this.userTimingChart.title + ' - ' + newMetric);
         chart.refresh();
     },
     // callback for when ajax returns for user timing data
-    onHistogramUserTimingDataLoaded: function() {
-        this.userTimingData = this.getView().getViewModel().getStore('customTimings').getData().items;
-        this.createRangeAreaUTHc(this.userTimingData);
+    onUserTimingDataLoad: function() {
+        this.userTimingChart.data = this.getView().getViewModel().getStore('customTimings').getData().items;
+        this.createUserTimingChart(this.userTimingChart.data);
     },
     // format data to fit the highcharts store and match the series names
-    getHcUTData: function(data, lineMetric, dateField) {
+    getUserTimingData: function(data, lineMetric, dateField) {
         var dataStore = Object();
         data.forEach((d) => {
             var obj = d.data;
@@ -97,7 +107,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
         return dataStore;
     },
     // get all names for the series
-    getHcUTSeries: function(data) {
+    getUserTimingSeries: function(data) {
         // get all names
         var names = new Set();
         data.forEach(function(d) {
@@ -107,18 +117,19 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
         return this.buildAreaRangeLineSeries(names);
     },
     // main method to create the chart
-    createRangeAreaUTHc: function(data) {
-        var series = this.getHcUTSeries(data);
-        var dataStore = this.getHcUTData(data, this.defaultLineMetric, this.utDateField);
+    createUserTimingChart: function(data) {
+        var series = this.getUserTimingSeries(data);
+        var dataStore = this.getUserTimingData(data, this.defaultLineMetric, this.userTimingChart.dateField);
 
-        var chart = this.getUTChart();
+        var chart = this.getUserTimingChart();
         chart.store.loadData([dataStore], false);
         chart.addSeries(series, false);
+        chart.up('panel').setTitle(this.userTimingChart.title + ' - ' +  this.defaultLineMetric);
         chart.draw();
 
     },
     // get the chart
-    getUTChart: function() {
+    getUserTimingChart: function() {
         return this.getView().down('customtimingchart').down('highchart');
     },
     // ---------- end custom user timings ---------

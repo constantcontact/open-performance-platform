@@ -14,8 +14,8 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
     },
 
     items: [{
-        xtype: 'loadtestsummarytab',
-        closable: false
+         xtype: 'loadtestsummarytab',
+         closable: false
     }],
     
     config: {

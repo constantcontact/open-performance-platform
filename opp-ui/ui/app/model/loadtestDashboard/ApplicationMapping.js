@@ -18,10 +18,8 @@ Ext.define('OppUI.model.loadtestDashboard.ApplicationMapping',  {
         { name: 'inCdPipelineServer', type: 'bool' }
     ],
     /* this validations stops the request from being made until the data is valid */
-    validations: [{
-        type: 'length',
-        field: 'appKey',
-        min: 1
-    }]
+    validators: {
+        appKey: { type: 'length', min: 2}
+    }
 
 });

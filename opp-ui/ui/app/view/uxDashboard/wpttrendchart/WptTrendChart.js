@@ -14,7 +14,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart', {
 
     width: '100%',
     height: 500,
-
+    title: 'Page Load Time Metrics',
     margin: '20 0 0 0',
 
     legend: {
@@ -57,6 +57,7 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart', {
             }
         }),
         chartConfig: {
+            credits: { enabled: false },
             chart: {
                 type: 'arearange',
                 zoomType: 'x',

@@ -6,7 +6,7 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart', {
         'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartController',
         'OppUI.view.uxDashboard.customtimingchart.CustomTimingChartModel'
     ],
-
+    title: 'Custom User Timings',
     controller: 'customtimingchart',
     viewModel: {
         type: 'customtimingchart'
@@ -46,6 +46,7 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart', {
             }
         }),
         chartConfig: {
+            credits: { enabled: false },
             chart: {
                 type: 'arearange',
                 zoomType: 'x',
@@ -69,7 +70,7 @@ Ext.define('OppUI.view.uxDashboard.customtimingchart.CustomTimingChart', {
                 valueSuffix: 'ms'
             },
             title: {
-                text: 'Custom User Timings'
+                text: ''
             }
         }
     }]
