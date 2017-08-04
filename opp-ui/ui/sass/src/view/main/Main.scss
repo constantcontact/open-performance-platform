@@ -425,9 +425,9 @@ $FAQ-tip-list-color-4: #a97fe3;
 
 // adding support for selecting buttons
 .x-btn-selected {
-    background-color: #5fa2dd;
+    background-color: #5fa2dd !important;
     .x-btn-inner {
-        color: #ffffff;
+        color: #ffffff !important;
     }
 }
 

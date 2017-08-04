@@ -86,7 +86,12 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     // callback for when ajax returns for user timing data
     onUserTimingDataLoad: function() {
         this.userTimingChart.data = this.getView().getViewModel().getStore('customTimings').getData().items;
-        this.createUserTimingChart(this.userTimingChart.data);
+        if(this.userTimingChart.data.length === 0) {
+            // no user timing data - hide chart
+            this.getUserTimingChart().up('panel').hide();
+        } else {
+            this.createUserTimingChart(this.userTimingChart.data);
+        }
     },
     // format data to fit the highcharts store and match the series names
     getUserTimingData: function(data, lineMetric, dateField) {

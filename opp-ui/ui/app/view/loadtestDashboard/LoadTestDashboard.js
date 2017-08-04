@@ -13,10 +13,12 @@ Ext.define('OppUI.view.loadtestDashboard.LoadTestDashboard',{
         type: 'loadtest'
     },
 
-    items: [{
+    items: [
+        {
          xtype: 'loadtestsummarytab',
          closable: false
-    }],
+        }
+    ],
     
     config: {
         activeState: null
