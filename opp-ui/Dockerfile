@@ -2,6 +2,8 @@ FROM nginx
 # copy config and remove old config
 COPY ./nginx/conf/ /etc/nginx
 RUN rm -f /etc/nginx/conf.d/default.conf
+# nginx dropped this in newer versions for some dumb reason
+RUN apt-get install openssl -y
 # make dir and copy web files over
 RUN mkdir -p /var/www/opp
 COPY ./ui/build/opp-ui/ /var/www/opp/

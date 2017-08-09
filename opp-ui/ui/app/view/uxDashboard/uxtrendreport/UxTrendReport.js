@@ -50,7 +50,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReport', {
     items: [{
         xtype: 'wpttrendchart',
     }, {
-        xtype: 'customtimingchart'
+        xtype: 'customtimingchart',
+        hidden: true
     }, {
         xtype: 'wpttrendgrid'
     }],

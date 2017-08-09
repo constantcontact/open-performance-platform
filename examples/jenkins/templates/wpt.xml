@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>3</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>url</name>
+          <description>URL to be tested</description>
+          <defaultValue>~url~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>script</name>
+          <description>Scripted test to execute</description>
+          <defaultValue>~script~</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>slas</name>
+          <description>These are the SLAs you may want to set in order to pass or fail your job.  For more details, &lt;a href=&quot;https://wiki.roving.com/display/EngDev/UX+CD+Performance+Pipeline+and+Trending#UXCDPerformancePipelineandTrending-PerformanceSLAs&quot; target=&quot;_blank&quot;&gt;click here&lt;/a&gt;</description>
+          <defaultValue>~slas~</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>label</name>
+          <description>Label for the test.  All lowercase.  Syntax {env}.{appName}.{pageOrTestName}.{location}.{browser}.{connectionType}.{description-optional}</description>
+          <defaultValue>~label~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>location</name>
+          <description>Location to test from.  Syntax: LOCATION:BROWSER.CONNECTION
+
+Locations: Bedford_W7_01_Chrome-FFX-IE11, Bedford_W7_02_Chrome-FFX-IE10, Bedford_W7_03_Chrome-FFX, Bedford_W7_03_IE9
+Browsers: IE 9, IE 10, Firefox, Chrome
+Connections: FIOS, Cable, DSL, Dial, 4G, 3G, Native</description>
+          <defaultValue>~location~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>runs</name>
+          <description>Number of test runs (1-10 on the public instance)</description>
+          <defaultValue>~runs~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>fvonly</name>
+          <description>Set to 1 to skip the Repeat View test</description>
+          <defaultValue>~fvonly~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>video</name>
+          <description>Set to 1 to capture video</description>
+          <defaultValue>~video~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>environment</name>
+          <description>Really does nothing but adds the environment to the job name</description>
+          <defaultValue>~environment~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>bwDown</name>
+          <description>Download bandwidth in Kbps (used when specifying a custom connectivity profile)</description>
+          <defaultValue>~bwDown~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>bwUp</name>
+          <description>Upload bandwidth in Kbps (used when specifying a custom connectivity profile)</description>
+          <defaultValue>~bwUp~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>latency</name>
+          <description>First-hop Round Trip Time in ms (used when specifying a custom connectivity profile)</description>
+          <defaultValue>~latency~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>plr</name>
+          <description>Packet loss rate - percent of packets to drop (used when specifying a custom connectivity profile)</description>
+          <defaultValue>~plr~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>connections</name>
+          <description>Override the number of concurrent connections IE uses (0 to not override)</description>
+          <defaultValue>~connections~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>pingback</name>
+          <description>URL to ping when the test is complete (the test ID will be passed as an &quot;id&quot; parameter)</description>
+          <defaultValue>~pingback~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>notify</name>
+          <description>e-mail address to notify with the test results</description>
+          <defaultValue>~notify~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>domelement</name>
+          <description>DOM Element to record for sub-measurement</description>
+          <defaultValue>~domelement~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>web10</name>
+          <description>Set to 1 to force the test to stop at Document Complete (onLoad)</description>
+          <defaultValue>~web10~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>block</name>
+          <description>space-delimited list of urls to block (substring match)</description>
+          <defaultValue>~block~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>login</name>
+          <description>User name to use for authenticated tests (http authentication)</description>
+          <defaultValue>~login~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>password</name>
+          <description>Password to use for authenticated tests (http authentication)</description>
+          <defaultValue>~password~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>authType</name>
+          <description>Type of authentication to use: 0 = Basic Auth, 1 = SNS</description>
+          <defaultValue>~authType~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>f</name>
+          <description>Format. Set to &quot;xml&quot; to request an XML response instead of a redirect (&quot;json&quot; is also provisionally supported)</description>
+          <defaultValue>~f~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>tcpdump</name>
+          <description>Set to 1 to enable tcpdump capture</description>
+          <defaultValue>~tcpdump~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>clearcerts</name>
+          <description>Set to 1 to clear the OS certificate caches (causes IE to do OCSP/CRL checks during SSL negotiation if the certificates are not already cached). Added in 2.11</description>
+          <defaultValue>~clearcerts~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>mobile</name>
+          <description>Set to 1 to disable screen shot capturing</description>
+          <defaultValue>~mobile~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>mv</name>
+          <description>Set to 1 when capturing video to only store the video from the median run.</description>
+          <defaultValue>~mv~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>cmdline</name>
+          <description>Custom command-line options (Chrome only)</description>
+          <defaultValue>~cmdline~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>wpturl</name>
+          <description>The runtest url for webpage test.
+
+http://wpt.roving.com/runtest.php</description>
+          <defaultValue>~wpturl~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILT_FROM_TEMPLATE_FALSE</name>
+          <description></description>
+          <defaultValue>~BUILD_VERSION~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>saveToGraphite</name>
+          <description>This value is either TRUE or FALSE.  This saves results to Graphite, please make sure test name is in this syntax is
+All lowercase.  {env}.{appName}.{pageOrTestName}.{location}.{browser}.{connectionType}.{description-optional}
+</description>
+          <defaultValue>~saveToGraphite~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>hipchatRoomName</name>
+          <description>Set this value if you want to notified in your hipchat room.  Add mulitple rooms by separating each one by a comma.</description>
+          <defaultValue>~hipchatRoomName~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@1.29">
+      <scriptSource class="hudson.plugins.groovy.StringScriptSource">
+        <command>import com.roadrunner.ux.Wpt;
+import com.roadrunner.domain.TestResults;
+
+
+Wpt wpt = new com.roadrunner.ux.Wpt(this);
+TestResults testResults = wpt.runTest();
+
+
+if(!testResults.isBuildSuccessful()){
+  throw new Exception(&quot;NOT JENKINS ISSUE - &quot; + testResults.getErrorMessage());
+}</command>
+      </scriptSource>
+      <bindings></bindings>
+      <classpath></classpath>
+    </hudson.plugins.groovy.SystemGroovy>
+  </builders>
+  <publishers>
+    <jenkins.plugins.hipchat.HipChatNotifier plugin="hipchat@0.2.0">
+      <token>7969becbbf79c05adeb63ad7380409</token>
+      <room>~hipchatRoomName~</room>
+      <startNotification>true</startNotification>
+      <notifySuccess>true</notifySuccess>
+      <notifyAborted>true</notifyAborted>
+      <notifyNotBuilt>true</notifyNotBuilt>
+      <notifyUnstable>true</notifyUnstable>
+      <notifyFailure>true</notifyFailure>
+      <notifyBackToNormal>true</notifyBackToNormal>
+      <startJobMessage></startJobMessage>
+      <completeJobMessage></completeJobMessage>
+    </jenkins.plugins.hipchat.HipChatNotifier>
+  </publishers>
+  <buildWrappers/>
+</project>

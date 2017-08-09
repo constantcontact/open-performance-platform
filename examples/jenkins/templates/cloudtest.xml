@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>3</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_TITLE=CloudTest Configuration Parameters</name>
+          <description>&lt;table bgcolor=&quot;#EEF3E2&quot; style=&quot;padding:10px&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_NAME</name>
+          <description>The Test Name in RoadRunner.  app.component.type.env.misc</description>
+          <defaultValue>~TEST_NAME~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CT_COMPOSITION_FULL_PATH</name>
+          <description>This is the full path to your composition in CloudTest.</description>
+          <defaultValue>~CT_COMPOSITION_FULL_PATH~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VUSER_COUNT</name>
+          <description>This is the number of Virtual Users to be executed in your test.
+
+For this to work, customproperty=&quot;./NUM_VUSERS=${VUSER_COUNT}&quot; must be set under Additional Properties for SOASTA&apos;s Play Compositions section below.  You also need to have a custom variable of NUM_VUSERS set in your Composition that maps to the vuser count.</description>
+          <defaultValue>~VUSER_COUNT~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>RUN_DURATION</name>
+          <description>Time in milliseconds to run test.  Default 10 minutes.
+
+For this to work, customproperty=&quot;./RUN_DURATION=${RUN_DURATION}&quot; must be set under Additional Properties for SOASTA&apos;s Play Compositions section below.  You also need to have a custom variable of RUN_DURATION set in your Composition that maps to the run time.</description>
+          <defaultValue>~RUN_DURATION~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ENVIRONMENT</name>
+          <description>Tracked in RoadRunner.  This is important for trending as RoadRunner includes the environment when trending.
+
+This field can also be used to replace the subdomain of a target in a test clip.</description>
+          <defaultValue>~ENVIRONMENT~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>HOST_NAME</name>
+          <description>This field can be used to override the target host name in a clip.  This assumes you already have the function at the top of your clip to use this variable.</description>
+          <defaultValue>~HOST_NAME~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>RAMP_VUSER_START_DELAY</name>
+          <description>Time in milliseconds for each vuser to start.  Default 1 second (1000ms).
+
+For this to work, customproperty=&quot;./RAMP_VUSER_START_DELAY=${RAMP_VUSER_START_DELAY}&quot; must be set under Additional Properties for SOASTA&apos;s Play Compositions section below.  You also need to have a custom variable of RAMP_VUSER_START_DELAY set in your Composition that maps to the start ramp.</description>
+          <defaultValue>~RAMP_VUSER_START_DELAY~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>RAMP_VUSER_END_DELAY</name>
+          <description>Time in milliseconds for each vuser to stop.  Default 1 second (1000ms).
+
+For this to work, customproperty=&quot;./RAMP_VUSER_END_DELAY=${RAMP_VUSER_END_DELAY}&quot; must be set under Additional Properties for SOASTA&apos;s Play Compositions section below.  You also need to have a custom variable of RAMP_VUSER_END_DELAY set in your Composition that maps to the end ramp.</description>
+          <defaultValue>~RAMP_VUSER_END_DELAY~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_END</name>
+          <description>&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_TITLE=RoadRunner Configuration</name>
+          <description>&lt;table bgcolor=&quot;#ECF1EF&quot; style=&quot;padding:10px&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_DATA_TYPE</name>
+          <description>Very important for getting your data into RoadRunner.  This has two options.  If your test is just messages, use &quot;resultclipelementdetails&quot;.  If it&apos;s all containers like pages and transactions, then use &quot;resultcollectiondetails&quot;.  Make sure one of these checkboxes is checked in your CloudTest scenario.</description>
+          <defaultValue>~TEST_DATA_TYPE~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SLA_GROUP_ID</name>
+          <description>This is the SLA Group Id value that you can create using the API or in the RoadRunner application.  This SLA group id will map your test to a group of SLAs to enable SLAs in the RoadRunner application.</description>
+          <defaultValue>~SLA_GROUP_ID~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_END</name>
+          <description>&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_TITLE=Test Metadata</name>
+          <description>&lt;table bgcolor=&quot;#FBF5E6&quot; style=&quot;padding:10px&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_SUB_NAME</name>
+          <description>This will be used for additional grouping in RoadRunner.</description>
+          <defaultValue>~TEST_SUB_NAME~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>APP_UNDER_TEST</name>
+          <description></description>
+          <defaultValue>~APP_UNDER_TEST~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>APP_UNDER_TEST_VERSION</name>
+          <description></description>
+          <defaultValue>~APP_UNDER_TEST_VERSION~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>DESCRIPTION</name>
+          <description></description>
+          <defaultValue>~DESCRIPTION~</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>COMMENTS</name>
+          <description></description>
+          <defaultValue>~COMMENTS~</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>HIPCHAT_ROOM_NAME</name>
+          <description></description>
+          <defaultValue>~HIPCHAT_ROOM_NAME~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_TOOL</name>
+          <description></description>
+          <defaultValue>~TEST_TOOL~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_TOOL_VERSION</name>
+          <description></description>
+          <defaultValue>~TEST_TOOL_VERSION~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_END</name>
+          <description>&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_TITLE=Jenkins Internal Parameters</name>
+          <description>&lt;table bgcolor=&quot;#eee&quot; style=&quot;padding:10px&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILT_FROM_TEMPLATE_FALSE</name>
+          <description></description>
+          <defaultValue>~BUILD_VERSION~</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>!SECTION_END</name>
+          <description>&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;script&gt;
+
+var elems = document.querySelectorAll(&apos;td.setting-name&apos;);
+for (var i = 0; i &lt; elems.length; i++) {
+    el = elems[i];
+    if (el.innerText.indexOf(&apos;!SECTION_TITLE&apos;) &gt; -1) {
+        el.siblings()[1].style.display = &apos;none&apos;;
+        el.setAttribute(&apos;colspan&apos;, 2);
+        el.innerHTML = &apos;&lt;h3 style=&quot;padding:10px;&quot;&gt;&apos; + el.innerText.replace(&apos;!SECTION_TITLE=&apos;, &apos;&apos;) + &apos;&lt;/h3&gt;&lt;hr&gt;&apos;;
+    }
+    if (el.innerText.indexOf(&apos;!SECTION_END&apos;) &gt; -1) {
+        el.parentElement.style.display = &apos;none&apos;;
+    }
+}
+
+&lt;/script&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>1 1 1 1 1</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <com.soasta.jenkins.TestCompositionRunner plugin="cloudtest@2.25">
+      <cloudTestServerID>861796d8-97a1-4715-8bca-48f7f7fe2f7b</cloudTestServerID>
+      <composition>${CT_COMPOSITION_FULL_PATH}</composition>
+      <deleteOldResults>false</deleteOldResults>
+      <maxDaysOfResults>0</maxDaysOfResults>
+      <additionalOptions>~CT_ADDITIONAL_OPTIONS~</additionalOptions>
+      <generatePlotCSV>true</generatePlotCSV>
+    </com.soasta.jenkins.TestCompositionRunner>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>**/*.xml</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
+      <script plugin="script-security@1.19">
+        <script>import hudson.model.*
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import com.roadrunner.service.HipchatV1Service
+
+/****  
+    THIS SCRIPT CREATES THE JENKINS OUTPUT REPORT
+    1.  CALLS ROADRUNNER START API TO IMPORT SOASTA RESULTS INTO ROADRUNNER
+    2.  CREATES LINKS TO ROADRUNNER REPORT
+    2.  SETUPS UP ROADRUNNER IFRAME WITH JENKINS EXTJS VIEW
+    3.  GETS SLA RESULTS
+    4.  PASS/FAILS THE JOB
+    5.  DISPLAYS ALL JSON RESPONSES 
+****/
+
+
+def jsonSlurper = new JsonSlurper();
+StringBuilder hipchatText = new StringBuilder();
+
+// get SOASTA result ID
+def EXTERNAL_TEST_ID = getSoastaReportId()
+
+// BOMB here if I don&apos;t have an external test ID
+if(EXTERNAL_TEST_ID == &quot;NA&quot;) {
+   // abort test and report to hipchat
+  hipchatText.append(&quot;&lt;b&gt;Test Name: &lt;/b&gt; &quot; + manager.build.buildVariableResolver.resolve(&quot;TEST_NAME&quot;) + &quot;  ---  &quot; + manager.build.buildVariableResolver.resolve(&quot;TEST_SUB_NAME&quot;));
+  hipchatText.append(&quot;&lt;br /&gt;&lt;b&gt;Application(s): &lt;/b&gt; &quot; + manager.build.buildVariableResolver.resolve(&quot;APP_UNDER_TEST&quot;));
+  hipchatText.append(&quot;&lt;br /&gt;&lt;b&gt;CloudTest error while trying to run test&lt;/b&gt;&quot;);
+  if(!hipchatRoom.trim().equals(&quot;&quot;)){
+     HipchatV1Service hipchat = new HipchatV1Service();
+     hipchat.sendMessage(hipchatRoom.trim(), hipchatText.toString(), &quot;red&quot;);
+  }
+  manager.buildFailure()
+  throw new Exception(&quot;CloudTest failed to execute&quot;)
+}
+
+// build query params
+def params = [
+  ctComposition: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;CT_COMPOSITION_FULL_PATH&quot;).tokenize(&apos;/&apos;).last()),
+  testName: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;TEST_NAME&quot;)), 
+  testSubName: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;TEST_SUB_NAME&quot;)),    
+  appUnderTest: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;APP_UNDER_TEST&quot;)), 
+  appUnderTestVersion: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;APP_UNDER_TEST_VERSION&quot;)), 
+  description: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;DESCRIPTION&quot;)),
+  comments: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;COMMENTS&quot;)), 
+  vuserCount: manager.build.buildVariableResolver.resolve(&quot;VUSER_COUNT&quot;),
+  environment: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;ENVIRONMENT&quot;)),
+  testTool: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;TEST_TOOL&quot;)),
+  testToolVersion: URLEncoder.encode(manager.build.buildVariableResolver.resolve(&quot;TEST_TOOL_VERSION&quot;)),
+  startTime: Math.round((System.currentTimeMillis()/1000)*100)/100,
+  testDataType: manager.build.buildVariableResolver.resolve(&quot;TEST_DATA_TYPE&quot;),
+  slaGroupId: manager.build.buildVariableResolver.resolve(&quot;SLA_GROUP_ID&quot;),
+  externalTestId: EXTERNAL_TEST_ID
+]
+
+// build query string
+def queryString = params.collect { k,v -&gt; &quot;$k=$v&quot; }.join(&apos;&amp;&apos;)
+
+// set link to API call
+def RR_SOASTA_START_TEST_URL = &quot;http://opp-svc.mydomain.com/loadsvc/v1/soastacloudtest/start/?&quot; + queryString
+println &quot;--- FULL REQUEST: &quot; + RR_SOASTA_START_TEST_URL
+def resp = restCall(RR_SOASTA_START_TEST_URL, &quot;GET&quot;, &quot;&quot;)
+
+// get links for iframe
+def resultsLinkSecure = &quot;&quot;
+def resultsLink = &quot;&quot;
+def jsonRes
+
+// validate results and set loadTestId
+def hadError = false
+def loadTestId = 0
+def outputMsg = &quot;&quot;
+try {
+    jsonRes = jsonSlurper.parseText(resp)
+    loadTestId = jsonRes.loadtest.id
+
+    // get links for iframe
+   resultsLinkSecure = &quot;https://opp-ui.mydomain.com/?view=jenkins&amp;id=&quot;+loadTestId
+   resultsLink = &quot;http://opp-ui.mydomain.com/?view=jenkins&amp;id=&quot;+loadTestId
+
+    def jsonPretty = JsonOutput.prettyPrint(resp).replace(&apos; &apos;, &apos;&amp;nbsp;&apos;).replace(&apos;\n&apos;, &apos;&lt;br /&gt;&apos;)
+
+    if(jsonPretty != &quot;&quot;){
+       outputMsg = &quot;&lt;br /&gt;&quot; + jsonPretty
+    } else {
+       outputMsg = resp
+    }
+} catch(e){
+    outputMsg = &quot;ERROR: &quot; + e.getStackTrace()
+    hadError = true
+}
+
+// add test name and details to output
+hipchatText.append(&quot;&lt;b&gt;Test Name: &lt;/b&gt; &quot; + manager.build.buildVariableResolver.resolve(&quot;TEST_NAME&quot;) + &quot;  ---  &quot; + manager.build.buildVariableResolver.resolve(&quot;TEST_SUB_NAME&quot;));
+hipchatText.append(&quot;&lt;br /&gt;&lt;b&gt;Application(s): &lt;/b&gt; &quot; + manager.build.buildVariableResolver.resolve(&quot;APP_UNDER_TEST&quot;));
+
+
+
+// set SOASTA results link
+def cloudTestResLink = &quot;http://cloudtest.roving.com/concerto/Central?initResultsTab=$EXTERNAL_TEST_ID&quot;
+
+// --- GET SLAs ---
+def slaResp = restCall(&apos;http://opp-svc.mydomain.com/loadsvc/v1/loadtests/&apos;+loadTestId.toString()+&apos;/slaresults&apos;, &quot;GET&quot;, &quot;&quot;)
+def slaPassed = true  // default to true.  So if no SLAs are found, it stays as true
+def slaJsonPretty = &quot;&quot;
+def slaOutputMsg = &quot;&quot;
+try {
+  def slaJsonRes = jsonSlurper.parseText(slaResp)
+  slaPassed = slaJsonRes.passed
+  slaJsonPretty = JsonOutput.prettyPrint(slaResp).replace(&apos; &apos;, &apos;&amp;nbsp;&apos;).replace(&apos;\n&apos;, &apos;&lt;br /&gt;&apos;)    
+  slaOutputMsg = &quot;&lt;br /&gt;&quot; + slaJsonPretty
+
+ // add hipchat message
+  hipchatText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;SLA Results:&lt;/b&gt;: &quot;);
+  hipchatText.append(&quot;&lt;br /&gt;Passed: &quot; + slaJsonRes.passed);
+  hipchatText.append(&quot;&lt;br /&gt;Total Transactions: &quot; + slaJsonRes.total_transactions);
+  hipchatText.append(&quot;&lt;br /&gt;Total SLAs: &quot; + slaJsonRes.total_slas);
+  hipchatText.append(&quot;&lt;br /&gt;Warnings: &quot; + slaJsonRes.warning_count);
+  hipchatText.append(&quot;&lt;br /&gt;Errors: &quot; + slaJsonRes.error_count);
+
+} catch(e){
+  slaResult += &quot;Failed to pretty print. $e.message&quot;
+  slaHadError = true
+}
+
+StringBuilder summaryText = new StringBuilder();
+String summaryIcon = &quot;&quot;;
+String hipchatColor = &quot;green&quot;;
+
+if(!hadError){
+     // add hipchat messages
+     hipchatText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;RoadRunner Results: &lt;/b&gt;&lt;a href=&apos;&quot;+resultsLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+resultsLink+&quot;&lt;/a&gt;&quot;);
+     hipchatText.append(&quot;&lt;br /&gt;&lt;b&gt;CloudTest Results: &lt;/b&gt;&lt;a href=&apos;&quot;+cloudTestResLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+cloudTestResLink+&quot;&lt;/a&gt;&quot;)
+     hipchatText.append(&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&quot;);
+} else {
+     // add hipchat messages
+     hipchatText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;TEST FAILED AND HAD ERRORS&lt;/b&gt;&quot;);
+     hipchatText.append(&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&quot;);
+}
+    
+if(!hadError &amp;&amp; slaPassed){
+  summaryIcon = &quot;green.gif&quot;
+  summaryText.append(&quot;&lt;script&gt;jQuery(&apos;#main-panel &gt; table&apos;).css(&apos;width&apos;,&apos;100%&apos;);&lt;/script&gt;&quot;)
+  summaryText.append(&quot;&lt;p&gt;&lt;b&gt;RoadRunner Results: &lt;/b&gt;&lt;a href=&apos;&quot;+resultsLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+resultsLink+&quot;&lt;/a&gt;&quot;)
+  summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;CloudTest Results: &lt;/b&gt;&lt;a href=&apos;&quot;+cloudTestResLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+cloudTestResLink+&quot;&lt;/a&gt;&lt;/p&gt;&quot;)
+  summaryText.append(&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Tip: If the content isn&apos;t loading below, load the direct link above with HTTPS and accept the SSL.  Then refresh this page.&lt;/p&gt;&lt;iframe src=&apos;&quot;+resultsLinkSecure+&quot;&apos; height=&apos;1200&apos; width=&apos;100%&apos;&gt;&lt;/iframe&gt;&quot;)
+  summaryText.append(&quot;&lt;b&gt;New Test Data:&lt;/b&gt; $outputMsg&quot;)
+  summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;SOASTA Report Id:&lt;/b&gt;: $EXTERNAL_TEST_ID&quot;);
+  summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;SLA Results:&lt;/b&gt;: &quot; + slaOutputMsg);
+
+} else {
+  // either slas failed or test failed
+  summaryIcon = &quot;error.gif&quot;
+  hipchatColor = &quot;red&quot;
+
+  if(hadError) { 
+     // test failed
+     summaryText.append(&quot;&lt;b&gt;ERROR DETAILS:&lt;/b&gt; $outputMsg&quot;)
+     summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;API Call:&lt;/b&gt; &quot; + RR_SOASTA_START_TEST_URL + &quot;?&quot; + queryString)
+     summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;CloudTest Results: &lt;a href=&apos;&quot;+cloudTestResLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+cloudTestResLink+&quot;&lt;/a&gt;&quot;)
+     summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;SOASTA Report Id:&lt;/b&gt;: $EXTERNAL_TEST_ID&quot;);
+     summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;SLA Results:&lt;/b&gt;: &quot; + slaOutputMsg);
+  } else {
+     // just slas failed
+     summaryText.append(&quot;&lt;script&gt;jQuery(&apos;#main-panel &gt; table&apos;).css(&apos;width&apos;,&apos;100%&apos;);&lt;/script&gt;&quot;)
+     summaryText.append(&quot;&lt;b&gt;ERROR DETAILS:&lt;/b&gt; SLAs failed!  &lt;a href=&apos;#slas&apos;&gt;See results&lt;/a&gt;&quot;)
+     summaryText.append(&quot;&lt;p&gt;&lt;b&gt;RoadRunner Results: &lt;/b&gt;&lt;a href=&apos;&quot;+resultsLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+resultsLink+&quot;&lt;/a&gt;&quot;)
+     summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;CloudTest Results: &lt;/b&gt;&lt;a href=&apos;&quot;+cloudTestResLink+&quot;&apos; target=&apos;_blank&apos;&gt;&quot;+cloudTestResLink+&quot;&lt;/a&gt;&lt;/p&gt;&quot;)
+     summaryText.append(&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Tip: If the content isn&apos;t loading below, load the direct link above with HTTPS and accept the SSL.  Then refresh this page.&lt;/p&gt;&lt;iframe src=&apos;&quot;+resultsLinkSecure+&quot;&apos; height=&apos;1200&apos; width=&apos;100%&apos;&gt;&lt;/iframe&gt;&quot;)
+     summaryText.append(&quot;&lt;b&gt;New Test Data:&lt;/b&gt; $outputMsg&quot;)
+     summaryText.append(&quot;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;SOASTA Report Id:&lt;/b&gt;: $EXTERNAL_TEST_ID&quot;);
+     summaryText.append(&quot;&lt;br /&gt;&lt;a name=&apos;slas&apos; id=&apos;slas&apos; /&gt;&lt;br /&gt;&lt;b&gt;SLA Results:&lt;/b&gt;: &quot; + slaOutputMsg);
+  }
+  manager.buildFailure()
+}
+
+summary = manager.createSummary(summaryIcon);
+summary.appendText(summaryText.toString(), false);
+String hipchatRoom = manager.build.buildVariableResolver.resolve(&quot;HIPCHAT_ROOM_NAME&quot;);
+if(!hipchatRoom.trim().equals(&quot;&quot;)){
+   HipchatV1Service hipchat = new HipchatV1Service();
+   hipchat.sendMessage(hipchatRoom.trim(), hipchatText.toString(), hipchatColor);
+}
+
+
+
+def restCall(def strUrl, def method, def queryString){
+  def url = new URL(strUrl)
+  def conn = url.openConnection()
+  conn.setReadTimeout(10*120*1000) // 20 minutes for RoadRunner to process data
+  conn.setRequestMethod(method)
+  conn.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json; charset=utf-8&quot;);
+  conn.setRequestProperty(&quot;Accept&quot;,&quot;*/*&quot;)
+  if(method == &quot;POST&quot; || method == &quot;PUT&quot;){
+     conn.doOutput = true
+     if(queryString.trim() != &apos;&apos;) {
+       def writer = new OutputStreamWriter(conn.outputStream)
+       writer.write(queryString)
+       writer.flush()
+       writer.close()
+    }
+  } else {
+    conn.doOutput = false
+  }
+
+  conn.connect()
+
+  def respText = conn.content.text
+  println &quot;====== RESPONSE CODE: &quot; + conn.responseCode
+  println &quot;====== RESPONSE TEXT: &quot; + respText
+
+  return respText
+}
+
+
+def getSoastaReportId() {
+  println &quot;getting Soasta Report Id...&quot;
+  def allNodes
+  def soastaId = &quot;0&quot;
+  def pattern = ~/.*\.xml/
+  def dirname=&apos;/var/lib/jenkins/jobs/&apos; + manager.build.getProject().name + &apos;/builds/&apos; + manager.build.getId() + &apos;/archive/&apos;;
+  def found = false;
+
+  new File(&quot;$dirname&quot;).eachDirRecurse { dir -&gt;
+    if(!found){
+        dir.eachFileMatch(pattern) {    myfile -&gt;
+          if(!found){
+            try {
+              allNodes = new XmlSlurper().parseText(new File(&quot;$myfile&quot;).text).depthFirst().collect{ it }
+              for( n in allNodes){
+                //println n.@resultID
+                if(n.@resultID!=null &amp;&amp; !n.@resultID.text().equals(&quot;&quot;)){
+                  soastaId = n.@resultID.text()
+                  printlin &quot;found id of &quot; + soastaId
+                  found = true
+                  break;
+                }
+              }
+           //   soastaId = new XmlSlurper().parseText(new File(&quot;$myfile&quot;).text).testcase.@resultID.text()â&#x80;&#x8b;.toString()
+                
+              found = true
+            }catch(Exception e){
+              // println e.getStackTrace()
+            }
+          }
+        } // eachFileMatch
+   } // end if !found
+  } // eachFileMatch
+
+  
+  return soastaId
+}
+</script>
+        <sandbox>false</sandbox>
+      </script>
+      <behavior>1</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+    <jenkins.plugins.hipchat.HipChatNotifier plugin="hipchat@0.2.0">
+      <token>7969becbbf79c05adeb63ad7380409</token>
+      <room>~HIPCHAT_ROOM_NAME~</room>
+      <startNotification>false</startNotification>
+      <notifySuccess>false</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>true</notifyUnstable>
+      <notifyFailure>true</notifyFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <startJobMessage></startJobMessage>
+      <completeJobMessage></completeJobMessage>
+    </jenkins.plugins.hipchat.HipChatNotifier>
+  </publishers>
+  <buildWrappers/>
+</project>

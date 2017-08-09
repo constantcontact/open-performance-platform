@@ -62,7 +62,8 @@ Ext.define('OppUI.view.uxDashboard.wpttrendchart.WptTrendChart', {
                 type: 'arearange',
                 zoomType: 'x',
                 marginLeft: 50,
-                marginRight: 50
+                marginRight: 50,
+                isSVG: true
             },
             // rangeSelector: {
             //     selected: 1

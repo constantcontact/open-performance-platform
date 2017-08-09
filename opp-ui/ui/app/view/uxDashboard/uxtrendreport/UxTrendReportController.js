@@ -18,6 +18,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     onPageLoadChartDataLoad: function(histogramData) {
         // get data and save for later use
         this.pageLoadChart.data = histogramData.data.items;
+        console.log("page load chart data");
+        console.log(this.pageLoadChart.data);
         // start loading user timings store
         this.getView().getViewModel().getStore('customTimings').load();
         // create page load chart
@@ -52,7 +54,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
         data.forEach((d) => {
             var obj = d.data;
             names.forEach((n) => {
-                if (obj[n].min !== 0 && obj[n].max !== 0) {
+              //  if (obj[n].min !== 0 && obj[n].max !== 0) {
                     // e.g. - obj.completedDate, obj.ttfb.median
                     var lineValue = [obj[dateField], obj[n][lineMetric]];
                     var lineKey = n + "-line";
@@ -61,7 +63,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                     // add range value
                     if (!dataStore.hasOwnProperty(n)) dataStore[n] = [];
                     dataStore[n].push([obj[dateField], obj[n].min, obj[n].max]);
-                }
+              //  }
             });
         });
         return dataStore;
@@ -86,10 +88,8 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
     // callback for when ajax returns for user timing data
     onUserTimingDataLoad: function() {
         this.userTimingChart.data = this.getView().getViewModel().getStore('customTimings').getData().items;
-        if(this.userTimingChart.data.length === 0) {
-            // no user timing data - hide chart
-            this.getUserTimingChart().up('panel').hide();
-        } else {
+        if(this.userTimingChart.data.length > 0) {
+            this.getView().down('customtimingchart').show();
             this.createUserTimingChart(this.userTimingChart.data);
         }
     },
@@ -98,7 +98,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
         var dataStore = Object();
         data.forEach((d) => {
             var obj = d.data;
-            if (obj.min !== 0 && obj.max !== 0) {
+            //if (obj.min !== 0 && obj.max !== 0) {
                 // add line value
                 var lineValue = [obj[dateField], obj[lineMetric]];
                 var lineKey = obj.name + "-line";
@@ -107,7 +107,7 @@ Ext.define('OppUI.view.uxDashboard.uxtrendreport.UxTrendReportController', {
                 // add range value
                 if (!dataStore.hasOwnProperty(obj.name)) dataStore[obj.name] = [];
                 dataStore[obj.name].push([obj.timePeriod, obj.min, obj.max]);
-            }
+           // }
         })
         return dataStore;
     },
