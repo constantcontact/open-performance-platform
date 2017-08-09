@@ -79,7 +79,7 @@ locationsAwsEuDe = [ region:"aws-eu-de", wptLocationNames:["EC2_EU_Frankfurt_Ws1
 
 DEFAULT_HASH = 
 [
-     wpturl:'http://wpt.roving.com/runtest.php',
+     wpturl:'http://my-wpt-server.com/runtest.php',
      environment:[''],
      url:'',
      label:'',

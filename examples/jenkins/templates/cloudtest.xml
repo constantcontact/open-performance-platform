@@ -315,7 +315,7 @@ hipchatText.append(&quot;&lt;br /&gt;&lt;b&gt;Application(s): &lt;/b&gt; &quot; 
 
 
 // set SOASTA results link
-def cloudTestResLink = &quot;http://cloudtest.roving.com/concerto/Central?initResultsTab=$EXTERNAL_TEST_ID&quot;
+def cloudTestResLink = &quot;http://cloudtest.mydomain.com/concerto/Central?initResultsTab=$EXTERNAL_TEST_ID&quot;
 
 // --- GET SLAs ---
 def slaResp = restCall(&apos;http://opp-svc.mydomain.com/loadsvc/v1/loadtests/&apos;+loadTestId.toString()+&apos;/slaresults&apos;, &quot;GET&quot;, &quot;&quot;)
