@@ -33,16 +33,6 @@ services:
       - NGINX_HOST_UI=opp-ui.mydomain.com
       - NGINX_HOST_SVC=opp-svc.mydomain.com
       - NGINX_PORT=443
-    #command: /bin/bash -c "envsubst '$$NGINX_HOST_UI $$NGINX_HOST_SVC $$NGINX_PORT' < /etc/nginx/conf.d/opp.template > /etc/nginx/conf.d/opp.conf && nginx -g 'daemon off;' && chown -R nginx:nginx /var/www/opp"
-  # couchdb:
-  #   build: ./couchdb
-  #   volumes:
-  #     - couchdbData:/usr/local/var/lib/couchdb
-  #     - ./opp-service/db/couchdb:/docker-entrypoint-initdb.d
-  #   ports:
-  #     - "5984:5984"
-  #   networks:
-  #     - opp-net
   mysql:
     image: mysql:5.6
     restart: always

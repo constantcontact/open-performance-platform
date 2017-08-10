@@ -5,4 +5,5 @@ commit.sh
 deploy-scripts/aws/aws-config.sh.private
 deploy-scripts/aws/aws-config.sh
 opp-ui/ui/build/*
+docker-compose-private.yml
 

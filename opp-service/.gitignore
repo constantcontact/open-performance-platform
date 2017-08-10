@@ -34,7 +34,7 @@ overridedb.*
 *.jar
 .DS_Store
 log/
-application.yml
-application.yml.private
-aplication.properties.private
+*application.yml
+*application.yml.private
+*aplication.properties.private
 pushToDockerHub.sh

@@ -23,6 +23,7 @@ import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.*;
@@ -60,6 +61,14 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
 
     @Autowired
     private CiLoadTestJobService ciLoadTestJobService;
+
+    @Value("${opp.elasticsearch.clusterName}")
+    private String clusterName;
+    @Value("${opp.elasticsearch.clusterNodes}")
+    private String clusterNodes;
+    @Value("${opp.elasticsearch.apiUrl}")
+    private String esApiUrl;
+
 
 
     @After
@@ -228,7 +237,6 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
 
 
     @Test
-    @Ignore
     public void couchDBWptMigration() {
         // pull data down first
         // curl -X GET http://{couchdburl}:5984/wpt-summary/_design/wptid/_view/list-data > /tmp/docs.json
@@ -312,7 +320,7 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
 
     private void bulkLoad(String postData) {
         try {
-            HttpResponse<String> res = Unirest.post("http://localhost:9200/_bulk").body(postData).asString();
+            HttpResponse<String> res = Unirest.post(esApiUrl + "/_bulk").body(postData).asString();
             System.out.println(res.getBody());
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -321,7 +329,7 @@ public class MaintenanceControllerTest extends BaseIntegrationTest {
 
     private void postToES(String id, String json, String index, String type) {
         try {
-            HttpResponse<String> res = Unirest.post("http://localhost:9200/"+index+"/"+type+"/" + id).body(json).asString();
+            HttpResponse<String> res = Unirest.post(esApiUrl + "/"+index+"/"+type+"/" + id).body(json).asString();
             System.out.println(res.getBody());
         } catch (UnirestException e) {
             e.printStackTrace();
