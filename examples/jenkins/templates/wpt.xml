@@ -166,7 +166,7 @@ Connections: FIOS, Cable, DSL, Dial, 4G, 3G, Native</description>
           <name>wpturl</name>
           <description>The runtest url for webpage test.
 
-http://wpt.roving.com/runtest.php</description>
+http://wpt.mydomain.com/runtest.php</description>
           <defaultValue>~wpturl~</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>

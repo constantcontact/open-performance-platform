@@ -23,6 +23,17 @@ chown -R nginx:nginx /var/www/opp
 echo "SVC: $NGINX_HOST_SVC"
 echo "UI: $NGINX_HOST_UI"
 
+# allow for a path for the certs to be passed in via ENV variable
+echo "checking for an external cert path"
+if [ -z "$SSL_CERT_PATH" ]; then
+	echo "no cert path set"
+else
+	echo "found cert path"
+	mkdir -p /etc/nginx/certs
+	cp -r $SSL_CERT_PATH/* /etc/nginx/certs
+fi
+
+
 # if not run through docker-compose this directory won't exist
 if [ ! -d "/var/certs" ]; then
 	echo "Creating certs directory"
@@ -32,7 +43,7 @@ fi
 ##### build or get certs for UI and SVC #####
 CERTS=(ui svc)
 for app in ${CERTS[@]}; do
-	if [ ! -e "/etc/nginx/certs/opp-${app}-crt.pem" ] || [ ! -e "/etc/nginx/certs/opp-${app}-key.pem" ]
+	if [ -z "$SSL_CERT_PATH" ] || [ ! -e "/etc/nginx/certs/opp-${app}-crt.pem" ] || [ ! -e "/etc/nginx/certs/opp-${app}-key.pem"]
 	then
 		mkdir -p /etc/nginx/certs
 		# look for cached certs

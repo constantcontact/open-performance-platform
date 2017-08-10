@@ -9,12 +9,13 @@ services:
       - opp-net
     depends_on:
       - mysql
-      #- couchdb
       - elasticsearch
     links:
       - mysql:mysql
-      #- couchdb:couchdb
       - elasticsearch:elasticsearch
+    volumes:
+      # if you want, you can set your externalized application config here
+      - ./opp-service/src/main/resources:/conf
   ui:
     build: ./opp-ui
     image: craig2005/opp-ui
@@ -96,6 +97,8 @@ services:
     depends_on:
       - elasticsearch
 volumes:
+  oppSvcConfig:
+    driver: local
   mysqlData:
     driver: local
   esdata:
