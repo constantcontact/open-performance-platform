@@ -25,12 +25,12 @@ echo "UI: $NGINX_HOST_UI"
 
 # allow for a path for the certs to be passed in via ENV variable
 echo "checking for an external cert path"
-if [ -z "$SSL_CERT_PATH" ]; then
-	echo "no cert path set"
-else
-	echo "found cert path"
+if [ ! -z "$SSL_CERT_PATH" ]; then
+	echo "####### Found external cert path."
 	mkdir -p /etc/nginx/certs
 	cp -r $SSL_CERT_PATH/* /etc/nginx/certs
+else
+	echo "No external certs found."
 fi
 
 
@@ -43,12 +43,11 @@ fi
 ##### build or get certs for UI and SVC #####
 CERTS=(ui svc)
 for app in ${CERTS[@]}; do
-	if [ -z "$SSL_CERT_PATH" ] || [ ! -e "/etc/nginx/certs/opp-${app}-crt.pem" ] || [ ! -e "/etc/nginx/certs/opp-${app}-key.pem"]
-	then
+	# only enter  loop if no certicate path is specified and no certs are in the nginx directory
+	if [[ -z "$SSL_CERT_PATH" && ( ! -e "/etc/nginx/certs/opp-crt.pem" || ! -e "/etc/nginx/certs/opp-${app}-key.pem" ) ]]; then 
 		mkdir -p /etc/nginx/certs
 		# look for cached certs
-		if [ -e "/var/certs/opp-${app}-crt.pem" ] || [ -e "/var/certs/opp-${app}-key.pem" ]
-		then
+		if [ -e "/var/certs/opp-${app}-crt.pem" ] || [ -e "/var/certs/opp-${app}-key.pem" ]; then
 			echo "---> copying cached ${app} certs"
 			cp /var/certs/opp-${app}-crt.pem /etc/nginx/certs
 			cp /var/certs/opp-${app}-key.pem /etc/nginx/certs

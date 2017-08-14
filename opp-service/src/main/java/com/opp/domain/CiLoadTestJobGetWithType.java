@@ -20,11 +20,11 @@ public class CiLoadTestJobGetWithType extends CiLoadTestJob {
         this.job_type_id = job_type_id;
     }
 
-    public String getJobType() {
+    public String getTestType() {
         return jobType;
     }
 
-    public void setJobType(String jobType) {
+    public void setTestType(String jobType) {
         this.jobType = jobType;
     }
 

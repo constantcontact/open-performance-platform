@@ -5,11 +5,11 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by ctobe on 4/26/17.
  */
-public class CiLoadTestJobType {
+public class CiLoadTestType {
 
     private int id;
     @NotNull
-    private String jobType;
+    private String testType;
     private String additionalOptions;
     private String testTool;
     private String testToolVersion;
@@ -23,12 +23,12 @@ public class CiLoadTestJobType {
         this.id = id;
     }
 
-    public String getJobType() {
-        return jobType;
+    public String getTestType() {
+        return testType;
     }
 
-    public void setJobType(String jobType) {
-        this.jobType = jobType;
+    public void setTestType(String testType) {
+        this.testType = testType;
     }
 
     public String getAdditionalOptions() {

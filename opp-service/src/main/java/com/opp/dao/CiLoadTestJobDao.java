@@ -33,9 +33,9 @@ public class CiLoadTestJobDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private static final String TABLE_NAME = "ci_load_test_job";
-    private static final String JOIN_JOB_TYPE_SQL = " left join ci_load_test_job_type jobtype on job.job_type = jobtype.job_type";
-    private static final String SELECT_BY_ID = "select * from " +TABLE_NAME+ "job where job.id = ? " + JOIN_JOB_TYPE_SQL;
-    private static final String SELECT_BY_TEST_NAME = "select * from "+TABLE_NAME+"job where job.test_name = ? " + JOIN_JOB_TYPE_SQL;
+    private static final String JOIN_JOB_TYPE_SQL = " left join ci_load_test_type testtype on job.test_type = testtype.test_type";
+    private static final String SELECT_BY_ID = "select * from " +TABLE_NAME+ " job where job.id = ? " + JOIN_JOB_TYPE_SQL;
+    private static final String SELECT_BY_TEST_NAME = "select * from "+TABLE_NAME+" job where job.test_name = ? " + JOIN_JOB_TYPE_SQL;
     private static final String SELECT_ALL = "select * from " + TABLE_NAME + JOIN_JOB_TYPE_SQL;
 
     /**
@@ -151,7 +151,7 @@ public class CiLoadTestJobDao {
     public List<CiLoadTestJobGetWithType> search(CiLoadTestJob ciLoadTestJob) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        String query = "SELECT * FROM " + TABLE_NAME + "job WHERE";
+        String query = "SELECT * FROM " + TABLE_NAME + " job WHERE";
         if(!ciLoadTestJob.getTestName().isEmpty()){
             query += " test_name = :testName " ;
             params.addValue("testName", ciLoadTestJob.getTestName() );

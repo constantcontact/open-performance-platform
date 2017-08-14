@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `opp` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `opp`;
--- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: secret    Database: opp
+-- Host: 127.0.0.1    Database: opp
 -- ------------------------------------------------------
--- Server version	5.6.29-log
+-- Server version	5.6.36
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,27 +14,6 @@ USE `opp`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `api_logs`
---
-
-DROP TABLE IF EXISTS `api_logs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `api_logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uri` varchar(255) NOT NULL,
-  `method` varchar(6) NOT NULL,
-  `params` text,
-  `api_key` varchar(40) NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `time` int(11) NOT NULL,
-  `rtime` float DEFAULT NULL,
-  `authorized` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=129366 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `application`
@@ -66,7 +43,7 @@ CREATE TABLE `application` (
   UNIQUE KEY `app_key_UNIQUE` (`app_key`),
   KEY `fk_application_application_team_team_name_idx` (`team_name`),
   CONSTRAINT `fk_application_application_team_team_name` FOREIGN KEY (`team_name`) REFERENCES `application_team` (`team_name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,6 +58,56 @@ CREATE TABLE `application_team` (
   `owner` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`team_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ci_load_test_job`
+--
+
+DROP TABLE IF EXISTS `ci_load_test_job`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ci_load_test_job` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_type` varchar(45) DEFAULT NULL,
+  `app_under_test` varchar(100) DEFAULT NULL,
+  `app_under_test_version` varchar(100) DEFAULT NULL,
+  `comments` varchar(1000) DEFAULT NULL,
+  `cron_schedule` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `environment` varchar(100) NOT NULL,
+  `host_name` varchar(100) DEFAULT NULL,
+  `ramp_vuser_end_delay` int(11) DEFAULT NULL,
+  `ramp_vuser_start_delay` int(11) DEFAULT NULL,
+  `run_duration` int(11) NOT NULL,
+  `sla_group_id` int(11) DEFAULT NULL,
+  `test_path` varchar(200) NOT NULL,
+  `test_name` varchar(200) NOT NULL,
+  `test_sub_name` varchar(200) DEFAULT NULL,
+  `test_data_type` varchar(45) DEFAULT NULL,
+  `vuser_count` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_load_test_type_test_type` (`test_type`),
+  CONSTRAINT `fk_load_test_type_test_type` FOREIGN KEY (`test_type`) REFERENCES `ci_load_test_type` (`test_type`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ci_load_test_type`
+--
+
+DROP TABLE IF EXISTS `ci_load_test_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ci_load_test_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_type` varchar(50) NOT NULL,
+  `additional_options` varchar(200) DEFAULT NULL,
+  `test_tool` varchar(50) DEFAULT NULL,
+  `test_tool_version` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `job_type_UNIQUE` (`test_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +128,7 @@ CREATE TABLE `graphite_metric` (
   KEY `app_key` (`app_key`),
   CONSTRAINT `fk__graphite_metric_application_id` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk__graphite_metric_application_key` FOREIGN KEY (`app_key`) REFERENCES `application` (`app_key`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +154,7 @@ CREATE TABLE `load_sla` (
   PRIMARY KEY (`id`),
   KEY `fk_load_sla_group_id_load_sla_idx` (`load_sla_group_id`),
   CONSTRAINT `fk_load_sla_group_id_load_sla` FOREIGN KEY (`load_sla_group_id`) REFERENCES `load_sla_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=228 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +168,7 @@ CREATE TABLE `load_sla_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +189,7 @@ CREATE TABLE `load_sla_test_group` (
   KEY `FKC0BB38822CDF330A` (`load_test_id`),
   CONSTRAINT `fk_load_sla_test_group_load_sla_group_id` FOREIGN KEY (`load_sla_group_id`) REFERENCES `load_sla_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_load_sla_test_group_load_test_id` FOREIGN KEY (`load_test_id`) REFERENCES `load_test` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=930 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +216,7 @@ CREATE TABLE `load_test` (
   `sla_group_id` int(11) DEFAULT NULL,
   `external_test_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4963 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +252,7 @@ CREATE TABLE `load_test_aggregate` (
   PRIMARY KEY (`id`),
   KEY `FK1537AECB99D0AC4E` (`load_test_id`),
   CONSTRAINT `fk_load_test_aggregate_load_test_id` FOREIGN KEY (`load_test_id`) REFERENCES `load_test` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=85846 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=639 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +299,7 @@ CREATE TABLE `load_test_data` (
   PRIMARY KEY (`id`),
   KEY `fk_load_test_data_load_test_id_idx` (`load_test_id`),
   CONSTRAINT `fk_load_test_data_load_test_id` FOREIGN KEY (`load_test_id`) REFERENCES `load_test` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=54396468 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1053 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -445,4 +472,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-06 15:47:37
+-- Dump completed on 2017-08-14 15:07:21

@@ -88,8 +88,8 @@ public class CiLoadTestJobController {
             @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
     })
     public List<CiLoadTestJobGetWithType> searchForTest(
-            @RequestParam(value = "testName", defaultValue = "") String testName,
-            @RequestParam(value = "testType", defaultValue = "") String testType )
+            @RequestParam(value = "testName", defaultValue = "", required = false) String testName,
+            @RequestParam(value = "testType", defaultValue = "", required = false) String testType )
     {
         CiLoadTestJob job = new CiLoadTestJob();
         job.setTestName(testName);
