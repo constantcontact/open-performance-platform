@@ -199,7 +199,7 @@ public class WptTestDao {
     public List<WptUINavigation> getNavigation() {
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
                 .addAggregation(AggregationBuilders.terms("agg").field("label.full.keyword").size(2000).order(Terms.Order.term(true))
-                        .subAggregation(AggregationBuilders.max("max").field("completed")).order(Terms.Order.)).get();
+                        .subAggregation(AggregationBuilders.max("max").field("completed"))).get();
         Terms terms = resp.getAggregations().get("agg");
         List<WptUINavigation> distinctTests = terms.getBuckets().stream().map(b -> {
             Max max = b.getAggregations().get("max");
