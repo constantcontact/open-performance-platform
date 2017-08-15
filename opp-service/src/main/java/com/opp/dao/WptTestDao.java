@@ -199,7 +199,7 @@ public class WptTestDao {
     public List<WptUINavigation> getNavigation() {
         SearchResponse resp = esClient.prepareSearch(wptEsIndex).setTypes(wptEsType)
                 .addAggregation(AggregationBuilders.terms("agg").field("label.full.keyword").size(2000).order(Terms.Order.term(true))
-                        .subAggregation(AggregationBuilders.max("max").field("completed"))).execute().actionGet();
+                        .subAggregation(AggregationBuilders.max("max").field("completed")).order(Terms.Order.)).get();
         Terms terms = resp.getAggregations().get("agg");
         List<WptUINavigation> distinctTests = terms.getBuckets().stream().map(b -> {
             Max max = b.getAggregations().get("max");
@@ -207,7 +207,8 @@ public class WptTestDao {
         }).collect(toList());
         // sort by date
         // TODO: this is technically wrong.  we shouldn't be using this to sort the list of most recent tests
-        distinctTests.sort((o1, o2) -> ((Long)(o2.getTestDate() - o1.getTestDate())).intValue());
+        // causing sort contract violation errors
+        //distinctTests.sort((o1, o2) -> ((Long)(o2.getTestDate() - o1.getTestDate())).intValue());
         return distinctTests;
 
     }
