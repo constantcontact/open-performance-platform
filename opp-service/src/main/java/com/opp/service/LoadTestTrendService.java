@@ -126,6 +126,8 @@ public class LoadTestTrendService {
   //  @Cacheable(value="getSummaryTrendByFilter", key = "#filter")
     public List<LoadTestSummaryTrendGet> getSummaryTrendsByFilter(String filter){
         List<LoadTestSummaryTrend> loadTestSummaryTrends = dao.findSummaryTrendsByFilter(filter);
+        // reverse list so its oldest to newest
+        Collections.reverse(loadTestSummaryTrends);
         return trendLoadTests(loadTestSummaryTrends, summaryTrendsConfiguration.getTrendOnColumns());
     }
 

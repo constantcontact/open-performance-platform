@@ -100,7 +100,7 @@ public class LoadTestSummaryTrendDao {
             whereClause = " WHERE ( " + whereFilterClause + " ) ";
         }
 
-        String sql = "SELECT * FROM load_test_summary_trend " + whereClause + " order by load_test_id ASC LIMIT 0,100";
+        String sql = "SELECT * FROM load_test_summary_trend " + whereClause + " order by load_test_id DESC LIMIT 0,100";
 
         return getOrReturnEmpty(()-> jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LoadTestSummaryTrend.class), sqlParams.toArray()));
 
