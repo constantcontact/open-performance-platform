@@ -97,6 +97,7 @@ Ext.define('OppUI.view.main.Main', {
             id: 'main-view-detail-wrap',
             reference: 'mainContainerWrap',
             flex: 1,
+            autoScroll: true,
             items: [{
                     xtype: 'treelist',
                     reference: 'navigationTreeList',

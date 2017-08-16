@@ -151,18 +151,16 @@ public class CiLoadTestJobDao {
     public List<CiLoadTestJobGetWithType> search(CiLoadTestJob ciLoadTestJob) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        String query = "SELECT * FROM " + TABLE_NAME + " job WHERE";
+        String query = "SELECT * FROM " + TABLE_NAME + " job "+ JOIN_JOB_TYPE_SQL + "  WHERE";
         if(!ciLoadTestJob.getTestName().isEmpty()){
-            query += " test_name = :testName " ;
+            query += " job.test_name = :testName " ;
             params.addValue("testName", ciLoadTestJob.getTestName() );
         }
-        if(!ciLoadTestJob.getTestName().isEmpty()){
+        if(!ciLoadTestJob.getTestType().isEmpty()){
             if((params.getValues().size() > 0)) query += " and";
-            query += " test_type = :testType " ;
+            query += " job.test_type = :testType " ;
             params.addValue("testType", ciLoadTestJob.getTestType() );
         }
-
-        query += JOIN_JOB_TYPE_SQL;
 
         // remove where from query if there are no params
         String finalQuery = (params.getValues().size() == 0) ? query.replace(" WHERE", "") : query;

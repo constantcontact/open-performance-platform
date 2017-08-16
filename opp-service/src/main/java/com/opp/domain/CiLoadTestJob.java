@@ -51,7 +51,7 @@ public class CiLoadTestJob {
     }
 
     public void setTestType(String testType) {
-        this.testType = this.testType;
+        this.testType = testType;
     }
 
     public String getTestName() {

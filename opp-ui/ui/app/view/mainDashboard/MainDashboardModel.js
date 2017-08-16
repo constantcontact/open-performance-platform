@@ -43,7 +43,10 @@ Ext.define('OppUI.view.mainDashboard.MainDashboardModel', {
             model: 'OppUI.model.uxDashboard.UxApplications',
             autoLoad: false,
             pageSize: 10,
-
+            sorters: {
+                property: 'testDate',
+                direction: 'DESC'
+            },
             proxy: {
                 type: 'memory',
                 enablePaging: true,

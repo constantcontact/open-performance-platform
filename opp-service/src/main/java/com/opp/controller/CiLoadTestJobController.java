@@ -89,11 +89,12 @@ public class CiLoadTestJobController {
     })
     public List<CiLoadTestJobGetWithType> searchForTest(
             @RequestParam(value = "testName", defaultValue = "", required = false) String testName,
-            @RequestParam(value = "testType", defaultValue = "", required = false) String testType )
+            @RequestParam(value = "testType", defaultValue = "", required = false) String testType,
+            @RequestParam(value = "mergeWithDefault", defaultValue = "true", required = false) Boolean mergeWithDefault )
     {
         CiLoadTestJob job = new CiLoadTestJob();
         job.setTestName(testName);
         job.setTestType(testType);
-        return service.search(job);
+        return service.search(job, mergeWithDefault);
     }
 }

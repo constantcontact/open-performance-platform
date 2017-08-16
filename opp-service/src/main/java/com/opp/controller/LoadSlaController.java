@@ -3,6 +3,7 @@ package com.opp.controller;
 import com.opp.domain.LoadSla;
 import com.opp.dto.ErrorResponse;
 import com.opp.dto.LoadTestSla;
+import com.opp.dto.LoadTestSlaResult;
 import com.opp.exception.InternalServiceException;
 import com.opp.exception.ResourceNotFoundException;
 import com.opp.service.LoadSlaService;
@@ -144,6 +145,18 @@ public class LoadSlaController {
     })
     public List<LoadTestSla> getAllFromLoadTest(@PathVariable("loadTestId") Integer loadTestId) {
         return service.getAllByLoadTestId(loadTestId);
+    }
+
+    @RequestMapping(value = "/loadsvc/v1/loadtests/{loadTestId}/slaresults", method = RequestMethod.GET)
+    @ApiOperation( value = "Get all sla results from LoadTest")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successfully retrieved SLA results", response = LoadTestSlaResult.class),
+            @ApiResponse(code = 401, message = "Failed authentication or not authorized", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "Load test not found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error", response = ErrorResponse.class)
+    })
+    public LoadTestSlaResult getLoadTestSlaResults(@PathVariable("loadTestId") Integer loadTestId) {
+        return service.getLoadTestSlaResults(loadTestId);
     }
 
 }
