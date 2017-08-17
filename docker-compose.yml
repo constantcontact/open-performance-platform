@@ -16,6 +16,8 @@ services:
     volumes:
       # if you want, you can set your externalized application config here
       - ./opp-service/src/main/resources:/conf
+      # for SOASTA CloudTest.  This directory path should match your application.yml file
+      #- /opt/soasta:/opt/soasta
   ui:
     build: ./opp-ui
     image: craig2005/opp-ui
