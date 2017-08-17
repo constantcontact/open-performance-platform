@@ -29,11 +29,20 @@ import java.util.stream.Stream;
 public class SoastaCloudTestService {
     private static final Logger logger = LoggerFactory.getLogger(SoastaCloudTestService.class);
 
-    private static final String S_COMMAND = "/opt/soasta/scommand/bin/scommand";
-    private static final String SOASTA_DATA_DIRECTORY = "/opt/soasta/data/";
-    private static final String SOASTA_URL = "http://cloudtest.roving.com/concerto";
-    private static final String USER = "jenkins";
-    private static final String PASS = "jenkins!";
+    @Value("${opp.cloudtest.url}")
+    private String cloudTestUrl;
+    @Value("${opp.cloudtest.user}")
+    private String cloudTestUser;
+    @Value("${opp.cloudtest.password}")
+    private String cloudTestPassword;
+    @Value("${opp.cloudtest.apiToken}")
+    private String cloudTestApiToken;
+    @Value("${opp.cloudtest.sCommandPath}")
+    private String sCommandPath;
+    @Value("${opp.cloudtest.dataPath}")
+    private String cloudTestDataDirectory;
+
+    // used to filter only transactions
     private static final String TRANSACTION_TYPE = "22";
 
     @Value("${opp.appMap.validateTestNameMapping}")
@@ -182,26 +191,32 @@ public class SoastaCloudTestService {
 
     public String exportResults(String ctComposition, String testDataType, String dataFile) {
         if (!StringUtils.isEmpty(dataFile)) {
-            File file = new File(SOASTA_DATA_DIRECTORY + dataFile);
-            return file.exists() ? SOASTA_DATA_DIRECTORY + dataFile : null;
+            File file = new File(cloudTestDataDirectory + dataFile);
+            return file.exists() ? cloudTestDataDirectory + dataFile : null;
+        }
+
+        // set user auth
+        String userAuth = String.format("username=%s password=%s", cloudTestUser, cloudTestPassword);
+        if(!cloudTestApiToken.isEmpty()){
+            userAuth = "apitoken=" + cloudTestApiToken;
         }
 
         // verify that the test exists in soasta.
         String testNameCommand =
-                String.format("%s cmd=list url=%s username=%s password=%s type=result | grep \"%s\" | tail -1 2>&1",
-                        S_COMMAND, SOASTA_URL, USER, PASS, ctComposition);
+                String.format("%s cmd=list url=%s %s type=result | grep \"%s\" | tail -1 2>&1",
+                        sCommandPath, cloudTestUrl, userAuth, ctComposition);
 
         Optional<String> testName = JavaRunCommand.run(testNameCommand);
 
         String absoluteFilename;
         if (testName.isPresent()) {
             String safeTestName = testName.get().trim().substring(1).replaceAll("[^a-zA-Z0-9.-]", "_");
-            absoluteFilename = SOASTA_DATA_DIRECTORY + safeTestName + "-" + testDataType + ".csv";
+            absoluteFilename = cloudTestDataDirectory + safeTestName + "-" + testDataType + ".csv";
 
             // build the scommand to export the data to a file.
             String getExportCommand = String.format(
-                    "%s cmd=export name=\"%s\" file=\"%s\" url=%s username=%s password=%s type=result format=%s resultSource=%s",
-                    S_COMMAND, testName.get().trim(), absoluteFilename, SOASTA_URL, USER, PASS, "CSV", testDataType);
+                    "%s cmd=export name=\"%s\" file=\"%s\" url=%s %s type=result format=%s resultSource=%s",
+                    sCommandPath, testName.get().trim(), absoluteFilename, cloudTestUrl, userAuth, "CSV", testDataType);
 
             Optional<String> exportResults = JavaRunCommand.run(getExportCommand);
             if (exportResults.isPresent()) {

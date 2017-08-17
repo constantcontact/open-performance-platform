@@ -20,6 +20,16 @@ opp:
       indexVersion: v1
       type: result
       fetchLimit: 1000
+  cloudtest:
+    url: http://mycloudtest/concerto
+    user: jenkins
+    password: jenkins-password
+    # leave blank to use user/pass instead.  If set, this will override user/pass
+    apiToken:
+    # local path to scommand
+    sCommandPath: /opt/soasta/scommand/bin/scommand 
+    # path where downloaded data files will be stored
+    dataPath: /opt/soasta/data
   db:
     # The batch size for SQL imports for load testPath data
     importBatchSize: 500
