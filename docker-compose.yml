@@ -44,10 +44,10 @@ services:
     networks:
       - opp-net
     environment:
-      - MYSQL_ROOT_PASSWORD=Pa$$word!
+      - MYSQL_ROOT_PASSWORD=ROOT-PASSWORD
       - MYSQL_DATABASE=opp
       - MYSQL_USER=oppuser
-      - MYSQL_PASSWORD=opppass
+      - MYSQL_PASSWORD=USER-PASSWORD
     volumes:
       - mysqlData:/var/lib/mysql
       - ./opp-service/db/mysql/schema:/docker-entrypoint-initdb.d
@@ -107,9 +107,9 @@ volumes:
     driver: local
   couchdbData:
     driver: local
-  nginxCerts: 
+  nginxCerts:
     driver: local
 networks:
   opp-net:
     driver: bridge
-  
+
